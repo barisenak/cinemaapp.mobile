@@ -1,11 +1,15 @@
-const filmReducer = (state = [], action) => {
-  switch (action.type) {
-    case 'SAVE_FILMS': {
-      return state.push([action.payload]);
-    }
+import {createReducer} from 'app/utils/redux.util';
 
-    default:
-      return state;
-  }
+import {STATE_INITIAL} from 'app/enum/state.enum';
+
+import {SET_STATE, SET_FILMS} from './films.action';
+
+const initialState = {
+  state: STATE_INITIAL,
+  films: [],
 };
-export default filmReducer;
+
+export const filmsReducer = createReducer(initialState, {
+  [SET_STATE]: (st, state) => ({...st, state}),
+  [SET_FILMS]: (st, films) => ({...st, films}),
+});

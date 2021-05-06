@@ -1,5 +1,5 @@
 import React from 'react';
-import Films from './Films.component';
+import Films from './Films.connect';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();

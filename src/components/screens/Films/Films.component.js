@@ -1,25 +1,25 @@
-/* eslint-disable react-native/no-inline-styles */
-import {Text, Button, View} from 'react-native';
-import {useDispatch} from 'react-redux';
 import React, {useEffect} from 'react';
+import {View} from 'react-native';
+
+import {Button} from 'app/components/partial/Button';
+import {Text} from 'app/components/partial/Text';
+
 import {styles} from './Films.styles';
-import {getFilms} from '../../../redux/films/films.action';
 
-function Films({navigation}) {
-  const dispatch = useDispatch();
-
+function Films({state, loadFilms}) {
   // useEffect(() => {
   //   dispatch(getFilms());
   // });
 
-  const get = () => {
-    dispatch(getFilms());
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.category}>Recently released</Text>
-      <Button onPress={get} title="Get"></Button>
+      <Text>{state}</Text>
+      <Button type="default" onPress={loadFilms}>
+        Get
+      </Button>
+      <Button type="primary">Primary</Button>
+      <Button type="textLink">Text Link</Button>
     </View>
   );
 }

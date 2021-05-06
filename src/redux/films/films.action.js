@@ -1,32 +1,32 @@
 import {call, put, takeEvery} from 'redux-saga/effects';
 
-export const getFilms = value => {
-  return {
-    type: 'GET_FILMS',
-  };
-};
+import {createAction} from 'app/utils/redux.util';
+import {fetchFilms} from 'app/api/films.api';
+import {STATE_LOADING, STATE_SUCCESS, STATE_FAILURE} from 'app/enum/state.enum';
 
-export const saveFilms = films => {
-  return {
-    type: 'SAVE_FILMS',
-    payload: films.data.json(),
-  };
-};
+export const SET_STATE = 'FILMS/SET_STATE';
+export const GET_FILMS = 'FILMS/GET';
+export const SET_FILMS = 'FILMS/SET';
 
-export const fetchFilms = async () => {
-  const data = await fetch('https://cinemaapp-api.herokuapp.com/films/all');
-  const result = await data.json();
-
-  return result;
-};
-// fetch mdn
+export const setState = createAction(SET_STATE);
+export const getFilms = createAction(GET_FILMS);
+export const setFilms = createAction(SET_FILMS);
 
 function* getAllFilms() {
-  const films = yield call(fetchFilms);
-  console.log(films);
-  yield put(saveFilms(films.data));
+  yield put(setState(STATE_LOADING));
+
+  try {
+    const {data} = yield call(fetchFilms);
+
+    yield put(setFilms(data));
+    yield put(setState(STATE_SUCCESS));
+  } catch (ex) {
+    console.warn(ex);
+
+    yield put(setState(STATE_FAILURE));
+  }
 }
 
 export function* sagaWatcher() {
-  yield takeEvery(getFilms, getAllFilms);
+  yield takeEvery(GET_FILMS, getAllFilms);
 }

@@ -1,12 +1,13 @@
-import reducer from './reducer';
 import {compose, createStore, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import {sagaWatcher} from './films/films.action';
+
+import {rootSagaWatcher} from './rootSaga';
+import {rootReducer} from './rootReducer';
 
 const saga = createSagaMiddleware();
 
-const store = createStore(reducer, compose(applyMiddleware(saga)));
+const store = createStore(rootReducer, compose(applyMiddleware(saga)));
 
-saga.run(sagaWatcher);
+saga.run(rootSagaWatcher);
 
 export default store;
