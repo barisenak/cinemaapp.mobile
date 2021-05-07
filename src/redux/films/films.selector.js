@@ -9,5 +9,5 @@ export const stateSelector = createSelector(
 
 export const filmListSelector = createSelector(
   filmsSelector,
-  films => films.film,
+  films => films.films,
 );
