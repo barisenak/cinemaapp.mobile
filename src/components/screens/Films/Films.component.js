@@ -1,5 +1,12 @@
 import React, {useEffect} from 'react';
-import {View, FlatList, SectionList, Image} from 'react-native';
+import {
+  View,
+  FlatList,
+  ScrollView,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
+import {STATE_LOADING} from 'app/enum/state.enum';
 
 import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
@@ -7,34 +14,122 @@ import {Text} from 'app/components/partial/Text';
 import {styles} from './Films.styles';
 
 function Films({state, loadFilms, films}) {
-  // useEffect(() => {
-  //   console.log(films[4].img);
-  // });
+  useEffect(() => {
+    loadFilms();
+  }, [loadFilms]);
 
   const renderItem = ({item}) => (
     <View>
-      <Image source={{uri: item.img}} style={{width: 110, height: 150}}></Image>
-      <Text>{item.name}</Text>
+      <Image
+        source={{uri: item.img}}
+        //onError
+        style={styles.card}
+      />
+    </View>
+  );
+
+  const renderComedyItem = ({item}) => (
+    <View>
+      {item.category === 'COMEDY' && (
+        <Image source={{uri: item.img}} style={styles.card} />
+      )}
+    </View>
+  );
+
+  const renderDramaItem = ({item}) => (
+    <View>
+      {item.category === 'DRAMA' && (
+        <Image
+          source={{uri: item.img}}
+          //onError
+          style={styles.card}
+        />
+      )}
+    </View>
+  );
+
+  const renderBiographyItem = ({item}) => (
+    <View>
+      {item.category === 'BIOGRAPHY' && (
+        <Image
+          source={{uri: item.img}}
+          //onError
+          style={styles.card}
+        />
+      )}
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.category}>Recently released</Text>
-      {films && (
-        <FlatList
-          data={films}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-        />
-      )}
+    <ScrollView
+      contentContainerStyle={styles.container}
+      style={{backgroundColor: 'white'}}>
+      <View>
+        <Text style={styles.category}>Recently released</Text>
+        {state === STATE_LOADING ? (
+          <ActivityIndicator size="small" color="black" />
+        ) : (
+          <FlatList
+            data={films.sort(
+              (a, b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate),
+            )} //selector
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            horizontal
+          />
+        )}
+      </View>
+      <View>
+        <Text style={styles.category}>Comedy</Text>
+
+        {state === STATE_LOADING ? (
+          <ActivityIndicator size="small" color="black" />
+        ) : (
+          <FlatList
+            data={films}
+            renderItem={renderComedyItem}
+            keyExtractor={item => item.id}
+            horizontal
+          />
+        )}
+      </View>
+
+      <View>
+        <Text style={styles.category}>Drama</Text>
+        {state === STATE_LOADING ? (
+          <ActivityIndicator size="small" color="black" />
+        ) : (
+          <FlatList
+            data={films}
+            renderItem={renderDramaItem}
+            keyExtractor={item => item.id}
+            horizontal
+          />
+        )}
+      </View>
+
+      <View>
+        <Text style={styles.category}>Biography</Text>
+        {state === STATE_LOADING ? (
+          <ActivityIndicator size="small" color="black" />
+        ) : (
+          <FlatList
+            data={films}
+            renderItem={renderBiographyItem}
+            keyExtractor={item => item.id}
+            horizontal
+          />
+        )}
+      </View>
+
       <Text>{state}</Text>
+
       <Button type="default" onPress={loadFilms}>
         Get
       </Button>
       <Button type="primary">Primary</Button>
       <Button type="textLink">Text Link</Button>
-    </View>
+    </ScrollView>
   );
 }
 
