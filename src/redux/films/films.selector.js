@@ -7,7 +7,8 @@ export const stateSelector = createSelector(
   films => films.state,
 );
 
-export const filmListSelector = createSelector(
-  filmsSelector,
-  films => films.films,
+export const filmListSelector = createSelector(filmsSelector, films =>
+  films.films.sort(
+    (a, b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate),
+  ),
 );

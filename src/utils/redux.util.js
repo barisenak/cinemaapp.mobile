@@ -3,6 +3,7 @@
  * @returns {Function} redux action creator
  */
 export function createAction(type) {
+  console.log(type);
   return (payload = {}) => ({
     type,
     payload,

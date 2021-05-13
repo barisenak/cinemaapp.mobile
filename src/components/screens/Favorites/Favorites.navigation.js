@@ -1,4 +1,4 @@
-import Favorites from './Favorites.component';
+import Favorites from './Favorites.connect';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 
