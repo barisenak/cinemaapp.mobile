@@ -51,27 +51,21 @@ function Favorites({
           Cinemas
         </Button>
       </View>
-      <View>
-        {!isLoggedIn && <Text>Please sign in</Text>}
-        <Button
-          type="primary"
-          onPress={() => {
-            setUser(true);
-            console.log(isLoggedIn);
-          }}>
-          LOG IN
-        </Button>
-        <Button
-          type="primary"
-          onPress={() => {
-            setUser(false);
-            console.log(isLoggedIn);
-          }}>
-          LOG OUT
-        </Button>
-      </View>
+      {!isLoggedIn && (
+        <View style={styles.signInContainer}>
+          <Text>Please sign in</Text>
+          <Button
+            type="primary"
+            style={styles.button}
+            onPress={() => navigation.navigate('Authorization')}>
+            LOG IN
+          </Button>
+        </View>
+      )}
     </ScrollView>
   );
 }
+//styles
+//log out
 
 export default Favorites;
