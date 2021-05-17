@@ -7,6 +7,8 @@ export const stateSelector = createSelector(
   films => films.state,
 );
 
+export const pageSelector = createSelector(filmsSelector, films => films.page);
+
 export const filmListSelector = createSelector(filmsSelector, films =>
   films.films.sort(
     (a, b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate),

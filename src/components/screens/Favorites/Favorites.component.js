@@ -65,7 +65,5 @@ function Favorites({
     </ScrollView>
   );
 }
-//styles
-//log out
 
 export default Favorites;

@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  FlatList,
-  ScrollView,
-  Image,
-  ActivityIndicator,
-  TextInput,
-} from 'react-native';
+import {View, TextInput} from 'react-native';
 
 import {Text} from 'app/components/partial/Text';
 

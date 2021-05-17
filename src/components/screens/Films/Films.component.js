@@ -13,7 +13,7 @@ import {Text} from 'app/components/partial/Text';
 
 import {styles} from './Films.styles';
 
-function Films({state, loadFilms, films}) {
+function Films({state, loadFilms, films, page, setPage}) {
   useEffect(() => {
     loadFilms();
   }, []);
@@ -64,6 +64,12 @@ function Films({state, loadFilms, films}) {
             horizontal
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
             // ListHeaderComponent={<Text style={{marginLeft: 10}}>head</Text>}
+            onEndReached={async () => {
+              loadFilms(page + 1);
+              setPage(page + 1);
+            }}
+            onEndReachedThreshold={0}
+            initialNumToRender={6}
           />
         )}
       </View>
@@ -114,8 +120,9 @@ function Films({state, loadFilms, films}) {
       </View>
 
       <Text>{state}</Text>
+      <Text>{page}</Text>
 
-      <Button type="default" onPress={loadFilms}>
+      <Button type="default" onPress={() => loadFilms(page)}>
         Get
       </Button>
     </ScrollView>
