@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   ActivityIndicator,
+  TouchableHighlight,
 } from 'react-native';
 import {STATE_LOADING} from 'app/enum/state.enum';
 
@@ -13,15 +14,27 @@ import {Text} from 'app/components/partial/Text';
 
 import {styles} from './Films.styles';
 
-function Films({state, loadFilms, films, page, setPage}) {
+function Films({state, loadFilms, films, page, setPage, navigation}) {
   useEffect(() => {
-    loadFilms();
+    loadFilms(page);
   }, []);
 
   const renderItem = ({item}) => (
-    <View>
+    <TouchableHighlight
+      activeOpacity={0.5}
+      underlayColor="white"
+      onPress={() =>
+        navigation.navigate('FilmCard', {
+          name: item.name,
+          description: item.description,
+          image: item.img,
+          duration: item.duration,
+          category: item.category,
+          releaseDate: item.releaseDate,
+        })
+      }>
       <Image source={{uri: item.img}} style={styles.card} />
-    </View>
+    </TouchableHighlight>
   );
 
   const renderComedyItem = ({item}) => (
@@ -51,7 +64,7 @@ function Films({state, loadFilms, films, page, setPage}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
-      style={{backgroundColor: 'white'}}>
+      style={styles.screenBackground}>
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Recently released</Text>
         {state === STATE_LOADING ? (
@@ -62,14 +75,15 @@ function Films({state, loadFilms, films, page, setPage}) {
             renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
+            refreshing="true"
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
             // ListHeaderComponent={<Text style={{marginLeft: 10}}>head</Text>}
-            onEndReached={async () => {
+            onEndReached={() => {
               loadFilms(page + 1);
               setPage(page + 1);
             }}
             onEndReachedThreshold={0}
-            initialNumToRender={6}
+            initialNumToRender={5}
           />
         )}
       </View>

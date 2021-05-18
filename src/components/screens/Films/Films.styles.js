@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: white,
   },
+  screenBackground: {backgroundColor: 'white'},
   category: {
     width: '100%',
     paddingVertical: 8.5,
