@@ -22,4 +22,10 @@ export const styles = StyleSheet.create({
   button: {
     width: 100,
   },
+
+  navTabWrapper: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    textAlign: 'center',
+  },
 });

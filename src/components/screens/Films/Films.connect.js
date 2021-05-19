@@ -5,6 +5,7 @@ import {
   filmListSelector,
   pageSelector,
 } from 'app/redux/films/films.selector';
+
 import {getFilms, setPage} from 'app/redux/films/films.action';
 
 import Films from './Films.component';

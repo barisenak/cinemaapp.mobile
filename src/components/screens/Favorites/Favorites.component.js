@@ -1,31 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import React from 'react';
-import {blue} from 'app/styles/colors.style';
+
+import {View, ScrollView} from 'react-native';
+
 import {
   SELECTED_TAB_CINEMAS,
   SELECTED_TAB_FILMS,
 } from 'app/enum/favorites.enum';
-import {styles} from 'app/components/screens/Favorites/Favorites.styles';
-import {Button} from 'app/components/partial/Button';
 
-function Favorites({
-  navigation,
-  selectedTab,
-  setSelectedTab,
-  isLoggedIn,
-  setUser,
-}) {
+import {styles} from 'app/components/screens/Favorites/Favorites.styles';
+
+import {Button} from 'app/components/partial/Button';
+import FavFilms from './FavFilms.component';
+import FavCinemas from './FavCinemas.component';
+import {Text} from 'app/components/partial/Text';
+
+function Favorites({navigation, selectedTab, setSelectedTab, isLoggedIn}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       style={{backgroundColor: 'white'}}>
-      <View
-        style={{
-          justifyContent: 'center',
-          flexDirection: 'row',
-          textAlign: 'center',
-        }}>
+      <View style={styles.navTabWrapper}>
         <Button
           disabled={!isLoggedIn ? true : false}
           type="textLink"
@@ -62,6 +57,7 @@ function Favorites({
           </Button>
         </View>
       )}
+      {/* {selectedTab === SELECTED_TAB_FILMS ? <FavFilms /> : <FavCinemas />} */}
     </ScrollView>
   );
 }
