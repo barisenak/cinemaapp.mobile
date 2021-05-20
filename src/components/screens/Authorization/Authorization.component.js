@@ -7,15 +7,14 @@ import {Button} from 'app/components/partial/Button';
 
 import {styles} from './Authorization.styles';
 
-function Authorization({navigation, loadFilms, films, setUserData}) {
+function Authorization({navigation, setUserData}) {
   const [typedEmail, setTypedEmail] = useState('');
   const [typedPassword, setTypedPassword] = useState('');
-  console.log(setUserData);
 
-  const signIn = e => {
-    e.preventDefault();
-    console.log(typedPassword);
+  const signIn = () => {
+    console.log(setUserData);
     setUserData({email: typedEmail, password: typedPassword});
+
     setTypedEmail('');
     setTypedPassword('');
   };
@@ -28,8 +27,8 @@ function Authorization({navigation, loadFilms, films, setUserData}) {
         keyboardType="default"
         style={styles.input}
         value={typedEmail}
-        onChange={event => {
-          setTypedEmail(event.target.value);
+        onChangeText={text => {
+          setTypedEmail(text);
         }}
       />
       <Text>Password</Text>
@@ -38,8 +37,8 @@ function Authorization({navigation, loadFilms, films, setUserData}) {
         keyboardType="default"
         style={styles.input}
         value={typedPassword}
-        onChange={event => {
-          setTypedPassword(event.target.value);
+        onChangeText={text => {
+          setTypedPassword(text);
         }}
       />
       <Button type="primary" onPress={signIn}>

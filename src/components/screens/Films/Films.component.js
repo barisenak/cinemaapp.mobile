@@ -78,9 +78,12 @@ function Films({state, loadFilms, films, page, setPage, navigation}) {
             refreshing="true"
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
             // ListHeaderComponent={<Text style={{marginLeft: 10}}>head</Text>}
+            ListFooterComponent={
+              <ActivityIndicator size="small" color="black" />
+            }
             onEndReached={() => {
-              loadFilms(page + 1);
-              setPage(page + 1);
+              // loadFilms(page + 1);
+              // setPage(page + 1);
             }}
             onEndReachedThreshold={0}
             initialNumToRender={5}

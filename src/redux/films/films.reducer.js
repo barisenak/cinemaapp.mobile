@@ -8,6 +8,7 @@ const initialState = {
   state: STATE_INITIAL,
   films: [],
   page: 1,
+  nextBatchState: STATE_INITIAL,
 };
 
 export const filmsReducer = createReducer(initialState, {
