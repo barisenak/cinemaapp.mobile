@@ -4,6 +4,7 @@ import React from 'react';
 
 import FilmCard from '../FilmCard/FilmCard.component';
 import CinemaCard from '../CinemaCard/CinemaCard.component';
+import {FILM_CARD, CINEMA_CARD, FAVORITES} from 'app/enum/navigation.enum';
 
 const Stack = createStackNavigator();
 
@@ -11,17 +12,17 @@ function FavoritesNavigator({navigation}) {
   return (
     <Stack.Navigator initialRouteName="Favorites">
       <Stack.Screen
-        name="Favorites"
+        name={FAVORITES}
         component={Favorites}
-        options={{headerTitle: 'Favorites'}}
+        options={{headerTitle: FAVORITES}}
       />
       <Stack.Screen
-        name="FilmCard"
+        name={FILM_CARD}
         component={FilmCard}
         options={{headerTitle: 'Card'}}
       />
       <Stack.Screen
-        name="CinemaCard"
+        name={CINEMA_CARD}
         component={CinemaCard}
         options={{headerTitle: 'Card'}}
       />

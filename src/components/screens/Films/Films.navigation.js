@@ -2,6 +2,7 @@ import React from 'react';
 import Films from './Films.connect';
 import {createStackNavigator} from '@react-navigation/stack';
 import FilmCard from '../FilmCard/FilmCard.component';
+import {FILM_CARD, FILMS} from 'app/enum/navigation.enum';
 
 const Stack = createStackNavigator();
 
@@ -9,12 +10,12 @@ function FilmsNavigator({navigation, route}) {
   return (
     <Stack.Navigator initialRouteName="Films">
       <Stack.Screen
-        name="Films"
+        name={FILMS}
         component={Films}
-        options={{headerTitle: 'Films'}}
+        options={{headerTitle: FILMS}}
       />
       <Stack.Screen
-        name="FilmCard"
+        name={FILM_CARD}
         component={FilmCard}
         options={{headerTitle: 'Card'}}
       />

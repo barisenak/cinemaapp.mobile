@@ -1,9 +1,11 @@
 import React from 'react';
-import {View, TextInput} from 'react-native';
+import {View} from 'react-native';
 
 import {Text} from 'app/components/partial/Text';
 
 import {Button} from 'app/components/partial/Button';
+
+import {TextInput} from 'app/components/partial/TextInput';
 
 import {styles} from './Registration.styles';
 
@@ -11,17 +13,9 @@ function Registration({navigation, loadFilms, films}) {
   return (
     <View style={styles.signInContainer}>
       <Text>Email:</Text>
-      <TextInput
-        placeholder="Email"
-        keyboardType="default"
-        style={styles.input}
-      />
+      <TextInput placeholder="Email" keyboardType="default" />
       <Text>Password</Text>
-      <TextInput
-        placeholder="Password"
-        keyboardType="default"
-        style={styles.input}
-      />
+      <TextInput placeholder="Password" keyboardType="default" />
       <Button type="primary">SIGN UP</Button>
     </View>
   );

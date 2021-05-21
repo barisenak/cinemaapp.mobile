@@ -14,9 +14,20 @@ import {Text} from 'app/components/partial/Text';
 
 import {styles} from './Films.styles';
 
-function Films({state, loadFilms, films, page, setPage, navigation}) {
+function Films({
+  state,
+  loadFilms,
+  loadNewFilms,
+  films,
+  page,
+  totalPages,
+  nextBatchState,
+  navigation,
+}) {
   useEffect(() => {
     loadFilms(page);
+    // loadFilms(page);
+    // loadFilms(page);
   }, []);
 
   const renderItem = ({item}) => (
@@ -79,11 +90,12 @@ function Films({state, loadFilms, films, page, setPage, navigation}) {
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
             // ListHeaderComponent={<Text style={{marginLeft: 10}}>head</Text>}
             ListFooterComponent={
-              <ActivityIndicator size="small" color="black" />
+              nextBatchState === STATE_LOADING && (
+                <ActivityIndicator size="small" color="black" />
+              )
             }
             onEndReached={() => {
-              // loadFilms(page + 1);
-              // setPage(page + 1);
+              page < totalPages && loadNewFilms(page);
             }}
             onEndReachedThreshold={0}
             initialNumToRender={5}
@@ -102,6 +114,16 @@ function Films({state, loadFilms, films, page, setPage, navigation}) {
             keyExtractor={item => item.id}
             horizontal
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
+            // ListFooterComponent={
+            //   nextBatchState === STATE_LOADING && (
+            //     <ActivityIndicator size="small" color="black" />
+            //   )
+            // }
+            // onEndReached={() => {
+            //   page < totalPages && loadNewFilms(page);
+            // }}
+            // onEndReachedThreshold={0}
+            // initialNumToRender={5}
           />
         )}
       </View>
@@ -117,6 +139,16 @@ function Films({state, loadFilms, films, page, setPage, navigation}) {
             keyExtractor={item => item.id}
             horizontal
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
+            // ListFooterComponent={
+            //   nextBatchState === STATE_LOADING && (
+            //     <ActivityIndicator size="small" color="black" />
+            //   )
+            // }
+            // onEndReached={() => {
+            //   page < totalPages && loadNewFilms(page);
+            // }}
+            // onEndReachedThreshold={0}
+            // initialNumToRender={5}
           />
         )}
       </View>
@@ -132,12 +164,23 @@ function Films({state, loadFilms, films, page, setPage, navigation}) {
             keyExtractor={item => item.id}
             horizontal
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
+            // ListFooterComponent={
+            //   nextBatchState === STATE_LOADING && (
+            //     <ActivityIndicator size="small" color="black" />
+            //   )
+            // }
+            // onEndReached={() => {
+            //   page < totalPages && loadNewFilms(page);
+            // }}
+            // onEndReachedThreshold={0}
+            // initialNumToRender={1}
           />
         )}
       </View>
 
       <Text>{state}</Text>
       <Text>{page}</Text>
+      <Text>{nextBatchState}</Text>
 
       <Button type="default" onPress={() => loadFilms(page)}>
         Get

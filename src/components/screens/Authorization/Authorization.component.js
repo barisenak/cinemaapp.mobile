@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import {View, TextInput} from 'react-native';
+import {View} from 'react-native';
 
 import {Text} from 'app/components/partial/Text';
 
 import {Button} from 'app/components/partial/Button';
+
+import {TextInput} from 'app/components/partial/TextInput';
 
 import {styles} from './Authorization.styles';
 
@@ -25,7 +27,6 @@ function Authorization({navigation, setUserData}) {
       <TextInput
         placeholder="Email"
         keyboardType="default"
-        style={styles.input}
         value={typedEmail}
         onChangeText={text => {
           setTypedEmail(text);
@@ -35,7 +36,6 @@ function Authorization({navigation, setUserData}) {
       <TextInput
         placeholder="Password"
         keyboardType="default"
-        style={styles.input}
         value={typedPassword}
         onChangeText={text => {
           setTypedPassword(text);

@@ -11,8 +11,8 @@ import {
 import {styles} from 'app/components/screens/Favorites/Favorites.styles';
 
 import {Button} from 'app/components/partial/Button';
-import FavFilms from './FavFilms.component';
-import FavCinemas from './FavCinemas.component';
+import FavFilms from './FavFilms/FavFilms.component';
+import FavCinemas from './FavCinemas/FavCinemas.component';
 import {Text} from 'app/components/partial/Text';
 
 function Favorites({navigation, selectedTab, setSelectedTab, isLoggedIn}) {
@@ -61,5 +61,6 @@ function Favorites({navigation, selectedTab, setSelectedTab, isLoggedIn}) {
     </ScrollView>
   );
 }
+//enum
 
 export default Favorites;

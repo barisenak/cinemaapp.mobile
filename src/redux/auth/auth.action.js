@@ -12,14 +12,10 @@ export const setUserData = createAction(SET_USER_DATA);
 function* setData(action) {
   try {
     // AsyncStorage.setItem('accessToken', action.payload.accessToken);
-    const {data} = yield call(
-      fetchToken,
-      {
-        username: action.payload.email,
-        password: action.payload.password,
-      },
-      'POST',
-    );
+    const data = yield call(fetchToken, {
+      username: action.payload.email,
+      password: action.payload.password,
+    });
     console.log(data);
 
     // yield put(setFilms(data));

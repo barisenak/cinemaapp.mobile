@@ -7,10 +7,19 @@ export const stateSelector = createSelector(
   films => films.state,
 );
 
+export const nextBatchStateSelector = createSelector(
+  filmsSelector,
+  films => films.nextBatchState,
+);
+
 export const pageSelector = createSelector(filmsSelector, films => films.page);
 
-export const filmListSelector = createSelector(filmsSelector, films =>
-  films.films.sort(
-    (a, b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate),
-  ),
+export const totalPagesSelector = createSelector(
+  filmsSelector,
+  films => films.totalPages,
+);
+
+export const filmListSelector = createSelector(
+  filmsSelector,
+  films => films.films,
 );

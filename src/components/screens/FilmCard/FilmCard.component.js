@@ -4,6 +4,7 @@ import {Image, ScrollView} from 'react-native';
 import {Text} from 'app/components/partial/Text';
 
 import {styles} from './FilmCard.styles';
+import moment from 'moment';
 
 function FilmCard({route}) {
   const {description, image, duration, category, releaseDate} = route.params;
@@ -15,7 +16,9 @@ function FilmCard({route}) {
       <Text style={styles.textBlock}>Category: {category}</Text>
       <Text style={styles.textBlock}>{description}</Text>
       <Text style={styles.textBlock}>Duration: {duration} hour(s)</Text>
-      <Text style={styles.textBlock}>Release date: {releaseDate}</Text>
+      <Text style={styles.textBlock}>
+        Release date: {moment(releaseDate).format('LL')}
+      </Text>
     </ScrollView>
   );
 }

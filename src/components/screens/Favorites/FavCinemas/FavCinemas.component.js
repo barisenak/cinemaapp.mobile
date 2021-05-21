@@ -3,7 +3,7 @@ import {View, Image, TouchableHighlight, FlatList} from 'react-native';
 
 import {Text} from 'app/components/partial/Text';
 
-import {styles} from './Favorites.styles';
+import {styles} from '../Favorites.styles';
 
 function FavCinemas({navigation, favoriteCinemas}) {
   const renderItem = ({item}) => (
