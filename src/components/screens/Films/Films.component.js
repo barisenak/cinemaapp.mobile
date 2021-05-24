@@ -13,6 +13,12 @@ import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
 
 import {styles} from './Films.styles';
+import {
+  CATEGORY_COMEDY,
+  CATEGORY_BIOGRAPHY,
+  CATEGORY_DRAMA,
+  CATEGORY_RECENTLY_RELEASED,
+} from 'app/enum/category.enum';
 
 function Films({
   state,
@@ -25,9 +31,22 @@ function Films({
   navigation,
 }) {
   useEffect(() => {
-    loadFilms(page);
-    // loadFilms(page);
-    // loadFilms(page);
+    loadFilms({
+      page: page[CATEGORY_RECENTLY_RELEASED],
+      category: CATEGORY_RECENTLY_RELEASED,
+    });
+    loadFilms({
+      page: page[CATEGORY_COMEDY],
+      category: CATEGORY_COMEDY,
+    });
+    loadFilms({
+      page: page[CATEGORY_DRAMA],
+      category: CATEGORY_DRAMA,
+    });
+    loadFilms({
+      page: page[CATEGORY_BIOGRAPHY],
+      category: CATEGORY_BIOGRAPHY,
+    });
   }, []);
 
   const renderItem = ({item}) => (
@@ -82,7 +101,7 @@ function Films({
           <ActivityIndicator size="small" color="black" />
         ) : (
           <FlatList
-            data={films}
+            data={films[CATEGORY_RECENTLY_RELEASED]}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
@@ -95,7 +114,12 @@ function Films({
               )
             }
             onEndReached={() => {
-              page < totalPages && loadNewFilms(page);
+              page[CATEGORY_RECENTLY_RELEASED] <
+                totalPages[CATEGORY_RECENTLY_RELEASED] &&
+                loadNewFilms({
+                  page: page[CATEGORY_RECENTLY_RELEASED],
+                  category: CATEGORY_RECENTLY_RELEASED,
+                });
             }}
             onEndReachedThreshold={0}
             initialNumToRender={5}
@@ -109,7 +133,7 @@ function Films({
           <ActivityIndicator size="small" color="black" />
         ) : (
           <FlatList
-            data={films}
+            data={films[CATEGORY_COMEDY]}
             renderItem={renderComedyItem}
             keyExtractor={item => item.id}
             horizontal
@@ -134,7 +158,7 @@ function Films({
           <ActivityIndicator size="small" color="black" />
         ) : (
           <FlatList
-            data={films}
+            data={films[CATEGORY_DRAMA]}
             renderItem={renderDramaItem}
             keyExtractor={item => item.id}
             horizontal
@@ -159,7 +183,7 @@ function Films({
           <ActivityIndicator size="small" color="black" />
         ) : (
           <FlatList
-            data={films}
+            data={films[CATEGORY_BIOGRAPHY]}
             renderItem={renderBiographyItem}
             keyExtractor={item => item.id}
             horizontal
@@ -179,7 +203,6 @@ function Films({
       </View>
 
       <Text>{state}</Text>
-      <Text>{page}</Text>
       <Text>{nextBatchState}</Text>
 
       <Button type="default" onPress={() => loadFilms(page)}>

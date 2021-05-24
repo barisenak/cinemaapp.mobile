@@ -18,24 +18,54 @@ import {
 
 const initialState = {
   state: STATE_INITIAL,
+  // films: [],
   films: {
     [CATEGORY_COMEDY]: [],
     [CATEGORY_DRAMA]: [],
     [CATEGORY_BIOGRAPHY]: [],
     [CATEGORY_RECENTLY_RELEASED]: [],
   },
-  page: 1,
-  totalPages: 0,
+  page: {
+    [CATEGORY_COMEDY]: 1,
+    [CATEGORY_DRAMA]: 1,
+    [CATEGORY_BIOGRAPHY]: 1,
+    [CATEGORY_RECENTLY_RELEASED]: 1,
+  },
+  totalPages: {
+    [CATEGORY_COMEDY]: 0,
+    [CATEGORY_DRAMA]: 0,
+    [CATEGORY_BIOGRAPHY]: 0,
+    [CATEGORY_RECENTLY_RELEASED]: 0,
+  },
   nextBatchState: STATE_INITIAL,
 };
 
 export const filmsReducer = createReducer(initialState, {
   [SET_STATE]: (st, state) => ({...st, state}),
-  [SET_FILMS]: (st, newFilms) => ({
+
+  [SET_FILMS]: (st, {data, category}) => ({
     ...st,
-    films: [...st.films].concat(newFilms),
+    films: {
+      ...st.films,
+      [category]: [...st.films[category]].concat(data),
+    },
   }),
-  [SET_PAGE]: (st, page) => ({...st, page}),
-  [SET_TOTAL_PAGES]: (st, totalPages) => ({...st, totalPages}),
+
+  [SET_PAGE]: (st, {page, category}) => ({
+    ...st,
+    page: {
+      ...st.page,
+      [category]: page,
+    },
+  }),
+
+  [SET_TOTAL_PAGES]: (st, {totalPages, category}) => ({
+    ...st,
+    totalPages: {
+      ...st.totalPages,
+      [category]: totalPages,
+    },
+  }),
+
   [SET_NEXT_BATCH_STATE]: (st, nextBatchState) => ({...st, nextBatchState}),
 });

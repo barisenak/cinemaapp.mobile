@@ -9,11 +9,13 @@ export const GET_FILMS = 'FILMS/GET';
 export const SET_FILMS = 'FILMS/SET';
 export const SET_PAGE = 'FILMS/SET_PAGE';
 export const GET_NEW_FILMS = 'FILMS/GET_NEW_FILMS';
+export const GET_CATEGORY_FILMS = 'FILMS/GET_CATEGORY_FILMS';
 export const SET_NEXT_BATCH_STATE = 'FILMS/SET_NEXT_BATCH_STATE';
 export const SET_TOTAL_PAGES = 'FILMS/SET_TOTAL_PAGES';
 
 export const setState = createAction(SET_STATE);
 export const getFilms = createAction(GET_FILMS);
+export const getCategoryFilms = createAction(GET_CATEGORY_FILMS);
 export const setFilms = createAction(SET_FILMS);
 export const setPage = createAction(SET_PAGE);
 export const getNewFilms = createAction(GET_NEW_FILMS);
@@ -25,12 +27,13 @@ function* getAllFilms(action) {
 
   try {
     const {data, totalPages} = yield call(fetchFilms, {
-      pageNumber: action.payload,
+      pageNumber: action.payload.page,
+      category: action.payload.category,
     });
 
-    yield put(setTotalPages(totalPages));
+    yield put(setTotalPages({totalPages, category: action.payload.category}));
 
-    yield put(setFilms(data));
+    yield put(setFilms({data, category: action.payload.category}));
     yield put(setState(STATE_SUCCESS));
   } catch (ex) {
     console.warn(ex);
@@ -41,14 +44,21 @@ function* getAllFilms(action) {
 
 function* getSomeFilms(action) {
   yield put(setNextBatchState(STATE_LOADING));
+  console.log(action);
 
   try {
     const {data} = yield call(fetchFilms, {
-      pageNumber: action.payload + 1,
+      pageNumber: action.payload.page + 1,
+      category: action.payload.category,
     });
 
-    yield put(setFilms(data));
-    yield put(setPage(action.payload + 1));
+    yield put(setFilms({data, category: action.payload.category}));
+    yield put(
+      setPage({
+        page: action.payload.page + 1,
+        category: action.payload.category,
+      }),
+    );
 
     yield put(setNextBatchState(STATE_SUCCESS));
   } catch (ex) {
@@ -58,7 +68,28 @@ function* getSomeFilms(action) {
   }
 }
 
+// function* getCategoryFilms(action) {
+//   yield put(setState(STATE_LOADING));
+
+//   try {
+//     const {data, totalPages} = yield call(fetchFilms, {
+//       pageNumber: action.payload,
+//       category: action.payload.category,
+//     });
+
+//     yield put(setTotalPages(totalPages));
+
+//     yield put(setFilms(data));
+//     yield put(setState(STATE_SUCCESS));
+//   } catch (ex) {
+//     console.warn(ex);
+
+//     yield put(setState(STATE_FAILURE));
+//   }
+// }
+
 export function* sagaWatcher() {
   yield takeEvery(GET_FILMS, getAllFilms);
   yield takeEvery(GET_NEW_FILMS, getSomeFilms);
+  // yield takeEvery(GET_CATEGORY_FILMS, getCategoryFilms);
 }

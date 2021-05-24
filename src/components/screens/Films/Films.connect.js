@@ -8,7 +8,12 @@ import {
   nextBatchStateSelector,
 } from 'app/redux/films/films.selector';
 
-import {getFilms, setPage, getNewFilms} from 'app/redux/films/films.action';
+import {
+  getFilms,
+  setPage,
+  getNewFilms,
+  getComedyFilms,
+} from 'app/redux/films/films.action';
 
 import Films from './Films.component';
 
@@ -22,6 +27,7 @@ export default connect(
   }),
   {
     loadFilms: getFilms,
+    loadComedyFilms: getComedyFilms,
     loadNewFilms: getNewFilms,
     setPage: setPage,
   },
