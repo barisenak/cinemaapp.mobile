@@ -4,16 +4,14 @@ import {SET_USER_DATA} from './auth.action';
 
 const initialState = {
   email: '',
-  password: '',
   accessToken: '',
   refreshToken: '',
 };
 
 export const authReducer = createReducer(initialState, {
-  [SET_USER_DATA]: (st, email, password, accessToken, refreshToken) => ({
+  [SET_USER_DATA]: (st, email, accessToken, refreshToken) => ({
     ...st,
     email,
-    password,
     accessToken,
     refreshToken,
   }),

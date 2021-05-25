@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 
 import {Text} from 'app/components/partial/Text';
@@ -8,21 +8,28 @@ import {Button} from 'app/components/partial/Button';
 import {TextInput} from 'app/components/partial/TextInput';
 
 import {styles} from './Authorization.styles';
+import {FAVORITES, REGISTRATION} from 'app/enum/navigation.enum';
 
-function Authorization({navigation, setUserData}) {
+function Authorization({navigation, setUserData, isLoggedIn}) {
   const [typedEmail, setTypedEmail] = useState('');
   const [typedPassword, setTypedPassword] = useState('');
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigation.navigate(FAVORITES);
+    }
+  });
 
   const signIn = () => {
     console.log(setUserData);
     setUserData({email: typedEmail, password: typedPassword});
-
-    setTypedEmail('');
     setTypedPassword('');
   };
 
   return (
     <View style={styles.signInContainer}>
+      <Text>{isLoggedIn}</Text>
+
       <Text>Email:</Text>
       <TextInput
         placeholder="Email"
@@ -48,7 +55,7 @@ function Authorization({navigation, setUserData}) {
         <Text>Not registered yet? You can do it</Text>
         <Button
           type="textLink"
-          onPress={() => navigation.navigate('Registration')}>
+          onPress={() => navigation.navigate(REGISTRATION)}>
           here
         </Button>
       </View>

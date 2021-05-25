@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {STATE_LOADING} from 'app/enum/state.enum';
 
-import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
 
 import {styles} from './Films.styles';
@@ -19,6 +18,7 @@ import {
   CATEGORY_DRAMA,
   CATEGORY_RECENTLY_RELEASED,
 } from 'app/enum/category.enum';
+import {FILM_CARD} from 'app/enum/navigation.enum';
 
 function Films({
   state,
@@ -54,7 +54,7 @@ function Films({
       activeOpacity={0.5}
       underlayColor="white"
       onPress={() =>
-        navigation.navigate('FilmCard', {
+        navigation.navigate(FILM_CARD, {
           name: item.name,
           description: item.description,
           image: item.img,
@@ -65,30 +65,6 @@ function Films({
       }>
       <Image source={{uri: item.img}} style={styles.card} />
     </TouchableHighlight>
-  );
-
-  const renderComedyItem = ({item}) => (
-    <View>
-      {item.category === 'COMEDY' && (
-        <Image source={{uri: item.img}} style={styles.card} />
-      )}
-    </View>
-  );
-
-  const renderDramaItem = ({item}) => (
-    <View>
-      {item.category === 'DRAMA' && (
-        <Image source={{uri: item.img}} style={styles.card} />
-      )}
-    </View>
-  );
-
-  const renderBiographyItem = ({item}) => (
-    <View>
-      {item.category === 'BIOGRAPHY' && (
-        <Image source={{uri: item.img}} style={styles.card} />
-      )}
-    </View>
   );
 
   return (
@@ -134,20 +110,24 @@ function Films({
         ) : (
           <FlatList
             data={films[CATEGORY_COMEDY]}
-            renderItem={renderComedyItem}
+            renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
-            // ListFooterComponent={
-            //   nextBatchState === STATE_LOADING && (
-            //     <ActivityIndicator size="small" color="black" />
-            //   )
-            // }
-            // onEndReached={() => {
-            //   page < totalPages && loadNewFilms(page);
-            // }}
-            // onEndReachedThreshold={0}
-            // initialNumToRender={5}
+            ListFooterComponent={
+              nextBatchState === STATE_LOADING && (
+                <ActivityIndicator size="small" color="black" />
+              )
+            }
+            onEndReached={() => {
+              page[CATEGORY_COMEDY] < totalPages[CATEGORY_COMEDY] &&
+                loadNewFilms({
+                  page: page[CATEGORY_COMEDY],
+                  category: CATEGORY_COMEDY,
+                });
+            }}
+            onEndReachedThreshold={0}
+            initialNumToRender={5}
           />
         )}
       </View>
@@ -159,20 +139,24 @@ function Films({
         ) : (
           <FlatList
             data={films[CATEGORY_DRAMA]}
-            renderItem={renderDramaItem}
+            renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
-            // ListFooterComponent={
-            //   nextBatchState === STATE_LOADING && (
-            //     <ActivityIndicator size="small" color="black" />
-            //   )
-            // }
-            // onEndReached={() => {
-            //   page < totalPages && loadNewFilms(page);
-            // }}
-            // onEndReachedThreshold={0}
-            // initialNumToRender={5}
+            ListFooterComponent={
+              nextBatchState === STATE_LOADING && (
+                <ActivityIndicator size="small" color="black" />
+              )
+            }
+            onEndReached={() => {
+              page[CATEGORY_DRAMA] < totalPages[CATEGORY_DRAMA] &&
+                loadNewFilms({
+                  page: page[CATEGORY_DRAMA],
+                  category: CATEGORY_DRAMA,
+                });
+            }}
+            onEndReachedThreshold={0}
+            initialNumToRender={5}
           />
         )}
       </View>
@@ -184,30 +168,30 @@ function Films({
         ) : (
           <FlatList
             data={films[CATEGORY_BIOGRAPHY]}
-            renderItem={renderBiographyItem}
+            renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
             ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
-            // ListFooterComponent={
-            //   nextBatchState === STATE_LOADING && (
-            //     <ActivityIndicator size="small" color="black" />
-            //   )
-            // }
-            // onEndReached={() => {
-            //   page < totalPages && loadNewFilms(page);
-            // }}
-            // onEndReachedThreshold={0}
-            // initialNumToRender={1}
+            ListFooterComponent={
+              nextBatchState === STATE_LOADING && (
+                <ActivityIndicator size="small" color="black" />
+              )
+            }
+            onEndReached={() => {
+              page[CATEGORY_BIOGRAPHY] < totalPages[CATEGORY_BIOGRAPHY] &&
+                loadNewFilms({
+                  page: page[CATEGORY_BIOGRAPHY],
+                  category: CATEGORY_BIOGRAPHY,
+                });
+            }}
+            onEndReachedThreshold={0}
+            initialNumToRender={5}
           />
         )}
       </View>
 
       <Text>{state}</Text>
       <Text>{nextBatchState}</Text>
-
-      <Button type="default" onPress={() => loadFilms(page)}>
-        Get
-      </Button>
     </ScrollView>
   );
 }

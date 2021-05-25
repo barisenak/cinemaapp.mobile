@@ -18,25 +18,28 @@ import {
 
 const initialState = {
   state: STATE_INITIAL,
-  // films: [],
+
   films: {
     [CATEGORY_COMEDY]: [],
     [CATEGORY_DRAMA]: [],
     [CATEGORY_BIOGRAPHY]: [],
     [CATEGORY_RECENTLY_RELEASED]: [],
   },
+
   page: {
     [CATEGORY_COMEDY]: 1,
     [CATEGORY_DRAMA]: 1,
     [CATEGORY_BIOGRAPHY]: 1,
     [CATEGORY_RECENTLY_RELEASED]: 1,
   },
+
   totalPages: {
     [CATEGORY_COMEDY]: 0,
     [CATEGORY_DRAMA]: 0,
     [CATEGORY_BIOGRAPHY]: 0,
     [CATEGORY_RECENTLY_RELEASED]: 0,
   },
+
   nextBatchState: STATE_INITIAL,
 };
 

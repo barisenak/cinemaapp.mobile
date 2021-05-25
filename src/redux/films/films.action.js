@@ -68,28 +68,7 @@ function* getSomeFilms(action) {
   }
 }
 
-// function* getCategoryFilms(action) {
-//   yield put(setState(STATE_LOADING));
-
-//   try {
-//     const {data, totalPages} = yield call(fetchFilms, {
-//       pageNumber: action.payload,
-//       category: action.payload.category,
-//     });
-
-//     yield put(setTotalPages(totalPages));
-
-//     yield put(setFilms(data));
-//     yield put(setState(STATE_SUCCESS));
-//   } catch (ex) {
-//     console.warn(ex);
-
-//     yield put(setState(STATE_FAILURE));
-//   }
-// }
-
 export function* sagaWatcher() {
   yield takeEvery(GET_FILMS, getAllFilms);
   yield takeEvery(GET_NEW_FILMS, getSomeFilms);
-  // yield takeEvery(GET_CATEGORY_FILMS, getCategoryFilms);
 }

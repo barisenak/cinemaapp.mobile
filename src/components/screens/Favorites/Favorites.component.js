@@ -14,12 +14,14 @@ import {Button} from 'app/components/partial/Button';
 import FavFilms from './FavFilms/FavFilms.component';
 import FavCinemas from './FavCinemas/FavCinemas.component';
 import {Text} from 'app/components/partial/Text';
+import {AUTHORIZATION} from 'app/enum/navigation.enum';
 
 function Favorites({navigation, selectedTab, setSelectedTab, isLoggedIn}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       style={{backgroundColor: 'white'}}>
+      <Text>{isLoggedIn}</Text>
       <View style={styles.navTabWrapper}>
         <Button
           disabled={!isLoggedIn ? true : false}
@@ -46,18 +48,21 @@ function Favorites({navigation, selectedTab, setSelectedTab, isLoggedIn}) {
           Cinemas
         </Button>
       </View>
-      {!isLoggedIn && (
+      {!isLoggedIn ? (
         <View style={styles.signInContainer}>
           <Text>Please sign in</Text>
           <Button
             type="primary"
             style={styles.button}
-            onPress={() => navigation.navigate('Authorization')}>
+            onPress={() => navigation.navigate(AUTHORIZATION)}>
             LOG IN
           </Button>
         </View>
+      ) : selectedTab === SELECTED_TAB_FILMS ? (
+        <FavFilms />
+      ) : (
+        <FavCinemas />
       )}
-      {/* {selectedTab === SELECTED_TAB_FILMS ? <FavFilms /> : <FavCinemas />} */}
     </ScrollView>
   );
 }
