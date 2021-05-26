@@ -2,7 +2,7 @@ import Favorites from './Favorites.connect';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 
-import FilmCard from '../FilmCard/FilmCard.component';
+import FilmCard from '../FilmCard/FilmCard.connect';
 import CinemaCard from '../CinemaCard/CinemaCard.component';
 import {FILM_CARD, CINEMA_CARD, FAVORITES} from 'app/enum/navigation.enum';
 

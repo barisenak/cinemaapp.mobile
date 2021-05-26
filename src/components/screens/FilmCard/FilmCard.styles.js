@@ -12,4 +12,8 @@ export const styles = StyleSheet.create({
   textBlock: {
     marginTop: 20,
   },
+  image: {
+    width: '100%',
+    height: 560,
+  },
 });

@@ -25,4 +25,7 @@ export const styles = StyleSheet.create({
   sectionContainer: {
     marginBottom: 20,
   },
+  emptySection: {
+    marginLeft: 10,
+  },
 });

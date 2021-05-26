@@ -6,18 +6,17 @@ import {Text} from 'app/components/partial/Text';
 import {styles} from './FilmCard.styles';
 import moment from 'moment';
 
-function FilmCard({route}) {
-  const {description, image, duration, category, releaseDate} = route.params;
+function FilmCard({film}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
-      <Image source={{uri: image}} style={{width: '100%', height: 560}}></Image>
-      <Text style={styles.textBlock}>Category: {category}</Text>
-      <Text style={styles.textBlock}>{description}</Text>
-      <Text style={styles.textBlock}>Duration: {duration} hour(s)</Text>
+      <Image source={{uri: film.img}} style={styles.image} />
+      <Text style={styles.textBlock}>Category: {film.category}</Text>
+      <Text style={styles.textBlock}>{film.description}</Text>
+      <Text style={styles.textBlock}>Duration: {film.duration} hour(s)</Text>
       <Text style={styles.textBlock}>
-        Release date: {moment(releaseDate).format('LL')}
+        Release date: {moment(film.releaseDate).format('LL')}
       </Text>
     </ScrollView>
   );

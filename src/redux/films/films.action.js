@@ -44,7 +44,6 @@ function* getAllFilms(action) {
 
 function* getSomeFilms(action) {
   yield put(setNextBatchState(STATE_LOADING));
-  console.log(action);
 
   try {
     const {data} = yield call(fetchFilms, {

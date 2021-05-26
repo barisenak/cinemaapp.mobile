@@ -9,14 +9,42 @@ import {TextInput} from 'app/components/partial/TextInput';
 
 import {styles} from './Registration.styles';
 
-function Registration({navigation, loadFilms, films}) {
+function Registration({
+  navigation,
+  setRegisterData,
+  setTypedPassword,
+  setTypedEmail,
+  typedEmail,
+  typedPassword,
+}) {
+  const signUp = () => {
+    setRegisterData({email: typedEmail, password: typedPassword});
+    setTypedPassword('');
+  };
+
   return (
     <View style={styles.signInContainer}>
       <Text>Email:</Text>
-      <TextInput placeholder="Email" keyboardType="default" />
+      <TextInput
+        placeholder="Email"
+        keyboardType="default"
+        value={typedEmail}
+        onChangeText={text => {
+          setTypedEmail(text);
+        }}
+      />
       <Text>Password</Text>
-      <TextInput placeholder="Password" keyboardType="default" />
-      <Button type="primary">SIGN UP</Button>
+      <TextInput
+        placeholder="Password"
+        keyboardType="default"
+        value={typedPassword}
+        onChangeText={text => {
+          setTypedPassword(text);
+        }}
+      />
+      <Button type="primary" onPress={signUp}>
+        SIGN UP
+      </Button>
     </View>
   );
 }

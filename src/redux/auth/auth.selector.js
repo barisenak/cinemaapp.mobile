@@ -1,8 +1,13 @@
 import {createSelector} from 'reselect';
 
-export const userSelector = st => st.user;
+export const authSelector = st => st.auth;
 
-export const isLoggedInSelector = createSelector(
-  userSelector,
-  user => user.isLoggedIn,
+export const typedEmailSelector = createSelector(
+  authSelector,
+  auth => auth.typedEmail,
+);
+
+export const typedPasswordSelector = createSelector(
+  authSelector,
+  auth => auth.typedPassword,
 );

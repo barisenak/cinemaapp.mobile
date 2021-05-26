@@ -1,7 +1,7 @@
 import React from 'react';
 import Films from './Films.connect';
 import {createStackNavigator} from '@react-navigation/stack';
-import FilmCard from '../FilmCard/FilmCard.component';
+import FilmCard from '../FilmCard/FilmCard.connect';
 import {FILM_CARD, FILMS} from 'app/enum/navigation.enum';
 
 const Stack = createStackNavigator();

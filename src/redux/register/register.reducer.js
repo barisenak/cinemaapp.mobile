@@ -4,7 +4,7 @@ import {
   SET_TYPED_EMAIL,
   SET_TYPED_PASSWORD,
   SET_USER_DATA,
-} from './auth.action';
+} from './register.action';
 
 const initialState = {
   email: '',

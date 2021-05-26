@@ -1,17 +1,27 @@
 import {connect} from 'react-redux';
 
-import {stateSelector} from 'app/redux/films/films.selector';
 import {isLoggedInSelector} from 'app/redux/user/user.selector';
-import {setUserData} from 'app/redux/auth/auth.action';
+import {
+  setTypedEmail,
+  setTypedPassword,
+  setUserData,
+} from 'app/redux/auth/auth.action';
 
 import Authorization from './Authorization.component';
+import {
+  typedEmailSelector,
+  typedPasswordSelector,
+} from 'app/redux/auth/auth.selector';
 
 export default connect(
   st => ({
-    state: stateSelector(st),
     isLoggedIn: isLoggedInSelector(st),
+    typedEmail: typedEmailSelector(st),
+    typedPassword: typedPasswordSelector(st),
   }),
   {
     setUserData: setUserData,
+    setTypedEmail: setTypedEmail,
+    setTypedPassword: setTypedPassword,
   },
 )(Authorization);

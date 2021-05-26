@@ -4,6 +4,7 @@ import {View, Image, TouchableHighlight, FlatList} from 'react-native';
 import {Text} from 'app/components/partial/Text';
 
 import {styles} from '../Favorites.styles';
+import {FILM_CARD} from 'app/enum/navigation.enum';
 
 function FavFilms({navigation, favoriteFilms}) {
   const renderItem = ({item}) => (
@@ -11,7 +12,7 @@ function FavFilms({navigation, favoriteFilms}) {
       activeOpacity={0.5}
       underlayColor="white"
       onPress={() =>
-        navigation.navigate('CinemaCard', {
+        navigation.navigate(FILM_CARD, {
           name: item.name,
           image: item.img,
         })

@@ -8,6 +8,8 @@ import {
   nextBatchStateSelector,
 } from 'app/redux/films/films.selector';
 
+import {filmCardSelector} from 'app/redux/film/film.selector';
+
 import {
   getFilms,
   setPage,
@@ -16,11 +18,13 @@ import {
 } from 'app/redux/films/films.action';
 
 import Films from './Films.component';
+import {getFilmCard} from 'app/redux/film/film.action';
 
 export default connect(
   st => ({
     state: stateSelector(st),
     films: filmListSelector(st),
+    film: filmCardSelector(st),
     page: pageSelector(st),
     totalPages: totalPagesSelector(st),
     nextBatchState: nextBatchStateSelector(st),
@@ -30,5 +34,6 @@ export default connect(
     loadComedyFilms: getComedyFilms,
     loadNewFilms: getNewFilms,
     setPage: setPage,
+    getFilmCard: getFilmCard,
   },
 )(Films);

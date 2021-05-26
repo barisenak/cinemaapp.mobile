@@ -10,10 +10,15 @@ import {TextInput} from 'app/components/partial/TextInput';
 import {styles} from './Authorization.styles';
 import {FAVORITES, REGISTRATION} from 'app/enum/navigation.enum';
 
-function Authorization({navigation, setUserData, isLoggedIn}) {
-  const [typedEmail, setTypedEmail] = useState('');
-  const [typedPassword, setTypedPassword] = useState('');
-
+function Authorization({
+  navigation,
+  setUserData,
+  isLoggedIn,
+  typedEmail,
+  setTypedEmail,
+  typedPassword,
+  setTypedPassword,
+}) {
   useEffect(() => {
     if (isLoggedIn) {
       navigation.navigate(FAVORITES);
@@ -21,15 +26,12 @@ function Authorization({navigation, setUserData, isLoggedIn}) {
   });
 
   const signIn = () => {
-    console.log(setUserData);
     setUserData({email: typedEmail, password: typedPassword});
     setTypedPassword('');
   };
 
   return (
     <View style={styles.signInContainer}>
-      <Text>{isLoggedIn}</Text>
-
       <Text>Email:</Text>
       <TextInput
         placeholder="Email"
@@ -55,7 +57,10 @@ function Authorization({navigation, setUserData, isLoggedIn}) {
         <Text>Not registered yet? You can do it</Text>
         <Button
           type="textLink"
-          onPress={() => navigation.navigate(REGISTRATION)}>
+          onPress={() => {
+            setTypedPassword('');
+            navigation.navigate(REGISTRATION);
+          }}>
           here
         </Button>
       </View>

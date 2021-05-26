@@ -7,8 +7,12 @@ import {fetchToken} from 'app/api/token.api';
 import {setUser} from '../user/user.action';
 
 export const SET_USER_DATA = 'AUTH/SET_USER_DATA';
+export const SET_TYPED_EMAIL = 'AUTH/SET_TYPED_EMAIL';
+export const SET_TYPED_PASSWORD = 'AUTH/SET_TYPED_PASSWORD';
 
 export const setUserData = createAction(SET_USER_DATA);
+export const setTypedEmail = createAction(SET_TYPED_EMAIL);
+export const setTypedPassword = createAction(SET_TYPED_PASSWORD);
 
 function* setData(action) {
   try {

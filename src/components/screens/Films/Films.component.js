@@ -29,6 +29,8 @@ function Films({
   totalPages,
   nextBatchState,
   navigation,
+  getFilmCard,
+  film,
 }) {
   useEffect(() => {
     loadFilms({
@@ -53,16 +55,17 @@ function Films({
     <TouchableHighlight
       activeOpacity={0.5}
       underlayColor="white"
-      onPress={() =>
+      onPress={() => {
+        getFilmCard(item.name);
         navigation.navigate(FILM_CARD, {
-          name: item.name,
-          description: item.description,
-          image: item.img,
-          duration: item.duration,
-          category: item.category,
-          releaseDate: item.releaseDate,
-        })
-      }>
+          // name: film.name,
+          description: film.description,
+          // image: film.img,
+          // duration: film.duration,
+          // category: film.category,
+          // releaseDate: film.releaseDate,
+        });
+      }}>
       <Image source={{uri: item.img}} style={styles.card} />
     </TouchableHighlight>
   );
@@ -82,8 +85,7 @@ function Films({
             keyExtractor={item => item.id}
             horizontal
             refreshing="true"
-            ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
-            // ListHeaderComponent={<Text style={{marginLeft: 10}}>head</Text>}
+            ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
             ListFooterComponent={
               nextBatchState === STATE_LOADING && (
                 <ActivityIndicator size="small" color="black" />
@@ -113,7 +115,7 @@ function Films({
             renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
-            ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
+            ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
             ListFooterComponent={
               nextBatchState === STATE_LOADING && (
                 <ActivityIndicator size="small" color="black" />
@@ -142,7 +144,7 @@ function Films({
             renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
-            ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
+            ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
             ListFooterComponent={
               nextBatchState === STATE_LOADING && (
                 <ActivityIndicator size="small" color="black" />
@@ -171,7 +173,7 @@ function Films({
             renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
-            ListEmptyComponent={<Text style={{marginLeft: 10}}>Empty</Text>}
+            ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
             ListFooterComponent={
               nextBatchState === STATE_LOADING && (
                 <ActivityIndicator size="small" color="black" />
