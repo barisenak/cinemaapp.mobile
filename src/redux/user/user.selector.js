@@ -2,7 +2,7 @@ import {createSelector} from 'reselect';
 
 export const userSelector = st => st.user;
 
-export const isLoggedInSelector = createSelector(
+export const userDataSelector = createSelector(
   userSelector,
-  user => user.isLoggedIn,
+  user => user.userData,
 );

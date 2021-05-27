@@ -1,25 +1,31 @@
 import {connect} from 'react-redux';
 
-import {isLoggedInSelector} from 'app/redux/user/user.selector';
-import {setTypedEmail, setTypedPassword} from 'app/redux/auth/auth.action';
-import {setRegisterData} from 'app/redux/register/register.action';
+import {userDataSelector} from 'app/redux/user/user.selector';
+import {errorTextSelector} from 'app/redux/register/register.selector';
+
+import {
+  setRegisterTypedEmail,
+  setRegisterTypedPassword,
+  setRegisterData,
+} from 'app/redux/register/register.action';
 
 import Registration from './Registration.component';
 
 import {
   typedEmailSelector,
   typedPasswordSelector,
-} from 'app/redux/auth/auth.selector';
+} from 'app/redux/register/register.selector';
 
 export default connect(
   st => ({
-    isLoggedIn: isLoggedInSelector(st),
+    userData: userDataSelector(st),
     typedEmail: typedEmailSelector(st),
     typedPassword: typedPasswordSelector(st),
+    errorText: errorTextSelector(st),
   }),
   {
     setRegisterData: setRegisterData,
-    setTypedEmail: setTypedEmail,
-    setTypedPassword: setTypedPassword,
+    setTypedEmail: setRegisterTypedEmail,
+    setTypedPassword: setRegisterTypedPassword,
   },
 )(Registration);

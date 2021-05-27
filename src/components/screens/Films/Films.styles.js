@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: white,
   },
+
   screenBackground: {backgroundColor: 'white'},
   category: {
     width: '100%',
@@ -16,16 +17,23 @@ export const styles = StyleSheet.create({
     fontSize: 17,
     marginTop: 10,
   },
+
   card: {
     width: 110,
     height: 150,
     marginRight: 7,
     marginTop: 10,
   },
+
   sectionContainer: {
     marginBottom: 20,
   },
+
   emptySection: {
     marginLeft: 10,
+  },
+
+  icon: {
+    marginRight: 12,
   },
 });

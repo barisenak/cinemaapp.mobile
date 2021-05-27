@@ -16,6 +16,8 @@ function Registration({
   setTypedEmail,
   typedEmail,
   typedPassword,
+  userData,
+  errorText,
 }) {
   const signUp = () => {
     setRegisterData({email: typedEmail, password: typedPassword});
@@ -45,6 +47,7 @@ function Registration({
       <Button type="primary" onPress={signUp}>
         SIGN UP
       </Button>
+      <Text style={styles.error}>{errorText}</Text>
     </View>
   );
 }

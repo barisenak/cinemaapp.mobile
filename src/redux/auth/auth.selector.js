@@ -11,3 +11,8 @@ export const typedPasswordSelector = createSelector(
   authSelector,
   auth => auth.typedPassword,
 );
+
+export const errorTextSelector = createSelector(
+  authSelector,
+  auth => auth.errorText,
+);

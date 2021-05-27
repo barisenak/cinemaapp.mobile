@@ -1,13 +1,18 @@
-// import {createSelector} from 'reselect';
+import {createSelector} from 'reselect';
 
-// export const userSelector = st => st.auth;
+export const registerSelector = st => st.register;
 
-// export const typedEmailSelector = createSelector(
-//   userSelector,
-//   auth => auth.typedEmail,
-// );
+export const typedEmailSelector = createSelector(
+  registerSelector,
+  register => register.typedEmail,
+);
 
-// export const typedPasswordSelector = createSelector(
-//   userSelector,
-//   auth => auth.typedPassword,
-// );
+export const typedPasswordSelector = createSelector(
+  registerSelector,
+  register => register.typedPassword,
+);
+
+export const errorTextSelector = createSelector(
+  registerSelector,
+  register => register.errorText,
+);

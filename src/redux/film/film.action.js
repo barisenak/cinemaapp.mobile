@@ -14,7 +14,7 @@ function* getFilmData(action) {
     const {data} = yield call(fetchFilm, {
       name: action.payload,
       Authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjBhNjZiMTIwNDBjZDgwMDIyMDQ2Y2Y5IiwiaWF0IjoxNjIyMDE4NTY0LCJleHAiOjE2MjIxMDQ5NjR9.Wvfut3NuKLjvTLntw8BnN8miD1inFt-lCVaGFUqiEQ8',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjBhNjZiMTIwNDBjZDgwMDIyMDQ2Y2Y5IiwiaWF0IjoxNjIyMTA4ODQ2LCJleHAiOjE2MjIxOTUyNDZ9.yN3cfe1WbYIuOVPsTQZXp3cRg9VIdAc3WRpXZfXe2Ys',
     });
 
     yield put(

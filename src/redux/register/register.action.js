@@ -2,11 +2,20 @@ import {call, put, takeEvery} from 'redux-saga/effects';
 
 import {createAction} from 'app/utils/redux.util';
 import {fetchRegister} from 'app/api/register.api';
-// import {setUser} from '../user/user.action';
+import {setUserData} from '../auth/auth.action';
 
-export const SET_REGISTER_DATA = 'AUTH/SET_REGISTER_DATA';
+export const SET_REGISTER_DATA = 'REGISTER/SET_REGISTER_DATA';
+export const SET_REGISTER_ERROR_TEXT = 'REGISTER/SET_REGISTER_ERROR_TEXT';
+export const SET_REGISTER_TYPED_EMAIL = 'REGISTER/SET_REGISTER_TYPED_EMAIL';
+export const SET_REGISTER_TYPED_PASSWORD =
+  'REGISTER/SET_REGISTER_TYPED_PASSWORD';
 
+export const setRegisterTypedEmail = createAction(SET_REGISTER_TYPED_EMAIL);
+export const setRegisterTypedPassword = createAction(
+  SET_REGISTER_TYPED_PASSWORD,
+);
 export const setRegisterData = createAction(SET_REGISTER_DATA);
+export const setRegisterErrorText = createAction(SET_REGISTER_ERROR_TEXT);
 
 function* setData(action) {
   try {
@@ -16,13 +25,10 @@ function* setData(action) {
     });
 
     if (data.username) {
-      // yield put(setUser(true));
+      yield put(setUserData(action.payload));
+    } else {
+      yield put(setRegisterErrorText(data.message));
     }
-
-    // AsyncStorage.getItem('accessToken', (err, result) => console.log(result));
-
-    // yield put(setFilms(data));
-    // yield put(setState(STATE_SUCCESS));
   } catch (ex) {
     console.warn(ex);
   }

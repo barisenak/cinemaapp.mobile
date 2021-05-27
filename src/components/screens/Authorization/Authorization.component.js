@@ -13,14 +13,15 @@ import {FAVORITES, REGISTRATION} from 'app/enum/navigation.enum';
 function Authorization({
   navigation,
   setUserData,
-  isLoggedIn,
+  userData,
   typedEmail,
   setTypedEmail,
   typedPassword,
   setTypedPassword,
+  errorText,
 }) {
   useEffect(() => {
-    if (isLoggedIn) {
+    if (userData) {
       navigation.navigate(FAVORITES);
     }
   });
@@ -53,6 +54,7 @@ function Authorization({
       <Button type="primary" onPress={signIn}>
         SIGN IN
       </Button>
+      <Text style={styles.error}>{errorText}</Text>
       <View style={styles.registerContainer}>
         <Text>Not registered yet? You can do it</Text>
         <Button

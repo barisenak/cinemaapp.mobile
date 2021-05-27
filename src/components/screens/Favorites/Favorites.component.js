@@ -16,15 +16,14 @@ import FavCinemas from './FavCinemas/FavCinemas.component';
 import {Text} from 'app/components/partial/Text';
 import {AUTHORIZATION} from 'app/enum/navigation.enum';
 
-function Favorites({navigation, selectedTab, setSelectedTab, isLoggedIn}) {
+function Favorites({navigation, selectedTab, setSelectedTab, userData}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       style={{backgroundColor: 'white'}}>
-      <Text>{isLoggedIn}</Text>
       <View style={styles.navTabWrapper}>
         <Button
-          disabled={!isLoggedIn ? true : false}
+          disabled={!userData ? true : false}
           type="textLink"
           style={{
             text:
@@ -36,7 +35,7 @@ function Favorites({navigation, selectedTab, setSelectedTab, isLoggedIn}) {
           Films
         </Button>
         <Button
-          disabled={!isLoggedIn ? true : false}
+          disabled={!userData ? true : false}
           type="textLink"
           style={{
             text:
@@ -48,7 +47,7 @@ function Favorites({navigation, selectedTab, setSelectedTab, isLoggedIn}) {
           Cinemas
         </Button>
       </View>
-      {!isLoggedIn ? (
+      {!userData ? (
         <View style={styles.signInContainer}>
           <Text>Please sign in</Text>
           <Button

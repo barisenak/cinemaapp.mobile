@@ -1,9 +1,11 @@
 import {connect} from 'react-redux';
 
-import {isLoggedInSelector} from 'app/redux/user/user.selector';
+import {userDataSelector} from 'app/redux/user/user.selector';
+import {errorTextSelector} from 'app/redux/auth/auth.selector';
+
 import {
-  setTypedEmail,
-  setTypedPassword,
+  setAuthTypedEmail,
+  setAuthTypedPassword,
   setUserData,
 } from 'app/redux/auth/auth.action';
 
@@ -15,13 +17,14 @@ import {
 
 export default connect(
   st => ({
-    isLoggedIn: isLoggedInSelector(st),
+    userData: userDataSelector(st),
     typedEmail: typedEmailSelector(st),
     typedPassword: typedPasswordSelector(st),
+    errorText: errorTextSelector(st),
   }),
   {
     setUserData: setUserData,
-    setTypedEmail: setTypedEmail,
-    setTypedPassword: setTypedPassword,
+    setTypedEmail: setAuthTypedEmail,
+    setTypedPassword: setAuthTypedPassword,
   },
 )(Authorization);

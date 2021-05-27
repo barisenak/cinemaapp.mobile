@@ -1,32 +1,28 @@
 import {createReducer} from 'app/utils/redux.util';
 
 import {
-  SET_TYPED_EMAIL,
-  SET_TYPED_PASSWORD,
-  SET_USER_DATA,
+  SET_REGISTER_ERROR_TEXT,
+  SET_REGISTER_TYPED_EMAIL,
+  SET_REGISTER_TYPED_PASSWORD,
 } from './register.action';
 
 const initialState = {
-  email: '',
-  accessToken: '',
-  refreshToken: '',
   typedEmail: '',
   typedPassword: '',
+  errorText: '',
 };
 
-export const authReducer = createReducer(initialState, {
-  [SET_USER_DATA]: (st, email, accessToken, refreshToken) => ({
-    ...st,
-    email,
-    accessToken,
-    refreshToken,
-  }),
-  [SET_TYPED_EMAIL]: (st, typedEmail) => ({
+export const registerReducer = createReducer(initialState, {
+  [SET_REGISTER_TYPED_EMAIL]: (st, typedEmail) => ({
     ...st,
     typedEmail,
   }),
-  [SET_TYPED_PASSWORD]: (st, typedPassword) => ({
+  [SET_REGISTER_TYPED_PASSWORD]: (st, typedPassword) => ({
     ...st,
     typedPassword,
+  }),
+  [SET_REGISTER_ERROR_TEXT]: (st, errorText) => ({
+    ...st,
+    errorText,
   }),
 });
