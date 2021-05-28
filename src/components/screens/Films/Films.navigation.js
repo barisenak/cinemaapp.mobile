@@ -3,12 +3,11 @@ import Films from './Films.connect';
 import {createStackNavigator} from '@react-navigation/stack';
 import FilmCard from '../FilmCard/FilmCard.connect';
 import {FILM_CARD, FILMS} from 'app/enum/navigation.enum';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {styles} from '../Films/Films.styles';
+import AddFavFilm from './AddFavFilm.connect';
 
 const Stack = createStackNavigator();
 
-function FilmsNavigator({navigation, route}) {
+function FilmsNavigator() {
   return (
     <Stack.Navigator initialRouteName="Films">
       <Stack.Screen
@@ -21,17 +20,17 @@ function FilmsNavigator({navigation, route}) {
       <Stack.Screen
         name={FILM_CARD}
         component={FilmCard}
-        options={{
-          headerTitle: 'Card',
+        options={({route}) => ({
+          headerTitle: route.params.name,
           headerRight: () => (
-            <MaterialCommunityIcons
-              name="star"
-              color="#A19DAE"
-              size={30}
-              style={styles.icon}
+            <AddFavFilm
+              options={{
+                filmId: route.params.filmId,
+                userId: route.params.userId,
+              }}
             />
           ),
-        }}
+        })}
       />
     </Stack.Navigator>
   );

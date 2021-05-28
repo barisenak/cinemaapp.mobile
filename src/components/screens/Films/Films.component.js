@@ -31,6 +31,7 @@ function Films({
   navigation,
   getFilmCard,
   film,
+  user,
 }) {
   useEffect(() => {
     loadFilms({
@@ -53,18 +54,16 @@ function Films({
 
   const renderItem = ({item}) => (
     <TouchableHighlight
-      activeOpacity={0.5}
+      activeOpacity={user ? 0.5 : 1}
       underlayColor="white"
       onPress={() => {
-        getFilmCard(item.name);
-        navigation.navigate(FILM_CARD, {
-          // name: film.name,
-          description: film.description,
-          // image: film.img,
-          // duration: film.duration,
-          // category: film.category,
-          // releaseDate: film.releaseDate,
-        });
+        user &&
+          (getFilmCard(item.name),
+          navigation.navigate(FILM_CARD, {
+            name: item.name,
+            filmId: item.id,
+            userId: user?.id,
+          }));
       }}>
       <Image source={{uri: item.img}} style={styles.card} />
     </TouchableHighlight>

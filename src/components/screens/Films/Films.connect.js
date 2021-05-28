@@ -9,6 +9,7 @@ import {
 } from 'app/redux/films/films.selector';
 
 import {filmCardSelector} from 'app/redux/film/film.selector';
+import {userDataSelector} from 'app/redux/user/user.selector';
 
 import {
   getFilms,
@@ -28,6 +29,7 @@ export default connect(
     page: pageSelector(st),
     totalPages: totalPagesSelector(st),
     nextBatchState: nextBatchStateSelector(st),
+    user: userDataSelector(st),
   }),
   {
     loadFilms: getFilms,

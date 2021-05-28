@@ -1,4 +1,10 @@
-import {call, put, takeEvery} from 'redux-saga/effects';
+import {
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+  takeLeading,
+} from 'redux-saga/effects';
 
 import {createAction} from 'app/utils/redux.util';
 import {fetchFilms} from 'app/api/films.api';
@@ -69,5 +75,5 @@ function* getSomeFilms(action) {
 
 export function* sagaWatcher() {
   yield takeEvery(GET_FILMS, getAllFilms);
-  yield takeEvery(GET_NEW_FILMS, getSomeFilms);
+  yield takeLeading(GET_NEW_FILMS, getSomeFilms);
 }

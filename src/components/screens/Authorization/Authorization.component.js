@@ -24,7 +24,7 @@ function Authorization({
     if (userData) {
       navigation.navigate(FAVORITES);
     }
-  });
+  }, [userData]);
 
   const signIn = () => {
     setUserData({email: typedEmail, password: typedPassword});

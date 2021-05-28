@@ -8,6 +8,8 @@ import {fetchUser} from 'app/api/user.api';
 
 import {setUser} from '../user/user.action';
 
+import {setAccessToken} from 'app/utils/fetch.util';
+
 export const SET_USER_DATA = 'AUTH/SET_USER_DATA';
 export const SET_AUTH_TYPED_EMAIL = 'AUTH/SET_AUTH_TYPED_EMAIL';
 export const SET_AUTH_TYPED_PASSWORD = 'AUTH/SET_AUTH_TYPED_PASSWORD';
@@ -26,13 +28,12 @@ function* setData(action) {
     });
 
     if (data.accessToken) {
-      AsyncStorage.setItem('accessToken', data.accessToken);
+      yield call(AsyncStorage.setItem, 'accessToken', data.accessToken);
+
+      setAccessToken(data.accessToken);
 
       const profileData = yield call(fetchUser, {
         userId: data.userId,
-
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjBhNjZiMTIwNDBjZDgwMDIyMDQ2Y2Y5IiwiaWF0IjoxNjIyMTA4ODQ2LCJleHAiOjE2MjIxOTUyNDZ9.yN3cfe1WbYIuOVPsTQZXp3cRg9VIdAc3WRpXZfXe2Ys',
       });
 
       yield put(setUser(profileData));
@@ -40,7 +41,7 @@ function* setData(action) {
       yield put(setAuthErrorText(data.message));
     }
 
-    // AsyncStorage.getItem('accessToken', (err, result) => result);
+    // AsyncStorage.getItem('accessToken', (err, result) => console.log(result));
 
     // yield put(setFilms(data));
     // yield put(setState(STATE_SUCCESS));
