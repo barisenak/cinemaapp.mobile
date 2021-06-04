@@ -1,18 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import {TouchableOpacity} from 'react-native';
 
-import {styles} from '../Films/Films.styles';
+import {styles} from '../CinemaCard.styles';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-function AddFavFilm({navigation, options, addFavoriteFilm, user}) {
-  // useEffect(() => {}, [user.favouriteFilms]);
+function AddFavCinema({navigation, options, addFavoriteCinema, user}) {
   return (
     <TouchableOpacity
       onPress={() => {
-        addFavoriteFilm({
-          filmId: options.filmId,
+        addFavoriteCinema({
+          cinemaId: options.cinemaId,
           userId: options.userId,
         });
       }}>
@@ -20,7 +19,10 @@ function AddFavFilm({navigation, options, addFavoriteFilm, user}) {
         <MaterialCommunityIcons
           name="star"
           color={
-            user.favouriteFilms.includes(options.filmId) ? '#FFCF09' : '#A19DAE'
+            user.favouriteCinemas.filter(el => el.id === options.cinemaId)
+              .length
+              ? '#FFCF09'
+              : '#A19DAE'
           }
           size={30}
           style={styles.icon}
@@ -30,4 +32,4 @@ function AddFavFilm({navigation, options, addFavoriteFilm, user}) {
   );
 }
 
-export default AddFavFilm;
+export default AddFavCinema;

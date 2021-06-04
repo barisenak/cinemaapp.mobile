@@ -5,3 +5,4 @@ export const FAVORITES = 'Favorites';
 export const FILM_CARD = 'FilmCard';
 export const CINEMA_CARD = 'CinemaCard';
 export const FILMS = 'Films';
+export const FAV_FILMS = 'FavFilms';

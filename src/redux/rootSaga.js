@@ -4,6 +4,7 @@ import {sagaWatcher as films} from './films/films.action';
 import {sagaWatcher as auth} from './auth/auth.action';
 import {sagaWatcher as register} from './register/register.action';
 import {sagaWatcher as film} from './film/film.action';
+import {sagaWatcher as cinema} from './cinema/cinema.action';
 
 export function* rootSagaWatcher() {
   yield all([
@@ -12,5 +13,6 @@ export function* rootSagaWatcher() {
     auth(),
     register(),
     film(),
+    cinema(),
   ]);
 }

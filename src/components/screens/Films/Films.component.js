@@ -32,6 +32,7 @@ function Films({
   getFilmCard,
   film,
   user,
+  getAccessToken,
 }) {
   useEffect(() => {
     loadFilms({
@@ -58,7 +59,7 @@ function Films({
       underlayColor="white"
       onPress={() => {
         user &&
-          (getFilmCard(item.name),
+          (getFilmCard(item.id),
           navigation.navigate(FILM_CARD, {
             name: item.name,
             filmId: item.id,
@@ -190,9 +191,6 @@ function Films({
           />
         )}
       </View>
-
-      <Text>{state}</Text>
-      <Text>{nextBatchState}</Text>
     </ScrollView>
   );
 }

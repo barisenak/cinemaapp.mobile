@@ -15,6 +15,8 @@ export function fetchJSON(
   const path = `${API_URL}/${endpoint}`;
   const args = query ? `?${stringify(query)}` : '';
 
+  // TODO: implement refreshToken
+
   return fetch(`${path}${args}`, {
     method,
     headers: {

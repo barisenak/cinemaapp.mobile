@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {call, put, takeEvery} from 'redux-saga/effects';
+import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
 
 import {createAction} from 'app/utils/redux.util';
 import {fetchToken} from 'app/api/token.api';
@@ -14,11 +14,13 @@ export const SET_USER_DATA = 'AUTH/SET_USER_DATA';
 export const SET_AUTH_TYPED_EMAIL = 'AUTH/SET_AUTH_TYPED_EMAIL';
 export const SET_AUTH_TYPED_PASSWORD = 'AUTH/SET_AUTH_TYPED_PASSWORD';
 export const SET_AUTH_ERROR_TEXT = 'AUTH/SET_AUTH_ERROR_TEXT';
+export const GET_USER = 'AUTH/GET_USER';
 
 export const setUserData = createAction(SET_USER_DATA);
 export const setAuthTypedEmail = createAction(SET_AUTH_TYPED_EMAIL);
 export const setAuthTypedPassword = createAction(SET_AUTH_TYPED_PASSWORD);
 export const setAuthErrorText = createAction(SET_AUTH_ERROR_TEXT);
+export const getUser = createAction(GET_USER);
 
 function* setData(action) {
   try {
@@ -26,25 +28,31 @@ function* setData(action) {
       username: action.payload.email,
       password: action.payload.password,
     });
-
     if (data.accessToken) {
       yield call(AsyncStorage.setItem, 'accessToken', data.accessToken);
 
       setAccessToken(data.accessToken);
 
       const profileData = yield call(fetchUser, {
-        userId: data.userId,
+        params: {userId: data.userId},
       });
 
       yield put(setUser(profileData));
     } else {
       yield put(setAuthErrorText(data.message));
     }
+  } catch (ex) {
+    console.warn(ex);
+  }
+}
 
-    // AsyncStorage.getItem('accessToken', (err, result) => console.log(result));
+function* loadUser(action) {
+  try {
+    const profileData = yield call(fetchUser, {
+      params: {userId: 'me'},
+    });
 
-    // yield put(setFilms(data));
-    // yield put(setState(STATE_SUCCESS));
+    yield put(setUser(profileData));
   } catch (ex) {
     console.warn(ex);
   }
@@ -52,4 +60,5 @@ function* setData(action) {
 
 export function* sagaWatcher() {
   yield takeEvery(SET_USER_DATA, setData);
+  yield takeEvery(GET_USER, loadUser);
 }

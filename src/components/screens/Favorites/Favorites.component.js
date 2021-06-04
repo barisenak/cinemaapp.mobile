@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Image, TouchableHighlight} from 'react-native';
 
 import {
   SELECTED_TAB_CINEMAS,
@@ -11,12 +11,17 @@ import {
 import {styles} from 'app/components/screens/Favorites/Favorites.styles';
 
 import {Button} from 'app/components/partial/Button';
-import FavFilms from './FavFilms/FavFilms.component';
-import FavCinemas from './FavCinemas/FavCinemas.component';
 import {Text} from 'app/components/partial/Text';
-import {AUTHORIZATION} from 'app/enum/navigation.enum';
+import {AUTHORIZATION, FILM_CARD, CINEMA_CARD} from 'app/enum/navigation.enum';
 
-function Favorites({navigation, selectedTab, setSelectedTab, userData}) {
+function Favorites({
+  navigation,
+  selectedTab,
+  setSelectedTab,
+  userData,
+  getFilmCard,
+  getCinemaCard,
+}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -58,9 +63,57 @@ function Favorites({navigation, selectedTab, setSelectedTab, userData}) {
           </Button>
         </View>
       ) : selectedTab === SELECTED_TAB_FILMS ? (
-        <FavFilms />
+        <View style={styles.sectionContainer}>
+          {userData.favouriteFilms &&
+            userData.favouriteFilms.map((film, index) => (
+              <TouchableHighlight
+                style={styles.card}
+                activeOpacity={0.5}
+                key={index}
+                underlayColor="white"
+                onPress={() => {
+                  getFilmCard(film.id);
+                  navigation.navigate(FILM_CARD, {
+                    name: film.name,
+                    filmId: film.id,
+                    userId: userData?.id,
+                  });
+                }}>
+                <Image source={{uri: film.img}} style={styles.card} />
+              </TouchableHighlight>
+            ))}
+          {!userData.favouriteFilms.length && (
+            <Text style={styles.emptySection}>
+              you don't have any favorite films
+            </Text>
+          )}
+        </View>
       ) : (
-        <FavCinemas />
+        <View style={styles.sectionContainer}>
+          {userData.favouriteCinemas &&
+            userData.favouriteCinemas.map((cinema, index) => (
+              <TouchableHighlight
+                style={styles.card}
+                activeOpacity={0.5}
+                key={index}
+                underlayColor="white"
+                onPress={() => {
+                  getCinemaCard(cinema.id);
+                  navigation.navigate(CINEMA_CARD, {
+                    name: cinema.name,
+                    cinemaId: cinema.id,
+                    userId: userData?.id,
+                  });
+                }}>
+                <Image source={{uri: cinema.img}} style={styles.card} />
+              </TouchableHighlight>
+            ))}
+          {!userData.favouriteCinemas.length && (
+            <Text style={styles.emptySection}>
+              you don't have any favorite cinemas
+            </Text>
+          )}
+        </View>
       )}
     </ScrollView>
   );

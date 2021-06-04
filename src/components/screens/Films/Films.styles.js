@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {white, blue, black} from '../../../styles/colors.style';
+import {white} from '../../../styles/colors.style';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,7 +7,10 @@ export const styles = StyleSheet.create({
     backgroundColor: white,
   },
 
-  screenBackground: {backgroundColor: 'white'},
+  screenBackground: {
+    backgroundColor: 'white',
+  },
+
   category: {
     width: '100%',
     paddingVertical: 8.5,
@@ -19,8 +22,8 @@ export const styles = StyleSheet.create({
   },
 
   card: {
-    width: 110,
-    height: 150,
+    width: 120,
+    height: 170,
     marginRight: 7,
     marginTop: 10,
   },

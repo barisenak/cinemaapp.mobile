@@ -1,7 +1,7 @@
 import {fetchJSON} from 'app/utils/fetch.util';
 
-export const fetchFilm = ({id = '', Authorization = ''} = {}) =>
-  fetchJSON('films/filmCard', {
+export const fetchCinema = ({id = '', Authorization = ''} = {}) =>
+  fetchJSON('cinemas/cinemaCard', {
     query: {
       id,
     },
@@ -10,34 +10,34 @@ export const fetchFilm = ({id = '', Authorization = ''} = {}) =>
     },
   });
 
-export const fetchFilmToFav = ({
+export const fetchCinemaToFav = ({
   userId = '',
-  filmId = '',
+  cinemaId = '',
   Authorization = '',
 } = {}) =>
-  fetchJSON('films/addFavorite', {
+  fetchJSON('cinemas/addFavorite', {
     headers: {
       Authorization,
     },
     method: 'POST',
     body: {
       userId,
-      filmId,
+      cinemaId,
     },
   });
 
-export const fetchRemoveFilmFromFav = ({
+export const fetchRemoveCinemaFromFav = ({
   userId = '',
-  filmId = '',
+  cinemaId = '',
   Authorization = '',
 } = {}) =>
-  fetchJSON('films/removeFavorite', {
+  fetchJSON('cinemas/removeFavorite', {
     headers: {
       Authorization,
     },
     method: 'POST',
     body: {
       userId,
-      filmId,
+      cinemaId,
     },
   });

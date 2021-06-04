@@ -20,6 +20,7 @@ import {
 
 import Films from './Films.component';
 import {getFilmCard} from 'app/redux/film/film.action';
+import {getAccessToken} from 'app/redux/auth/auth.action';
 
 export default connect(
   st => ({
@@ -37,5 +38,6 @@ export default connect(
     loadNewFilms: getNewFilms,
     setPage: setPage,
     getFilmCard: getFilmCard,
+    getAccessToken: getAccessToken,
   },
 )(Films);

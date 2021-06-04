@@ -3,19 +3,14 @@ import {createReducer} from 'app/utils/redux.util';
 import {SET_FILM_CARD} from './film.action';
 
 const initialState = {
-  // name: '',
-  // description: '',
-  // duration: 0,
-  // image: '',
-  // category: '',
-  // releaseDate: '',
-
   film: {},
+  cinemas: [],
 };
 
 export const filmReducer = createReducer(initialState, {
-  [SET_FILM_CARD]: (st, film) => ({
+  [SET_FILM_CARD]: (st, data) => ({
     ...st,
-    film: film.film,
+    film: data.film,
+    cinemas: data.cinemas,
   }),
 });

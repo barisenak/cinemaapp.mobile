@@ -3,8 +3,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 
 import FilmCard from '../FilmCard/FilmCard.connect';
-import CinemaCard from '../CinemaCard/CinemaCard.component';
+import CinemaCard from '../CinemaCard/CinemaCard.connect';
 import {FILM_CARD, CINEMA_CARD, FAVORITES} from 'app/enum/navigation.enum';
+import AddFavCinema from '../CinemaCard/AddFavCinema/AddFavCinema.connect';
+import AddFavFilm from '../Films/AddFavFilm/AddFavFilm.connect';
 
 const Stack = createStackNavigator();
 
@@ -15,16 +17,6 @@ function FavoritesNavigator({navigation}) {
         name={FAVORITES}
         component={Favorites}
         options={{headerTitle: FAVORITES}}
-      />
-      <Stack.Screen
-        name={FILM_CARD}
-        component={FilmCard}
-        options={{headerTitle: 'Card'}}
-      />
-      <Stack.Screen
-        name={CINEMA_CARD}
-        component={CinemaCard}
-        options={{headerTitle: 'Card'}}
       />
     </Stack.Navigator>
   );

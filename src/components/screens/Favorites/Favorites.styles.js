@@ -3,7 +3,7 @@ import {white, blue, black} from 'app/styles/colors.style';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
   },
 
@@ -14,18 +14,30 @@ export const styles = StyleSheet.create({
   },
 
   card: {
-    width: 110,
-    height: 150,
+    width: 120,
+    height: 170,
     marginRight: 7,
-    marginTop: 10,
+    marginTop: 7,
   },
-  button: {
-    width: 100,
+
+  emptySection: {
+    marginLeft: '15%',
+    marginTop: 270,
+    color: 'grey',
   },
 
   navTabWrapper: {
     justifyContent: 'center',
     flexDirection: 'row',
     textAlign: 'center',
+  },
+
+  sectionContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'flex-start',
+    marginLeft: 14,
   },
 });

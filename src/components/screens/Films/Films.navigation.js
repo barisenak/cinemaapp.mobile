@@ -2,8 +2,10 @@ import React from 'react';
 import Films from './Films.connect';
 import {createStackNavigator} from '@react-navigation/stack';
 import FilmCard from '../FilmCard/FilmCard.connect';
-import {FILM_CARD, FILMS} from 'app/enum/navigation.enum';
-import AddFavFilm from './AddFavFilm.connect';
+import {FILM_CARD, FILMS, CINEMA_CARD} from 'app/enum/navigation.enum';
+import AddFavFilm from './AddFavFilm/AddFavFilm.connect';
+import CinemaCard from '../CinemaCard/CinemaCard.connect';
+import AddFavCinema from '../CinemaCard/AddFavCinema/AddFavCinema.connect';
 
 const Stack = createStackNavigator();
 
@@ -16,21 +18,6 @@ function FilmsNavigator() {
         options={{
           headerTitle: FILMS,
         }}
-      />
-      <Stack.Screen
-        name={FILM_CARD}
-        component={FilmCard}
-        options={({route}) => ({
-          headerTitle: route.params.name,
-          headerRight: () => (
-            <AddFavFilm
-              options={{
-                filmId: route.params.filmId,
-                userId: route.params.userId,
-              }}
-            />
-          ),
-        })}
       />
     </Stack.Navigator>
   );
