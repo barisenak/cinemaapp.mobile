@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import {setAccessToken} from 'app/utils/fetch.util';
 
-function TokenProvider({children, getUser}) {
+export function TokenProvider({children, getUser}) {
   const [isAppLoaded, setAppState] = useState(false);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import FloorMenu from './src/components/FloorMenu.component';
+
 import store from './src/redux/store';
 import {
   AUTHORIZATION,
@@ -12,13 +12,18 @@ import {
   FILM_CARD,
   CINEMA_CARD,
 } from './src/enum/navigation.enum';
+
+// components
+import FloorMenu from './src/components/FloorMenu.component';
 import Authorization from './src/components/screens/Authorization/Authorization.connect';
 import Registration from './src/components/screens/Registration/Registration.connect';
-import TokenProvider from './src/providers/TokenProvider.connect';
 import FilmCard from './src/components/screens/FilmCard/FilmCard.connect';
 import AddFavFilm from './src/components/screens/Films/AddFavFilm/AddFavFilm.component';
 import CinemaCard from './src/components/screens/CinemaCard/CinemaCard.component';
 import AddFavCinema from './src/components/screens/CinemaCard/AddFavCinema/AddFavCinema.connect';
+
+// providers
+import {TokenProvider} from './src/providers';
 
 const Stack = createStackNavigator();
 
