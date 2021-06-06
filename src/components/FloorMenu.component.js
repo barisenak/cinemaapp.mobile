@@ -7,15 +7,29 @@ import TicketsScreenNavigator from './screens/Tickets/Tickets.navigation';
 import MapScreenNavigator from './screens/Map/Map.navigation';
 import SettingsScreenNavigator from './screens/Settings/Settings.navigation';
 
+import {active, inactive} from 'app/styles/colors.style';
+
 const Tab = createBottomTabNavigator();
 
 function FloorMenu({route}) {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      // see documentation:
+      // https://reactnavigation.org/docs/bottom-tab-navigator/
+      //
+      screenOptions={{}}
+      tabBarOptions={{
+        activeTintColor: active,
+        inactiveTintColor: inactive,
+        labelStyle: {
+          textTransform: 'uppercase',
+        },
+      }}>
       <Tab.Screen
         name="Films"
         component={FilmsScreenNavigator}
         options={{
+          // TODO: move screen names to enum
           tabBarLabel: 'Films',
           tabBarIcon: ({focused, color}) => {
             return (
