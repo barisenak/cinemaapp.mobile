@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
+import {call, put, takeEvery} from 'redux-saga/effects';
 
 import {createAction} from 'app/utils/redux.util';
-import {fetchToken} from 'app/api/token.api';
+import {fetchToken, fetchRefreshToken} from 'app/api/token.api';
 import {fetchUser} from 'app/api/user.api';
 
 import {setUser} from '../user/user.action';
@@ -30,6 +30,7 @@ function* setData(action) {
     });
     if (data.accessToken) {
       yield call(AsyncStorage.setItem, 'accessToken', data.accessToken);
+      yield call(AsyncStorage.setItem, 'refreshToken', data.refreshToken);
 
       setAccessToken(data.accessToken);
 
@@ -46,13 +47,43 @@ function* setData(action) {
   }
 }
 
+// 0 - empty
+// 1 - single place
+// 22 - double place
+// 333 - triple place
+// [
+//   [0, 1, 0],
+//   [2, 2, 0],
+//   [3, 3, 3],
+// ];
+
+// placeNumber: '0-1';
+
 function* loadUser(action) {
   try {
     const profileData = yield call(fetchUser, {
       params: {userId: 'me'},
     });
 
-    yield put(setUser(profileData));
+    if (profileData.message) {
+      //get refr token
+      const {accessToken, refreshToken} = yield call(fetchRefreshToken, {
+        refreshToken: action.payload,
+      });
+
+      yield call(AsyncStorage.setItem, 'accessToken', accessToken);
+      yield call(AsyncStorage.setItem, 'refreshToken', refreshToken);
+
+      setAccessToken(accessToken);
+
+      const profile = yield call(fetchUser, {
+        params: {userId: 'me'},
+      });
+
+      yield put(setUser(profile));
+    } else {
+      yield put(setUser(profileData));
+    }
   } catch (ex) {
     console.warn(ex);
   }

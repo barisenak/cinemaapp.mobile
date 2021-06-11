@@ -11,6 +11,7 @@ import {
   FLOOR,
   FILM_CARD,
   CINEMA_CARD,
+  SEATS_CARD,
 } from './src/enum/navigation.enum';
 
 // components
@@ -18,9 +19,10 @@ import FloorMenu from './src/components/FloorMenu.component';
 import Authorization from './src/components/screens/Authorization/Authorization.connect';
 import Registration from './src/components/screens/Registration/Registration.connect';
 import FilmCard from './src/components/screens/FilmCard/FilmCard.connect';
-import AddFavFilm from './src/components/screens/Films/AddFavFilm/AddFavFilm.component';
-import CinemaCard from './src/components/screens/CinemaCard/CinemaCard.component';
+import AddFavFilm from './src/components/screens/Films/AddFavFilm/AddFavFilm.connect';
+import CinemaCard from './src/components/screens/CinemaCard/CinemaCard.connect';
 import AddFavCinema from './src/components/screens/CinemaCard/AddFavCinema/AddFavCinema.connect';
+import Seats from './src/components/screens/Seats/Seats.connect';
 
 // providers
 import {TokenProvider} from './src/providers';
@@ -47,6 +49,13 @@ function App() {
               name={REGISTRATION}
               component={Registration}
               options={{headerTitle: REGISTRATION}}
+            />
+            <Stack.Screen
+              name={SEATS_CARD}
+              component={Seats}
+              options={({route}) => ({
+                headerTitle: `Booking in ${route.params.name}`,
+              })}
             />
             <Stack.Screen
               name={FILM_CARD}

@@ -22,11 +22,7 @@ function* getCinemaData(action) {
       id: action.payload,
     });
 
-    yield put(
-      setCinemaCard({
-        cinema: data[0],
-      }),
-    );
+    yield put(setCinemaCard(data[0]));
   } catch (ex) {
     console.warn(ex);
   }

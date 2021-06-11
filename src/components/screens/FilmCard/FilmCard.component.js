@@ -8,7 +8,8 @@ import {Text} from 'app/components/partial/Text';
 
 import {styles} from './FilmCard.styles';
 import moment from 'moment';
-import {CINEMA_CARD} from 'app/enum/navigation.enum';
+import {CINEMA_CARD, SEATS_CARD} from 'app/enum/navigation.enum';
+import {Button} from 'app/components/partial/Button';
 
 function FilmCard({navigation, film, cinemas, getCinemaCard, user}) {
   const sections = [
@@ -16,17 +17,17 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user}) {
       id: 'category',
       iconName: 'format-list-bulleted',
       name: 'Category',
+      // (obj) => obj.category
       getValue: get('category'),
+
+      // get("category")
+      // attr => obj => obj[attr]
     },
     {
       id: 'duration',
       iconName: 'clock-time-three-outline',
       name: 'Duration',
-      getValue: flow([
-        get('duration'),
-        // TODO: replace this to show duration in minutes
-        val => `${val} hour(s)`,
-      ]),
+      getValue: flow([get('duration'), val => `${val * 60} minutes`]),
     },
     {
       id: 'release_date',
@@ -56,28 +57,55 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user}) {
         </View>
       ))}
 
-      <Text style={[styles.infoTitle, styles.textBlock]}>
-        You can watch {film.name} in:
-      </Text>
+      {cinemas.length ? (
+        <Text style={[styles.infoTitle, styles.textBlock]}>
+          Tikets booking:
+        </Text>
+      ) : null}
       <View style={styles.sectionContainer}>
-        {cinemas &&
-          cinemas.map((cinema, index) => (
-            <TouchableHighlight
-              style={styles.card}
-              activeOpacity={0.5}
-              key={index}
-              underlayColor="white"
-              onPress={() => {
-                getCinemaCard(cinema.id);
-                navigation.navigate(CINEMA_CARD, {
-                  name: cinema.name,
-                  cinemaId: cinema.id,
-                  userId: user?.id,
-                });
-              }}>
-              <Image source={{uri: cinema.img}} style={styles.card} />
-            </TouchableHighlight>
-          ))}
+        {cinemas.length
+          ? cinemas.map((cinema, index) => (
+              <Button
+                key={index}
+                onPress={() => {
+                  getCinemaCard(cinema.id);
+                  navigation.navigate(SEATS_CARD, {
+                    name: cinema.name,
+                    filmId: film.id,
+                    userId: user?.id,
+                  });
+                }}>
+                {cinema.name}
+              </Button>
+            ))
+          : null}
+      </View>
+
+      {cinemas.length ? (
+        <Text style={[styles.infoTitle, styles.textBlock]}>
+          You can watch {film.name} in:
+        </Text>
+      ) : null}
+      <View style={styles.sectionContainer}>
+        {cinemas.length
+          ? cinemas.map((cinema, index) => (
+              <TouchableHighlight
+                style={styles.card}
+                activeOpacity={0.5}
+                underlayColor="white"
+                key={index}
+                onPress={() => {
+                  getCinemaCard(cinema.id);
+                  navigation.navigate(CINEMA_CARD, {
+                    name: cinema.name,
+                    cinemaId: cinema.id,
+                    userId: user?.id,
+                  });
+                }}>
+                <Image source={{uri: cinema.img}} style={styles.card} />
+              </TouchableHighlight>
+            ))
+          : null}
       </View>
     </ScrollView>
   );

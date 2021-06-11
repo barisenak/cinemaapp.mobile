@@ -1,3 +1,4 @@
+import {gutter} from 'app/styles/structure.style';
 import {StyleSheet} from 'react-native';
 import {white, blue, black} from '../../../styles/colors.style';
 
@@ -5,6 +6,8 @@ export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: white,
+    paddingHorizontal: gutter,
+    paddingBottom: gutter * 2,
   },
 
   screenBackground: {
@@ -18,6 +21,7 @@ export const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 560,
+    marginBottom: gutter,
   },
 
   icon: {
@@ -39,4 +43,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginLeft: 7,
   },
+
+  infoContainer: {
+    marginVertical: gutter / 2,
+  },
+
+  intoTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  infoIcon: {marginRight: gutter / 2},
+  infoTitle: {fontWeight: 'bold'},
+  infoValue: {marginTop: gutter / 4},
 });

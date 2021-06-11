@@ -8,6 +8,13 @@ import MapScreenNavigator from './screens/Map/Map.navigation';
 import SettingsScreenNavigator from './screens/Settings/Settings.navigation';
 
 import {active, inactive} from 'app/styles/colors.style';
+import {
+  FILMS,
+  FAVORITES,
+  TICKETS,
+  MAP,
+  SETTINGS,
+} from 'app/enum/navigation.enum';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,10 +33,9 @@ function FloorMenu({route}) {
         },
       }}>
       <Tab.Screen
-        name="Films"
+        name={FILMS}
         component={FilmsScreenNavigator}
         options={{
-          // TODO: move screen names to enum
           tabBarLabel: 'Films',
           tabBarIcon: ({focused, color}) => {
             return (
@@ -43,7 +49,7 @@ function FloorMenu({route}) {
         }}
       />
       <Tab.Screen
-        name="Favorites"
+        name={FAVORITES}
         component={FavoritesScreenNavigator}
         options={{
           tabBarLabel: 'Favorites',
@@ -53,7 +59,7 @@ function FloorMenu({route}) {
         }}
       />
       <Tab.Screen
-        name="Tickets"
+        name={TICKETS}
         component={TicketsScreenNavigator}
         options={{
           tabBarLabel: 'Tickets',
@@ -63,7 +69,7 @@ function FloorMenu({route}) {
         }}
       />
       <Tab.Screen
-        name="Map"
+        name={MAP}
         component={MapScreenNavigator}
         options={{
           tabBarLabel: 'Map',
@@ -73,7 +79,7 @@ function FloorMenu({route}) {
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name={SETTINGS}
         component={SettingsScreenNavigator}
         options={{
           tabBarLabel: 'Settings',

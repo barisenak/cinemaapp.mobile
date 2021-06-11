@@ -9,3 +9,12 @@ export const fetchToken = ({username = '', password = ''} = {}) => {
     method: 'POST',
   });
 };
+
+export const fetchRefreshToken = ({refreshToken = ''} = {}) => {
+  return fetchJSON('refreshToken/', {
+    body: {
+      refreshToken,
+    },
+    method: 'POST',
+  });
+};

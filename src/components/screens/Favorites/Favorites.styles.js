@@ -38,6 +38,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'flex-start',
-    marginLeft: 14,
+    marginLeft: 38,
   },
 });
