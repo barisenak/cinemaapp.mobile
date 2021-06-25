@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
 
 import store from './src/redux/store';
 import {
@@ -12,6 +12,9 @@ import {
   FILM_CARD,
   CINEMA_CARD,
   SEATS_CARD,
+  TICKET,
+  FILMS,
+  TICKETS,
 } from './src/enum/navigation.enum';
 
 // components
@@ -23,6 +26,7 @@ import AddFavFilm from './src/components/screens/Films/AddFavFilm/AddFavFilm.con
 import CinemaCard from './src/components/screens/CinemaCard/CinemaCard.connect';
 import AddFavCinema from './src/components/screens/CinemaCard/AddFavCinema/AddFavCinema.connect';
 import Seats from './src/components/screens/Seats/Seats.connect';
+import Ticket from './src/components/screens/Ticket/Ticket.connect';
 
 // providers
 import {TokenProvider} from './src/providers';
@@ -55,6 +59,22 @@ function App() {
               component={Seats}
               options={({route}) => ({
                 headerTitle: `Booking in ${route.params.name}`,
+              })}
+            />
+            <Stack.Screen
+              name={TICKET}
+              component={Ticket}
+              options={({route, navigation}) => ({
+                headerTitle: TICKET,
+                headerLeft: () => (
+                  <HeaderBackButton
+                    onPress={() => {
+                      route.params.prevScreen === TICKETS
+                        ? navigation.navigate(TICKETS)
+                        : navigation.navigate(FILMS);
+                    }}
+                  />
+                ),
               })}
             />
             <Stack.Screen

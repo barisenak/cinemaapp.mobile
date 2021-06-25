@@ -52,12 +52,12 @@ function Favorites({
           Cinemas
         </Button>
       </View>
+
       {!userData ? (
         <View style={styles.signInContainer}>
           <Text>Please sign in</Text>
           <Button
             type="primary"
-            style={styles.button}
             onPress={() => navigation.navigate(AUTHORIZATION)}>
             LOG IN
           </Button>

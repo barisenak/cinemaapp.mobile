@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
   TouchableHighlight,
 } from 'react-native';
-import {STATE_LOADING} from 'app/enum/state.enum';
+import {STATE_INITIAL, STATE_LOADING} from 'app/enum/state.enum';
 
 import {Text} from 'app/components/partial/Text';
 
@@ -70,126 +70,135 @@ function Films({
     </TouchableHighlight>
   );
 
+  if (state === STATE_LOADING || state === STATE_INITIAL)
+    return (
+      <ScrollView
+        contentContainerStyle={styles.indicatorContainer}
+        style={styles.screenBackground}>
+        <ActivityIndicator size="small" color="black" />
+      </ScrollView>
+    );
+
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Recently released</Text>
-        {state === STATE_LOADING ? (
+        {/* {state === STATE_LOADING ? (
           <ActivityIndicator size="small" color="black" />
-        ) : (
-          <FlatList
-            data={films[CATEGORY_RECENTLY_RELEASED]}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            horizontal
-            refreshing="true"
-            ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
-            ListFooterComponent={
-              nextBatchState === STATE_LOADING && (
-                <ActivityIndicator size="small" color="black" />
-              )
-            }
-            onEndReached={() => {
-              page[CATEGORY_RECENTLY_RELEASED] <
-                totalPages[CATEGORY_RECENTLY_RELEASED] &&
-                loadNewFilms({
-                  page: page[CATEGORY_RECENTLY_RELEASED],
-                  category: CATEGORY_RECENTLY_RELEASED,
-                });
-            }}
-            onEndReachedThreshold={0}
-            initialNumToRender={5}
-          />
-        )}
+        ) : ( */}
+        <FlatList
+          data={films[CATEGORY_RECENTLY_RELEASED]}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          horizontal
+          refreshing="true"
+          ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
+          ListFooterComponent={
+            nextBatchState === STATE_LOADING && (
+              <ActivityIndicator size="small" color="black" />
+            )
+          }
+          onEndReached={() => {
+            page[CATEGORY_RECENTLY_RELEASED] <
+              totalPages[CATEGORY_RECENTLY_RELEASED] &&
+              loadNewFilms({
+                page: page[CATEGORY_RECENTLY_RELEASED],
+                category: CATEGORY_RECENTLY_RELEASED,
+              });
+          }}
+          onEndReachedThreshold={0}
+          initialNumToRender={5}
+        />
+        {/* )} */}
       </View>
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Comedy</Text>
 
-        {state === STATE_LOADING ? (
+        {/* {state === STATE_LOADING ? (
           <ActivityIndicator size="small" color="black" />
-        ) : (
-          <FlatList
-            data={films[CATEGORY_COMEDY]}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            horizontal
-            ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
-            ListFooterComponent={
-              nextBatchState === STATE_LOADING && (
-                <ActivityIndicator size="small" color="black" />
-              )
-            }
-            onEndReached={() => {
-              page[CATEGORY_COMEDY] < totalPages[CATEGORY_COMEDY] &&
-                loadNewFilms({
-                  page: page[CATEGORY_COMEDY],
-                  category: CATEGORY_COMEDY,
-                });
-            }}
-            onEndReachedThreshold={0}
-            initialNumToRender={5}
-          />
-        )}
+        ) : ( */}
+        <FlatList
+          data={films[CATEGORY_COMEDY]}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          horizontal
+          ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
+          ListFooterComponent={
+            nextBatchState === STATE_LOADING && (
+              <ActivityIndicator size="small" color="black" />
+            )
+          }
+          onEndReached={() => {
+            page[CATEGORY_COMEDY] < totalPages[CATEGORY_COMEDY] &&
+              loadNewFilms({
+                page: page[CATEGORY_COMEDY],
+                category: CATEGORY_COMEDY,
+              });
+          }}
+          onEndReachedThreshold={0}
+          initialNumToRender={5}
+        />
+        {/* )} */}
       </View>
 
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Drama</Text>
-        {state === STATE_LOADING ? (
+        {/* {state === STATE_LOADING ? (
           <ActivityIndicator size="small" color="black" />
-        ) : (
-          <FlatList
-            data={films[CATEGORY_DRAMA]}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            horizontal
-            ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
-            ListFooterComponent={
-              nextBatchState === STATE_LOADING && (
-                <ActivityIndicator size="small" color="black" />
-              )
-            }
-            onEndReached={() => {
-              page[CATEGORY_DRAMA] < totalPages[CATEGORY_DRAMA] &&
-                loadNewFilms({
-                  page: page[CATEGORY_DRAMA],
-                  category: CATEGORY_DRAMA,
-                });
-            }}
-            onEndReachedThreshold={0}
-            initialNumToRender={5}
-          />
-        )}
+        ) : ( */}
+        <FlatList
+          data={films[CATEGORY_DRAMA]}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          horizontal
+          ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
+          ListFooterComponent={
+            nextBatchState === STATE_LOADING && (
+              <ActivityIndicator size="small" color="black" />
+            )
+          }
+          onEndReached={() => {
+            page[CATEGORY_DRAMA] < totalPages[CATEGORY_DRAMA] &&
+              loadNewFilms({
+                page: page[CATEGORY_DRAMA],
+                category: CATEGORY_DRAMA,
+              });
+          }}
+          onEndReachedThreshold={0}
+          initialNumToRender={5}
+        />
+        {/* )} */}
       </View>
 
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Biography</Text>
-        {state === STATE_LOADING ? (
+        {/* {state === STATE_LOADING ? (
           <ActivityIndicator size="small" color="black" />
-        ) : (
-          <FlatList
-            data={films[CATEGORY_BIOGRAPHY]}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            horizontal
-            ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
-            ListFooterComponent={
-              nextBatchState === STATE_LOADING && (
-                <ActivityIndicator size="small" color="black" />
-              )
-            }
-            onEndReached={() => {
-              page[CATEGORY_BIOGRAPHY] < totalPages[CATEGORY_BIOGRAPHY] &&
-                loadNewFilms({
-                  page: page[CATEGORY_BIOGRAPHY],
-                  category: CATEGORY_BIOGRAPHY,
-                });
-            }}
-            onEndReachedThreshold={0}
-            initialNumToRender={5}
-          />
-        )}
+        ) : ( */}
+        <FlatList
+          data={films[CATEGORY_BIOGRAPHY]}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          horizontal
+          ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
+          ListFooterComponent={
+            nextBatchState === STATE_LOADING && (
+              <ActivityIndicator size="small" color="black" />
+            )
+          }
+          onEndReached={() => {
+            page[CATEGORY_BIOGRAPHY] < totalPages[CATEGORY_BIOGRAPHY] &&
+              loadNewFilms({
+                page: page[CATEGORY_BIOGRAPHY],
+                category: CATEGORY_BIOGRAPHY,
+              });
+          }}
+          onEndReachedThreshold={0}
+          initialNumToRender={5}
+        />
+        {/* )} */}
       </View>
     </ScrollView>
   );

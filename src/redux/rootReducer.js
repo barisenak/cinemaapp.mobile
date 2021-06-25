@@ -7,7 +7,8 @@ import {authReducer as auth} from './auth/auth.reducer';
 import {filmReducer as film} from './film/film.reducer';
 import {registerReducer as register} from './register/register.reducer';
 import {cinemaReducer as cinema} from './cinema/cinema.reducer';
-import {seatsReducer as seat} from './seat/seat.reducer';
+import {bookingsReducer as bookings} from './booking/booking.reducer';
+import {ticketsReducer as tickets} from './tickets/tickets.reducer';
 
 export const rootReducer = combineReducers({
   favorites,
@@ -17,5 +18,6 @@ export const rootReducer = combineReducers({
   film,
   register,
   cinema,
-  seat,
+  bookings,
+  tickets,
 });

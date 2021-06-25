@@ -47,18 +47,6 @@ function* setData(action) {
   }
 }
 
-// 0 - empty
-// 1 - single place
-// 22 - double place
-// 333 - triple place
-// [
-//   [0, 1, 0],
-//   [2, 2, 0],
-//   [3, 3, 3],
-// ];
-
-// placeNumber: '0-1';
-
 function* loadUser(action) {
   try {
     const profileData = yield call(fetchUser, {

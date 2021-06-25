@@ -6,6 +6,9 @@ export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: white,
+    paddingHorizontal: gutter,
+    paddingBottom: gutter * 2,
+    paddingTop: 30,
   },
 
   screenBackground: {
@@ -22,6 +25,6 @@ export const styles = StyleSheet.create({
 
   map: {
     width: '100%',
-    height: '100%',
+    height: 300,
   },
 });

@@ -39,4 +39,8 @@ export const styles = StyleSheet.create({
   icon: {
     marginRight: 12,
   },
+
+  indicatorContainer: {
+    paddingTop: 50,
+  },
 });

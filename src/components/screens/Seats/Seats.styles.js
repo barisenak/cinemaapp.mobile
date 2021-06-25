@@ -1,6 +1,45 @@
 import {StyleSheet} from 'react-native';
 import {white, blue, black} from '../../../styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
+import {
+  SEAT_TYPE_CHAIR,
+  SEAT_TYPE_FRIENDS_SEATS,
+  SEAT_TYPE_LOVE_SEATS,
+} from 'app/enum/seatType.enum';
+
+export const seatTypeStyles = {
+  [SEAT_TYPE_CHAIR]: {
+    width: 30,
+    height: 23,
+    backgroundColor: '#D3FFEE',
+    borderColor: 'black',
+    borderWidth: 0.7,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+    marginBottom: 5,
+  },
+
+  [SEAT_TYPE_LOVE_SEATS]: {
+    width: 45,
+    height: 23,
+    backgroundColor: '#6EC2A1',
+    borderColor: 'black',
+    borderWidth: 0.7,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+    marginBottom: 5,
+  },
+
+  [SEAT_TYPE_FRIENDS_SEATS]: {
+    width: 65,
+    height: 23,
+    backgroundColor: '#038955',
+    borderColor: 'black',
+    borderWidth: 0.7,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+  },
+};
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +47,7 @@ export const styles = StyleSheet.create({
     backgroundColor: white,
     paddingHorizontal: gutter,
     paddingBottom: gutter * 2,
-    paddingTop: 40,
+    paddingTop: 10,
   },
 
   screenBackground: {
@@ -25,12 +64,13 @@ export const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 0.2,
   },
+
   screen: {
     backgroundColor: '#BDBDBD',
     width: '100%',
     height: 70,
-    marginTop: 40,
-    marginBottom: 40,
+    marginTop: 15,
+    marginBottom: 25,
     transform: [{rotateX: '-15deg'}],
     shadowColor: '#5B5B5B',
     shadowOffset: {
@@ -42,75 +82,10 @@ export const styles = StyleSheet.create({
     elevation: 19,
   },
 
-  littleSeat: {
-    width: 30,
-    height: 23,
-    backgroundColor: '#D3FFEE',
-    borderColor: 'black',
-    borderWidth: 0.7,
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-  },
-
-  mediumSeat: {
-    width: 45,
-    height: 23,
-    backgroundColor: '#6EC2A1',
-    borderColor: 'black',
-    borderWidth: 0.7,
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-  },
-
-  largeSeat: {
-    width: 65,
-    height: 23,
-    backgroundColor: '#038955',
-    borderColor: 'black',
-    borderWidth: 0.7,
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-  },
-
   emptySeat: {
     width: 15,
     height: 23,
     backgroundColor: 'white',
-  },
-
-  littleExample: {
-    width: 30,
-    height: 23,
-    backgroundColor: '#D3FFEE',
-    borderColor: 'black',
-    borderWidth: 0.7,
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-    marginRight: 5,
-    marginBottom: 5,
-  },
-
-  mediumExample: {
-    width: 45,
-    height: 23,
-    backgroundColor: '#6EC2A1',
-    borderColor: 'black',
-    borderWidth: 0.7,
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-    marginRight: 5,
-    marginBottom: 5,
-  },
-
-  largeExample: {
-    width: 65,
-    height: 23,
-    backgroundColor: '#038955',
-    borderColor: 'black',
-    borderWidth: 0.7,
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-    marginRight: 5,
   },
 
   exampleContainer: {
@@ -134,7 +109,40 @@ export const styles = StyleSheet.create({
     backgroundColor: '#00FED3',
   },
 
+  seatBooked: {
+    backgroundColor: 'grey',
+  },
+
   totalPriceText: {
-    marginTop: 40,
+    marginTop: 20,
+  },
+
+  datePickerContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  timeContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 15,
+    justifyContent: 'space-around',
+  },
+
+  time: {
+    backgroundColor: '#b6e8f2',
+    width: 60,
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  blockedTime: {
+    backgroundColor: '#b5b5b5',
+  },
+
+  checkedTime: {
+    backgroundColor: '#52ffeb',
   },
 });

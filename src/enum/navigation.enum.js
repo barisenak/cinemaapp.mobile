@@ -6,6 +6,7 @@ export const FILM_CARD = 'FilmCard';
 export const CINEMA_CARD = 'CinemaCard';
 export const FILMS = 'Films';
 export const TICKETS = 'Tickets';
+export const TICKET = 'Ticket';
 export const MAP = 'Map';
 export const SETTINGS = 'Settings';
 export const FAV_FILMS = 'FavFilms';

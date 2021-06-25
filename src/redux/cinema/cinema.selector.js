@@ -13,3 +13,15 @@ export const selectedSeatsSelector = createSelector(cinemaSelector, cinema => {
 export const totalPriceSelector = createSelector(cinemaSelector, cinema => {
   return cinema.totalPrice;
 });
+
+export const dateSelector = createSelector(cinemaSelector, cinema => {
+  return cinema.date;
+});
+
+export const timeSelector = createSelector(cinemaSelector, cinema => {
+  return cinema.time;
+});
+
+export const choosenTimeSelector = createSelector(cinemaSelector, cinema => {
+  return cinema.choosenTime;
+});
