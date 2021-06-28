@@ -58,4 +58,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  emptyText: {
+    textAlign: 'center',
+    marginTop: 270,
+    color: 'grey',
+  },
+
+  emptyContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

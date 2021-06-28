@@ -38,8 +38,21 @@ export const fetchBookings = ({
   });
 };
 
-export const fetchAllBookings = ({userId = '', presentDateTime = ''} = {}) => {
-  return fetchJSON('users/bookings/all', {
+export const fetchActualBookings = ({
+  userId = '',
+  presentDateTime = '',
+} = {}) => {
+  return fetchJSON('users/bookings/actual', {
+    body: {
+      userId,
+      presentDateTime,
+    },
+    method: 'POST',
+  });
+};
+
+export const fetchOldBookings = ({userId = '', presentDateTime = ''} = {}) => {
+  return fetchJSON('users/bookings/old', {
     body: {
       userId,
       presentDateTime,

@@ -4,14 +4,19 @@ import {
   PUT_BOOKING,
   PUT_BOOKED_SEATS,
   SET_DATE_TIME,
-  PUT_ALL_USER_BOOKINGS,
+  PUT_ACTUAL_USER_BOOKINGS,
+  PUT_OLD_USER_BOOKINGS,
   CLEAR_BOOKED_SEATS,
+  SET_BOOKING_STATE,
 } from './booking.action';
+
+import {STATE_INITIAL} from 'app/enum/state.enum';
 
 const initialState = {
   booking: null,
   allBookings: [],
   dateTime: new Date(),
+  state: STATE_INITIAL,
   bookedSeats: {
     old: null,
     actual: null,
@@ -24,16 +29,29 @@ export const bookingsReducer = createReducer(initialState, {
     booking: booking,
   }),
 
+  [SET_BOOKING_STATE]: (st, state) => {
+    console.log('now');
+    return {...st, state};
+  },
+
   [SET_DATE_TIME]: (st, dateTime) => ({
     ...st,
     dateTime,
   }),
 
-  [PUT_ALL_USER_BOOKINGS]: (st, {data, oldData}) => ({
+  [PUT_ACTUAL_USER_BOOKINGS]: (st, data) => ({
     ...st,
     allBookings: {
-      old: oldData,
+      ...st.allBookings,
       actual: data,
+    },
+  }),
+
+  [PUT_OLD_USER_BOOKINGS]: (st, data) => ({
+    ...st,
+    allBookings: {
+      ...st.allBookings,
+      old: data,
     },
   }),
 

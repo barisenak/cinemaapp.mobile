@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     alignItems: 'center',
+    paddingTop: 10,
   },
 
   signInContainer: {
@@ -20,7 +21,12 @@ export const styles = StyleSheet.create({
     marginTop: 7,
   },
 
-  emptySection: {
+  emptyContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  emptyText: {
     marginLeft: '15%',
     marginTop: 270,
     color: 'grey',

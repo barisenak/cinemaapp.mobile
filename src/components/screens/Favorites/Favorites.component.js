@@ -109,9 +109,11 @@ function Favorites({
               </TouchableHighlight>
             ))}
           {!userData.favouriteCinemas.length && (
-            <Text style={styles.emptySection}>
-              you don't have any favorite cinemas
-            </Text>
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>
+                you don't have any favorite cinemas
+              </Text>
+            </View>
           )}
         </View>
       )}

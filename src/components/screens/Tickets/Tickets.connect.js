@@ -16,11 +16,16 @@ import {
   dateTimeSelector,
   allBookingsOfUserSelector,
 } from 'app/redux/booking/booking.selector';
-import {getAllUserBookings} from 'app/redux/booking/booking.action';
+import {
+  getActualUserBookings,
+  getOldUserBookings,
+  setState,
+} from 'app/redux/booking/booking.action';
 import {getFilmCard} from 'app/redux/film/film.action';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {selectedTabSelector} from 'app/redux/tickets/tickets.selector';
 import {setSelectedTab} from 'app/redux/tickets/tickets.action';
+import {stateSelector} from 'app/redux/booking/booking.selector';
 
 export default connect(
   st => ({
@@ -34,11 +39,14 @@ export default connect(
     allBookings: allBookingsOfUserSelector(st),
     userData: userDataSelector(st),
     selectedTab: selectedTabSelector(st),
+    state: stateSelector(st),
   }),
   {
-    getAllUserBookings: getAllUserBookings,
+    getActualUserBookings: getActualUserBookings,
+    getOldUserBookings: getOldUserBookings,
     getFilmCard: getFilmCard,
     getCinemaCard: getCinemaCard,
     setSelectedTab: setSelectedTab,
+    setState: setState,
   },
 )(Tickets);

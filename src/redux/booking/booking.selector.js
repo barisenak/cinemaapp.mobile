@@ -24,6 +24,10 @@ export const dateTimeSelector = createSelector(bookingSelector, bookings => {
   return bookings.dateTime;
 });
 
+export const stateSelector = createSelector(bookingSelector, bookings => {
+  return bookings.state;
+});
+
 // export const placeNumberSelector = createSelector(bookingSelector, bookings => {
 //   return bookings.bookings.placeNumber;
 // });

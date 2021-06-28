@@ -2,7 +2,6 @@
 import moment from 'moment';
 import React, {useEffect} from 'react';
 import {
-  Text,
   View,
   ScrollView,
   TouchableHighlight,
@@ -18,10 +17,14 @@ import {
   SELECTED_TAB_OUTDATED,
 } from 'app/enum/tickets.enum';
 import {Button} from 'app/components/partial/Button';
+import {Text} from 'app/components/partial/Text';
+import {STATE_LOADING, STATE_SUCCESS} from 'app/enum/state.enum';
+import {all} from '@redux-saga/core/effects';
 
 function Tickets({
   navigation,
-  getAllUserBookings,
+  getActualUserBookings,
+  getOldUserBookings,
   user,
   allBookings,
   booking,
@@ -30,15 +33,21 @@ function Tickets({
   selectedTab,
   setSelectedTab,
   userData,
+  state,
 }) {
   const presentTime = new Date(Date.now()).getHours();
   useEffect(() => {
-    user
-      ? getAllUserBookings({
-          userId: user.id,
-          presentDateTime: new Date(Date.now()).setHours(presentTime + 3),
-        })
-      : null;
+    if (user) {
+      getActualUserBookings({
+        userId: user.id,
+        presentDateTime: new Date(Date.now()).setHours(presentTime + 3),
+      });
+
+      getOldUserBookings({
+        userId: user.id,
+        presentDateTime: new Date(Date.now()).setHours(presentTime + 3),
+      });
+    }
   }, [user, booking]);
 
   const image = {
@@ -97,67 +106,89 @@ function Tickets({
       </View>
       {selectedTab === SELECTED_TAB_OUTDATED ? (
         <View>
-          {allBookings.old.map(el => (
-            <TouchableHighlight
-              key={el.id}
-              activeOpacity={0.5}
-              underlayColor="white"
-              onPress={() => {
-                getFilmCard(el.filmId.id);
-                getCinemaCard(el.cinemaId.id);
-                navigation.navigate(TICKET, {
-                  ticketDate: el.ticketDate,
-                  placeNumber: el.placeNumber,
-                  prevScreen: TICKETS,
-                });
-              }}>
-              <ImageBackground style={styles.ticketsContainer} source={image}>
-                <View style={styles.textContainer}>
-                  <Text style={styles.ticketText}>
-                    Cinema: {el.cinemaId.name}
-                  </Text>
-                  <Text style={styles.ticketText}>Film: {el.filmId.name}</Text>
-                  <Text style={styles.ticketText}>
-                    Date: {moment(el.ticketDate).format('LLL')}
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableHighlight>
-          ))}
-          {!allBookings.old.length && <Text>you don't have any tickets</Text>}
+          {state === STATE_SUCCESS && allBookings.old ? (
+            allBookings.old.map(el => (
+              <TouchableHighlight
+                key={el.id}
+                activeOpacity={0.5}
+                underlayColor="white"
+                onPress={() => {
+                  getFilmCard(el.filmId.id);
+                  getCinemaCard(el.cinemaId.id);
+                  navigation.navigate(TICKET, {
+                    ticketDate: el.ticketDate,
+                    placeNumber: el.placeNumber,
+                    prevScreen: TICKETS,
+                  });
+                }}>
+                <ImageBackground style={styles.ticketsContainer} source={image}>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.ticketText}>
+                      Cinema: {el.cinemaId.name}
+                    </Text>
+                    <Text style={styles.ticketText}>
+                      Film: {el.filmId.name}
+                    </Text>
+                    <Text style={styles.ticketText}>
+                      Date: {moment(el.ticketDate).format('LLL')}
+                    </Text>
+                  </View>
+                </ImageBackground>
+              </TouchableHighlight>
+            ))
+          ) : (
+            <ScrollView
+              contentContainerStyle={styles.indicatorContainer}
+              style={styles.screenBackground}>
+              <ActivityIndicator size="small" color="black" />
+            </ScrollView>
+          )}
+          {isEmpty(allBookings.old) ? (
+            <Text style={styles.emptyText}>you don't have any tickets</Text>
+          ) : null}
         </View>
       ) : (
         <View>
-          {allBookings.actual.map(el => (
-            <TouchableHighlight
-              key={el.id}
-              activeOpacity={0.5}
-              underlayColor="white"
-              onPress={() => {
-                getFilmCard(el.filmId.id);
-                getCinemaCard(el.cinemaId.id);
-                navigation.navigate(TICKET, {
-                  ticketDate: el.ticketDate,
-                  placeNumber: el.placeNumber,
-                  prevScreen: TICKETS,
-                });
-              }}>
-              <ImageBackground style={styles.ticketsContainer} source={image}>
-                <View style={styles.textContainer}>
-                  <Text style={styles.ticketText}>
-                    Cinema: {el.cinemaId.name}
-                  </Text>
-                  <Text style={styles.ticketText}>Film: {el.filmId.name}</Text>
-                  <Text style={styles.ticketText}>
-                    Date: {moment(el.ticketDate).format('LLL')}
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableHighlight>
-          ))}
-          {!allBookings.actual.length && (
-            <Text>you don't have any tickets</Text>
+          {state === STATE_SUCCESS && allBookings.actual ? (
+            allBookings.actual.map(el => (
+              <TouchableHighlight
+                key={el.id}
+                activeOpacity={0.5}
+                underlayColor="white"
+                onPress={() => {
+                  getFilmCard(el.filmId.id);
+                  getCinemaCard(el.cinemaId.id);
+                  navigation.navigate(TICKET, {
+                    ticketDate: el.ticketDate,
+                    placeNumber: el.placeNumber,
+                    prevScreen: TICKETS,
+                  });
+                }}>
+                <ImageBackground style={styles.ticketsContainer} source={image}>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.ticketText}>
+                      Cinema: {el.cinemaId.name}
+                    </Text>
+                    <Text style={styles.ticketText}>
+                      Film: {el.filmId.name}
+                    </Text>
+                    <Text style={styles.ticketText}>
+                      Date: {moment(el.ticketDate).format('LLL')}
+                    </Text>
+                  </View>
+                </ImageBackground>
+              </TouchableHighlight>
+            ))
+          ) : (
+            <ScrollView
+              contentContainerStyle={styles.indicatorContainer}
+              style={styles.screenBackground}>
+              <ActivityIndicator size="small" color="black" />
+            </ScrollView>
           )}
+          {isEmpty(allBookings.actual) ? (
+            <Text style={styles.emptyText}>you don't have any tickets</Text>
+          ) : null}
         </View>
       )}
     </ScrollView>
