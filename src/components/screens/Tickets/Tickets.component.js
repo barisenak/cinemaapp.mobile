@@ -90,7 +90,7 @@ function Tickets({
           onPress={() => {
             setSelectedTab(SELECTED_TAB_OUTDATED);
           }}>
-          Outdated
+          Archive
         </Button>
         <Button
           type="textLink"

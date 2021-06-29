@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
   },
 
   icon: {
-    marginRight: 12,
+    marginRight: 10,
   },
 
   indicatorContainer: {

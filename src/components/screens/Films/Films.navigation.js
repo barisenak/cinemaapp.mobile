@@ -1,15 +1,17 @@
 import React from 'react';
-import Films from './Films.connect';
+
 import {createStackNavigator} from '@react-navigation/stack';
-import FilmCard from '../FilmCard/FilmCard.connect';
-import {FILM_CARD, FILMS, CINEMA_CARD} from 'app/enum/navigation.enum';
-import AddFavFilm from './AddFavFilm/AddFavFilm.connect';
-import CinemaCard from '../CinemaCard/CinemaCard.connect';
-import AddFavCinema from '../CinemaCard/AddFavCinema/AddFavCinema.connect';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Films from './Films.connect';
+
+import {FILM_CARD, FILMS, CINEMA_CARD, SEARCH} from 'app/enum/navigation.enum';
+import {styles} from '../Films/Films.styles';
+import Search from '../Search/Search.component';
 
 const Stack = createStackNavigator();
 
-function FilmsNavigator() {
+function FilmsNavigator({navigation}) {
   return (
     <Stack.Navigator initialRouteName="Films">
       <Stack.Screen
@@ -17,6 +19,15 @@ function FilmsNavigator() {
         component={Films}
         options={{
           headerTitle: FILMS,
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name="magnify"
+              color="grey"
+              size={30}
+              style={styles.icon}
+              onPress={() => navigation.navigate(SEARCH, {prevScreen: FILMS})}
+            />
+          ),
         }}
       />
     </Stack.Navigator>

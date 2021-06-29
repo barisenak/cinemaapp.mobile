@@ -15,6 +15,7 @@ import {
   TICKET,
   FILMS,
   TICKETS,
+  SEARCH,
 } from './src/enum/navigation.enum';
 
 // components
@@ -30,6 +31,7 @@ import Ticket from './src/components/screens/Ticket/Ticket.connect';
 
 // providers
 import {TokenProvider} from './src/providers';
+import Search from './src/components/screens/Search/Search.connect';
 
 const Stack = createStackNavigator();
 
@@ -106,6 +108,13 @@ function App() {
                   />
                 ),
               })}
+            />
+            <Stack.Screen
+              name={SEARCH}
+              component={Search}
+              options={{
+                headerTitle: SEARCH,
+              }}
             />
           </Stack.Navigator>
         </NavigationContainer>

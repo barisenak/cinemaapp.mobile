@@ -11,3 +11,4 @@ export const MAP = 'Map';
 export const SETTINGS = 'Settings';
 export const FAV_FILMS = 'FavFilms';
 export const SEATS_CARD = 'SeatsCard';
+export const SEARCH = 'Search';
