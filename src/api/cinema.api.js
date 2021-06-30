@@ -17,6 +17,7 @@ export const fetchCinemaToFav = ({
 } = {}) =>
   fetchJSON('cinemas/addFavorite', {
     headers: {
+      // REVIEW: Why should we explicitly attach access token
       Authorization,
     },
     method: 'POST',

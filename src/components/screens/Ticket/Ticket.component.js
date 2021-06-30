@@ -19,8 +19,13 @@ function Ticket({navigation, route, cinema, film, selectedSeats, date}) {
     return true;
   }
 
-  if (isEmpty(film)) return null;
-  if (isEmpty(cinema)) return null;
+  // REVIEW: Let's join two {if} statements below
+  if (isEmpty(film)) {
+    return null;
+  }
+  if (isEmpty(cinema)) {
+    return null;
+  }
 
   return (
     <ScrollView
@@ -48,8 +53,10 @@ function Ticket({navigation, route, cinema, film, selectedSeats, date}) {
       <Image
         style={styles.map}
         source={{
+          // REVIEW: Let's create new {util} function to get map URI.
           uri: `https://maps.googleapis.com/maps/api/staticmap?center=${cinema.location.lat},${cinema.location.lng}&zoom=15&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyCJuEGVKyVGH4a6WABnyMCExwUBv9Ut6mw`,
-        }}></Image>
+        }}
+      />
     </ScrollView>
   );
 }

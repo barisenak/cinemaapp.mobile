@@ -56,6 +56,7 @@ function CinemaCard({
   useEffect(() => {
     clearSelectedSeats();
     setDateTime(new Date(date).setHours(choosenTime + 3, 0, 0, 0));
+    // REVIEW: Please don't use {in}
     'id' in cinema &&
       getBookings({
         filmId: film.id,
@@ -88,7 +89,9 @@ function CinemaCard({
 
   const timePieces = [0, 2, 4, 6, 8, 10, 12, 14];
 
-  if (isEmpty(cinema)) return null;
+  if (isEmpty(cinema)) {
+    return null;
+  }
 
   return (
     <ScrollView
@@ -114,7 +117,7 @@ function CinemaCard({
           <View style={styles.row} key={rowIndex}>
             {el.map((seat, seatIndex) => {
               if (seat === '0') {
-                return <View style={styles.emptySeat} key={seatIndex}></View>;
+                return <View style={styles.emptySeat} key={seatIndex} />;
               }
               return (
                 <TouchableHighlight
@@ -145,6 +148,7 @@ function CinemaCard({
                   }
                   key={seatIndex}
                   onPress={() =>
+                    // REVIEW: Move that logic out of JSX.
                     bookedSeats?.filter(
                       item =>
                         item.rowIndex === rowIndex &&
@@ -157,7 +161,7 @@ function CinemaCard({
                           cinema.rooms.types[seat - 1].price,
                         )
                   }>
-                  <Text></Text>
+                  <Text />
                 </TouchableHighlight>
               );
             })}
@@ -172,6 +176,7 @@ function CinemaCard({
       }
 
       {
+        // REVIEW: Let's place that in a separate component
         <View style={styles.timeContainer}>
           {timePieces.map((el, id) => {
             if (cinema.workingTime.start + el < cinema.workingTime.end) {

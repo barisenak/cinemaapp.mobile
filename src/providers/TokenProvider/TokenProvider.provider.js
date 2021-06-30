@@ -8,6 +8,8 @@ export function TokenProvider({children, getUser}) {
   const [isAppLoaded, setAppState] = useState(false);
 
   useEffect(() => {
+    // REVIEW: Let's create a set of {util} function to work with {AsyncStorage},
+    // so no need to mix JSX and DB calls.
     AsyncStorage.getItem('accessToken')
       .then(accessToken => {
         setAccessToken(accessToken);

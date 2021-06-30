@@ -90,14 +90,27 @@ function Favorites({
         </View>
       ) : (
         <View style={styles.sectionContainer}>
+          {/*
+
+            REVIEW: Use {FlatList} instead of data mapping!!!
+            It can sufficiently affect app performance.
+
+          */}
           {userData.favouriteCinemas &&
             userData.favouriteCinemas.map((cinema, index) => (
               <TouchableHighlight
                 style={styles.card}
                 activeOpacity={0.5}
+                // REVIEW: It's not recommended to use {index} as key,
+                // moreover the count of items in this list might be changed.
+                //
+                // The only case when the index is applicable as a React key
+                // if the list is static (the count of items is not changing).
+                //
                 key={index}
                 underlayColor="white"
                 onPress={() => {
+                  // REVIEW: Please move navigation logic out of component.
                   getCinemaCard(cinema.id);
                   navigation.navigate(CINEMA_CARD, {
                     name: cinema.name,

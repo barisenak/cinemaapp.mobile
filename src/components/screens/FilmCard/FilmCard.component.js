@@ -57,6 +57,7 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user}) {
         </View>
       ))}
 
+      {/* REVIEW: Please use {FlatList} */}
       {cinemas.length ? (
         <Text style={[styles.infoTitle, styles.textBlock]}>
           Tikets booking:

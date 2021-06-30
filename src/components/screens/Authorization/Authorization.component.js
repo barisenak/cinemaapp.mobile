@@ -28,6 +28,11 @@ function Authorization({
 
   const signIn = () => {
     setUserData({email: typedEmail, password: typedPassword});
+    // REVIEW: Why it should be in component?
+    // We can move this reset effect to saga/reducer
+    //
+    // The same for {Registration} component
+    //
     setTypedPassword('');
   };
 
@@ -38,6 +43,11 @@ function Authorization({
         placeholder="Email"
         keyboardType="default"
         value={typedEmail}
+        // REVIEW: Why we need this new inline function?
+        // onChangeText={setTypedEmail}
+        //
+        // The same for {Registration} component
+        //
         onChangeText={text => {
           setTypedEmail(text);
         }}
@@ -47,6 +57,8 @@ function Authorization({
         placeholder="Password"
         keyboardType="default"
         value={typedPassword}
+        // REVIEW: Why we need this new inline function?
+        // onChangeText={setTypedPassword}
         onChangeText={text => {
           setTypedPassword(text);
         }}
@@ -60,7 +72,22 @@ function Authorization({
         <Button
           type="textLink"
           onPress={() => {
+            // REVIEW: Would be better to move this logic out of this inline statement.
+            // For example, you can reset password value in {componentWillUnmount}
+            //
+            // https://reactjs.org/docs/hooks-effect.html#example-using-classes-1
+            //
+            // useEffect(() => {
+            //   return () => {
+            //     setTypedPassword('');
+            //   };
+            // }, []);
+            //
+            //
+            // The same for {Registration} component
+            //
             setTypedPassword('');
+
             navigation.navigate(REGISTRATION);
           }}>
           here

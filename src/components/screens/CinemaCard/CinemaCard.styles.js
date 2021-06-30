@@ -1,5 +1,7 @@
 import {gutter} from 'app/styles/structure.style';
 import {StyleSheet} from 'react-native';
+
+// REVIEW: Remove relative import
 import {white, blue, black} from '../../../styles/colors.style';
 
 export const styles = StyleSheet.create({

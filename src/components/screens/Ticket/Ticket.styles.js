@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+// REVIEW: import
 import {white, blue, black} from '../../../styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 

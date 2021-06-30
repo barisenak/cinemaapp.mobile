@@ -52,6 +52,11 @@ function Search({
         keyboardType="default"
         value={route.params.prevScreen === FILMS ? typedFilm : typedCinema}
         onChangeText={text => {
+          // REVIEW: It's not a good practice to check that each time,
+          // Since {prevScreen} is a static value. Please use {useRef} of
+          // move this function out of the component. The good candidate is
+          // third argument of connect.
+          // https://react-redux.js.org/api/connect#mergeprops-stateprops-dispatchprops-ownprops--object
           route.params.prevScreen === FILMS
             ? setTypedFilm(text)
             : setTypedCinema(text);

@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
   },
 
   ticketText: {
+    // REVIEW: Let's use {fontSize} from style/font.style
     fontSize: 19.5,
     color: '#e3e3e3',
     paddingBottom: 5,
