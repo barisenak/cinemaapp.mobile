@@ -5,9 +5,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import Films from './Films.connect';
 
-import {FILM_CARD, FILMS, CINEMA_CARD, SEARCH} from 'app/enum/navigation.enum';
+import {FILMS, SEARCH} from 'app/enum/navigation.enum';
 import {styles} from '../Films/Films.styles';
-import Search from '../Search/Search.component';
 
 const Stack = createStackNavigator();
 

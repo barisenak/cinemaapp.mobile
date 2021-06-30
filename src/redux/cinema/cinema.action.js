@@ -42,18 +42,6 @@ function* getCinemaData(action) {
   }
 }
 
-// function* setTimeslot(action) {
-//   try {
-//     const {data} = yield call(fetchCinema, {
-//       id: action.payload,
-//     });
-
-//     yield put(setCinemaCard(data[0]));
-//   } catch (ex) {
-//     console.warn(ex);
-//   }
-// }
-
 function* setFavoriteCinema(action) {
   try {
     const data = yield call(fetchCinemaToFav, {
@@ -82,5 +70,4 @@ function* setFavoriteCinema(action) {
 export function* sagaWatcher() {
   yield takeEvery(GET_CINEMA_CARD, getCinemaData);
   yield takeEvery(ADD_FAVORITE_CINEMA, setFavoriteCinema);
-  // yield takeEvery(SET_CHOOSEN_TIME, setTimeslot);
 }

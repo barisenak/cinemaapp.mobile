@@ -1,10 +1,4 @@
-import {
-  call,
-  put,
-  takeEvery,
-  takeLatest,
-  takeLeading,
-} from 'redux-saga/effects';
+import {call, put, takeEvery, takeLeading} from 'redux-saga/effects';
 
 import {createAction} from 'app/utils/redux.util';
 import {fetchFilms} from 'app/api/films.api';

@@ -5,6 +5,7 @@ import {
   SET_TYPED_CINEMA,
   SET_TYPED_FILM,
   SET_CINEMA_DATA,
+  CLEAR_SEARCHED_DATA,
 } from './search.action';
 
 const initialState = {
@@ -33,5 +34,11 @@ export const searchReducer = createReducer(initialState, {
   [SET_CINEMA_DATA]: (st, cinemaData) => ({
     ...st,
     cinemas: cinemaData,
+  }),
+
+  [CLEAR_SEARCHED_DATA]: st => ({
+    ...st,
+    cinemas: [],
+    films: [],
   }),
 });

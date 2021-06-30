@@ -6,7 +6,7 @@ import {styles} from '../Films.styles';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-function AddFavFilm({navigation, options, addFavoriteFilm, user}) {
+function AddFavFilm({options, addFavoriteFilm, user}) {
   return (
     <TouchableOpacity
       onPress={() => {

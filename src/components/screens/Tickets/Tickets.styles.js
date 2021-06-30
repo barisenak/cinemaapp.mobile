@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {white, blue, black} from '../../../styles/colors.style';
+import {white, black} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
-import {flatten} from 'lodash';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,12 +12,11 @@ export const styles = StyleSheet.create({
   },
 
   screenBackground: {
-    backgroundColor: 'white',
+    backgroundColor: white,
   },
 
   ticketsContainer: {
     marginBottom: 27,
-    // backgroundColor: '#9DE3CC',
     borderColor: black,
     borderWidth: 2,
     height: 170,

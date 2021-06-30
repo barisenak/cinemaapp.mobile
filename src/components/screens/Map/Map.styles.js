@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {white, blue, black} from '../../../styles/colors.style';
-import {gutter} from 'app/styles/structure.style';
+import {white} from 'app/styles/colors.style';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,7 +8,7 @@ export const styles = StyleSheet.create({
   },
 
   screenBackground: {
-    backgroundColor: 'white',
+    backgroundColor: white,
   },
 
   text: {

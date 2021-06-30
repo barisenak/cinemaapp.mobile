@@ -30,9 +30,7 @@ function Films({
   nextBatchState,
   navigation,
   getFilmCard,
-  film,
   user,
-  getAccessToken,
 }) {
   useEffect(() => {
     loadFilms({
@@ -85,9 +83,6 @@ function Films({
       style={styles.screenBackground}>
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Recently released</Text>
-        {/* {state === STATE_LOADING ? (
-          <ActivityIndicator size="small" color="black" />
-        ) : ( */}
         <FlatList
           data={films[CATEGORY_RECENTLY_RELEASED]}
           renderItem={renderItem}
@@ -111,14 +106,10 @@ function Films({
           onEndReachedThreshold={0}
           initialNumToRender={5}
         />
-        {/* )} */}
       </View>
+
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Comedy</Text>
-
-        {/* {state === STATE_LOADING ? (
-          <ActivityIndicator size="small" color="black" />
-        ) : ( */}
         <FlatList
           data={films[CATEGORY_COMEDY]}
           renderItem={renderItem}
@@ -140,14 +131,10 @@ function Films({
           onEndReachedThreshold={0}
           initialNumToRender={5}
         />
-        {/* )} */}
       </View>
 
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Drama</Text>
-        {/* {state === STATE_LOADING ? (
-          <ActivityIndicator size="small" color="black" />
-        ) : ( */}
         <FlatList
           data={films[CATEGORY_DRAMA]}
           renderItem={renderItem}
@@ -169,14 +156,10 @@ function Films({
           onEndReachedThreshold={0}
           initialNumToRender={5}
         />
-        {/* )} */}
       </View>
 
       <View style={styles.sectionContainer}>
         <Text style={styles.category}>Biography</Text>
-        {/* {state === STATE_LOADING ? (
-          <ActivityIndicator size="small" color="black" />
-        ) : ( */}
         <FlatList
           data={films[CATEGORY_BIOGRAPHY]}
           renderItem={renderItem}
@@ -198,7 +181,6 @@ function Films({
           onEndReachedThreshold={0}
           initialNumToRender={5}
         />
-        {/* )} */}
       </View>
     </ScrollView>
   );

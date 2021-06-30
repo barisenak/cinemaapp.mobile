@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {white, blue, black} from '../../../styles/colors.style';
+import {white, black} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 import {
   SEAT_TYPE_CHAIR,
@@ -12,7 +12,7 @@ export const seatTypeStyles = {
     width: 30,
     height: 23,
     backgroundColor: '#D3FFEE',
-    borderColor: 'black',
+    borderColor: black,
     borderWidth: 0.7,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
@@ -23,7 +23,7 @@ export const seatTypeStyles = {
     width: 45,
     height: 23,
     backgroundColor: '#6EC2A1',
-    borderColor: 'black',
+    borderColor: black,
     borderWidth: 0.7,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
@@ -34,7 +34,7 @@ export const seatTypeStyles = {
     width: 65,
     height: 23,
     backgroundColor: '#038955',
-    borderColor: 'black',
+    borderColor: black,
     borderWidth: 0.7,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
   },
 
   screenBackground: {
-    backgroundColor: 'white',
+    backgroundColor: white,
   },
 
   row: {
@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
   emptySeat: {
     width: 15,
     height: 23,
-    backgroundColor: 'white',
+    backgroundColor: white,
   },
 
   exampleContainer: {

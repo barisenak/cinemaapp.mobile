@@ -80,7 +80,6 @@ function CinemaCard({
 
   useEffect(() => {
     clearState();
-    // clearBookedSeats({dateTime: booking.filmDate});
   }, [booking]);
 
   const today = new Date(Date.now());
@@ -208,7 +207,6 @@ function CinemaCard({
           onDateChange={dateToRedux => setDate(dateToRedux)}
           minimumDate={today}
           mode="date"
-          minuteInterval={30}
           style={styles.datePicker}
         />
       </View>

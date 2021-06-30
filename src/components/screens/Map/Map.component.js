@@ -1,6 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, Button, View, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
+
+import debounce from 'lodash/debounce';
 
 import {
   check,
@@ -57,6 +59,7 @@ function Map({navigation}) {
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <MapView
+        showsUserLocation
         style={styles.map}
         initialRegion={{
           latitude: 53.89969038847524,

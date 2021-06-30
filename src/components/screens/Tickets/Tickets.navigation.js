@@ -5,7 +5,7 @@ import Tickets from './Tickets.connect';
 
 const Stack = createStackNavigator();
 
-function TicketsNavigator({navigation}) {
+function TicketsNavigator() {
   return (
     <Stack.Navigator initialRouteName="Tickets">
       <Stack.Screen

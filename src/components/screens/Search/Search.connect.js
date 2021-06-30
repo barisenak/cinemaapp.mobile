@@ -12,31 +12,14 @@ import {
   setTypedCinema,
   setTypedFilm,
   makeSearch,
+  clearSearchedData,
 } from 'app/redux/search/search.action';
-
-// import {filmCardSelector} from 'app/redux/film/film.selector';
-// import {userDataSelector} from 'app/redux/user/user.selector';
-// import {
-//   cinemaCardSelector,
-//   selectedSeatsSelector,
-//   totalPriceSelector,
-//   dateSelector,
-// } from 'app/redux/cinema/cinema.selector';
-
-// import {
-//   bookingOfUserSelector,
-//   dateTimeSelector,
-// } from 'app/redux/booking/booking.selector';
+import {getFilmCard} from 'app/redux/film/film.action';
+import {CINEMA_CARD, FILMS, FILM_CARD} from 'app/enum/navigation.enum';
+import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 
 export default connect(
   st => ({
-    // film: filmCardSelector(st),
-    // cinema: cinemaCardSelector(st),
-    // user: userDataSelector(st),
-    // totalPrice: totalPriceSelector(st),
-    // selectedSeats: selectedSeatsSelector(st),
-    // date: dateTimeSelector(st),
-    // booking: bookingOfUserSelector(st),
     typedCinema: typedCinemaSelector(st),
     typedFilm: typedFilmSelector(st),
     films: filmsSelector(st),
@@ -46,5 +29,37 @@ export default connect(
     setTypedFilm: setTypedFilm,
     setTypedCinema: setTypedCinema,
     makeSearch: makeSearch,
+    getFilmCard: getFilmCard,
+    clearSearchedData: clearSearchedData,
+    getCinemaCard: getCinemaCard,
+  },
+  (stateProps, dispatchProps, ownProps) => {
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      ...ownProps,
+
+      onSearch: () => {
+        ownProps.route.params.prevScreen === FILMS
+          ? dispatchProps.makeSearch({film: stateProps.typedFilm})
+          : dispatchProps.makeSearch({cinema: stateProps.typedCinema});
+      },
+
+      onPressSearchItem: item => {
+        if (stateProps.films.length) {
+          dispatchProps.getFilmCard(item.id);
+          ownProps.navigation.navigate(FILM_CARD, {
+            name: item.name,
+            filmId: item.id,
+          });
+        } else {
+          dispatchProps.getCinemaCard(item.id);
+          ownProps.navigation.navigate(CINEMA_CARD, {
+            name: item.name,
+            cinemaId: item.id,
+          });
+        }
+      },
+    };
   },
 )(Search);

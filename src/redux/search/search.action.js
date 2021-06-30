@@ -8,12 +8,14 @@ export const SET_TYPED_CINEMA = 'SEARCH/SET_TYPED_CINEMA';
 export const MAKE_SEARCH = 'SEARCH/MAKE_SEARCH';
 export const SET_FILM_DATA = 'SEARCH/SET_FILM_DATA';
 export const SET_CINEMA_DATA = 'SEARCH/SET_CINEMA_DATA';
+export const CLEAR_SEARCHED_DATA = 'SEARCH/CLEAR_SEARCHED_DATA';
 
 export const setTypedCinema = createAction(SET_TYPED_CINEMA);
 export const setTypedFilm = createAction(SET_TYPED_FILM);
 export const makeSearch = createAction(MAKE_SEARCH);
 export const setFilmData = createAction(SET_FILM_DATA);
 export const setCinemaData = createAction(SET_CINEMA_DATA);
+export const clearSearchedData = createAction(CLEAR_SEARCHED_DATA);
 
 function* getSearchData(action) {
   try {
@@ -28,12 +30,6 @@ function* getSearchData(action) {
       });
       yield put(setCinemaData(cinemaData));
     }
-
-    // if (data.username) {
-    //   yield put(setUserData(action.payload));
-    // } else {
-    //   yield put(setRegisterErrorText(data.message));
-    // }
   } catch (ex) {
     console.warn(ex);
   }

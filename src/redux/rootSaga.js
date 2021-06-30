@@ -10,7 +10,6 @@ import {sagaWatcher as search} from './search/search.action';
 
 export function* rootSagaWatcher() {
   yield all([
-    // All saga watchers
     films(),
     auth(),
     register(),

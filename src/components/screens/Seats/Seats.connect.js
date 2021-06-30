@@ -29,7 +29,6 @@ import {
 } from 'app/redux/booking/booking.action';
 import {
   bookedSeatsSelector,
-  bookingsSelector,
   bookingOfUserSelector,
   dateTimeSelector,
 } from 'app/redux/booking/booking.selector';

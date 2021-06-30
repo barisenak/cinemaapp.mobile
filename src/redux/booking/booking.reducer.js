@@ -6,7 +6,6 @@ import {
   SET_DATE_TIME,
   PUT_ACTUAL_USER_BOOKINGS,
   PUT_OLD_USER_BOOKINGS,
-  CLEAR_BOOKED_SEATS,
   SET_BOOKING_STATE,
 } from './booking.action';
 
@@ -29,10 +28,7 @@ export const bookingsReducer = createReducer(initialState, {
     booking: booking,
   }),
 
-  [SET_BOOKING_STATE]: (st, state) => {
-    console.log('now');
-    return {...st, state};
-  },
+  [SET_BOOKING_STATE]: (st, state) => ({...st, state}),
 
   [SET_DATE_TIME]: (st, dateTime) => ({
     ...st,
@@ -54,14 +50,6 @@ export const bookingsReducer = createReducer(initialState, {
       old: data,
     },
   }),
-
-  // [CLEAR_BOOKED_SEATS]: (st, {dateTime}) => ({
-  //   ...st,
-  //   bookedSeats: {
-  //     ...st.bookedSeats,
-  //     [dateTime]: bookedSeats,
-  //   },
-  // }),
 
   [PUT_BOOKED_SEATS]: (st, {dateTime, bookedSeats}) => ({
     ...st,

@@ -8,7 +8,6 @@ import {
   cinemaCardSelector,
   selectedSeatsSelector,
   totalPriceSelector,
-  dateSelector,
 } from 'app/redux/cinema/cinema.selector';
 
 import {

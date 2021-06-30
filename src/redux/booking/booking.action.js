@@ -19,7 +19,6 @@ export const GET_ACTUAL_USER_BOOKINGS = 'BOOKING/GET_ACTUAL_USER_BOOKINGS';
 export const GET_OLD_USER_BOOKINGS = 'BOOKING/GET_OLD_USER_BOOKINGS';
 export const PUT_OLD_USER_BOOKINGS = 'BOOKING/PUT_OLD_USER_BOOKINGS';
 export const PUT_ACTUAL_USER_BOOKINGS = 'BOOKING/PUT_ACTUAL_USER_BOOKINGS';
-export const CLEAR_BOOKED_SEATS = 'BOOKING/CLEAR_BOOKED_SEATS';
 export const SET_BOOKING_STATE = 'TICKETS/SET_BOOKING_STATE';
 
 export const setBooking = createAction(SET_BOOKING);
@@ -31,7 +30,6 @@ export const getActualUserBookings = createAction(GET_ACTUAL_USER_BOOKINGS);
 export const getOldUserBookings = createAction(GET_OLD_USER_BOOKINGS);
 export const putOldUserBookings = createAction(PUT_OLD_USER_BOOKINGS);
 export const putActualUserBookings = createAction(PUT_ACTUAL_USER_BOOKINGS);
-export const clearBookedSeats = createAction(CLEAR_BOOKED_SEATS);
 export const setBookingState = createAction(SET_BOOKING_STATE);
 
 function* addBooking(action) {
@@ -87,7 +85,6 @@ function* getBookingData(action) {
 }
 
 function* getActualUserBookingsData(action) {
-  console.log('here');
   try {
     yield put(setBookingState(STATE_LOADING));
 

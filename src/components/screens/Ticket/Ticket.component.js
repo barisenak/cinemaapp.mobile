@@ -1,24 +1,11 @@
-import React, {useEffect} from 'react';
-import {
-  ScrollView,
-  TouchableHighlight,
-  View,
-  BackHandler,
-  Image,
-} from 'react-native';
+import React from 'react';
+import {ScrollView, Image} from 'react-native';
 import {styles} from '../Ticket/Ticket.styles';
 import {Text} from 'app/components/partial/Text';
-import {Button} from 'app/components/partial/Button';
 import moment from 'moment';
-import {FILMS} from 'app/enum/navigation.enum';
 import isEmpty from 'lodash/isEmpty';
 
-function Ticket({navigation, route, cinema, film, selectedSeats, date}) {
-  function handleBackButtonClick() {
-    navigation.navigate(FILMS);
-    return true;
-  }
-
+function Ticket({route, cinema, film}) {
   if (isEmpty(film)) return null;
   if (isEmpty(cinema)) return null;
 

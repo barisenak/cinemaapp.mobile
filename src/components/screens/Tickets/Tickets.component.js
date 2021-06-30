@@ -18,8 +18,7 @@ import {
 } from 'app/enum/tickets.enum';
 import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
-import {STATE_LOADING, STATE_SUCCESS} from 'app/enum/state.enum';
-import {all} from '@redux-saga/core/effects';
+import {STATE_SUCCESS} from 'app/enum/state.enum';
 
 function Tickets({
   navigation,

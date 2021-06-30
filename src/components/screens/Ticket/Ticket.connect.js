@@ -6,15 +6,10 @@ import {filmCardSelector} from 'app/redux/film/film.selector';
 import {userDataSelector} from 'app/redux/user/user.selector';
 import {
   cinemaCardSelector,
-  selectedSeatsSelector,
   totalPriceSelector,
-  dateSelector,
 } from 'app/redux/cinema/cinema.selector';
 
-import {
-  bookingOfUserSelector,
-  dateTimeSelector,
-} from 'app/redux/booking/booking.selector';
+import {bookingOfUserSelector} from 'app/redux/booking/booking.selector';
 
 export default connect(
   st => ({
@@ -22,8 +17,6 @@ export default connect(
     cinema: cinemaCardSelector(st),
     user: userDataSelector(st),
     totalPrice: totalPriceSelector(st),
-    selectedSeats: selectedSeatsSelector(st),
-    date: dateTimeSelector(st),
     booking: bookingOfUserSelector(st),
   }),
   {},

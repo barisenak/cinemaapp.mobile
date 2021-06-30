@@ -1,37 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, Image, Text, TouchableHighlight, View} from 'react-native';
 import {Button} from 'app/components/partial/Button';
 
 import {ScrollView} from 'react-native-gesture-handler';
-import {FILMS, FILM_CARD} from 'app/enum/navigation.enum';
+import {FILMS} from 'app/enum/navigation.enum';
 
 import {styles} from '../Search/Search.styles';
 import {TextInput} from 'app/components/partial/TextInput';
 
 function Search({
-  navigation,
   typedCinema,
   typedFilm,
   setTypedFilm,
   setTypedCinema,
   route,
-  makeSearch,
   films,
   cinemas,
+  onSearch,
+  clearSearchedData,
+  onPressSearchItem,
 }) {
   const renderItem = ({item}) => (
     <TouchableHighlight
       activeOpacity={0.5}
       underlayColor="white"
-      //   onPress={() => {
-      //     getFilmCard(item.id),
-      //       navigation.navigate(FILM_CARD, {
-      //         name: item.name,
-      //         filmId: item.id,
-      //         userId: user?.id,
-      //       });
-      //   }}>
-    >
+      onPress={() => onPressSearchItem(item)}>
       <View style={styles.cardWrapper}>
         <Text>{item.name}</Text>
         <Image source={{uri: item.img}} style={styles.card} />
@@ -39,8 +32,18 @@ function Search({
     </TouchableHighlight>
   );
 
+  useEffect(() => {
+    return () => {
+      clearSearchedData();
+      setTypedFilm('');
+      setTypedCinema('');
+    };
+  }, []);
+
   return (
     <ScrollView
+      keyboardShouldPersistTaps="handled"
+      // keyboardDismissMode
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <TextInput
@@ -57,25 +60,21 @@ function Search({
             : setTypedCinema(text);
         }}
       />
-      <Button
-        type="primary"
-        onPress={() => {
-          route.params.prevScreen === FILMS
-            ? makeSearch({film: typedFilm})
-            : makeSearch({film: typedCinema});
-        }}>
+      <Button type="primary" onPress={onSearch}>
         Search
       </Button>
       <View style={styles.listContainer}>
         {films ? (
           <FlatList
-            data={films}
+            data={films.length ? films : cinemas}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             refreshing="true"
             ListEmptyComponent={
               typedFilm !== '' && (
-                <Text style={styles.emptySection}>no films founded</Text>
+                <Text style={styles.emptySection}>{`no ${
+                  route.params.prevScreen === FILMS ? 'films' : 'cinemas'
+                } founded`}</Text>
               )
             }
             // onEndReached={() => {
