@@ -101,6 +101,7 @@ export const styles = StyleSheet.create({
     display: 'flex',
     textAlign: 'center',
     marginTop: 21,
+    // REVIEW: Let's use {fontSize} from style/font.style
     fontSize: 22,
     color: black,
   },

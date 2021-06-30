@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     fontWeight: 'bold',
     justifyContent: 'center',
+    // REVIEW: Let's use {fontSize} from style/font.style
     fontSize: 17,
     marginTop: 10,
   },

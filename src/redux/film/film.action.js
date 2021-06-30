@@ -20,6 +20,7 @@ function* getFilmData(action) {
   try {
     const {data, cinemas} = yield call(fetchFilm, {
       id: action.payload,
+      // REVIEW: Should we remove that {Authorization} header here?
       Authorization:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjBhNjZiMTIwNDBjZDgwMDIyMDQ2Y2Y5IiwiaWF0IjoxNjIyNDY1NDE1LCJleHAiOjE2MjI1NTE4MTV9.BpT33iFu1GmGrafZQMnpFwIDux2dzpqaltbq_3sCdaM',
     });
@@ -40,6 +41,7 @@ function* setFavoriteFilm(action) {
     const data = yield call(fetchFilmToFav, {
       userId: action.payload.userId,
       filmId: action.payload.filmId,
+      // REVIEW: Should we remove that {Authorization} header here?
       Authorization:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjBiMGQ3NDc0OTIxMjkwMDIyZTdmMDRhIiwiaWF0IjoxNjIyNTM1ODM5LCJleHAiOjE2MjI2MjIyMzl9.R0vKSst34Hg4gBagmb2S0uFCl586lcoTnzMFwD6og60',
     });
@@ -48,6 +50,7 @@ function* setFavoriteFilm(action) {
       const userData = yield call(fetchRemoveFilmFromFav, {
         userId: action.payload.userId,
         filmId: action.payload.filmId,
+        // REVIEW: Should we remove that {Authorization} header here?
         Authorization:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjBiMGQ3NDc0OTIxMjkwMDIyZTdmMDRhIiwiaWF0IjoxNjIyNTM1ODM5LCJleHAiOjE2MjI2MjIyMzl9.R0vKSst34Hg4gBagmb2S0uFCl586lcoTnzMFwD6og60',
       });

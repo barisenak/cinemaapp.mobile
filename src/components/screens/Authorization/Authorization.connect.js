@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import {userDataSelector} from 'app/redux/user/user.selector';
 import {errorTextSelector} from 'app/redux/auth/auth.selector';
@@ -17,6 +18,8 @@ import {
 
 export default connect(
   st => ({
+    // REVIEW: We can use {createStructuredSelector} from {reselect}.
+    // To reduce duplication
     userData: userDataSelector(st),
     typedEmail: typedEmailSelector(st),
     typedPassword: typedPasswordSelector(st),

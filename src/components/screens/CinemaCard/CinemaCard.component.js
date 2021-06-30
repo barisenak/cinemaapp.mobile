@@ -32,7 +32,7 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard}) {
     <ScrollView
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
-      <Image source={{uri: cinema.img}} style={styles.image}></Image>
+      <Image source={{uri: cinema.img}} style={styles.image} />
 
       {sections.map(({id, iconName, name, getValue}) => {
         return (
@@ -51,6 +51,19 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard}) {
       })}
       <Text style={styles.textBlock}>You can watch in {cinema.name}:</Text>
       <View style={styles.sectionContainer}>
+        {/*
+
+            REVIEW: Please don't use {in} operator, it looks unclear and difficult to read.
+            You can use either optional chaining or lodash.
+            https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+
+            cinema?.films?.map(...);
+
+            import map from 'lodash/map';
+            import get from 'lodash/get';
+            map(get(cinema, films), () => { ... });
+
+        */}
         {'films' in cinema
           ? cinema.films.map((film, index) => (
               <TouchableHighlight
@@ -59,6 +72,10 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard}) {
                 key={index}
                 underlayColor="white"
                 onPress={() => {
+                  // REVIEW: It's a bad approach to write such inline functions, because it's difficult read
+                  // and we need place business logic right inside JSX code (mix UI and logic).
+                  // Let's move navigation logic out of component.
+                  // You can use third {connect} argument for example, so it'll be inside connect file.
                   getFilmCard(film.id);
                   navigation.navigate(FILM_CARD, {
                     name: film.name,

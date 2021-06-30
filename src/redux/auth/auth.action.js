@@ -29,6 +29,8 @@ function* setData(action) {
       password: action.payload.password,
     });
     if (data.accessToken) {
+      // REVIEW: Let's create a set of {util} function to work with {AsyncStorage},
+      // so no need to mix saga and DB calls.
       yield call(AsyncStorage.setItem, 'accessToken', data.accessToken);
       yield call(AsyncStorage.setItem, 'refreshToken', data.refreshToken);
 

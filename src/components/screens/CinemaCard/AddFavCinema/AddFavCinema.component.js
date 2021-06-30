@@ -9,6 +9,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 function AddFavCinema({navigation, options, addFavoriteCinema, user}) {
   return (
     <TouchableOpacity
+      // REVIEW: Please use {useRef} or {useCallback}
       onPress={() => {
         addFavoriteCinema({
           cinemaId: options.cinemaId,
