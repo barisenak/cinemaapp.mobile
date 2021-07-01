@@ -53,6 +53,25 @@ function Tickets({
     uri: 'https://i.ytimg.com/vi/8yny_PR2IOo/maxresdefault.jpg',
   };
 
+  if (!userData)
+    return (
+      <ScrollView
+        contentContainerStyle={styles.container}
+        style={styles.screenBackground}>
+        <View style={styles.signInContainer}>
+          <Text>Please sign in</Text>
+          <Button
+            type="primary"
+            style={styles.button}
+            onPress={() =>
+              navigation.navigate(AUTHORIZATION, {prevScreen: TICKETS})
+            }>
+            LOG IN
+          </Button>
+        </View>
+      </ScrollView>
+    );
+
   if (isEmpty(allBookings))
     return (
       <ScrollView
@@ -60,19 +79,6 @@ function Tickets({
         style={styles.screenBackground}>
         <ActivityIndicator size="small" color="black" />
       </ScrollView>
-    );
-
-  if (!userData)
-    return (
-      <View style={styles.signInContainer}>
-        <Text>Please sign in</Text>
-        <Button
-          type="primary"
-          style={styles.button}
-          onPress={() => navigation.navigate(AUTHORIZATION)}>
-          LOG IN
-        </Button>
-      </View>
     );
 
   return (
@@ -143,7 +149,9 @@ function Tickets({
             </ScrollView>
           )}
           {isEmpty(allBookings.old) ? (
-            <Text style={styles.emptyText}>you don't have any tickets</Text>
+            <Text style={styles.emptyText}>
+              you don't have any tickets here
+            </Text>
           ) : null}
         </View>
       ) : (
@@ -186,7 +194,9 @@ function Tickets({
             </ScrollView>
           )}
           {isEmpty(allBookings.actual) ? (
-            <Text style={styles.emptyText}>you don't have any tickets</Text>
+            <Text style={styles.emptyText}>
+              you don't have any tickets here
+            </Text>
           ) : null}
         </View>
       )}

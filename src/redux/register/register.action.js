@@ -29,6 +29,7 @@ function* setData(action) {
     } else {
       yield put(setRegisterErrorText(data.message));
     }
+    yield put(setRegisterTypedEmail(''));
   } catch (ex) {
     console.warn(ex);
   }

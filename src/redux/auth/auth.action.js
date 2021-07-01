@@ -42,6 +42,7 @@ function* setData(action) {
     } else {
       yield put(setAuthErrorText(data.message));
     }
+    yield put(setAuthTypedEmail(''));
   } catch (ex) {
     console.warn(ex);
   }
@@ -54,7 +55,6 @@ function* loadUser(action) {
     });
 
     if (profileData.message) {
-      //get refr token
       const {accessToken, refreshToken} = yield call(fetchRefreshToken, {
         refreshToken: action.payload,
       });

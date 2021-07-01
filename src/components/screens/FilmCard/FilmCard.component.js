@@ -1,5 +1,11 @@
 import React from 'react';
-import {Image, ScrollView, TouchableHighlight, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import get from 'lodash/fp/get';
 import flow from 'lodash/fp/flow';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -37,6 +43,43 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user}) {
     },
   ];
 
+  const renderItem = ({item}) => {
+    return (
+      <TouchableHighlight
+        style={styles.card}
+        activeOpacity={0.5}
+        underlayColor="white"
+        key={item.id}
+        onPress={() => {
+          getCinemaCard(item.id);
+          navigation.navigate(CINEMA_CARD, {
+            name: item.name,
+            cinemaId: item.id,
+            userId: user?.id,
+          });
+        }}>
+        <Image source={{uri: item.img}} style={styles.card} />
+      </TouchableHighlight>
+    );
+  };
+
+  const renderBtnItem = ({item}) => {
+    return (
+      <Button
+        key={item.id}
+        onPress={() => {
+          getCinemaCard(item.id);
+          navigation.navigate(SEATS_CARD, {
+            name: item.name,
+            filmId: film.id,
+            userId: user?.id,
+          });
+        }}>
+        {item.name}
+      </Button>
+    );
+  };
+
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -63,22 +106,15 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user}) {
         </Text>
       ) : null}
       <View style={styles.sectionContainer}>
-        {cinemas.length
-          ? cinemas.map((cinema, index) => (
-              <Button
-                key={index}
-                onPress={() => {
-                  getCinemaCard(cinema.id);
-                  navigation.navigate(SEATS_CARD, {
-                    name: cinema.name,
-                    filmId: film.id,
-                    userId: user?.id,
-                  });
-                }}>
-                {cinema.name}
-              </Button>
-            ))
-          : null}
+        {cinemas.length ? (
+          <FlatList
+            data={cinemas}
+            renderItem={renderBtnItem}
+            keyExtractor={item => item.id}
+            horizontal
+            refreshing="true"
+          />
+        ) : null}
       </View>
 
       {cinemas.length ? (
@@ -87,25 +123,15 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user}) {
         </Text>
       ) : null}
       <View style={styles.sectionContainer}>
-        {cinemas.length
-          ? cinemas.map((cinema, index) => (
-              <TouchableHighlight
-                style={styles.card}
-                activeOpacity={0.5}
-                underlayColor="white"
-                key={index}
-                onPress={() => {
-                  getCinemaCard(cinema.id);
-                  navigation.navigate(CINEMA_CARD, {
-                    name: cinema.name,
-                    cinemaId: cinema.id,
-                    userId: user?.id,
-                  });
-                }}>
-                <Image source={{uri: cinema.img}} style={styles.card} />
-              </TouchableHighlight>
-            ))
-          : null}
+        {cinemas.length ? (
+          <FlatList
+            data={cinemas}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            horizontal
+            refreshing="true"
+          />
+        ) : null}
       </View>
     </ScrollView>
   );

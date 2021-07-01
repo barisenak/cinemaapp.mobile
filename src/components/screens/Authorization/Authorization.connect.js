@@ -14,6 +14,14 @@ import {
   typedEmailSelector,
   typedPasswordSelector,
 } from 'app/redux/auth/auth.selector';
+import {REGISTRATION} from 'app/enum/navigation.enum';
+import {createStructuredSelector} from 'reselect';
+
+// const mapStateToProps = createStructuredSelector({
+//   typedEmail: typedEmailSelector,
+//   typedPassword: typedPasswordSelector,
+//   errorText: errorTextSelector,
+// });
 
 export default connect(
   st => ({
@@ -26,5 +34,24 @@ export default connect(
     setUserData: setUserData,
     setTypedEmail: setAuthTypedEmail,
     setTypedPassword: setAuthTypedPassword,
+  },
+  (stateProps, dispatchProps, ownProps) => {
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      ...ownProps,
+
+      onPressRegister: () => {
+        dispatchProps.setTypedPassword('');
+        ownProps.navigation.navigate(REGISTRATION);
+      },
+
+      onPressSignIn: () => {
+        dispatchProps.setUserData({
+          email: stateProps.typedEmail,
+          password: stateProps.typedPassword,
+        });
+      },
+    };
   },
 )(Authorization);

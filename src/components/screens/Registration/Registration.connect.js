@@ -23,9 +23,24 @@ export default connect(
     typedPassword: typedPasswordSelector(st),
     errorText: errorTextSelector(st),
   }),
+
   {
     setRegisterData: setRegisterData,
     setTypedEmail: setRegisterTypedEmail,
     setTypedPassword: setRegisterTypedPassword,
+  },
+
+  (stateProps, dispatchProps, ownProps) => {
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      ...ownProps,
+      onPressSignUp: () => {
+        dispatchProps.setRegisterData({
+          email: stateProps.typedEmail,
+          password: stateProps.typedPassword,
+        });
+      },
+    };
   },
 )(Registration);

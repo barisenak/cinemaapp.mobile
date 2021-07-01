@@ -1,4 +1,4 @@
-import {createSelector} from 'reselect';
+import {createSelector, createStructuredSelector} from 'reselect';
 
 export const authSelector = st => st.auth;
 

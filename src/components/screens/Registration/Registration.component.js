@@ -18,12 +18,8 @@ function Registration({
   typedPassword,
   userData,
   errorText,
+  onPressSignUp,
 }) {
-  const signUp = () => {
-    setRegisterData({email: typedEmail, password: typedPassword});
-    setTypedPassword('');
-  };
-
   return (
     <View style={styles.signInContainer}>
       <Text>Email:</Text>
@@ -31,20 +27,16 @@ function Registration({
         placeholder="Email"
         keyboardType="default"
         value={typedEmail}
-        onChangeText={text => {
-          setTypedEmail(text);
-        }}
+        onChangeText={setTypedEmail}
       />
       <Text>Password</Text>
       <TextInput
         placeholder="Password"
         keyboardType="default"
         value={typedPassword}
-        onChangeText={text => {
-          setTypedPassword(text);
-        }}
+        onChangeText={setTypedPassword}
       />
-      <Button type="primary" onPress={signUp}>
+      <Button type="primary" onPress={onPressSignUp}>
         SIGN UP
       </Button>
       <Text style={styles.error}>{errorText}</Text>

@@ -1,6 +1,7 @@
-import Settings from './Settings.component';
-import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import Settings from './Settings.connect';
 
 const Stack = createStackNavigator();
 

@@ -1,32 +1,37 @@
+import {white} from 'app/styles/colors.style';
+import {gutter} from 'app/styles/structure.style';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
     alignItems: 'center',
     paddingTop: 10,
+    flexGrow: 1,
+    backgroundColor: white,
+    paddingHorizontal: gutter,
+    paddingBottom: gutter * 2,
   },
 
   signInContainer: {
+    marginTop: -67,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   card: {
-    width: 120,
-    height: 170,
-    marginRight: 7,
-    marginTop: 7,
+    width: 124,
+    height: 173,
+    marginTop: gutter / 2,
   },
 
   emptyContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
 
   emptyText: {
-    marginLeft: '15%',
     marginTop: 270,
     color: 'grey',
   },
@@ -42,7 +47,6 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'flex-start',
-    marginLeft: 38,
+    justifyContent: 'space-between',
   },
 });

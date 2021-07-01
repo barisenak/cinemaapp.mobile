@@ -12,7 +12,12 @@ import {styles} from 'app/components/screens/Favorites/Favorites.styles';
 
 import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
-import {AUTHORIZATION, FILM_CARD, CINEMA_CARD} from 'app/enum/navigation.enum';
+import {
+  AUTHORIZATION,
+  FILM_CARD,
+  CINEMA_CARD,
+  FAVORITES,
+} from 'app/enum/navigation.enum';
 
 function Favorites({
   navigation,
@@ -58,7 +63,9 @@ function Favorites({
           <Text>Please sign in</Text>
           <Button
             type="primary"
-            onPress={() => navigation.navigate(AUTHORIZATION)}>
+            onPress={() =>
+              navigation.navigate(AUTHORIZATION, {prevScreen: FAVORITES})
+            }>
             LOG IN
           </Button>
         </View>
@@ -83,9 +90,11 @@ function Favorites({
               </TouchableHighlight>
             ))}
           {!userData.favouriteFilms.length && (
-            <Text style={styles.emptySection}>
-              you don't have any favorite films
-            </Text>
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>
+                you don't have any favorite films
+              </Text>
+            </View>
           )}
         </View>
       ) : (
