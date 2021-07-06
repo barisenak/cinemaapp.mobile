@@ -23,6 +23,8 @@ export const styles = StyleSheet.create({
     width: 124,
     height: 173,
     marginTop: gutter / 2,
+    marginRight: 2,
+    marginLeft: 1,
   },
 
   emptyContainer: {
@@ -47,6 +49,11 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-between',
+  },
+
+  cardsContainer: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'flex-start',
   },
 });

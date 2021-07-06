@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Map from './Map.component';
+import Map from './Map.connect';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

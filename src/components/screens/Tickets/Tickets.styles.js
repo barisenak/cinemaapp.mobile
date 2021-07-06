@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
   },
 
   ticketsContainer: {
+    width: '100%',
     marginBottom: 27,
     borderColor: black,
     borderWidth: 2,
@@ -55,6 +56,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: -32,
   },
 
   emptyText: {

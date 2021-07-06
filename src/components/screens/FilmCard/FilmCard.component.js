@@ -17,7 +17,7 @@ import moment from 'moment';
 import {CINEMA_CARD, SEATS_CARD} from 'app/enum/navigation.enum';
 import {Button} from 'app/components/partial/Button';
 
-function FilmCard({navigation, film, cinemas, getCinemaCard, user}) {
+function FilmCard({navigation, film, cinemas, getCinemaCard, user, language}) {
   const sections = [
     {
       id: 'category',

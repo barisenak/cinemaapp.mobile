@@ -7,6 +7,8 @@ import {sagaWatcher as film} from './film/film.action';
 import {sagaWatcher as cinema} from './cinema/cinema.action';
 import {sagaWatcher as booking} from './booking/booking.action';
 import {sagaWatcher as search} from './search/search.action';
+import {sagaWatcher as user} from './user/user.action';
+import {sagaWatcher as map} from './map/map.action';
 
 export function* rootSagaWatcher() {
   yield all([
@@ -17,5 +19,7 @@ export function* rootSagaWatcher() {
     cinema(),
     booking(),
     search(),
+    user(),
+    map(),
   ]);
 }

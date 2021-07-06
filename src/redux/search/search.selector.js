@@ -1,23 +1,18 @@
 import {createSelector} from 'reselect';
+import get from 'lodash/fp/get';
 
-export const searchSelector = st => st.search;
+export const searchSelector = get('search');
 
 export const typedFilmSelector = createSelector(
   searchSelector,
-  search => search.typedFilm,
+  get('typedFilm'),
 );
 
 export const typedCinemaSelector = createSelector(
   searchSelector,
-  search => search.typedCinema,
+  get('typedCinema'),
 );
 
-export const filmsSelector = createSelector(
-  searchSelector,
-  search => search.films,
-);
+export const filmsSelector = createSelector(searchSelector, get('films'));
 
-export const cinemasSelector = createSelector(
-  searchSelector,
-  search => search.cinemas,
-);
+export const cinemasSelector = createSelector(searchSelector, get('cinemas'));

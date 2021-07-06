@@ -1,8 +1,6 @@
 import {createSelector} from 'reselect';
+import get from 'lodash/fp/get';
 
-export const userSelector = st => st.user;
+export const userSelector = get('user');
 
-export const userDataSelector = createSelector(
-  userSelector,
-  user => user.userData,
-);
+export const userDataSelector = createSelector(userSelector, get('userData'));

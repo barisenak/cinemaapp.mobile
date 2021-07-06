@@ -8,5 +8,6 @@ const initialState = {
 
 export const userReducer = createReducer(initialState, {
   [SET_USER]: (st, userData) => ({...st, userData}),
-  [CLEAR_USER]: (st, userData) => ({...st, userData: null}),
+
+  [CLEAR_USER]: st => ({...st, userData: null}),
 });

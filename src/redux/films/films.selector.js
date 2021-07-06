@@ -1,25 +1,20 @@
 import {createSelector} from 'reselect';
+import get from 'lodash/fp/get';
 
-export const filmsSelector = st => st.films;
+export const filmsSelector = get('films');
 
-export const stateSelector = createSelector(
-  filmsSelector,
-  films => films.state,
-);
+export const stateSelector = createSelector(filmsSelector, get('state'));
 
 export const nextBatchStateSelector = createSelector(
   filmsSelector,
-  films => films.nextBatchState,
+  get('nextBatchState'),
 );
 
-export const pageSelector = createSelector(filmsSelector, films => films.page);
+export const pageSelector = createSelector(filmsSelector, get('page'));
 
 export const totalPagesSelector = createSelector(
   filmsSelector,
-  films => films.totalPages,
+  get('totalPages'),
 );
 
-export const filmListSelector = createSelector(
-  filmsSelector,
-  films => films.films,
-);
+export const filmListSelector = createSelector(filmsSelector, get('films'));

@@ -1,11 +1,11 @@
 import {createSelector} from 'reselect';
+import get from 'lodash/fp/get';
 
-export const filmSelector = st => st.film;
+export const filmSelector = get('film');
 
-export const filmCardSelector = createSelector(filmSelector, film => {
-  return film.film;
-});
+export const filmCardSelector = createSelector(filmSelector, get('film'));
 
-export const cinemasWithFilmSelector = createSelector(filmSelector, film => {
-  return film.cinemas;
-});
+export const cinemasWithFilmSelector = createSelector(
+  filmSelector,
+  get('cinemas'),
+);

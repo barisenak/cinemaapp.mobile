@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {white, black} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
+import {fontSize} from 'app/styles/font.style';
 import {
   SEAT_TYPE_CHAIR,
   SEAT_TYPE_FRIENDS_SEATS,
@@ -9,7 +10,7 @@ import {
 
 export const seatTypeStyles = {
   [SEAT_TYPE_CHAIR]: {
-    width: 30,
+    width: 29,
     height: 23,
     backgroundColor: '#D3FFEE',
     borderColor: black,
@@ -20,7 +21,7 @@ export const seatTypeStyles = {
   },
 
   [SEAT_TYPE_LOVE_SEATS]: {
-    width: 45,
+    width: 42,
     height: 23,
     backgroundColor: '#6EC2A1',
     borderColor: black,
@@ -31,7 +32,7 @@ export const seatTypeStyles = {
   },
 
   [SEAT_TYPE_FRIENDS_SEATS]: {
-    width: 65,
+    width: 61,
     height: 23,
     backgroundColor: '#038955',
     borderColor: black,
@@ -101,7 +102,7 @@ export const styles = StyleSheet.create({
     display: 'flex',
     textAlign: 'center',
     marginTop: 21,
-    fontSize: 22,
+    fontSize: fontSize.heading,
     color: black,
   },
 
@@ -125,9 +126,10 @@ export const styles = StyleSheet.create({
 
   timeContainer: {
     display: 'flex',
+    width: '100%',
     flexDirection: 'row',
     marginTop: 15,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
 
   time: {

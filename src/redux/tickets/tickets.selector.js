@@ -1,8 +1,9 @@
 import {createSelector} from 'reselect';
+import get from 'lodash/fp/get';
 
-export const ticketsSelector = st => st.tickets;
+export const ticketsSelector = get('tickets');
 
 export const selectedTabSelector = createSelector(
   ticketsSelector,
-  tickets => tickets.selectedTab,
+  get('selectedTab'),
 );

@@ -15,11 +15,8 @@ export const styles = StyleSheet.create({
     backgroundColor: white,
   },
 
-  btnContainer: {
-    width: 100,
-  },
-
   settingsContainer: {
+    justifyContent: 'center',
     alignItems: 'center',
   },
 });

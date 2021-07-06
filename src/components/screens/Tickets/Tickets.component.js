@@ -7,6 +7,8 @@ import {
   TouchableHighlight,
   ActivityIndicator,
   ImageBackground,
+  Image,
+  FlatList,
 } from 'react-native';
 import {AUTHORIZATION, TICKET, TICKETS} from 'app/enum/navigation.enum';
 
@@ -35,6 +37,7 @@ function Tickets({
   state,
 }) {
   const presentTime = new Date(Date.now()).getHours();
+
   useEffect(() => {
     if (user) {
       getActualUserBookings({
@@ -51,6 +54,34 @@ function Tickets({
 
   const image = {
     uri: 'https://i.ytimg.com/vi/8yny_PR2IOo/maxresdefault.jpg',
+  };
+
+  const renderItem = ({item}) => {
+    return (
+      <TouchableHighlight
+        key={item.id}
+        activeOpacity={0.5}
+        underlayColor="white"
+        onPress={() => {
+          getFilmCard(item.filmId.id);
+          getCinemaCard(item.cinemaId.id);
+          navigation.navigate(TICKET, {
+            ticketDate: item.ticketDate,
+            placeNumber: item.placeNumber,
+            prevScreen: TICKETS,
+          });
+        }}>
+        <ImageBackground style={styles.ticketsContainer} source={image}>
+          <View style={styles.textContainer}>
+            <Text style={styles.ticketText}>Cinema: {item.cinemaId.name}</Text>
+            <Text style={styles.ticketText}>Film: {item.filmId.name}</Text>
+            <Text style={styles.ticketText}>
+              Date: {moment(item.ticketDate).format('LLL')}
+            </Text>
+          </View>
+        </ImageBackground>
+      </TouchableHighlight>
+    );
   };
 
   if (!userData)
@@ -112,35 +143,12 @@ function Tickets({
       {selectedTab === SELECTED_TAB_OUTDATED ? (
         <View>
           {state === STATE_SUCCESS && allBookings.old ? (
-            allBookings.old.map(el => (
-              <TouchableHighlight
-                key={el.id}
-                activeOpacity={0.5}
-                underlayColor="white"
-                onPress={() => {
-                  getFilmCard(el.filmId.id);
-                  getCinemaCard(el.cinemaId.id);
-                  navigation.navigate(TICKET, {
-                    ticketDate: el.ticketDate,
-                    placeNumber: el.placeNumber,
-                    prevScreen: TICKETS,
-                  });
-                }}>
-                <ImageBackground style={styles.ticketsContainer} source={image}>
-                  <View style={styles.textContainer}>
-                    <Text style={styles.ticketText}>
-                      Cinema: {el.cinemaId.name}
-                    </Text>
-                    <Text style={styles.ticketText}>
-                      Film: {el.filmId.name}
-                    </Text>
-                    <Text style={styles.ticketText}>
-                      Date: {moment(el.ticketDate).format('LLL')}
-                    </Text>
-                  </View>
-                </ImageBackground>
-              </TouchableHighlight>
-            ))
+            <FlatList
+              data={allBookings.old}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              refreshing="true"
+            />
           ) : (
             <ScrollView
               contentContainerStyle={styles.indicatorContainer}
@@ -157,35 +165,12 @@ function Tickets({
       ) : (
         <View>
           {state === STATE_SUCCESS && allBookings.actual ? (
-            allBookings.actual.map(el => (
-              <TouchableHighlight
-                key={el.id}
-                activeOpacity={0.5}
-                underlayColor="white"
-                onPress={() => {
-                  getFilmCard(el.filmId.id);
-                  getCinemaCard(el.cinemaId.id);
-                  navigation.navigate(TICKET, {
-                    ticketDate: el.ticketDate,
-                    placeNumber: el.placeNumber,
-                    prevScreen: TICKETS,
-                  });
-                }}>
-                <ImageBackground style={styles.ticketsContainer} source={image}>
-                  <View style={styles.textContainer}>
-                    <Text style={styles.ticketText}>
-                      Cinema: {el.cinemaId.name}
-                    </Text>
-                    <Text style={styles.ticketText}>
-                      Film: {el.filmId.name}
-                    </Text>
-                    <Text style={styles.ticketText}>
-                      Date: {moment(el.ticketDate).format('LLL')}
-                    </Text>
-                  </View>
-                </ImageBackground>
-              </TouchableHighlight>
-            ))
+            <FlatList
+              data={allBookings.actual}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              refreshing="true"
+            />
           ) : (
             <ScrollView
               contentContainerStyle={styles.indicatorContainer}

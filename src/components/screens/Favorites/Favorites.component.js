@@ -1,7 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 
-import {View, ScrollView, Image, TouchableHighlight} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Image,
+  TouchableHighlight,
+  FlatList,
+} from 'react-native';
 
 import {
   SELECTED_TAB_CINEMAS,
@@ -27,6 +33,35 @@ function Favorites({
   getFilmCard,
   getCinemaCard,
 }) {
+  const renderItem = ({item}) => {
+    return (
+      <TouchableHighlight
+        style={styles.card}
+        activeOpacity={0.5}
+        key={item.id}
+        underlayColor="white"
+        onPress={() => {
+          if (item.location) {
+            getCinemaCard(item.id);
+            navigation.navigate(CINEMA_CARD, {
+              name: item.name,
+              cinemaId: item.id,
+              userId: userData?.id,
+            });
+          } else {
+            getFilmCard(item.id);
+            navigation.navigate(FILM_CARD, {
+              name: item.name,
+              filmId: item.id,
+              userId: userData?.id,
+            });
+          }
+        }}>
+        <Image source={{uri: item.img}} style={styles.card} />
+      </TouchableHighlight>
+    );
+  };
+
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -71,24 +106,17 @@ function Favorites({
         </View>
       ) : selectedTab === SELECTED_TAB_FILMS ? (
         <View style={styles.sectionContainer}>
-          {userData.favouriteFilms &&
-            userData.favouriteFilms.map((film, index) => (
-              <TouchableHighlight
-                style={styles.card}
-                activeOpacity={0.5}
-                key={index}
-                underlayColor="white"
-                onPress={() => {
-                  getFilmCard(film.id);
-                  navigation.navigate(FILM_CARD, {
-                    name: film.name,
-                    filmId: film.id,
-                    userId: userData?.id,
-                  });
-                }}>
-                <Image source={{uri: film.img}} style={styles.card} />
-              </TouchableHighlight>
-            ))}
+          {userData.favouriteFilms && (
+            <FlatList
+              data={userData.favouriteFilms}
+              contentContainerStyle={styles.cardsContainer}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              numColumns={3}
+              horizontal={false}
+              refreshing="true"
+            />
+          )}
           {!userData.favouriteFilms.length && (
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyText}>
@@ -99,24 +127,17 @@ function Favorites({
         </View>
       ) : (
         <View style={styles.sectionContainer}>
-          {userData.favouriteCinemas &&
-            userData.favouriteCinemas.map((cinema, index) => (
-              <TouchableHighlight
-                style={styles.card}
-                activeOpacity={0.5}
-                key={index}
-                underlayColor="white"
-                onPress={() => {
-                  getCinemaCard(cinema.id);
-                  navigation.navigate(CINEMA_CARD, {
-                    name: cinema.name,
-                    cinemaId: cinema.id,
-                    userId: userData?.id,
-                  });
-                }}>
-                <Image source={{uri: cinema.img}} style={styles.card} />
-              </TouchableHighlight>
-            ))}
+          {userData.favouriteCinemas && (
+            <FlatList
+              data={userData.favouriteCinemas}
+              contentContainerStyle={styles.cardsContainer}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              numColumns={3}
+              horizontal={false}
+              refreshing="true"
+            />
+          )}
           {!userData.favouriteCinemas.length && (
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyText}>
@@ -129,6 +150,5 @@ function Favorites({
     </ScrollView>
   );
 }
-//enum
 
 export default Favorites;

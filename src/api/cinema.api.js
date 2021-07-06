@@ -7,6 +7,8 @@ export const fetchCinema = ({id = ''} = {}) =>
     },
   });
 
+export const fetchAllCinemas = () => fetchJSON('cinemas/', {});
+
 export const fetchCinemaToFav = ({userId = '', cinemaId = ''} = {}) =>
   fetchJSON('cinemas/addFavorite', {
     method: 'POST',

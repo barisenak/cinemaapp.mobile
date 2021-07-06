@@ -27,4 +27,14 @@ export const styles = StyleSheet.create({
   icon: {
     marginRight: 10,
   },
+
+  img: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+  },
+
+  pointContainer: {
+    padding: 30,
+  },
 });

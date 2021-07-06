@@ -17,18 +17,11 @@ import {
 import {REGISTRATION} from 'app/enum/navigation.enum';
 import {createStructuredSelector} from 'reselect';
 
-// const mapStateToProps = createStructuredSelector({
-//   typedEmail: typedEmailSelector,
-//   typedPassword: typedPasswordSelector,
-//   errorText: errorTextSelector,
-// });
-
 export default connect(
-  st => ({
-    userData: userDataSelector(st),
-    typedEmail: typedEmailSelector(st),
-    typedPassword: typedPasswordSelector(st),
-    errorText: errorTextSelector(st),
+  createStructuredSelector({
+    typedEmail: typedEmailSelector,
+    typedPassword: typedPasswordSelector,
+    errorText: errorTextSelector,
   }),
   {
     setUserData: setUserData,
@@ -43,7 +36,9 @@ export default connect(
 
       onPressRegister: () => {
         dispatchProps.setTypedPassword('');
-        ownProps.navigation.navigate(REGISTRATION);
+        ownProps.navigation.navigate(REGISTRATION, {
+          prevScreen: ownProps.route.params.prevScreen,
+        });
       },
 
       onPressSignIn: () => {

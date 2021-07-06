@@ -64,18 +64,16 @@ function Search({
         Search
       </Button>
       <View style={styles.listContainer}>
-        {films ? (
+        {films.length ? (
           <FlatList
             data={films.length ? films : cinemas}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             refreshing="true"
             ListEmptyComponent={
-              typedFilm !== '' && (
-                <Text style={styles.emptySection}>{`no ${
-                  route.params.prevScreen === FILMS ? 'films' : 'cinemas'
-                } founded`}</Text>
-              )
+              <Text style={styles.emptySection}>{`no ${
+                route.params.prevScreen === FILMS ? 'films' : 'cinemas'
+              } founded`}</Text>
             }
             // onEndReached={() => {
             //   page[CATEGORY_RECENTLY_RELEASED] <

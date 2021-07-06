@@ -10,6 +10,8 @@ import {cinemaReducer as cinema} from './cinema/cinema.reducer';
 import {bookingsReducer as bookings} from './booking/booking.reducer';
 import {ticketsReducer as tickets} from './tickets/tickets.reducer';
 import {searchReducer as search} from './search/search.reducer';
+import {mapReducer as map} from './map/map.reducer';
+import {settingsReducer as settings} from './settings/settings.reducer';
 
 export const rootReducer = combineReducers({
   favorites,
@@ -22,4 +24,6 @@ export const rootReducer = combineReducers({
   bookings,
   tickets,
   search,
+  map,
+  settings,
 });

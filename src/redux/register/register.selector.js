@@ -1,18 +1,19 @@
 import {createSelector} from 'reselect';
+import get from 'lodash/fp/get';
 
-export const registerSelector = st => st.register;
+export const registerSelector = get('register');
 
 export const typedEmailSelector = createSelector(
   registerSelector,
-  register => register.typedEmail,
+  get('typedEmail'),
 );
 
 export const typedPasswordSelector = createSelector(
   registerSelector,
-  register => register.typedPassword,
+  get('typedPassword'),
 );
 
 export const errorTextSelector = createSelector(
   registerSelector,
-  register => register.errorText,
+  get('errorText'),
 );

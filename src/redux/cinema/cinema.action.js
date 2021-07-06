@@ -47,16 +47,12 @@ function* setFavoriteCinema(action) {
     const data = yield call(fetchCinemaToFav, {
       userId: action.payload.userId,
       cinemaId: action.payload.cinemaId,
-      Authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjBiNjQ0Yjg4NjY3MzcwMDIyZDVlNWZjIiwiaWF0IjoxNjIyNjE4ODQzLCJleHAiOjE2MjI3MDUyNDN9.HCofLqNmNdkMmSWbm0Tn1RQ49_2R9VGH5nk2uwr5q0Q',
     });
 
     if (data.message) {
       const userData = yield call(fetchRemoveCinemaFromFav, {
         userId: action.payload.userId,
         cinemaId: action.payload.cinemaId,
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjBiNjQ0Yjg4NjY3MzcwMDIyZDVlNWZjIiwiaWF0IjoxNjIyNjE4ODQzLCJleHAiOjE2MjI3MDUyNDN9.HCofLqNmNdkMmSWbm0Tn1RQ49_2R9VGH5nk2uwr5q0Q',
       });
       yield put(setUser(userData));
     } else {

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {ScrollView, TouchableHighlight, View} from 'react-native';
+import {FlatList, ScrollView, TouchableHighlight, View} from 'react-native';
 import {styles, seatTypeStyles} from '../Seats/Seats.styles';
 import {Text} from 'app/components/partial/Text';
 import {Button} from 'app/components/partial/Button';
@@ -46,6 +46,81 @@ function CinemaCard({
     } else {
       setSelectedSeat({seatNumber: {rowIndex, seatIndex}, price});
     }
+  };
+
+  const renderItem = ({item}) => {
+    if (cinema.workingTime.start + item < cinema.workingTime.end) {
+      return (
+        <TouchableHighlight
+          style={
+            cinema.workingTime.start + item === choosenTime
+              ? [styles.time, styles.checkedTime]
+              : cinema.workingTime.start + item > time
+              ? styles.time
+              : [styles.time, styles.blockedTime]
+          }
+          onPress={() =>
+            cinema.workingTime.start + item > time
+              ? setChoosenTime(cinema.workingTime.start + item)
+              : null
+          }
+          activeOpacity={0.2}
+          underlayColor={
+            cinema.workingTime.start + item > time ? 'white' : '#b5b5b5'
+          }
+          key={cinema.workingTime.start + item}>
+          <Text>{cinema.workingTime.start + item}:00</Text>
+        </TouchableHighlight>
+      );
+    }
+  };
+
+  const renderSchemaItem = ({item, index}) => {
+    return (
+      <View style={styles.row} key={index}>
+        {item.map((seat, seatIndex) => {
+          if (seat === '0') {
+            return <View style={styles.emptySeat} key={seatIndex}></View>;
+          }
+          return (
+            <TouchableHighlight
+              activeOpacity={0.5}
+              underlayColor={
+                bookedSeats?.filter(
+                  el => el.rowIndex === index && el.seatIndex === seatIndex,
+                ).length
+                  ? 'grey'
+                  : 'white'
+              }
+              style={
+                selectedSeats.filter(
+                  el => el.rowIndex === index && el.seatIndex === seatIndex,
+                ).length
+                  ? [seatTypeStyles[seat.toString()], styles.seatSelected]
+                  : bookedSeats?.filter(
+                      el => el.rowIndex === index && el.seatIndex === seatIndex,
+                    ).length
+                  ? [seatTypeStyles[seat.toString()], styles.seatBooked]
+                  : seatTypeStyles[seat.toString()]
+              }
+              key={seatIndex}
+              onPress={() =>
+                bookedSeats?.filter(
+                  el => el.rowIndex === index && el.seatIndex === seatIndex,
+                ).length
+                  ? null
+                  : seatChoosing(
+                      index,
+                      seatIndex,
+                      cinema.rooms.types[seat - 1].price,
+                    )
+              }>
+              <Text />
+            </TouchableHighlight>
+          );
+        })}
+      </View>
+    );
   };
 
   useEffect(() => {
@@ -108,98 +183,27 @@ function CinemaCard({
         <Text style={styles.screenText}>{film.name}</Text>
       </View>
 
-      {cinema.seatsSchema.map((el, rowIndex) => {
-        return (
-          <View style={styles.row} key={rowIndex}>
-            {el.map((seat, seatIndex) => {
-              if (seat === '0') {
-                return <View style={styles.emptySeat} key={seatIndex}></View>;
-              }
-              return (
-                <TouchableHighlight
-                  activeOpacity={0.5}
-                  underlayColor={
-                    bookedSeats?.filter(
-                      item =>
-                        item.rowIndex === rowIndex &&
-                        item.seatIndex === seatIndex,
-                    ).length
-                      ? 'grey'
-                      : 'white'
-                  }
-                  style={
-                    selectedSeats.filter(
-                      item =>
-                        item.rowIndex === rowIndex &&
-                        item.seatIndex === seatIndex,
-                    ).length
-                      ? [seatTypeStyles[seat.toString()], styles.seatSelected]
-                      : bookedSeats?.filter(
-                          item =>
-                            item.rowIndex === rowIndex &&
-                            item.seatIndex === seatIndex,
-                        ).length
-                      ? [seatTypeStyles[seat.toString()], styles.seatBooked]
-                      : seatTypeStyles[seat.toString()]
-                  }
-                  key={seatIndex}
-                  onPress={() =>
-                    bookedSeats?.filter(
-                      item =>
-                        item.rowIndex === rowIndex &&
-                        item.seatIndex === seatIndex,
-                    ).length
-                      ? null
-                      : seatChoosing(
-                          rowIndex,
-                          seatIndex,
-                          cinema.rooms.types[seat - 1].price,
-                        )
-                  }>
-                  <Text></Text>
-                </TouchableHighlight>
-              );
-            })}
-          </View>
-        );
-      })}
+      <FlatList
+        data={cinema.seatsSchema}
+        renderItem={renderSchemaItem}
+        keyExtractor={(item, index) => index}
+        refreshing="true"
+      />
 
-      {
-        <Text style={styles.totalPriceText}>
-          Total price: {totalPrice} {cinema.rooms.currency}
-        </Text>
-      }
+      <Text style={styles.totalPriceText}>
+        Total price: {totalPrice} {cinema.rooms.currency}
+      </Text>
 
-      {
-        <View style={styles.timeContainer}>
-          {timePieces.map((el, id) => {
-            if (cinema.workingTime.start + el < cinema.workingTime.end) {
-              return (
-                <TouchableHighlight
-                  style={
-                    cinema.workingTime.start + el === choosenTime
-                      ? [styles.time, styles.checkedTime]
-                      : cinema.workingTime.start + el > time
-                      ? styles.time
-                      : [styles.time, styles.blockedTime]
-                  }
-                  onPress={() =>
-                    cinema.workingTime.start + el > time
-                      ? setChoosenTime(cinema.workingTime.start + el)
-                      : null
-                  }
-                  activeOpacity={0.2}
-                  underlayColor={
-                    cinema.workingTime.start + el > time ? 'white' : '#b5b5b5'
-                  }
-                  key={id}>
-                  <Text>{cinema.workingTime.start + el}:00</Text>
-                </TouchableHighlight>
-              );
-            }
-          })}
-        </View>
-      }
+      <View>
+        <FlatList
+          data={timePieces}
+          contentContainerStyle={styles.timeContainer}
+          horizontal
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index}
+          refreshing="true"
+        />
+      </View>
 
       <View style={styles.datePickerContainer}>
         <DatePicker

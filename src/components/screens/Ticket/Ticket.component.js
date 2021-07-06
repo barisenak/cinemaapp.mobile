@@ -4,6 +4,7 @@ import {styles} from '../Ticket/Ticket.styles';
 import {Text} from 'app/components/partial/Text';
 import moment from 'moment';
 import isEmpty from 'lodash/isEmpty';
+import {getCinemaLocation} from 'app/utils/cinemaLocation.util';
 
 function Ticket({route, cinema, film}) {
   if (isEmpty(film)) return null;
@@ -35,7 +36,10 @@ function Ticket({route, cinema, film}) {
       <Image
         style={styles.map}
         source={{
-          uri: `https://maps.googleapis.com/maps/api/staticmap?center=${cinema.location.lat},${cinema.location.lng}&zoom=15&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyCJuEGVKyVGH4a6WABnyMCExwUBv9Ut6mw`,
+          uri: getCinemaLocation({
+            lat: cinema.location.lat,
+            lng: cinema.location.lng,
+          }),
         }}></Image>
     </ScrollView>
   );
