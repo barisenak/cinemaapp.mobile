@@ -19,169 +19,77 @@ import Geolocation from '@react-native-community/geolocation';
 import {Text} from 'app/components/partial/Text';
 import {Component} from 'react';
 
-function Map({
-  navigation,
-  location,
-  setLocation,
-  getAllCinemas,
-  cinemas,
-  onPressPoint,
-}) {
-  // check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE)
-  //   .then(result => {
-  //     switch (result) {
-  //       case RESULTS.UNAVAILABLE:
-  //         console.log(
-  //           'This feature is not available (on this device / in this context)',
-  //         );
-  //         break;
-  //       case RESULTS.DENIED:
-  //         console.log(
-  //           'The permission has not been requested / is denied but requestable',
-  //         );
-  //         break;
-  //       case RESULTS.LIMITED:
-  //         console.log('The permission is limited: some actions are possible');
-  //         break;
-  //       case RESULTS.GRANTED:
-  //         console.log('The permission is granted');
-  //         break;
-  //       case RESULTS.BLOCKED:
-  //         console.log('The permission is denied and not requestable anymore');
-  //         break;
-  //     }
-  //   })
-  //   .catch(error => {
-  //     // …
-  //   });
-  // request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(result => {
-  //   console.log(result);
-  // });
+export default class Map extends Component {
+  renderCluster = (cluster, onPress) => {
+    console.log(cluster);
+    const pointCount = cluster.pointCount,
+      coordinate = cluster.coordinate,
+      clusterId = cluster.clusterId;
 
-  // checkNotifications()
-  //   .then(({status, settings}) => {
-  //     console.log(status, 'status');
-  //     console.log(settings, 'settings');
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
+    // const clusteringEngine = this.map.getClusteringEngine(),
+    //   clusteredPoints = clusteringEngine.getLeaves(clusterId, 100);
 
-  const INIT_REGION = {
-    latitude: 53.89969038847524,
-    longitude: 27.55489139255121,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    return (
+      <Marker coordinate={coordinate} onPress={onPress}>
+        <View style={styles.myClusterStyle}>
+          <Text style={styles.myClusterTextStyle}>{pointCount}</Text>
+        </View>
+        {/* <Callout>
+          <ScrollView>
+            {clusteredPoints.map(p => (
+              <Image source={p.image} />
+            ))}
+          </ScrollView>
+        </Callout> */}
+      </Marker>
+    );
   };
 
-  useEffect(() => {
-    Geolocation.getCurrentPosition(position => {
-      const lat = JSON.stringify(position.coords.latitude);
-      const lng = JSON.stringify(position.coords.longitude);
-      setLocation({lat, lng});
-    });
-  }, []);
-
-  useEffect(() => {
-    getAllCinemas();
-  }, []);
-
-  if (!cinemas.length) {
-    return (
-      <ScrollView
-        contentContainerStyle={styles.container}
-        style={styles.screenBackground}>
-        <MapView
-          showsUserLocation
-          style={styles.map}
-          initialRegion={INIT_REGION}
+  renderMarker = data => (
+    <Marker
+      key={data.id}
+      coordinate={{
+        latitude: data.location.latitude,
+        longitude: data.location.longitude,
+      }}>
+      <View style={styles.pointContainer}>
+        <Image
+          style={styles.img}
+          source={{
+            uri: data.img,
+          }}
         />
-      </ScrollView>
-    );
+      </View>
+    </Marker>
+  );
+
+  componentDidMount() {
+    this.props.getAllCinemas();
   }
 
-  return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      style={styles.screenBackground}>
-      <MapView showsUserLocation style={styles.map} initialRegion={INIT_REGION}>
-        {cinemas.map(marker => (
-          <Marker
-            onPress={() => onPressPoint(marker)}
-            key={marker.id}
-            coordinate={{
-              latitude: marker.location.lat,
-              longitude: marker.location.lng,
-            }}>
-            <View style={styles.pointContainer}>
-              <Image
-                style={styles.img}
-                source={{
-                  uri: marker.img,
-                }}></Image>
-            </View>
-          </Marker>
-        ))}
-      </MapView>
-    </ScrollView>
-  );
+  render() {
+    const INIT_REGION = {
+      latitude: 53.89969038847524,
+      longitude: 27.55489139255121,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    };
+
+    return (
+      <ClusteredMapView
+        style={{flex: 1}}
+        data={this.props.cinemas?.map(el => ({
+          ...el,
+          location: {latitude: el.location.lat, longitude: el.location.lng},
+        }))}
+        initialRegion={INIT_REGION}
+        ref={r => {
+          this.map = r;
+        }}
+        radius={70}
+        renderMarker={this.renderMarker}
+        renderCluster={this.renderCluster}
+      />
+    );
+  }
 }
-export default Map;
-
-// export default class Map extends Component {
-//   renderCluster = (cluster, onPress) => {
-//     const pointCount = cluster.pointCount,
-//       coordinate = cluster.coordinate,
-//       clusterId = cluster.clusterId;
-
-//     const clusteringEngine = this.map.getClusteringEngine(),
-//       clusteredPoints = clusteringEngine.getLeaves(clusterId, 100);
-
-//     return (
-//       <Marker coordinate={coordinate} onPress={onPress}>
-//         <View style={styles.myClusterStyle}>
-//           <Text style={styles.myClusterTextStyle}>{pointCount}</Text>
-//         </View>
-//         <Callout>
-//           <ScrollView>
-//             {clusteredPoints.map(p => (
-//               <Image source={p.image} />
-//             ))}
-//           </ScrollView>
-//         </Callout>
-//       </Marker>
-//     );
-//   };
-
-//   renderMarker = data => (
-//     <Marker
-//       key={data.id}
-//       coordinate={{
-//         latitude: data.location.lat,
-//         longitude: data.location.lng,
-//       }}>
-//       <View style={styles.pointContainer}>
-//         <Image
-//           style={styles.img}
-//           source={{
-//             uri: data.img,
-//           }}></Image>
-//       </View>
-//     </Marker>
-//   );
-
-//   render() {
-//     return (
-//       <ClusteredMapView
-//         style={{flex: 1}}
-//         data={this.props.cinemas}
-//         initialRegion={INIT_REGION}
-//         ref={r => {
-//           this.map = r;
-//         }}
-//         renderMarker={this.renderMarker}
-//         renderCluster={this.renderCluster}
-//       />
-//     );
-//   }
-// }

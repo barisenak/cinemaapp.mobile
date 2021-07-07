@@ -17,6 +17,7 @@ import {
 import {getFilmCard} from 'app/redux/film/film.action';
 import {CINEMA_CARD, FILMS, FILM_CARD} from 'app/enum/navigation.enum';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
+import {languageSelector} from 'app/redux/settings/settings.selector';
 
 export default connect(
   st => ({
@@ -24,6 +25,7 @@ export default connect(
     typedFilm: typedFilmSelector(st),
     films: filmsSelector(st),
     cinemas: cinemasSelector(st),
+    language: languageSelector(st),
   }),
   {
     setTypedFilm: setTypedFilm,

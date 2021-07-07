@@ -37,4 +37,16 @@ export const styles = StyleSheet.create({
   pointContainer: {
     padding: 30,
   },
+
+  myClusterStyle: {
+    backgroundColor: 'orange',
+    borderRadius: 50,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+  },
+
+  myClusterTextStyle: {
+    textAlign: 'center',
+  },
 });

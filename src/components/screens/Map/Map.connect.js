@@ -5,11 +5,13 @@ import {getAllCinemas, setLocation} from 'app/redux/map/map.action';
 import Map from './Map.component';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {CINEMA_CARD} from 'app/enum/navigation.enum';
+import {userDataSelector} from 'app/redux/user/user.selector';
 
 export default connect(
   st => ({
     location: locationSelector(st),
     cinemas: cinemasSelector(st),
+    user: userDataSelector(st),
   }),
   {
     setLocation: setLocation,

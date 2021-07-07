@@ -22,5 +22,5 @@ function* getCinemas() {
 }
 
 export function* sagaWatcher() {
-  yield takeEvery(SET_LOCATION, getCinemas);
+  yield takeEvery(GET_ALL_CINEMAS, getCinemas);
 }

@@ -7,6 +7,7 @@ import {FILMS} from 'app/enum/navigation.enum';
 
 import {styles} from '../Search/Search.styles';
 import {TextInput} from 'app/components/partial/TextInput';
+import {ENGLISH} from 'app/enum/settings.enum';
 
 function Search({
   typedCinema,
@@ -19,6 +20,7 @@ function Search({
   onSearch,
   clearSearchedData,
   onPressSearchItem,
+  language,
 }) {
   const renderItem = ({item}) => (
     <TouchableHighlight
@@ -49,8 +51,12 @@ function Search({
       <TextInput
         placeholder={
           route.params.prevScreen === FILMS
-            ? 'type film you want to search'
-            : 'type cinema you want to search'
+            ? language === ENGLISH
+              ? 'type film you want to search'
+              : 'Введите фильм, который Вы хотите найти'
+            : language === ENGLISH
+            ? 'type cinema you want to search'
+            : 'Введите кинотеатр, который Вы хотите найти'
         }
         keyboardType="default"
         value={route.params.prevScreen === FILMS ? typedFilm : typedCinema}
@@ -61,7 +67,7 @@ function Search({
         }}
       />
       <Button type="primary" onPress={onSearch}>
-        Search
+        {language === ENGLISH ? 'Search' : 'Поиск'}
       </Button>
       <View style={styles.listContainer}>
         {films.length ? (
@@ -75,16 +81,6 @@ function Search({
                 route.params.prevScreen === FILMS ? 'films' : 'cinemas'
               } founded`}</Text>
             }
-            // onEndReached={() => {
-            //   page[CATEGORY_RECENTLY_RELEASED] <
-            //     totalPages[CATEGORY_RECENTLY_RELEASED] &&
-            //     loadNewFilms({
-            //       page: page[CATEGORY_RECENTLY_RELEASED],
-            //       category: CATEGORY_RECENTLY_RELEASED,
-            //     });
-            // }}
-            // onEndReachedThreshold={0}
-            // initialNumToRender={5}
           />
         ) : null}
       </View>

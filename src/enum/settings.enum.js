@@ -1,2 +1,2 @@
-export const ENGLISH = 'english';
-export const RUSSIAN = 'russian';
+export const ENGLISH = 'en';
+export const RUSSIAN = 'ru';

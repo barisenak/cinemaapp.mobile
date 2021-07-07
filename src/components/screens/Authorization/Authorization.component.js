@@ -9,6 +9,8 @@ import {TextInput} from 'app/components/partial/TextInput';
 
 import {styles} from './Authorization.styles';
 import {FAVORITES, REGISTRATION, TICKETS} from 'app/enum/navigation.enum';
+import {ENGLISH} from 'app/enum/settings.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 function Authorization({
   route,
@@ -21,6 +23,8 @@ function Authorization({
   errorText,
   onPressRegister,
   onPressSignIn,
+  language,
+  ts,
 }) {
   useEffect(() => {
     if (userData) {
@@ -38,32 +42,36 @@ function Authorization({
 
   return (
     <View style={styles.signInContainer}>
-      <Text>Email:</Text>
+      <Text>{language === ENGLISH ? 'Email:' : 'Почта:'}</Text>
       <TextInput
-        placeholder="Email"
+        placeholder={language === ENGLISH ? 'Email' : 'Почта'}
         keyboardType="default"
         value={typedEmail}
         onChangeText={setTypedEmail}
       />
-      <Text>Password</Text>
+      <Text>{language === ENGLISH ? 'Password:' : 'Пароль:'}</Text>
       <TextInput
-        placeholder="Password"
+        placeholder={language === ENGLISH ? 'Password' : 'Пароль'}
         keyboardType="default"
         value={typedPassword}
         onChangeText={setTypedPassword}
       />
       <Button type="primary" onPress={onPressSignIn}>
-        SIGN IN
+        {ts('login')}
       </Button>
       <Text style={styles.error}>{errorText}</Text>
       <View style={styles.registerContainer}>
-        <Text>Not registered yet? You can do it</Text>
+        <Text>
+          {language === ENGLISH
+            ? 'Not registered yet? You can do it'
+            : 'Еще не зарегистрированы? Вы можете сделать это'}
+        </Text>
         <Button type="textLink" onPress={onPressRegister}>
-          here
+          {language === ENGLISH ? 'here' : 'здесь'}
         </Button>
       </View>
     </View>
   );
 }
 
-export default Authorization;
+export default withTranslation('authorization')(Authorization);

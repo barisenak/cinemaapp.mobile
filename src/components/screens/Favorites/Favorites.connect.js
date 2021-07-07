@@ -7,12 +7,14 @@ import {getFilmCard} from 'app/redux/film/film.action';
 
 import Favorites from './Favorites.component';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
+import {createStructuredSelector} from 'reselect';
 
 export default connect(
-  st => ({
-    selectedTab: selectedTabSelector(st),
-    userData: userDataSelector(st),
-  }),
+  st =>
+    createStructuredSelector({
+      selectedTab: selectedTabSelector,
+      userData: userDataSelector,
+    }),
   {
     setSelectedTab: setSelectedTab,
     getFilmCard: getFilmCard,
