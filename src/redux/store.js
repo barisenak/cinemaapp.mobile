@@ -11,6 +11,7 @@ import {rootReducer} from './rootReducer';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  whitelist: ['settings'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -22,12 +23,7 @@ if (__DEV__) {
   args.push(Reactotron.createEnhancer());
 }
 
-const store = createStore(persistedReducer, compose(...args));
-let persistor = persistStore(store);
+export const store = createStore(persistedReducer, compose(...args));
+export const persistor = persistStore(store);
 
 saga.run(rootSagaWatcher);
-
-export default {
-  store,
-  persistor,
-};

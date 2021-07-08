@@ -21,7 +21,6 @@ import {Component} from 'react';
 
 export default class Map extends Component {
   renderCluster = (cluster, onPress) => {
-    console.log(cluster);
     const pointCount = cluster.pointCount,
       coordinate = cluster.coordinate,
       clusterId = cluster.clusterId;
@@ -35,11 +34,13 @@ export default class Map extends Component {
           <Text style={styles.myClusterTextStyle}>{pointCount}</Text>
         </View>
         {/* <Callout>
-          <ScrollView>
-            {clusteredPoints.map(p => (
-              <Image source={p.image} />
-            ))}
-          </ScrollView>
+          <View style={{width: 250}}>
+            {console.log(clusteredPoints)}
+            {clusteredPoints.map(cinema => {
+              console.log(cinema.properties.item.name);
+              <Text>{cinema.properties.item.name}</Text>;
+            })}
+          </View>
         </Callout> */}
       </Marker>
     );
@@ -89,6 +90,9 @@ export default class Map extends Component {
         radius={70}
         renderMarker={this.renderMarker}
         renderCluster={this.renderCluster}
+        onClusterPress={(cluster, markers) => {
+          console.log(markers, 'fkldsfjkdfj');
+        }}
       />
     );
   }

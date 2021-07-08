@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
 import {PersistGate} from 'redux-persist/integration/react';
 
-import store from './src/redux/store';
+import {store, persistor} from './src/redux/store';
 
 import {
   AUTHORIZATION,
@@ -18,6 +18,7 @@ import {
   FILMS,
   TICKETS,
   SEARCH,
+  MAP,
 } from './src/enum/navigation.enum';
 
 // components
@@ -39,8 +40,8 @@ const Stack = createStackNavigator();
 
 function App() {
   return (
-    <Provider store={store.store}>
-      <PersistGate loading={null} persistor={store.persistor}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <TokenProvider>
           <NavigationContainer>
             <Stack.Navigator initialRouteName="Films">
@@ -115,9 +116,19 @@ function App() {
               <Stack.Screen
                 name={SEARCH}
                 component={Search}
-                options={{
+                options={({route, navigation}) => ({
                   headerTitle: SEARCH,
-                }}
+                  headerLeft: () => (
+                    <HeaderBackButton
+                      label={route.params.prevScreen === FILMS ? FILMS : MAP}
+                      onPress={() => {
+                        route.params.prevScreen === FILMS
+                          ? navigation.navigate(FILMS)
+                          : navigation.navigate(MAP);
+                      }}
+                    />
+                  ),
+                })}
               />
             </Stack.Navigator>
           </NavigationContainer>

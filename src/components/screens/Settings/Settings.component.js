@@ -7,7 +7,12 @@ import {Button} from 'app/components/partial/Button';
 import {ENGLISH, RUSSIAN} from 'app/enum/settings.enum';
 import {Text} from 'app/components/partial/Text';
 
-import {getApplicationName} from 'react-native-device-info';
+import {
+  getApplicationName,
+  getBuildId,
+  getBuildNumber,
+  getVersion,
+} from 'react-native-device-info';
 
 function Settings({navigation, onPressLogOut, onChangeLanguage, language}) {
   return (
@@ -34,10 +39,23 @@ function Settings({navigation, onPressLogOut, onChangeLanguage, language}) {
         <Button type="primary" onPress={onPressLogOut}>
           {language === ENGLISH ? 'LOG OUT' : 'Выйти'}
         </Button>
-        <Text>{getApplicationName()}</Text>
+        <Text>{`version ${getVersion()} build ${getBuildNumber()}`}</Text>
       </View>
     </ScrollView>
   );
 }
 
 export default Settings;
+
+// 1.4 Handle marker (cluster) press (Yandex.Transport)
+
+// 1.6 *Animate bottom view (React Native Animated API)
+
+// 2.1 Appearance (dark/light) Switcher
+// 2.2 Date format
+// 2.3 Language
+
+// 2.5 *Push Notification (react-native-firebase)
+// 3. Analytics (react-native-firebase)
+
+// 4. Explore React Native Animations, AppState, FlatList
