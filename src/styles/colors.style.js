@@ -9,3 +9,11 @@ export const gray = {
   medium: '#b0b2b8',
   dark: '#737475',
 };
+
+export const lightTheme = {
+  backgroundColor: white,
+};
+
+export const darkTheme = {
+  backgroundColor: black,
+};

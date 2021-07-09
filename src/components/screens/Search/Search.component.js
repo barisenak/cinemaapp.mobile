@@ -70,19 +70,17 @@ function Search({
         {language === ENGLISH ? 'Search' : 'Поиск'}
       </Button>
       <View style={styles.listContainer}>
-        {films.length ? (
-          <FlatList
-            data={films.length ? films : cinemas}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            refreshing="true"
-            ListEmptyComponent={
-              <Text style={styles.emptySection}>{`no ${
-                route.params.prevScreen === FILMS ? 'films' : 'cinemas'
-              } founded`}</Text>
-            }
-          />
-        ) : null}
+        <FlatList
+          data={films.length ? films : cinemas}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          refreshing="true"
+          ListEmptyComponent={
+            <Text style={styles.emptySection}>{`no ${
+              route.params.prevScreen === FILMS ? 'films' : 'cinemas'
+            } founded`}</Text>
+          }
+        />
       </View>
     </ScrollView>
   );

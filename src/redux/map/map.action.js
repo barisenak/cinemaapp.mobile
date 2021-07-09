@@ -5,10 +5,12 @@ import {fetchAllCinemas} from 'app/api/cinema.api';
 export const SET_LOCATION = 'MAP/SET_LOCATION';
 export const GET_ALL_CINEMAS = 'MAP/GET_ALL_CINEMAS';
 export const PUT_CINEMAS = 'MAP/PUT_CINEMAS';
+export const PUT_MARKERS = 'MAP/PUT_MARKERS';
 
 export const setLocation = createAction(SET_LOCATION);
 export const getAllCinemas = createAction(GET_ALL_CINEMAS);
 export const putCinemas = createAction(PUT_CINEMAS);
+export const putMarkers = createAction(PUT_MARKERS);
 
 function* getCinemas() {
   try {

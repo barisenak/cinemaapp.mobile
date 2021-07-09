@@ -47,6 +47,7 @@ function Favorites({
               name: item.name,
               cinemaId: item.id,
               userId: userData?.id,
+              prevScreen: FAVORITES,
             });
           } else {
             getFilmCard(item.id);

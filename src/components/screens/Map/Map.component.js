@@ -1,6 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
-import {Image, ScrollView, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  View,
+  Animated,
+  SafeAreaView,
+  Touchable,
+  TouchableHighlight,
+} from 'react-native';
 
 import debounce from 'lodash/debounce';
 
@@ -20,34 +28,44 @@ import {Text} from 'app/components/partial/Text';
 import {Component} from 'react';
 
 export default class Map extends Component {
+  state = {
+    fadeAnim: new Animated.Value(0),
+  };
+
+  fadeIn = () => {
+    Animated.timing(this.state.fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  fadeOut = () => {
+    Animated.timing(this.state.fadeAnim, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
+
   renderCluster = (cluster, onPress) => {
     const pointCount = cluster.pointCount,
-      coordinate = cluster.coordinate,
-      clusterId = cluster.clusterId;
-
-    // const clusteringEngine = this.map.getClusteringEngine(),
-    //   clusteredPoints = clusteringEngine.getLeaves(clusterId, 100);
+      coordinate = cluster.coordinate;
 
     return (
       <Marker coordinate={coordinate} onPress={onPress}>
         <View style={styles.myClusterStyle}>
           <Text style={styles.myClusterTextStyle}>{pointCount}</Text>
         </View>
-        {/* <Callout>
-          <View style={{width: 250}}>
-            {console.log(clusteredPoints)}
-            {clusteredPoints.map(cinema => {
-              console.log(cinema.properties.item.name);
-              <Text>{cinema.properties.item.name}</Text>;
-            })}
-          </View>
-        </Callout> */}
       </Marker>
     );
   };
 
   renderMarker = data => (
     <Marker
+      onPress={() => {
+        this.props.onPressPoint(data);
+      }}
       key={data.id}
       coordinate={{
         latitude: data.location.latitude,
@@ -64,6 +82,30 @@ export default class Map extends Component {
     </Marker>
   );
 
+  renderItem = ({item}) => {
+    return (
+      <TouchableHighlight
+        style={styles.markersContainer}
+        key={item.id}
+        activeOpacity={0.5}
+        underlayColor="white"
+        onPress={() => {
+          this.props.onPressPoint(item);
+        }}>
+        <View style={styles.markerWrapper}>
+          <Text>{item.name}</Text>
+          <Text>{item.address}</Text>
+          <Image
+            style={styles.img}
+            source={{
+              uri: item.img,
+            }}
+          />
+        </View>
+      </TouchableHighlight>
+    );
+  };
+
   componentDidMount() {
     this.props.getAllCinemas();
   }
@@ -77,23 +119,47 @@ export default class Map extends Component {
     };
 
     return (
-      <ClusteredMapView
-        style={{flex: 1}}
-        data={this.props.cinemas?.map(el => ({
-          ...el,
-          location: {latitude: el.location.lat, longitude: el.location.lng},
-        }))}
-        initialRegion={INIT_REGION}
-        ref={r => {
-          this.map = r;
-        }}
-        radius={70}
-        renderMarker={this.renderMarker}
-        renderCluster={this.renderCluster}
-        onClusterPress={(cluster, markers) => {
-          console.log(markers, 'fkldsfjkdfj');
-        }}
-      />
+      <View style={styles.container}>
+        <ClusteredMapView
+          style={{
+            position: 'relative',
+          }}
+          data={this.props.cinemas?.map(el => ({
+            ...el,
+            location: {latitude: el.location.lat, longitude: el.location.lng},
+          }))}
+          initialRegion={INIT_REGION}
+          ref={r => {
+            this.map = r;
+          }}
+          radius={70}
+          renderMarker={this.renderMarker}
+          renderCluster={this.renderCluster}
+          // onPress={() => {
+          //   this.state.fadeAnim !== 0 ? this.fadeOut() : null;
+          // }}
+          onClusterPress={async (cluster, markers) => {
+            this.fadeIn();
+            await this.props.putMarkers(markers);
+          }}
+        />
+        <Animated.FlatList
+          contentContainerStyle={styles.listContainer}
+          style={[
+            styles.fadingContainer,
+            {
+              opacity: this.state.fadeAnim,
+            },
+          ]}
+          data={this.props.markers}
+          renderItem={this.renderItem}
+          keyExtractor={item => item.id}
+          refreshing="true"
+          horizontal
+        />
+      </View>
     );
   }
 }
+
+//lodash.map

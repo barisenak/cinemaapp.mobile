@@ -15,7 +15,7 @@ import {
   clearSearchedData,
 } from 'app/redux/search/search.action';
 import {getFilmCard} from 'app/redux/film/film.action';
-import {CINEMA_CARD, FILMS, FILM_CARD} from 'app/enum/navigation.enum';
+import {CINEMA_CARD, FILMS, FILM_CARD, SEARCH} from 'app/enum/navigation.enum';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {languageSelector} from 'app/redux/settings/settings.selector';
 
@@ -59,6 +59,7 @@ export default connect(
           ownProps.navigation.navigate(CINEMA_CARD, {
             name: item.name,
             cinemaId: item.id,
+            prevScreen: SEARCH,
           });
         }
       },

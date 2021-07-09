@@ -1,10 +1,14 @@
 import {connect} from 'react-redux';
 
-import {locationSelector, cinemasSelector} from 'app/redux/map/map.selector';
-import {getAllCinemas, setLocation} from 'app/redux/map/map.action';
+import {
+  locationSelector,
+  cinemasSelector,
+  markersSelector,
+} from 'app/redux/map/map.selector';
+import {getAllCinemas, putMarkers, setLocation} from 'app/redux/map/map.action';
 import Map from './Map.component';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
-import {CINEMA_CARD} from 'app/enum/navigation.enum';
+import {CINEMA_CARD, MAP} from 'app/enum/navigation.enum';
 import {userDataSelector} from 'app/redux/user/user.selector';
 
 export default connect(
@@ -12,11 +16,13 @@ export default connect(
     location: locationSelector(st),
     cinemas: cinemasSelector(st),
     user: userDataSelector(st),
+    markers: markersSelector(st),
   }),
   {
     setLocation: setLocation,
     getAllCinemas: getAllCinemas,
     getCinemaCard: getCinemaCard,
+    putMarkers: putMarkers,
   },
   (stateProps, dispatchProps, ownProps) => {
     return {
@@ -25,7 +31,11 @@ export default connect(
       ...ownProps,
       onPressPoint: marker => {
         dispatchProps.getCinemaCard(marker.id);
-        ownProps.navigation.navigate(CINEMA_CARD, {name: marker.name});
+        ownProps.navigation.navigate(CINEMA_CARD, {
+          name: marker.name,
+          cinemaId: marker.id,
+          prevScreen: MAP,
+        });
       },
     };
   },

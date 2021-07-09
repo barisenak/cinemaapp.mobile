@@ -101,7 +101,7 @@ function App() {
               <Stack.Screen
                 name={CINEMA_CARD}
                 component={CinemaCard}
-                options={({route}) => ({
+                options={({route, navigation}) => ({
                   headerTitle: route.params.name,
                   headerRight: () => (
                     <AddFavCinema
@@ -109,6 +109,15 @@ function App() {
                         cinemaId: route.params.cinemaId,
                         userId: route.params.userId,
                       }}
+                    />
+                  ),
+
+                  headerLeft: () => (
+                    <HeaderBackButton
+                      label={route.params.prevScreen}
+                      onPress={() =>
+                        navigation.navigate(route.params.prevScreen)
+                      }
                     />
                   ),
                 })}

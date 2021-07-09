@@ -14,7 +14,7 @@ import {Text} from 'app/components/partial/Text';
 
 import {styles} from './FilmCard.styles';
 import moment from 'moment';
-import {CINEMA_CARD, SEATS_CARD} from 'app/enum/navigation.enum';
+import {CINEMA_CARD, FILM_CARD, SEATS_CARD} from 'app/enum/navigation.enum';
 import {Button} from 'app/components/partial/Button';
 
 function FilmCard({navigation, film, cinemas, getCinemaCard, user, language}) {
@@ -56,6 +56,7 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user, language}) {
             name: item.name,
             cinemaId: item.id,
             userId: user?.id,
+            prevScreen: FILM_CARD,
           });
         }}>
         <Image source={{uri: item.img}} style={styles.card} />

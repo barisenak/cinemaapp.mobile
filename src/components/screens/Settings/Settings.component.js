@@ -46,16 +46,3 @@ function Settings({navigation, onPressLogOut, onChangeLanguage, language}) {
 }
 
 export default Settings;
-
-// 1.4 Handle marker (cluster) press (Yandex.Transport)
-
-// 1.6 *Animate bottom view (React Native Animated API)
-
-// 2.1 Appearance (dark/light) Switcher
-// 2.2 Date format
-// 2.3 Language
-
-// 2.5 *Push Notification (react-native-firebase)
-// 3. Analytics (react-native-firebase)
-
-// 4. Explore React Native Animations, AppState, FlatList

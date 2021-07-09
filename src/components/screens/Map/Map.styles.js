@@ -1,10 +1,18 @@
 import {StyleSheet} from 'react-native';
 import {white} from 'app/styles/colors.style';
 
+export const getStyles = colors =>
+  StyleSheet.create({
+    container: {
+      backgroundColor: colors.backgroundColor,
+    },
+  });
+
 export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: white,
+    position: 'relative',
   },
 
   screenBackground: {
@@ -48,5 +56,36 @@ export const styles = StyleSheet.create({
 
   myClusterTextStyle: {
     textAlign: 'center',
+  },
+
+  fadingContainer: {
+    position: 'absolute',
+    bottom: 172,
+    left: 0,
+    height: 90,
+    backgroundColor: white,
+  },
+
+  fadingText: {
+    fontSize: 28,
+  },
+
+  markersContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+
+  listContainer: {
+    justifyContent: 'center',
+  },
+
+  markerWrapper: {
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
