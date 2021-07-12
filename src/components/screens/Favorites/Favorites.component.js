@@ -24,6 +24,7 @@ import {
   CINEMA_CARD,
   FAVORITES,
 } from 'app/enum/navigation.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 function Favorites({
   navigation,
@@ -32,6 +33,7 @@ function Favorites({
   userData,
   getFilmCard,
   getCinemaCard,
+  ts,
 }) {
   const renderItem = ({item}) => {
     return (
@@ -78,7 +80,7 @@ function Favorites({
           onPress={() => {
             setSelectedTab(SELECTED_TAB_FILMS);
           }}>
-          Films
+          {ts('Films')}
         </Button>
         <Button
           disabled={!userData ? true : false}
@@ -90,19 +92,19 @@ function Favorites({
           onPress={() => {
             setSelectedTab(SELECTED_TAB_CINEMAS);
           }}>
-          Cinemas
+          {ts('Cinemas')}
         </Button>
       </View>
 
       {!userData ? (
         <View style={styles.signInContainer}>
-          <Text>Please sign in</Text>
+          <Text> {ts('Please sign in')}</Text>
           <Button
             type="primary"
             onPress={() =>
               navigation.navigate(AUTHORIZATION, {prevScreen: FAVORITES})
             }>
-            LOG IN
+            {ts('login')}
           </Button>
         </View>
       ) : selectedTab === SELECTED_TAB_FILMS ? (
@@ -121,7 +123,7 @@ function Favorites({
           {!userData.favouriteFilms.length && (
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyText}>
-                you don't have any favorite films
+                {ts("you don't have any favorite films")}
               </Text>
             </View>
           )}
@@ -142,7 +144,7 @@ function Favorites({
           {!userData.favouriteCinemas.length && (
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyText}>
-                you don't have any favorite cinemas
+                {ts("you don't have any favorite cinemas")}
               </Text>
             </View>
           )}
@@ -152,4 +154,4 @@ function Favorites({
   );
 }
 
-export default Favorites;
+export default withTranslation('favorites')(Favorites);

@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     paddingBottom: gutter * 2,
     paddingTop: 30,
     alignItems: 'center',
+    height: 1000,
   },
 
   screenBackground: {

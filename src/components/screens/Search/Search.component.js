@@ -42,6 +42,8 @@ function Search({
     };
   }, []);
 
+  console.log(route.params.prevScreen === FILMS);
+
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
@@ -51,12 +53,8 @@ function Search({
       <TextInput
         placeholder={
           route.params.prevScreen === FILMS
-            ? language === ENGLISH
-              ? 'type film you want to search'
-              : 'Введите фильм, который Вы хотите найти'
-            : language === ENGLISH
-            ? 'type cinema you want to search'
-            : 'Введите кинотеатр, который Вы хотите найти'
+            ? 'type film you want to search'
+            : 'type cinema you want to search'
         }
         keyboardType="default"
         value={route.params.prevScreen === FILMS ? typedFilm : typedCinema}

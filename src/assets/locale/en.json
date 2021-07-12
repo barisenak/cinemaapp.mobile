@@ -1,5 +1,35 @@
 {
   "authorization": {
-    "login": "LOG IN"
+    "login": "LOG IN",
+    "Email": "Email",
+    "Password": "Password",
+    "Not registered yet? You can do it": "Not registered yet? You can do it",
+    "here": "here"
+  },
+
+  "registration": {
+    "sign up": "SIGN UP",
+    "Email": "Email",
+    "Password": "Password"
+  },
+
+  "favorites": {
+    "you don't have any favorite cinemas": "you don't have any favorite cinemas",
+    "you don't have any favorite films": "you don't have any favorite films",
+    "login": "LOG IN",
+    "Please sign in": "Please sign in",
+    "Cinemas": "Cinemas",
+    "Films": "Films"
+  },
+
+  "tickets": {
+    "you don't have any tickets here": "you don't have any tickets here",
+    "login": "LOG IN",
+    "Please sign in": "Please sign in",
+    "Cinema": "Cinema",
+    "Film": "Film",
+    "Date": "Date",
+    "Archive": "Archive",
+    "Actual": "Actual"
   }
 }

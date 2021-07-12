@@ -119,7 +119,7 @@ export default class Map extends Component {
     };
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <ClusteredMapView
           style={{
             position: 'relative',
@@ -156,8 +156,10 @@ export default class Map extends Component {
           keyExtractor={item => item.id}
           refreshing="true"
           horizontal
+          initialNumToRender={1}
+          // onEndReachedThreshold={0}
         />
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -1,5 +1,35 @@
 {
   "authorization": {
-    "login": "Войти"
+    "login": "Войти",
+    "Email": "Email",
+    "Password": "Пароль",
+    "Not registered yet? You can do it": "Еще не зарегистрированы? Вы можете сделать это",
+    "here": "здесь"
+  },
+
+  "registration": {
+    "sign up": "Зарегистрироваться",
+    "Email": "Email",
+    "Password": "Пароль"
+  },
+
+  "favorites": {
+    "you don't have any favorite cinemas": "у вас нет избранных кинотеатров",
+    "you don't have any favorite films": "у вас нет избранных фильмов",
+    "login": "Войти",
+    "Please sign in": "Пожалуйста, войдите",
+    "Cinemas": "Кинотеатры",
+    "Films": "Фильмы"
+  },
+
+  "tickets": {
+    "you don't have any tickets here": "у вас нет билетов",
+    "login": "Войти",
+    "Please sign in": "Пожалуйста, войдите",
+    "Cinema": "Кинотеатр",
+    "Film": "Фильм",
+    "Date": "Дата",
+    "Archive": "Архив",
+    "Actual": "Актуальные"
   }
 }

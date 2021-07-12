@@ -42,16 +42,16 @@ function Authorization({
 
   return (
     <View style={styles.signInContainer}>
-      <Text>{language === ENGLISH ? 'Email:' : 'Почта:'}</Text>
+      <Text>{ts('Email')}</Text>
       <TextInput
-        placeholder={language === ENGLISH ? 'Email' : 'Почта'}
+        placeholder={ts('Email')}
         keyboardType="default"
         value={typedEmail}
         onChangeText={setTypedEmail}
       />
-      <Text>{language === ENGLISH ? 'Password:' : 'Пароль:'}</Text>
+      <Text>{ts('Password')}</Text>
       <TextInput
-        placeholder={language === ENGLISH ? 'Password' : 'Пароль'}
+        placeholder={ts('Password')}
         keyboardType="default"
         value={typedPassword}
         onChangeText={setTypedPassword}
@@ -61,13 +61,9 @@ function Authorization({
       </Button>
       <Text style={styles.error}>{errorText}</Text>
       <View style={styles.registerContainer}>
-        <Text>
-          {language === ENGLISH
-            ? 'Not registered yet? You can do it'
-            : 'Еще не зарегистрированы? Вы можете сделать это'}
-        </Text>
+        <Text>{ts('Not registered yet? You can do it')}</Text>
         <Button type="textLink" onPress={onPressRegister}>
-          {language === ENGLISH ? 'here' : 'здесь'}
+          {ts('here')}
         </Button>
       </View>
     </View>

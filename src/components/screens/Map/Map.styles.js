@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
 
   map: {
     width: '100%',
-    height: '100%',
+    // height: '100%',
   },
 
   icon: {
@@ -64,6 +64,8 @@ export const styles = StyleSheet.create({
     left: 0,
     height: 90,
     backgroundColor: white,
+    width: '90%',
+    marginLeft: '5%',
   },
 
   fadingText: {
@@ -73,17 +75,20 @@ export const styles = StyleSheet.create({
   markersContainer: {
     display: 'flex',
     flexDirection: 'row',
-    paddingTop: 10,
-    paddingBottom: 10,
+    // width: '100%',
+    // paddingTop: 10,
+    // paddingBottom: 10,
   },
 
   listContainer: {
-    justifyContent: 'center',
+    // flexGrow: 1,
+    // width: '100%',
+    // alignItems: 'center',
   },
 
   markerWrapper: {
     display: 'flex',
-    width: '100%',
+    width: 373,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

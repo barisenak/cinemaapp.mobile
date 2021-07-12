@@ -21,6 +21,7 @@ import {
 import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
 import {STATE_SUCCESS} from 'app/enum/state.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 function Tickets({
   navigation,
@@ -35,6 +36,7 @@ function Tickets({
   setSelectedTab,
   userData,
   state,
+  ts,
 }) {
   const presentTime = new Date(Date.now()).getHours();
 
@@ -73,10 +75,14 @@ function Tickets({
         }}>
         <ImageBackground style={styles.ticketsContainer} source={image}>
           <View style={styles.textContainer}>
-            <Text style={styles.ticketText}>Cinema: {item.cinemaId.name}</Text>
-            <Text style={styles.ticketText}>Film: {item.filmId.name}</Text>
             <Text style={styles.ticketText}>
-              Date: {moment(item.ticketDate).format('LLL')}
+              {ts('Cinema')}: {item.cinemaId.name}
+            </Text>
+            <Text style={styles.ticketText}>
+              {ts('Film')}: {item.filmId.name}
+            </Text>
+            <Text style={styles.ticketText}>
+              {ts('Date')}: {moment(item.ticketDate).format('LLL')}
             </Text>
           </View>
         </ImageBackground>
@@ -90,14 +96,14 @@ function Tickets({
         contentContainerStyle={styles.container}
         style={styles.screenBackground}>
         <View style={styles.signInContainer}>
-          <Text>Please sign in</Text>
+          <Text>{ts('Please sign in')}</Text>
           <Button
             type="primary"
             style={styles.button}
             onPress={() =>
               navigation.navigate(AUTHORIZATION, {prevScreen: TICKETS})
             }>
-            LOG IN
+            {ts('login')}
           </Button>
         </View>
       </ScrollView>
@@ -126,7 +132,7 @@ function Tickets({
           onPress={() => {
             setSelectedTab(SELECTED_TAB_OUTDATED);
           }}>
-          Archive
+          {ts('Archive')}
         </Button>
         <Button
           type="textLink"
@@ -137,7 +143,7 @@ function Tickets({
           onPress={() => {
             setSelectedTab(SELECTED_TAB_ACTUAL);
           }}>
-          Actual
+          {ts('Actual')}
         </Button>
       </View>
       {selectedTab === SELECTED_TAB_OUTDATED ? (
@@ -158,7 +164,7 @@ function Tickets({
           )}
           {isEmpty(allBookings.old) ? (
             <Text style={styles.emptyText}>
-              you don't have any tickets here
+              {ts("you don't have any tickets here")}
             </Text>
           ) : null}
         </View>
@@ -180,7 +186,7 @@ function Tickets({
           )}
           {isEmpty(allBookings.actual) ? (
             <Text style={styles.emptyText}>
-              you don't have any tickets here
+              {ts("you don't have any tickets here")}
             </Text>
           ) : null}
         </View>
@@ -189,4 +195,4 @@ function Tickets({
   );
 }
 
-export default Tickets;
+export default withTranslation('tickets')(Tickets);

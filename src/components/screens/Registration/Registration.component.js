@@ -9,6 +9,7 @@ import {TextInput} from 'app/components/partial/TextInput';
 
 import {styles} from './Registration.styles';
 import {AUTHORIZATION, FAVORITES, TICKETS} from 'app/enum/navigation.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 function Registration({
   navigation,
@@ -21,6 +22,7 @@ function Registration({
   userData,
   errorText,
   onPressSignUp,
+  ts,
 }) {
   useEffect(() => {
     if (userData) {
@@ -32,26 +34,26 @@ function Registration({
 
   return (
     <View style={styles.signInContainer}>
-      <Text>Email:</Text>
+      <Text>{ts('Email')}</Text>
       <TextInput
-        placeholder="Email"
+        placeholder={ts('Email')}
         keyboardType="default"
         value={typedEmail}
         onChangeText={setTypedEmail}
       />
-      <Text>Password</Text>
+      <Text>{ts('Password')}</Text>
       <TextInput
-        placeholder="Password"
+        placeholder={ts('Password')}
         keyboardType="default"
         value={typedPassword}
         onChangeText={setTypedPassword}
       />
       <Button type="primary" onPress={onPressSignUp}>
-        SIGN UP
+        {ts('sign up')}
       </Button>
       <Text style={styles.error}>{errorText}</Text>
     </View>
   );
 }
 
-export default Registration;
+export default withTranslation('registration')(Registration);
