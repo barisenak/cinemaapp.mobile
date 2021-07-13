@@ -26,6 +26,8 @@ import {styles} from '../Map/Map.styles';
 import Geolocation from '@react-native-community/geolocation';
 import {Text} from 'app/components/partial/Text';
 import {Component} from 'react';
+import {checkLocationPermission} from 'app/utils/permissions';
+import isEmpty from 'lodash/isEmpty';
 
 export default class Map extends Component {
   state = {
@@ -108,6 +110,36 @@ export default class Map extends Component {
 
   componentDidMount() {
     this.props.getAllCinemas();
+    check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(
+      result => {
+        if (result !== 'granted') {
+          request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(
+            answer => {
+              if (answer !== 'granted') {
+                return;
+              } else {
+                Geolocation.getCurrentPosition(position => {
+                  const lat = JSON.stringify(position.coords.latitude);
+                  const lng = JSON.stringify(position.coords.longitude);
+                  console.log(lat, lng);
+                  this.props.setLocation({lat, lng});
+                });
+              }
+            },
+            error => console.log(error),
+          );
+        } else {
+          Geolocation.getCurrentPosition(position => {
+            const lat = JSON.stringify(position.coords.latitude);
+            const lng = JSON.stringify(position.coords.longitude);
+            console.log(lat, lng);
+
+            this.props.setLocation({lat: +lat, lng: +lng});
+          });
+        }
+      },
+      error => console.log(error),
+    );
   }
 
   render() {
@@ -121,6 +153,7 @@ export default class Map extends Component {
     return (
       <ScrollView style={styles.container}>
         <ClusteredMapView
+          showsUserLocation={true}
           style={{
             position: 'relative',
           }}
@@ -128,7 +161,16 @@ export default class Map extends Component {
             ...el,
             location: {latitude: el.location.lat, longitude: el.location.lng},
           }))}
-          initialRegion={INIT_REGION}
+          initialRegion={
+            isEmpty(this.props.location)
+              ? INIT_REGION
+              : {
+                  latitude: this.props.location.lat,
+                  longitude: this.props.location.lng,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+                }
+          }
           ref={r => {
             this.map = r;
           }}

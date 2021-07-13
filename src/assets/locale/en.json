@@ -31,5 +31,18 @@
     "Date": "Date",
     "Archive": "Archive",
     "Actual": "Actual"
+  },
+
+  "ticket": {
+    "Location": "Location",
+    "Place": "Place",
+    "ROW": "ROW",
+    "SEAT": "SEAT",
+    "Cinema": "Cinema",
+    "Time": "Time",
+    "Film": "Film",
+    "Duration": "Duration",
+    "minutes": "minutes",
+    "Date": "Date"
   }
 }
