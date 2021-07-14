@@ -28,24 +28,25 @@ import {Text} from 'app/components/partial/Text';
 import {Component} from 'react';
 import {checkLocationPermission} from 'app/utils/permissions';
 import isEmpty from 'lodash/isEmpty';
+import {getUserLocationCity} from 'app/utils/cinemaLocation.util';
 
 export default class Map extends Component {
   state = {
-    fadeAnim: new Animated.Value(0),
+    fadeAnim: new Animated.Value(800),
   };
 
   fadeIn = () => {
     Animated.timing(this.state.fadeAnim, {
-      toValue: 1,
-      duration: 1000,
+      toValue: 630,
+      duration: 700,
       useNativeDriver: true,
     }).start();
   };
 
   fadeOut = () => {
     Animated.timing(this.state.fadeAnim, {
-      toValue: 0,
-      duration: 1000,
+      toValue: 800,
+      duration: 700,
       useNativeDriver: true,
     }).start();
   };
@@ -66,6 +67,7 @@ export default class Map extends Component {
   renderMarker = data => (
     <Marker
       onPress={() => {
+        this.fadeOut();
         this.props.onPressPoint(data);
       }}
       key={data.id}
@@ -87,11 +89,11 @@ export default class Map extends Component {
   renderItem = ({item}) => {
     return (
       <TouchableHighlight
-        style={styles.markersContainer}
         key={item.id}
         activeOpacity={0.5}
         underlayColor="white"
         onPress={() => {
+          this.fadeOut();
           this.props.onPressPoint(item);
         }}>
         <View style={styles.markerWrapper}>
@@ -109,7 +111,6 @@ export default class Map extends Component {
   };
 
   componentDidMount() {
-    this.props.getAllCinemas();
     check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(
       result => {
         if (result !== 'granted') {
@@ -133,14 +134,17 @@ export default class Map extends Component {
             const lat = JSON.stringify(position.coords.latitude);
             const lng = JSON.stringify(position.coords.longitude);
             console.log(lat, lng);
-
-            this.props.setLocation({lat: +lat, lng: +lng});
+            this.props.getLocation({lat: +lat, lng: +lng});
           });
         }
       },
       error => console.log(error),
     );
+    this.props.getAllCinemas();
   }
+  // handleScroll = event => {
+  //   this.setState({scrollPosition: event.nativeEvent.contentOffset.y});
+  // };
 
   render() {
     const INIT_REGION = {
@@ -153,7 +157,7 @@ export default class Map extends Component {
     return (
       <ScrollView style={styles.container}>
         <ClusteredMapView
-          showsUserLocation={true}
+          // showsUserLocation={true}
           style={{
             position: 'relative',
           }}
@@ -178,7 +182,7 @@ export default class Map extends Component {
           renderMarker={this.renderMarker}
           renderCluster={this.renderCluster}
           // onPress={() => {
-          //   this.state.fadeAnim !== 0 ? this.fadeOut() : null;
+          //   this.state.fadeAnim !== -100 ? this.fadeOut() : null;
           // }}
           onClusterPress={async (cluster, markers) => {
             this.fadeIn();
@@ -186,19 +190,20 @@ export default class Map extends Component {
           }}
         />
         <Animated.FlatList
-          contentContainerStyle={styles.listContainer}
+          pagingEnabled
           style={[
             styles.fadingContainer,
+
             {
-              opacity: this.state.fadeAnim,
+              transform: [{translateY: this.state.fadeAnim}],
             },
           ]}
           data={this.props.markers}
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
-          refreshing="true"
           horizontal
           initialNumToRender={1}
+          // onScroll={this.handleScroll}
           // onEndReachedThreshold={0}
         />
       </ScrollView>

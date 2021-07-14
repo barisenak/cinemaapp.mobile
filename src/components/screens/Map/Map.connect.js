@@ -5,7 +5,7 @@ import {
   cinemasSelector,
   markersSelector,
 } from 'app/redux/map/map.selector';
-import {getAllCinemas, putMarkers, setLocation} from 'app/redux/map/map.action';
+import {getAllCinemas, getLocation, putMarkers} from 'app/redux/map/map.action';
 import Map from './Map.component';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {CINEMA_CARD, MAP} from 'app/enum/navigation.enum';
@@ -19,7 +19,7 @@ export default connect(
     markers: markersSelector(st),
   }),
   {
-    setLocation: setLocation,
+    getLocation: getLocation,
     getAllCinemas: getAllCinemas,
     getCinemaCard: getCinemaCard,
     putMarkers: putMarkers,

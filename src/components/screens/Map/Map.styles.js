@@ -28,8 +28,8 @@ export const styles = StyleSheet.create({
   },
 
   map: {
-    width: '100%',
-    // height: '100%',
+    width: 400,
+    height: 400,
   },
 
   icon: {
@@ -60,37 +60,26 @@ export const styles = StyleSheet.create({
 
   fadingContainer: {
     position: 'absolute',
-    bottom: 172,
+    transform: [{translateY: -100}],
     left: 0,
     height: 90,
-    backgroundColor: white,
-    width: '90%',
-    marginLeft: '5%',
   },
 
   fadingText: {
     fontSize: 28,
   },
 
-  markersContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    // width: '100%',
-    // paddingTop: 10,
-    // paddingBottom: 10,
-  },
-
-  listContainer: {
-    // flexGrow: 1,
-    // width: '100%',
-    // alignItems: 'center',
-  },
-
   markerWrapper: {
     display: 'flex',
-    width: 373,
-    flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: white,
+    borderWidth: 0.2,
+    width: 385,
+    height: '100%',
+    flexDirection: 'row',
     alignItems: 'center',
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginHorizontal: 7,
   },
 });
