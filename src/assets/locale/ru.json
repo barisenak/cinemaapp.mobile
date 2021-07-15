@@ -42,7 +42,22 @@
     "Time": "Время",
     "Film": "Фильм",
     "Duration": "Длительность",
-    "minutes": "минуты",
+    "minutes": "минут(ы)",
     "Date": "Дата"
+  },
+
+  "cinemaCard": {
+    "Name": "Название",
+    "Address": "Адрес",
+    "You can watch in": "Вы можете посмотреть в"
+  },
+
+  "filmCard": {
+    "Category": "Категория",
+    "Duration": "Длительность",
+    "Release date": "Дата релиза",
+    "You can watch": "Вы можете посмотреть",
+    "in": "в",
+    "Tikets booking": "Бронирование билетов"
   }
 }

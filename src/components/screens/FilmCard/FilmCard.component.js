@@ -16,13 +16,14 @@ import {styles} from './FilmCard.styles';
 import moment from 'moment';
 import {CINEMA_CARD, FILM_CARD, SEATS_CARD} from 'app/enum/navigation.enum';
 import {Button} from 'app/components/partial/Button';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
-function FilmCard({navigation, film, cinemas, getCinemaCard, user, language}) {
+function FilmCard({navigation, film, cinemas, getCinemaCard, user, ts}) {
   const sections = [
     {
       id: 'category',
       iconName: 'format-list-bulleted',
-      name: 'Category',
+      name: ts('Category'),
       // (obj) => obj.category
       getValue: get('category'),
 
@@ -32,13 +33,13 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user, language}) {
     {
       id: 'duration',
       iconName: 'clock-time-three-outline',
-      name: 'Duration',
+      name: ts('Duration'),
       getValue: flow([get('duration'), val => `${val * 60} minutes`]),
     },
     {
       id: 'release_date',
       iconName: 'calendar-blank',
-      name: 'Release date',
+      name: ts('Release date'),
       getValue: flow([get('releaseDate'), date => moment(date).format('LL')]),
     },
   ];
@@ -103,7 +104,7 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user, language}) {
 
       {cinemas.length ? (
         <Text style={[styles.infoTitle, styles.textBlock]}>
-          Tikets booking:
+          {ts('Tikets booking')}:
         </Text>
       ) : null}
       <View style={styles.sectionContainer}>
@@ -120,7 +121,7 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user, language}) {
 
       {cinemas.length ? (
         <Text style={[styles.infoTitle, styles.textBlock]}>
-          You can watch {film.name} in:
+          {ts('You can watch')} {film.name} {ts('in')}:
         </Text>
       ) : null}
       <View style={styles.sectionContainer}>
@@ -138,4 +139,4 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user, language}) {
   );
 }
 
-export default FilmCard;
+export default withTranslation('filmCard')(FilmCard);

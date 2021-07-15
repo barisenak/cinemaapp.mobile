@@ -15,9 +15,25 @@ export const getAllCinemas = createAction(GET_ALL_CINEMAS);
 export const putCinemas = createAction(PUT_CINEMAS);
 export const putMarkers = createAction(PUT_MARKERS);
 
-function* getCinemas() {
+function* getUserLocation(action) {
   try {
-    const {data} = yield call(fetchAllCinemas);
+    const city = yield getUserLocationCity({
+      lat: action.payload.lat,
+      lng: action.payload.lng,
+    });
+
+    yield put(
+      putLocation({
+        lat: action.payload.lat,
+        lng: action.payload.lng,
+        city,
+      }),
+    );
+
+    const {data} = yield call(fetchAllCinemas, {city});
+
+    console.tron(data);
+
     if (data) {
       yield put(putCinemas(data));
     }
@@ -26,25 +42,6 @@ function* getCinemas() {
   }
 }
 
-function* getUserLocation(action) {
-  try {
-    const city = yield getUserLocationCity({
-      lat: action.payload.lat,
-      lng: action.payload.lng,
-    });
-    yield put(
-      putLocation({
-        lat: action.payload.lat,
-        lng: action.payload.lng,
-        city,
-      }),
-    );
-  } catch (ex) {
-    console.warn(ex);
-  }
-}
-
 export function* sagaWatcher() {
-  yield takeEvery(GET_ALL_CINEMAS, getCinemas);
   yield takeEvery(GET_LOCATION, getUserLocation);
 }

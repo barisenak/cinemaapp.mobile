@@ -16,8 +16,9 @@ import {Text} from 'app/components/partial/Text';
 import {FILM_CARD} from 'app/enum/navigation.enum';
 
 import get from 'lodash/fp/get';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
-function CinemaCard({cinema, navigation, route, user, getFilmCard}) {
+function CinemaCard({cinema, navigation, route, user, getFilmCard, ts}) {
   if (!cinema) {
     return null;
   }
@@ -26,13 +27,13 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard}) {
     {
       id: 'name',
       iconName: 'theater',
-      name: 'Name',
+      name: ts('Name'),
       getValue: get('name'),
     },
     {
       id: 'address',
       iconName: 'map-marker',
-      name: 'Address',
+      name: ts('Address'),
       getValue: get('address'),
     },
   ];
@@ -79,7 +80,9 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard}) {
         );
       })}
 
-      <Text style={styles.textBlock}>You can watch in {cinema.name}:</Text>
+      <Text style={styles.textBlock}>
+        {ts('You can watch in')} {cinema.name}:
+      </Text>
       <View style={styles.sectionContainer}>
         <FlatList
           data={cinema.films}
@@ -93,4 +96,4 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard}) {
   );
 }
 
-export default CinemaCard;
+export default withTranslation('cinemaCard')(CinemaCard);

@@ -42,8 +42,6 @@ function Search({
     };
   }, []);
 
-  console.log(route.params.prevScreen === FILMS);
-
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"

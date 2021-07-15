@@ -5,30 +5,20 @@ import {
   ScrollView,
   View,
   Animated,
-  SafeAreaView,
-  Touchable,
   TouchableHighlight,
 } from 'react-native';
 
 import debounce from 'lodash/debounce';
 
-import {
-  check,
-  PERMISSIONS,
-  RESULTS,
-  request,
-  checkNotifications,
-} from 'react-native-permissions';
+import {check, PERMISSIONS, request} from 'react-native-permissions';
 
-import MapView, {Callout, Marker} from 'react-native-maps';
+import {Marker} from 'react-native-maps';
 import ClusteredMapView from 'react-native-maps-super-cluster';
 import {styles} from '../Map/Map.styles';
 import Geolocation from '@react-native-community/geolocation';
 import {Text} from 'app/components/partial/Text';
 import {Component} from 'react';
-import {checkLocationPermission} from 'app/utils/permissions';
 import isEmpty from 'lodash/isEmpty';
-import {getUserLocationCity} from 'app/utils/cinemaLocation.util';
 
 export default class Map extends Component {
   state = {
@@ -122,8 +112,7 @@ export default class Map extends Component {
                 Geolocation.getCurrentPosition(position => {
                   const lat = JSON.stringify(position.coords.latitude);
                   const lng = JSON.stringify(position.coords.longitude);
-                  console.log(lat, lng);
-                  this.props.setLocation({lat, lng});
+                  this.props.getLocation({lat: +lat, lng: +lng});
                 });
               }
             },
@@ -133,18 +122,13 @@ export default class Map extends Component {
           Geolocation.getCurrentPosition(position => {
             const lat = JSON.stringify(position.coords.latitude);
             const lng = JSON.stringify(position.coords.longitude);
-            console.log(lat, lng);
             this.props.getLocation({lat: +lat, lng: +lng});
           });
         }
       },
       error => console.log(error),
     );
-    this.props.getAllCinemas();
   }
-  // handleScroll = event => {
-  //   this.setState({scrollPosition: event.nativeEvent.contentOffset.y});
-  // };
 
   render() {
     const INIT_REGION = {
@@ -181,9 +165,6 @@ export default class Map extends Component {
           radius={70}
           renderMarker={this.renderMarker}
           renderCluster={this.renderCluster}
-          // onPress={() => {
-          //   this.state.fadeAnim !== -100 ? this.fadeOut() : null;
-          // }}
           onClusterPress={async (cluster, markers) => {
             this.fadeIn();
             await this.props.putMarkers(markers);
@@ -203,8 +184,6 @@ export default class Map extends Component {
           keyExtractor={item => item.id}
           horizontal
           initialNumToRender={1}
-          // onScroll={this.handleScroll}
-          // onEndReachedThreshold={0}
         />
       </ScrollView>
     );

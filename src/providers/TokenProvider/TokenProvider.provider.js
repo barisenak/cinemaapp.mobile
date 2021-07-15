@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import {setAccessToken} from 'app/utils/fetch.util';
 
-export function TokenProvider({children, getUser}) {
+export function TokenProvider({children, getUser, setLanguage}) {
   const [isAppLoaded, setAppState] = useState(false);
 
   useEffect(() => {
@@ -18,6 +18,10 @@ export function TokenProvider({children, getUser}) {
         });
       })
       .then(() => setAppState(true));
+    // AsyncStorage.getItem('persist:root').then(settings => {
+    //   console.log(settings['settings']);
+    //   setLanguage(settings.language);
+    // });
   }, []);
 
   return isAppLoaded ? children : null;

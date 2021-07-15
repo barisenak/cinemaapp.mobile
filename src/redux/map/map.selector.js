@@ -8,3 +8,5 @@ export const locationSelector = createSelector(mapSelector, get('location'));
 export const cinemasSelector = createSelector(mapSelector, get('cinemas'));
 
 export const markersSelector = createSelector(mapSelector, get('markers'));
+
+export const citySelector = createSelector(mapSelector, map => map.location);

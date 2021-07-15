@@ -44,5 +44,20 @@
     "Duration": "Duration",
     "minutes": "minutes",
     "Date": "Date"
+  },
+
+  "cinemaCard": {
+    "Name": "Name",
+    "Address": "Address",
+    "You can watch in": "You can watch in"
+  },
+
+  "filmCard": {
+    "Category": "Category",
+    "Duration": "Duration",
+    "Release date": "Release date",
+    "You can watch": "You can watch",
+    "in": "in",
+    "Tikets booking": "Tikets booking"
   }
 }

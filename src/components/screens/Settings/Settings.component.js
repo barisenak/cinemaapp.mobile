@@ -7,6 +7,9 @@ import {Button} from 'app/components/partial/Button';
 import {ENGLISH, RUSSIAN} from 'app/enum/settings.enum';
 import {Text} from 'app/components/partial/Text';
 
+import analytics from '@react-native-firebase/analytics';
+import {firebase} from '@react-native-firebase/analytics';
+
 import {
   getApplicationName,
   getBuildId,

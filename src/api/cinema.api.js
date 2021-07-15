@@ -7,7 +7,10 @@ export const fetchCinema = ({id = ''} = {}) =>
     },
   });
 
-export const fetchAllCinemas = () => fetchJSON('cinemas/', {});
+export const fetchAllCinemas = ({city = ''} = {}) =>
+  fetchJSON('cinemas/', {
+    query: {city},
+  });
 
 export const fetchCinemaToFav = ({userId = '', cinemaId = ''} = {}) =>
   fetchJSON('cinemas/addFavorite', {

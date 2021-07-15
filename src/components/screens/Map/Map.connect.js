@@ -4,6 +4,7 @@ import {
   locationSelector,
   cinemasSelector,
   markersSelector,
+  citySelector,
 } from 'app/redux/map/map.selector';
 import {getAllCinemas, getLocation, putMarkers} from 'app/redux/map/map.action';
 import Map from './Map.component';
@@ -17,6 +18,7 @@ export default connect(
     cinemas: cinemasSelector(st),
     user: userDataSelector(st),
     markers: markersSelector(st),
+    city: citySelector(st),
   }),
   {
     getLocation: getLocation,

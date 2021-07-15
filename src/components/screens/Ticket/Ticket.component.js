@@ -22,7 +22,7 @@ function Ticket({route, cinema, film, ts}) {
         {ts('Cinema')}: {cinema.name}
       </Text>
       <Text style={styles.text}>
-        {ts('Duration')}: {film.duration * 60} {ts('munites')}
+        {ts('Duration')}: {film.duration * 60} {ts('minutes')}
       </Text>
       {route.params.placeNumber
         ? route.params.placeNumber.map((el, id) => {
