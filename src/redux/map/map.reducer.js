@@ -3,7 +3,7 @@ import {createReducer} from 'app/utils/redux.util';
 import {PUT_LOCATION, PUT_CINEMAS, PUT_MARKERS} from './map.action';
 
 const initialState = {
-  location: {},
+  location: null,
   cinemas: [],
   markers: [],
 };

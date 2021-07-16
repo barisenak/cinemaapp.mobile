@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   Image,
   ScrollView,
@@ -10,15 +10,14 @@ import {
 
 import debounce from 'lodash/debounce';
 
-import {check, PERMISSIONS, request} from 'react-native-permissions';
-
 import {Marker} from 'react-native-maps';
 import ClusteredMapView from 'react-native-maps-super-cluster';
 import {styles} from '../Map/Map.styles';
-import Geolocation from '@react-native-community/geolocation';
 import {Text} from 'app/components/partial/Text';
 import {Component} from 'react';
 import isEmpty from 'lodash/isEmpty';
+import {checkLocationPermission} from 'app/utils/permissions';
+import {INIT_REGION} from 'app/enum/location.enum';
 
 export default class Map extends Component {
   state = {
@@ -100,48 +99,23 @@ export default class Map extends Component {
     );
   };
 
-  componentDidMount() {
-    check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(
-      result => {
-        if (result !== 'granted') {
-          request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(
-            answer => {
-              if (answer !== 'granted') {
-                return;
-              } else {
-                Geolocation.getCurrentPosition(position => {
-                  const lat = JSON.stringify(position.coords.latitude);
-                  const lng = JSON.stringify(position.coords.longitude);
-                  this.props.getLocation({lat: +lat, lng: +lng});
-                });
-              }
-            },
-            error => console.log(error),
-          );
-        } else {
-          Geolocation.getCurrentPosition(position => {
-            const lat = JSON.stringify(position.coords.latitude);
-            const lng = JSON.stringify(position.coords.longitude);
-            this.props.getLocation({lat: +lat, lng: +lng});
-          });
-        }
-      },
-      error => console.log(error),
-    );
+  async componentDidMount() {
+    const coords = await checkLocationPermission();
+    if (coords) {
+      this.props.getLocation(coords);
+    } else {
+      this.props.getLocation({
+        lat: INIT_REGION.latitude,
+        lng: INIT_REGION.longitude,
+      });
+    }
   }
 
   render() {
-    const INIT_REGION = {
-      latitude: 53.89969038847524,
-      longitude: 27.55489139255121,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    };
-
-    return (
+    return isEmpty(this.props.location) ? null : (
       <ScrollView style={styles.container}>
         <ClusteredMapView
-          // showsUserLocation={true}
+          showsUserLocation={true}
           style={{
             position: 'relative',
           }}
@@ -149,16 +123,12 @@ export default class Map extends Component {
             ...el,
             location: {latitude: el.location.lat, longitude: el.location.lng},
           }))}
-          initialRegion={
-            isEmpty(this.props.location)
-              ? INIT_REGION
-              : {
-                  latitude: this.props.location.lat,
-                  longitude: this.props.location.lng,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421,
-                }
-          }
+          initialRegion={{
+            latitude: this.props.location.lat,
+            longitude: this.props.location.lng,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
           ref={r => {
             this.map = r;
           }}
