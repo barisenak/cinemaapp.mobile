@@ -9,6 +9,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 function AddFavFilm({options, addFavoriteFilm, user}) {
   return (
     <TouchableOpacity
+      hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
+      // pressRetentionOffset={{top: r}}
       onPress={() => {
         addFavoriteFilm({
           filmId: options.filmId,

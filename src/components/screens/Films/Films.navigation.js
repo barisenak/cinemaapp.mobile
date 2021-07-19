@@ -8,6 +8,8 @@ import Films from './Films.connect';
 import {FILMS, SEARCH} from 'app/enum/navigation.enum';
 import {styles} from '../Films/Films.styles';
 
+import analytics from '@react-native-firebase/analytics';
+
 const Stack = createStackNavigator();
 
 function FilmsNavigator({navigation}) {
@@ -24,7 +26,17 @@ function FilmsNavigator({navigation}) {
               color="grey"
               size={30}
               style={styles.icon}
-              onPress={() => navigation.navigate(SEARCH, {prevScreen: FILMS})}
+              onPress={async () => {
+                console.log('jfs');
+                await analytics().logEvent('basket', {
+                  id: 3745092,
+                  item: 'mens grey t-shirt',
+                  description: ['round neck', 'long sleeved'],
+                  size: 'L',
+                });
+
+                navigation.navigate(SEARCH, {prevScreen: FILMS});
+              }}
             />
           ),
         }}
