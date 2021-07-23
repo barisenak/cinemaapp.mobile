@@ -57,6 +57,7 @@ function Favorites({
               name: item.name,
               filmId: item.id,
               userId: userData?.id,
+              prevScreen: FAVORITES,
             });
           }
         }}>

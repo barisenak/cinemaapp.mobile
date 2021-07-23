@@ -31,6 +31,7 @@ import CinemaCard from './src/components/screens/CinemaCard/CinemaCard.connect';
 import AddFavCinema from './src/components/screens/CinemaCard/AddFavCinema/AddFavCinema.connect';
 import Seats from './src/components/screens/Seats/Seats.connect';
 import Ticket from './src/components/screens/Ticket/Ticket.connect';
+import BackButton from './src/components/common/BackButton/BackButton.js';
 
 // providers
 import {TokenProvider} from './src/providers';
@@ -38,7 +39,7 @@ import Search from './src/components/screens/Search/Search.connect';
 
 const Stack = createStackNavigator();
 
-function App() {
+function App({ts}) {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -73,21 +74,19 @@ function App() {
                 options={({route, navigation}) => ({
                   headerTitle: TICKET,
                   headerLeft: () => (
-                    <HeaderBackButton
-                      onPress={() => {
-                        route.params.prevScreen === TICKETS
-                          ? navigation.navigate(TICKETS)
-                          : navigation.navigate(FILMS);
-                      }}
-                    />
+                    <BackButton route={route} navigation={navigation} />
                   ),
                 })}
               />
               <Stack.Screen
                 name={FILM_CARD}
                 component={FilmCard}
-                options={({route}) => ({
+                options={({route, navigation}) => ({
                   headerTitle: route.params.name,
+                  headerLeft: () => (
+                    <BackButton route={route} navigation={navigation} />
+                  ),
+
                   headerRight: () => (
                     <AddFavFilm
                       options={{
@@ -113,12 +112,7 @@ function App() {
                   ),
 
                   headerLeft: () => (
-                    <HeaderBackButton
-                      label={route.params.prevScreen}
-                      onPress={() =>
-                        navigation.navigate(route.params.prevScreen)
-                      }
-                    />
+                    <BackButton route={route} navigation={navigation} />
                   ),
                 })}
               />
@@ -128,14 +122,7 @@ function App() {
                 options={({route, navigation}) => ({
                   headerTitle: SEARCH,
                   headerLeft: () => (
-                    <HeaderBackButton
-                      label={route.params.prevScreen === FILMS ? FILMS : MAP}
-                      onPress={() => {
-                        route.params.prevScreen === FILMS
-                          ? navigation.navigate(FILMS)
-                          : navigation.navigate(MAP);
-                      }}
-                    />
+                    <BackButton route={route} navigation={navigation} />
                   ),
                 })}
               />

@@ -59,5 +59,30 @@
     "You can watch": "Вы можете посмотреть",
     "in": "в",
     "Tikets booking": "Бронирование билетов"
+  },
+
+  "floorMenu": {
+    "Films": "Фильмы",
+    "Favorites": "Избранное",
+    "Tickets": "Билеты",
+    "Map": "Карта",
+    "Settings": "Настройки",
+    "FilmCard": "Фильм",
+    "CinemaCard": "Кинотеатр",
+    "Search": "Поиск"
+  },
+
+  "films": {
+    "Recently released": "Недавние релизы",
+    "Biography": "Биография",
+    "Drama": "Драма",
+    "Comedy": "Комедия"
+  },
+
+  "search": {
+    "Search": "Поиск",
+    "type film you want to search": "Введите фильм, который хотите найти",
+    "type cinema you want to search": "Введите кинотеатр, который хотите найти",
+    "no results": "нет результатов"
   }
 }

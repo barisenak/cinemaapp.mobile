@@ -59,5 +59,30 @@
     "You can watch": "You can watch",
     "in": "in",
     "Tikets booking": "Tikets booking"
+  },
+
+  "floorMenu": {
+    "Films": "Films",
+    "Favorites": "Favorites",
+    "Tickets": "Tickets",
+    "Map": "Map",
+    "Settings": "Settings",
+    "FilmCard": "Film",
+    "CinemaCard": "Cinema",
+    "Search": "Search"
+  },
+
+  "films": {
+    "Recently released": "Recently released",
+    "Biography": "Biography",
+    "Drama": "Drama",
+    "Comedy": "Comedy"
+  },
+
+  "search": {
+    "Search": "Search",
+    "type film you want to search": "type film you want to search",
+    "type cinema you want to search": "type cinema you want to search",
+    "no results": "no results"
   }
 }

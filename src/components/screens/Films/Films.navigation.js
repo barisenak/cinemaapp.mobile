@@ -9,17 +9,18 @@ import {FILMS, SEARCH} from 'app/enum/navigation.enum';
 import {styles} from '../Films/Films.styles';
 
 import analytics from '@react-native-firebase/analytics';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 const Stack = createStackNavigator();
 
-function FilmsNavigator({navigation}) {
+function FilmsNavigator({navigation, ts}) {
   return (
     <Stack.Navigator initialRouteName="Films">
       <Stack.Screen
         name={FILMS}
         component={Films}
         options={{
-          headerTitle: FILMS,
+          headerTitle: ts('Films'),
           headerRight: () => (
             <MaterialCommunityIcons
               name="magnify"
@@ -44,4 +45,4 @@ function FilmsNavigator({navigation}) {
     </Stack.Navigator>
   );
 }
-export default FilmsNavigator;
+export default withTranslation('floorMenu')(FilmsNavigator);

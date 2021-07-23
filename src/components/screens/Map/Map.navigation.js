@@ -7,17 +7,18 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import {styles} from '../Map/Map.styles';
 import {MAP, SEARCH} from 'app/enum/navigation.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 const Stack = createStackNavigator();
 
-function MapNavigator({navigation}) {
+function MapNavigator({navigation, ts}) {
   return (
     <Stack.Navigator initialRouteName="Map">
       <Stack.Screen
         name="Map"
         component={Map}
         options={{
-          headerTitle: 'Map',
+          headerTitle: ts('Map'),
           headerRight: () => (
             <MaterialCommunityIcons
               name="magnify"
@@ -32,4 +33,4 @@ function MapNavigator({navigation}) {
     </Stack.Navigator>
   );
 }
-export default MapNavigator;
+export default withTranslation('floorMenu')(MapNavigator);

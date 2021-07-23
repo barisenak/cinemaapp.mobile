@@ -18,7 +18,8 @@ import {
   CATEGORY_DRAMA,
   CATEGORY_RECENTLY_RELEASED,
 } from 'app/enum/category.enum';
-import {FILM_CARD} from 'app/enum/navigation.enum';
+import {FILMS, FILM_CARD} from 'app/enum/navigation.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 function Films({
   state,
@@ -31,6 +32,7 @@ function Films({
   navigation,
   getFilmCard,
   user,
+  ts,
 }) {
   useEffect(() => {
     loadFilms({
@@ -62,6 +64,7 @@ function Films({
             name: item.name,
             filmId: item.id,
             userId: user?.id,
+            prevScreen: FILMS,
           }));
       }}>
       <Image source={{uri: item.img}} style={styles.card} />
@@ -82,7 +85,7 @@ function Films({
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <View style={styles.sectionContainer}>
-        <Text style={styles.category}>Recently released</Text>
+        <Text style={styles.category}>{ts('Recently released')}</Text>
         <FlatList
           data={films[CATEGORY_RECENTLY_RELEASED]}
           renderItem={renderItem}
@@ -109,7 +112,7 @@ function Films({
       </View>
 
       <View style={styles.sectionContainer}>
-        <Text style={styles.category}>Comedy</Text>
+        <Text style={styles.category}>{ts('Comedy')}</Text>
         <FlatList
           data={films[CATEGORY_COMEDY]}
           renderItem={renderItem}
@@ -134,7 +137,7 @@ function Films({
       </View>
 
       <View style={styles.sectionContainer}>
-        <Text style={styles.category}>Drama</Text>
+        <Text style={styles.category}>{ts('Drama')}</Text>
         <FlatList
           data={films[CATEGORY_DRAMA]}
           renderItem={renderItem}
@@ -159,7 +162,7 @@ function Films({
       </View>
 
       <View style={styles.sectionContainer}>
-        <Text style={styles.category}>Biography</Text>
+        <Text style={styles.category}>{ts('Biography')}</Text>
         <FlatList
           data={films[CATEGORY_BIOGRAPHY]}
           renderItem={renderItem}
@@ -186,4 +189,4 @@ function Films({
   );
 }
 
-export default Films;
+export default withTranslation('films')(Films);

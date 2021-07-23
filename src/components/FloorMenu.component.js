@@ -15,10 +15,11 @@ import {
   MAP,
   SETTINGS,
 } from 'app/enum/navigation.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 const Tab = createBottomTabNavigator();
 
-function FloorMenu({route}) {
+function FloorMenu({route, ts}) {
   return (
     <Tab.Navigator
       // see documentation:
@@ -36,7 +37,7 @@ function FloorMenu({route}) {
         name={FILMS}
         component={FilmsScreenNavigator}
         options={{
-          tabBarLabel: 'Films',
+          tabBarLabel: ts('Films'),
           tabBarIcon: ({focused, color}) => {
             return (
               <MaterialCommunityIcons
@@ -52,7 +53,7 @@ function FloorMenu({route}) {
         name={FAVORITES}
         component={FavoritesScreenNavigator}
         options={{
-          tabBarLabel: 'Favorites',
+          tabBarLabel: ts('Favorites'),
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons name="star" color={color} size={20} />
           ),
@@ -62,7 +63,7 @@ function FloorMenu({route}) {
         name={TICKETS}
         component={TicketsScreenNavigator}
         options={{
-          tabBarLabel: 'Tickets',
+          tabBarLabel: ts('Tickets'),
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons name="ticket" color={color} size={20} />
           ),
@@ -72,7 +73,7 @@ function FloorMenu({route}) {
         name={MAP}
         component={MapScreenNavigator}
         options={{
-          tabBarLabel: 'Map',
+          tabBarLabel: ts('Map'),
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons name="map" color={color} size={20} />
           ),
@@ -82,7 +83,7 @@ function FloorMenu({route}) {
         name={SETTINGS}
         component={SettingsScreenNavigator}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: ts('Settings'),
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons name="tools" color={color} size={20} />
           ),
@@ -92,4 +93,4 @@ function FloorMenu({route}) {
   );
 }
 
-export default FloorMenu;
+export default withTranslation('floorMenu')(FloorMenu);

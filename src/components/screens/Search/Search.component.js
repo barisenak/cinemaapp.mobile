@@ -8,6 +8,7 @@ import {FILMS} from 'app/enum/navigation.enum';
 import {styles} from '../Search/Search.styles';
 import {TextInput} from 'app/components/partial/TextInput';
 import {ENGLISH} from 'app/enum/settings.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 function Search({
   typedCinema,
@@ -20,7 +21,7 @@ function Search({
   onSearch,
   clearSearchedData,
   onPressSearchItem,
-  language,
+  ts,
 }) {
   const renderItem = ({item}) => (
     <TouchableHighlight
@@ -51,8 +52,8 @@ function Search({
       <TextInput
         placeholder={
           route.params.prevScreen === FILMS
-            ? 'type film you want to search'
-            : 'type cinema you want to search'
+            ? ts('type film you want to search')
+            : ts('type cinema you want to search')
         }
         keyboardType="default"
         value={route.params.prevScreen === FILMS ? typedFilm : typedCinema}
@@ -63,7 +64,7 @@ function Search({
         }}
       />
       <Button type="primary" onPress={onSearch}>
-        {language === ENGLISH ? 'Search' : 'Поиск'}
+        {ts('Search')}
       </Button>
       <View style={styles.listContainer}>
         <FlatList
@@ -72,9 +73,7 @@ function Search({
           keyExtractor={item => item.id}
           refreshing="true"
           ListEmptyComponent={
-            <Text style={styles.emptySection}>{`no ${
-              route.params.prevScreen === FILMS ? 'films' : 'cinemas'
-            } founded`}</Text>
+            <Text style={styles.emptySection}>{ts('no results')}</Text>
           }
         />
       </View>
@@ -82,4 +81,4 @@ function Search({
   );
 }
 
-export default Search;
+export default withTranslation('search')(Search);
