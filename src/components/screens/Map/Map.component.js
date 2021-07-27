@@ -12,14 +12,16 @@ import debounce from 'lodash/debounce';
 
 import {Marker} from 'react-native-maps';
 import ClusteredMapView from 'react-native-maps-super-cluster';
-import {styles} from '../Map/Map.styles';
 import {Text} from 'app/components/partial/Text';
 import {Component} from 'react';
 import isEmpty from 'lodash/isEmpty';
 import {checkLocationPermission} from 'app/utils/permissions';
 import {INIT_REGION} from 'app/enum/location.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+import {getStyles} from './Map.styles';
 
-export default class Map extends Component {
+class Map extends Component {
   state = {
     fadeAnim: new Animated.Value(800),
   };
@@ -46,11 +48,16 @@ export default class Map extends Component {
 
     return (
       <Marker coordinate={coordinate} onPress={onPress}>
-        <View style={styles.myClusterStyle}>
-          <Text style={styles.myClusterTextStyle}>{pointCount}</Text>
+        <View style={this.props.styles.myClusterStyle}>
+          <Text style={this.props.styles.myClusterTextStyle}>{pointCount}</Text>
         </View>
       </Marker>
     );
+  };
+
+  clusterPress = async (cluster, markers) => {
+    this.fadeIn();
+    await this.props.putMarkers(markers);
   };
 
   renderMarker = data => (
@@ -64,9 +71,9 @@ export default class Map extends Component {
         latitude: data.location.latitude,
         longitude: data.location.longitude,
       }}>
-      <View style={styles.pointContainer}>
+      <View style={this.props.styles.pointContainer}>
         <Image
-          style={styles.img}
+          style={this.props.styles.img}
           source={{
             uri: data.img,
           }}
@@ -80,16 +87,19 @@ export default class Map extends Component {
       <TouchableHighlight
         key={item.id}
         activeOpacity={0.5}
-        underlayColor="white"
+        underlayColor={this.props.styles.screenBackground}
         onPress={() => {
           this.fadeOut();
           this.props.onPressPoint(item);
         }}>
-        <View style={styles.markerWrapper}>
-          <Text>{item.name}</Text>
-          <Text>{item.address}</Text>
+        <View style={this.props.styles.markerWrapper}>
+          <View>
+            <Text style={this.props.styles.textName}>{item.name}</Text>
+            <Text style={this.props.styles.text}>{item.address}</Text>
+            <Text style={this.props.styles.text}>{item.city}</Text>
+          </View>
           <Image
-            style={styles.img}
+            style={this.props.styles.imgInAnimation}
             source={{
               uri: item.img,
             }}
@@ -113,7 +123,7 @@ export default class Map extends Component {
 
   render() {
     return isEmpty(this.props.location) ? null : (
-      <ScrollView style={styles.container}>
+      <ScrollView style={this.props.styles.container}>
         <ClusteredMapView
           showsUserLocation={true}
           style={{
@@ -135,15 +145,12 @@ export default class Map extends Component {
           radius={70}
           renderMarker={this.renderMarker}
           renderCluster={this.renderCluster}
-          onClusterPress={async (cluster, markers) => {
-            this.fadeIn();
-            await this.props.putMarkers(markers);
-          }}
+          onClusterPress={this.clusterPress}
         />
         <Animated.FlatList
           pagingEnabled
           style={[
-            styles.fadingContainer,
+            this.props.styles.fadingContainer,
 
             {
               transform: [{translateY: this.state.fadeAnim}],
@@ -159,5 +166,7 @@ export default class Map extends Component {
     );
   }
 }
+
+export default withTranslation('tickets')(withTheme(getStyles)(Map));
 
 //lodash.map

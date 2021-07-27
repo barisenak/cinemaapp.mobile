@@ -35,7 +35,7 @@ export const getStyle = theme =>
       flexDirection: 'row',
     },
 
-    switcherText: {
+    text: {
       color: theme.black,
       marginRight: 60,
     },

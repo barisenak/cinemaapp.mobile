@@ -2,52 +2,62 @@ import {StyleSheet} from 'react-native';
 import {white} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 
-export const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: white,
-    paddingHorizontal: gutter,
-    paddingBottom: gutter * 2,
-  },
+export const getStyles = theme =>
+  StyleSheet.create({
+    container: {
+      flexGrow: 1,
+      backgroundColor: theme.white,
+      paddingHorizontal: gutter,
+      paddingBottom: gutter * 2,
+    },
 
-  screenBackground: {
-    backgroundColor: 'white',
-  },
+    screenBackground: {
+      backgroundColor: theme.white,
+    },
 
-  textBlock: {
-    marginTop: 20,
-  },
+    textBlock: {
+      marginTop: 20,
+    },
 
-  image: {
-    width: '100%',
-    height: 560,
-    marginBottom: gutter,
-  },
+    image: {
+      width: '100%',
+      height: 560,
+      marginBottom: gutter,
+    },
 
-  card: {
-    width: 120,
-    height: 170,
-    marginRight: 7,
-    marginTop: 7,
-  },
+    card: {
+      width: 120,
+      height: 170,
+      marginRight: 7,
+      marginTop: 7,
+    },
 
-  sectionContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'flex-start',
-    marginLeft: 7,
-  },
+    sectionContainer: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'flex-start',
+      marginLeft: 7,
+    },
 
-  infoContainer: {
-    marginVertical: gutter / 2,
-  },
-  intoTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  infoIcon: {marginRight: gutter / 2},
-  infoTitle: {fontWeight: 'bold'},
-  infoValue: {marginTop: gutter / 4},
-});
+    littleIcons: {color: theme.black},
+
+    infoContainer: {
+      marginVertical: gutter / 2,
+    },
+
+    intoTitleContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+
+    infoIcon: {marginRight: gutter / 2},
+
+    infoTitle: {
+      fontWeight: 'bold',
+      color: theme.black,
+    },
+
+    infoValue: {marginTop: gutter / 4, color: theme.black},
+  });

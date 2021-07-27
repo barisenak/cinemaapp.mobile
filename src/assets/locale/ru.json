@@ -49,7 +49,7 @@
   "cinemaCard": {
     "Name": "Название",
     "Address": "Адрес",
-    "You can watch in": "Вы можете посмотреть в"
+    "You can watch in cinema": "Вы можете посмотреть в кинотеатре"
   },
 
   "filmCard": {

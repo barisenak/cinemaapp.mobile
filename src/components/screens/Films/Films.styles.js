@@ -1,46 +1,52 @@
 import {StyleSheet} from 'react-native';
 import {white} from 'app/styles/colors.style';
 
-export const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: white,
-  },
+export const getStyles = theme =>
+  StyleSheet.create({
+    container: {
+      flexGrow: 1,
+      backgroundColor: theme.white,
+    },
 
-  screenBackground: {
-    backgroundColor: 'white',
-  },
+    screenBackground: {
+      backgroundColor: theme.white,
+    },
 
-  category: {
-    width: '100%',
-    paddingVertical: 8.5,
-    paddingLeft: 10,
-    fontWeight: 'bold',
-    justifyContent: 'center',
-    fontSize: 17,
-    marginTop: 10,
-  },
+    text: {
+      color: theme.black,
+    },
 
-  card: {
-    width: 120,
-    height: 170,
-    marginRight: 7,
-    marginTop: 10,
-  },
+    category: {
+      width: '100%',
+      paddingVertical: 8.5,
+      paddingLeft: 10,
+      fontWeight: 'bold',
+      justifyContent: 'center',
+      fontSize: 17,
+      marginTop: 10,
+      color: theme.black,
+    },
 
-  sectionContainer: {
-    marginBottom: 20,
-  },
+    card: {
+      width: 120,
+      height: 170,
+      marginRight: 7,
+      marginTop: 10,
+    },
 
-  emptySection: {
-    marginLeft: 10,
-  },
+    sectionContainer: {
+      marginBottom: 20,
+    },
 
-  icon: {
-    marginRight: 10,
-  },
+    emptySection: {
+      marginLeft: 10,
+    },
 
-  indicatorContainer: {
-    paddingTop: 50,
-  },
-});
+    icon: {
+      marginRight: 10,
+    },
+
+    indicatorContainer: {
+      paddingTop: 50,
+    },
+  });

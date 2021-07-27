@@ -1,12 +1,12 @@
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 import React from 'react';
 
 import {TouchableOpacity} from 'react-native';
 
-import {styles} from '../Films.styles';
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {getStyles} from '../Films.styles';
 
-function AddFavFilm({options, addFavoriteFilm, user}) {
+function AddFavFilm({options, addFavoriteFilm, user, styles}) {
   return (
     <TouchableOpacity
       hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
@@ -33,4 +33,4 @@ function AddFavFilm({options, addFavoriteFilm, user}) {
   );
 }
 
-export default AddFavFilm;
+export default withTheme(getStyles)(AddFavFilm);

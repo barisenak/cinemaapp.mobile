@@ -2,58 +2,67 @@ import {white} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 import {StyleSheet} from 'react-native';
 
-export const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    paddingTop: 10,
-    flexGrow: 1,
-    backgroundColor: white,
-    paddingHorizontal: gutter,
-    paddingBottom: gutter * 2,
-  },
+export const getStyles = theme =>
+  StyleSheet.create({
+    container: {
+      alignItems: 'center',
+      paddingTop: 10,
+      flexGrow: 1,
+      backgroundColor: theme.white,
+      paddingHorizontal: gutter,
+      paddingBottom: gutter * 2,
+    },
 
-  signInContainer: {
-    marginTop: -67,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    screenBackground: {
+      backgroundColor: theme.white,
+    },
 
-  card: {
-    width: 124,
-    height: 173,
-    marginTop: gutter / 2,
-    marginRight: 2,
-    marginLeft: 1,
-  },
+    signInContainer: {
+      marginTop: -67,
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
 
-  emptyContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
+    card: {
+      width: 124,
+      height: 173,
+      marginTop: gutter / 2,
+      marginRight: 2,
+      marginLeft: 1,
+    },
 
-  emptyText: {
-    marginTop: 270,
-    color: 'grey',
-  },
+    emptyContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+    },
 
-  navTabWrapper: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    textAlign: 'center',
-  },
+    emptyText: {
+      marginTop: 270,
+      color: 'grey',
+    },
 
-  sectionContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    width: '100%',
-  },
+    navTabWrapper: {
+      justifyContent: 'center',
+      flexDirection: 'row',
+      textAlign: 'center',
+    },
 
-  cardsContainer: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'flex-start',
-  },
-});
+    sectionContainer: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+      width: '100%',
+    },
+
+    cardsContainer: {
+      display: 'flex',
+      width: '100%',
+      justifyContent: 'flex-start',
+    },
+
+    text: {
+      color: theme.black,
+    },
+  });

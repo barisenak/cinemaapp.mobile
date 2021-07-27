@@ -2,11 +2,12 @@ import React from 'react';
 
 import {TouchableOpacity} from 'react-native';
 
-import {styles} from '../CinemaCard.styles';
+import {getStyles} from '../CinemaCard.styles';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
-function AddFavCinema({navigation, options, addFavoriteCinema, user}) {
+function AddFavCinema({navigation, options, addFavoriteCinema, user, styles}) {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -32,4 +33,4 @@ function AddFavCinema({navigation, options, addFavoriteCinema, user}) {
   );
 }
 
-export default AddFavCinema;
+export default withTheme(getStyles)(AddFavCinema);

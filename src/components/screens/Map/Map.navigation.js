@@ -5,13 +5,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {styles} from '../Map/Map.styles';
+import {getStyles} from '../Map/Map.styles';
 import {MAP, SEARCH} from 'app/enum/navigation.enum';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 const Stack = createStackNavigator();
 
-function MapNavigator({navigation, ts}) {
+function MapNavigator({navigation, ts, styles}) {
   return (
     <Stack.Navigator initialRouteName="Map">
       <Stack.Screen
@@ -19,6 +20,11 @@ function MapNavigator({navigation, ts}) {
         component={Map}
         options={{
           headerTitle: ts('Map'),
+          headerTitleStyle: {
+            color: styles.text.color,
+          },
+          headerStyle: {backgroundColor: styles.container.backgroundColor},
+
           headerRight: () => (
             <MaterialCommunityIcons
               name="magnify"
@@ -33,4 +39,4 @@ function MapNavigator({navigation, ts}) {
     </Stack.Navigator>
   );
 }
-export default withTranslation('floorMenu')(MapNavigator);
+export default withTranslation('floorMenu')(withTheme(getStyles)(MapNavigator));

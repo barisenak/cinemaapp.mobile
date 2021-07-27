@@ -1,11 +1,13 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
+
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import FavoritesScreenNavigator from './screens/Favorites/Favorites.navigation';
+import SettingsScreenNavigator from './screens/Settings/Settings.navigation';
 import FilmsScreenNavigator from './screens/Films/Films.navigation';
 import TicketsScreenNavigator from './screens/Tickets/Tickets.navigation';
 import MapScreenNavigator from './screens/Map/Map.navigation';
-import SettingsScreenNavigator from './screens/Settings/Settings.navigation';
 
 import {active, inactive} from 'app/styles/colors.style';
 import {
@@ -14,12 +16,17 @@ import {
   TICKETS,
   MAP,
   SETTINGS,
+  FLOOR,
 } from 'app/enum/navigation.enum';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {makeLogOnEvent} from 'app/utils/analytics.util';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+import {getStyle} from './FloorMenu.styles';
 
 const Tab = createBottomTabNavigator();
 
-function FloorMenu({route, ts}) {
+function FloorMenu({route, ts, styles}) {
   return (
     <Tab.Navigator
       // see documentation:
@@ -27,15 +34,19 @@ function FloorMenu({route, ts}) {
       //
       screenOptions={{}}
       tabBarOptions={{
-        activeTintColor: active,
-        inactiveTintColor: inactive,
+        activeTintColor: styles.active,
+        inactiveTintColor: styles.inactive,
         labelStyle: {
           textTransform: 'uppercase',
         },
+        style: {backgroundColor: styles.white},
       }}>
       <Tab.Screen
         name={FILMS}
         component={FilmsScreenNavigator}
+        onPress={() => {
+          makeLogOnEvent(FLOOR, FILMS);
+        }}
         options={{
           tabBarLabel: ts('Films'),
           tabBarIcon: ({focused, color}) => {
@@ -52,6 +63,9 @@ function FloorMenu({route, ts}) {
       <Tab.Screen
         name={FAVORITES}
         component={FavoritesScreenNavigator}
+        onPress={() => {
+          makeLogOnEvent(FLOOR, FAVORITES);
+        }}
         options={{
           tabBarLabel: ts('Favorites'),
           tabBarIcon: ({focused, color}) => (
@@ -62,6 +76,9 @@ function FloorMenu({route, ts}) {
       <Tab.Screen
         name={TICKETS}
         component={TicketsScreenNavigator}
+        onPress={() => {
+          makeLogOnEvent(FLOOR, TICKETS);
+        }}
         options={{
           tabBarLabel: ts('Tickets'),
           tabBarIcon: ({focused, color}) => (
@@ -72,6 +89,9 @@ function FloorMenu({route, ts}) {
       <Tab.Screen
         name={MAP}
         component={MapScreenNavigator}
+        onPress={() => {
+          makeLogOnEvent(FLOOR, MAP);
+        }}
         options={{
           tabBarLabel: ts('Map'),
           tabBarIcon: ({focused, color}) => (
@@ -82,6 +102,9 @@ function FloorMenu({route, ts}) {
       <Tab.Screen
         name={SETTINGS}
         component={SettingsScreenNavigator}
+        onPress={() => {
+          makeLogOnEvent(FLOOR, SETTINGS);
+        }}
         options={{
           tabBarLabel: ts('Settings'),
           tabBarIcon: ({focused, color}) => (
@@ -93,4 +116,4 @@ function FloorMenu({route, ts}) {
   );
 }
 
-export default withTranslation('floorMenu')(FloorMenu);
+export default withTranslation('floorMenu')(withTheme(getStyle)(FloorMenu));

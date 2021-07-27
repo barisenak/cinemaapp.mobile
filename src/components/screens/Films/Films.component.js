@@ -11,7 +11,6 @@ import {STATE_INITIAL, STATE_LOADING} from 'app/enum/state.enum';
 
 import {Text} from 'app/components/partial/Text';
 
-import {styles} from './Films.styles';
 import {
   CATEGORY_COMEDY,
   CATEGORY_BIOGRAPHY,
@@ -20,6 +19,8 @@ import {
 } from 'app/enum/category.enum';
 import {FILMS, FILM_CARD} from 'app/enum/navigation.enum';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {getStyles} from '../Films/Films.styles';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 function Films({
   state,
@@ -33,6 +34,7 @@ function Films({
   getFilmCard,
   user,
   ts,
+  styles,
 }) {
   useEffect(() => {
     loadFilms({
@@ -56,7 +58,7 @@ function Films({
   const renderItem = ({item}) => (
     <TouchableHighlight
       activeOpacity={user ? 0.5 : 1}
-      underlayColor="white"
+      underlayColor={styles.screenBackground.backgroundColor}
       onPress={() => {
         user &&
           (getFilmCard(item.id),
@@ -189,4 +191,4 @@ function Films({
   );
 }
 
-export default withTranslation('films')(Films);
+export default withTranslation('films')(withTheme(getStyles)(Films));

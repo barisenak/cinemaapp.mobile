@@ -9,16 +9,24 @@ import {
 
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {styles} from './CinemaCard.styles';
-
 import {Text} from 'app/components/partial/Text';
 
 import {FILM_CARD} from 'app/enum/navigation.enum';
 
 import get from 'lodash/fp/get';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {getStyles} from '../CinemaCard/CinemaCard.styles';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
-function CinemaCard({cinema, navigation, route, user, getFilmCard, ts}) {
+function CinemaCard({
+  cinema,
+  navigation,
+  route,
+  user,
+  getFilmCard,
+  ts,
+  styles,
+}) {
   if (!cinema) {
     return null;
   }
@@ -43,7 +51,7 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard, ts}) {
       <TouchableHighlight
         style={styles.card}
         activeOpacity={0.5}
-        underlayColor="white"
+        underlayColor={styles.screenBackground.backgroundColor}
         key={item.id}
         onPress={() => {
           getFilmCard(item.id);
@@ -72,6 +80,7 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard, ts}) {
                 name={iconName}
                 size={20}
                 style={styles.infoIcon}
+                color={styles.littleIcons.color}
               />
               <Text style={styles.infoTitle}>{name}</Text>
             </View>
@@ -81,7 +90,7 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard, ts}) {
       })}
 
       <Text style={styles.textBlock}>
-        {ts('You can watch in')} {cinema.name}:
+        {ts('You can watch in cinema')} {cinema.name}:
       </Text>
       <View style={styles.sectionContainer}>
         <FlatList
@@ -96,4 +105,4 @@ function CinemaCard({cinema, navigation, route, user, getFilmCard, ts}) {
   );
 }
 
-export default withTranslation('cinemaCard')(CinemaCard);
+export default withTranslation('cinemaCard')(withTheme(getStyles)(CinemaCard));

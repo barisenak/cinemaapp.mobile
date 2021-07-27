@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {
   View,
@@ -14,8 +14,6 @@ import {
   SELECTED_TAB_FILMS,
 } from 'app/enum/favorites.enum';
 
-import {styles} from 'app/components/screens/Favorites/Favorites.styles';
-
 import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
 import {
@@ -25,6 +23,8 @@ import {
   FAVORITES,
 } from 'app/enum/navigation.enum';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+import {getStyles} from '../Favorites/Favorites.styles';
 
 function Favorites({
   navigation,
@@ -34,6 +34,7 @@ function Favorites({
   getFilmCard,
   getCinemaCard,
   ts,
+  styles,
 }) {
   const renderItem = ({item}) => {
     return (
@@ -41,7 +42,7 @@ function Favorites({
         style={styles.card}
         activeOpacity={0.5}
         key={item.id}
-        underlayColor="white"
+        underlayColor={styles.screenBackground.backgroundColor}
         onPress={() => {
           if (item.location) {
             getCinemaCard(item.id);
@@ -69,14 +70,16 @@ function Favorites({
   return (
     <ScrollView
       contentContainerStyle={styles.container}
-      style={{backgroundColor: 'white'}}>
+      style={styles.screenBackground}>
       <View style={styles.navTabWrapper}>
         <Button
           disabled={!userData ? true : false}
           type="textLink"
           style={{
             text:
-              selectedTab === SELECTED_TAB_FILMS ? {fontWeight: 'bold'} : {},
+              selectedTab === SELECTED_TAB_FILMS
+                ? [{fontWeight: 'bold'}, styles.text]
+                : styles.text,
           }}
           onPress={() => {
             setSelectedTab(SELECTED_TAB_FILMS);
@@ -88,7 +91,9 @@ function Favorites({
           type="textLink"
           style={{
             text:
-              selectedTab === SELECTED_TAB_CINEMAS ? {fontWeight: 'bold'} : {},
+              selectedTab === SELECTED_TAB_CINEMAS
+                ? [{fontWeight: 'bold'}, styles.text]
+                : styles.text,
           }}
           onPress={() => {
             setSelectedTab(SELECTED_TAB_CINEMAS);
@@ -155,4 +160,4 @@ function Favorites({
   );
 }
 
-export default withTranslation('favorites')(Favorites);
+export default withTranslation('favorites')(withTheme(getStyles)(Favorites));

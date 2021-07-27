@@ -12,13 +12,22 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 import {Text} from 'app/components/partial/Text';
 
-import {styles} from './FilmCard.styles';
 import moment from 'moment';
 import {CINEMA_CARD, FILM_CARD, SEATS_CARD} from 'app/enum/navigation.enum';
 import {Button} from 'app/components/partial/Button';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+import {getStyles} from '../FilmCard/FilmCard.styles';
 
-function FilmCard({navigation, film, cinemas, getCinemaCard, user, ts}) {
+function FilmCard({
+  navigation,
+  film,
+  cinemas,
+  getCinemaCard,
+  user,
+  ts,
+  styles,
+}) {
   const sections = [
     {
       id: 'category',
@@ -47,9 +56,8 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user, ts}) {
   const renderItem = ({item}) => {
     return (
       <TouchableHighlight
-        style={styles.card}
         activeOpacity={0.5}
-        underlayColor="white"
+        underlayColor={styles.screenBackground.backgroundColor}
         key={item.id}
         onPress={() => {
           getCinemaCard(item.id);
@@ -95,6 +103,7 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user, ts}) {
               name={iconName}
               size={20}
               style={styles.infoIcon}
+              color={styles.littleIcons.color}
             />
             <Text style={styles.infoTitle}>{name}</Text>
           </View>
@@ -139,4 +148,4 @@ function FilmCard({navigation, film, cinemas, getCinemaCard, user, ts}) {
   );
 }
 
-export default withTranslation('filmCard')(FilmCard);
+export default withTranslation('filmCard')(withTheme(getStyles)(FilmCard));

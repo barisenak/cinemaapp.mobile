@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import {AUTHORIZATION, TICKET, TICKETS} from 'app/enum/navigation.enum';
 
-import {styles} from '../Tickets/Tickets.styles';
 import isEmpty from 'lodash/isEmpty';
 import {
   SELECTED_TAB_ACTUAL,
@@ -22,6 +21,8 @@ import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
 import {STATE_SUCCESS} from 'app/enum/state.enum';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+import {getStyle} from './Tickets.styles';
 
 function Tickets({
   navigation,
@@ -37,6 +38,7 @@ function Tickets({
   userData,
   state,
   ts,
+  styles,
 }) {
   const presentTime = new Date(Date.now()).getHours();
 
@@ -63,7 +65,7 @@ function Tickets({
       <TouchableHighlight
         key={item.id}
         activeOpacity={0.5}
-        underlayColor="white"
+        underlayColor={styles.screenBackground.backgroundColor}
         onPress={() => {
           getFilmCard(item.filmId.id);
           getCinemaCard(item.cinemaId.id);
@@ -127,7 +129,9 @@ function Tickets({
           type="textLink"
           style={{
             text:
-              selectedTab === SELECTED_TAB_OUTDATED ? {fontWeight: 'bold'} : {},
+              selectedTab === SELECTED_TAB_OUTDATED
+                ? [{fontWeight: 'bold'}, styles.text]
+                : styles.text,
           }}
           onPress={() => {
             setSelectedTab(SELECTED_TAB_OUTDATED);
@@ -138,7 +142,9 @@ function Tickets({
           type="textLink"
           style={{
             text:
-              selectedTab === SELECTED_TAB_ACTUAL ? {fontWeight: 'bold'} : {},
+              selectedTab === SELECTED_TAB_ACTUAL
+                ? [{fontWeight: 'bold'}, styles.text]
+                : styles.text,
           }}
           onPress={() => {
             setSelectedTab(SELECTED_TAB_ACTUAL);
@@ -195,4 +201,4 @@ function Tickets({
   );
 }
 
-export default withTranslation('tickets')(Tickets);
+export default withTranslation('tickets')(withTheme(getStyle)(Tickets));

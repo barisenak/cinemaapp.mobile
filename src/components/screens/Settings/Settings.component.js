@@ -1,21 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View} from 'react-native';
 import React from 'react';
+import {Linking} from 'react-native';
+
+import {View} from 'react-native';
+
 import {ScrollView} from 'react-native-gesture-handler';
 import {getStyle} from '../Settings/Settings.styles';
 import {Button} from 'app/components/partial/Button';
 import {ENGLISH, RUSSIAN} from 'app/enum/settings.enum';
 import {Text} from 'app/components/partial/Text';
 
-import analytics from '@react-native-firebase/analytics';
-import {firebase} from '@react-native-firebase/analytics';
-
-import {
-  getApplicationName,
-  getBuildId,
-  getBuildNumber,
-  getVersion,
-} from 'react-native-device-info';
+import {getBuildNumber, getVersion} from 'react-native-device-info';
 import {DARK, LIGHT} from 'app/enum/theme.enum';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
@@ -35,7 +30,7 @@ function Settings({
       style={styles.screenBackground}>
       <View style={styles.settingsContainer}>
         <View style={styles.switcherContainer}>
-          <Text style={styles.switcherText}>Language</Text>
+          <Text style={styles.text}>Language</Text>
           <View style={styles.buttonContainer}>
             <Button
               type={language === ENGLISH ? 'primary' : ''}
@@ -51,7 +46,7 @@ function Settings({
         </View>
 
         <View style={styles.switcherContainer}>
-          <Text style={styles.switcherText}>Theme</Text>
+          <Text style={styles.text}>Theme</Text>
           <View style={styles.buttonContainer}>
             <Button
               type={theme === DARK ? 'primary' : ''}
@@ -69,7 +64,14 @@ function Settings({
         <Button type="primary" onPress={onPressLogOut}>
           {language === ENGLISH ? 'LOG OUT' : 'Выйти'}
         </Button>
-        <Text>{`version ${getVersion()} build ${getBuildNumber()}`}</Text>
+        <Text
+          style={
+            styles.text
+          }>{`version ${getVersion()} build ${getBuildNumber()}`}</Text>
+        <Button
+          onPress={() => Linking.openURL('https://www.google.co.in/')}
+          title="www.google.co.in"
+        />
       </View>
     </ScrollView>
   );
