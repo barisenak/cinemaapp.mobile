@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 
 import {
   View,
@@ -81,9 +81,9 @@ function Favorites({
                 ? [{fontWeight: 'bold'}, styles.text]
                 : styles.text,
           }}
-          onPress={() => {
+          onPress={useCallback(() => {
             setSelectedTab(SELECTED_TAB_FILMS);
-          }}>
+          }, [])}>
           {ts('Films')}
         </Button>
         <Button
@@ -104,7 +104,7 @@ function Favorites({
 
       {!userData ? (
         <View style={styles.signInContainer}>
-          <Text> {ts('Please sign in')}</Text>
+          <Text style={styles.text}> {ts('Please sign in')}</Text>
           <Button
             type="primary"
             onPress={() =>

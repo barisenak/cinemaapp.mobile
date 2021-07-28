@@ -15,7 +15,6 @@ import {DARK, LIGHT} from 'app/enum/theme.enum';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 function Settings({
-  navigation,
   onPressLogOut,
   onChangeLanguage,
   language,
@@ -69,7 +68,7 @@ function Settings({
             styles.text
           }>{`version ${getVersion()} build ${getBuildNumber()}`}</Text>
         <Button
-          onPress={() => Linking.openURL('https://www.google.co.in/')}
+          onPress={() => Linking.openURL('mailto:test@test.com')}
           title="www.google.co.in"
         />
       </View>

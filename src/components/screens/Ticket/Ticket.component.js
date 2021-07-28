@@ -1,13 +1,14 @@
 import React from 'react';
 import {ScrollView, Image} from 'react-native';
-import {styles} from '../Ticket/Ticket.styles';
+import {getStyle} from '../Ticket/Ticket.styles';
 import {Text} from 'app/components/partial/Text';
 import moment from 'moment';
 import isEmpty from 'lodash/isEmpty';
 import {getCinemaLocation} from 'app/utils/cinemaLocation.util';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
-function Ticket({route, cinema, film, ts}) {
+function Ticket({route, cinema, film, ts, styles}) {
   if (isEmpty(film)) return null;
   if (isEmpty(cinema)) return null;
 
@@ -55,4 +56,4 @@ function Ticket({route, cinema, film, ts}) {
   );
 }
 
-export default withTranslation('ticket')(Ticket);
+export default withTranslation('ticket')(withTheme(getStyle)(Ticket));

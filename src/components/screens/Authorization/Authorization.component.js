@@ -7,10 +7,11 @@ import {Button} from 'app/components/partial/Button';
 
 import {TextInput} from 'app/components/partial/TextInput';
 
-import {styles} from './Authorization.styles';
+import {getStyle} from './Authorization.styles';
 import {FAVORITES, REGISTRATION, TICKETS} from 'app/enum/navigation.enum';
 import {ENGLISH} from 'app/enum/settings.enum';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 function Authorization({
   route,
@@ -25,6 +26,7 @@ function Authorization({
   onPressSignIn,
   language,
   ts,
+  styles,
 }) {
   useEffect(() => {
     if (userData) {
@@ -42,15 +44,17 @@ function Authorization({
 
   return (
     <View style={styles.signInContainer}>
-      <Text>{ts('Email')}</Text>
+      <Text style={styles.text}> {ts('Email')}</Text>
       <TextInput
+        style={styles.input}
         placeholder={ts('Email')}
         keyboardType="default"
         value={typedEmail}
         onChangeText={setTypedEmail}
       />
-      <Text>{ts('Password')}</Text>
+      <Text style={styles.text}>{ts('Password')}</Text>
       <TextInput
+        style={styles.input}
         placeholder={ts('Password')}
         keyboardType="default"
         value={typedPassword}
@@ -61,8 +65,10 @@ function Authorization({
       </Button>
       <Text style={styles.error}>{errorText}</Text>
       <View style={styles.registerContainer}>
-        <Text>{ts('Not registered yet? You can do it')}</Text>
-        <Button type="textLink" onPress={onPressRegister}>
+        <Text style={styles.text}>
+          {ts('Not registered yet? You can do it')}
+        </Text>
+        <Button type="primary" onPress={onPressRegister}>
           {ts('here')}
         </Button>
       </View>
@@ -70,4 +76,6 @@ function Authorization({
   );
 }
 
-export default withTranslation('authorization')(Authorization);
+export default withTranslation('authorization')(
+  withTheme(getStyle)(Authorization),
+);

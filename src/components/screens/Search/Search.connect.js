@@ -53,6 +53,7 @@ export default connect(
           ownProps.navigation.navigate(FILM_CARD, {
             name: item.name,
             filmId: item.id,
+            prevScreen: SEARCH,
           });
         } else {
           dispatchProps.getCinemaCard(item.id);

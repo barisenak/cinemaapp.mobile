@@ -3,4 +3,5 @@ export default {
   black: '#FFF',
   active: '#48cfa0',
   inactive: '#adadad',
+  lightGreen: '#6e857b',
 };

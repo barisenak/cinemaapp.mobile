@@ -7,7 +7,6 @@ import {
   TouchableHighlight,
   ActivityIndicator,
   ImageBackground,
-  Image,
   FlatList,
 } from 'react-native';
 import {AUTHORIZATION, TICKET, TICKETS} from 'app/enum/navigation.enum';
@@ -98,7 +97,7 @@ function Tickets({
         contentContainerStyle={styles.container}
         style={styles.screenBackground}>
         <View style={styles.signInContainer}>
-          <Text>{ts('Please sign in')}</Text>
+          <Text style={styles.text}>{ts('Please sign in')}</Text>
           <Button
             type="primary"
             style={styles.button}

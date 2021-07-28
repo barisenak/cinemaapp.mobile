@@ -10,11 +10,10 @@ import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {createStructuredSelector} from 'reselect';
 
 export default connect(
-  st =>
-    createStructuredSelector({
-      selectedTab: selectedTabSelector,
-      userData: userDataSelector,
-    }),
+  createStructuredSelector({
+    selectedTab: selectedTabSelector,
+    userData: userDataSelector,
+  }),
   {
     setSelectedTab: setSelectedTab,
     getFilmCard: getFilmCard,

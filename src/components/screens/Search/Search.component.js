@@ -5,10 +5,10 @@ import {Button} from 'app/components/partial/Button';
 import {ScrollView} from 'react-native-gesture-handler';
 import {FILMS} from 'app/enum/navigation.enum';
 
-import {styles} from '../Search/Search.styles';
 import {TextInput} from 'app/components/partial/TextInput';
-import {ENGLISH} from 'app/enum/settings.enum';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+import {getStyle} from './Search.styles';
 
 function Search({
   typedCinema,
@@ -22,11 +22,12 @@ function Search({
   clearSearchedData,
   onPressSearchItem,
   ts,
+  styles,
 }) {
   const renderItem = ({item}) => (
     <TouchableHighlight
       activeOpacity={0.5}
-      underlayColor="white"
+      underlayColor={styles.container.screenBackground}
       onPress={() => onPressSearchItem(item)}>
       <View style={styles.cardWrapper}>
         <Text>{item.name}</Text>
@@ -50,6 +51,7 @@ function Search({
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <TextInput
+        style={styles.input}
         placeholder={
           route.params.prevScreen === FILMS
             ? ts('type film you want to search')
@@ -73,7 +75,7 @@ function Search({
           keyExtractor={item => item.id}
           refreshing="true"
           ListEmptyComponent={
-            <Text style={styles.emptySection}>{ts('no results')}</Text>
+            <Text style={styles.text}>{ts('no results')}</Text>
           }
         />
       </View>
@@ -81,4 +83,4 @@ function Search({
   );
 }
 
-export default withTranslation('search')(Search);
+export default withTranslation('search')(withTheme(getStyle)(Search));

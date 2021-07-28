@@ -1,14 +1,16 @@
 import React, {useEffect} from 'react';
 
 import {FlatList, ScrollView, TouchableHighlight, View} from 'react-native';
-import {styles, seatTypeStyles} from '../Seats/Seats.styles';
+import {styles, seatTypeStyles, getStyle} from '../Seats/Seats.styles';
 import {Text} from 'app/components/partial/Text';
 import {Button} from 'app/components/partial/Button';
 import {SEATS_CARD, TICKET} from 'app/enum/navigation.enum';
 import DatePicker from 'react-native-date-picker';
 import isEmpty from 'lodash/isEmpty';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
-function CinemaCard({
+function Seats({
   navigation,
   user,
   cinema,
@@ -32,6 +34,8 @@ function CinemaCard({
   dateTime,
   clearSelectedSeats,
   clearBookedSeats,
+  ts,
+  styles,
 }) {
   const seatChoosing = (rowIndex, seatIndex, price) => {
     if (
@@ -172,9 +176,9 @@ function CinemaCard({
         {cinema.rooms.types.map(elem => (
           <View style={styles.exampleContainer} key={elem.id}>
             <View style={seatTypeStyles[elem.id.toString()]} />
-            <Text>
+            <Text style={styles.exampleText}>
               {' '}
-              - {elem.name}, price: {elem.price} {cinema.rooms.currency}
+              - {elem.name}, {ts('price')}: {elem.price} {cinema.rooms.currency}
             </Text>
           </View>
         ))}
@@ -186,12 +190,12 @@ function CinemaCard({
       <FlatList
         data={cinema.seatsSchema}
         renderItem={renderSchemaItem}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => index.toString()}
         refreshing="true"
       />
 
       <Text style={styles.totalPriceText}>
-        Total price: {totalPrice} {cinema.rooms.currency}
+        {ts('Total price:')} {totalPrice} {cinema.rooms.currency}
       </Text>
 
       <View>
@@ -200,7 +204,7 @@ function CinemaCard({
           contentContainerStyle={styles.timeContainer}
           horizontal
           renderItem={renderItem}
-          keyExtractor={(item, index) => index}
+          keyExtractor={(item, index) => index.toString()}
           refreshing="true"
         />
       </View>
@@ -215,30 +219,29 @@ function CinemaCard({
         />
       </View>
 
-      {totalPrice ? (
-        <Button
-          type="primary"
-          onPress={() => {
-            navigation.navigate(TICKET, {
-              ticketDate: new Date(date).setHours(choosenTime, 0, 0, 0),
-              placeNumber: selectedSeats,
-              prevScreen: SEATS_CARD,
-            });
-            setBooking({
-              userId: user.id,
-              cinemaId: cinema.id,
-              filmId: film.id,
-              bookingDate: Date.now(),
-              filmDate: new Date(date).setHours(choosenTime + 3, 0, 0, 0),
-              ticketDate: new Date(date).setHours(choosenTime, 0, 0, 0),
-              placeNumber: selectedSeats,
-            });
-          }}>
-          Pay
-        </Button>
-      ) : null}
+      <Button
+        type="primary"
+        disabled={totalPrice ? false : true}
+        onPress={() => {
+          navigation.navigate(TICKET, {
+            ticketDate: new Date(date).setHours(choosenTime, 0, 0, 0),
+            placeNumber: selectedSeats,
+            prevScreen: SEATS_CARD,
+          });
+          setBooking({
+            userId: user.id,
+            cinemaId: cinema.id,
+            filmId: film.id,
+            bookingDate: Date.now(),
+            filmDate: new Date(date).setHours(choosenTime + 3, 0, 0, 0),
+            ticketDate: new Date(date).setHours(choosenTime, 0, 0, 0),
+            placeNumber: selectedSeats,
+          });
+        }}>
+        {ts('Pay')}
+      </Button>
     </ScrollView>
   );
 }
 
-export default CinemaCard;
+export default withTranslation('seats')(withTheme(getStyle)(Seats));

@@ -65,11 +65,15 @@
     "Films": "Фильмы",
     "Favorites": "Избранное",
     "Tickets": "Билеты",
+    "Ticket": "Билет",
     "Map": "Карта",
     "Settings": "Настройки",
     "FilmCard": "Фильм",
     "CinemaCard": "Кинотеатр",
-    "Search": "Поиск"
+    "Search": "Поиск",
+    "Booking in": "Бронирование в",
+    "Authorization": "Авторизация",
+    "Registration": "Регистрация"
   },
 
   "films": {
@@ -84,5 +88,11 @@
     "type film you want to search": "Введите фильм, который хотите найти",
     "type cinema you want to search": "Введите кинотеатр, который хотите найти",
     "no results": "нет результатов"
+  },
+
+  "seats": {
+    "Pay": "Оплатить",
+    "price": "цена",
+    "Total price:": "Общая стоимость:"
   }
 }

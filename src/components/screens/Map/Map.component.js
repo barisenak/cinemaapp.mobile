@@ -22,6 +22,11 @@ import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 import {getStyles} from './Map.styles';
 
 class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+
   state = {
     fadeAnim: new Animated.Value(800),
   };
@@ -139,9 +144,7 @@ class Map extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-          ref={r => {
-            this.map = r;
-          }}
+          ref={this.myRef}
           radius={70}
           renderMarker={this.renderMarker}
           renderCluster={this.renderCluster}

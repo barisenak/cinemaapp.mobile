@@ -65,11 +65,15 @@
     "Films": "Films",
     "Favorites": "Favorites",
     "Tickets": "Tickets",
+    "Ticket": "Ticket",
     "Map": "Map",
     "Settings": "Settings",
     "FilmCard": "Film",
     "CinemaCard": "Cinema",
-    "Search": "Search"
+    "Search": "Search",
+    "Booking in": "Booking in",
+    "Authorization": "Authorization",
+    "Registration": "Registration"
   },
 
   "films": {
@@ -84,5 +88,11 @@
     "type film you want to search": "type film you want to search",
     "type cinema you want to search": "type cinema you want to search",
     "no results": "no results"
+  },
+
+  "seats": {
+    "Pay": "Pay",
+    "price": "price",
+    "Total price:": "Total price:"
   }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
-import {styles} from '../Films.styles';
 import {HeaderBackButton} from '@react-navigation/stack';
 import {FILMS, SEATS_CARD} from 'app/enum/navigation.enum';
 
