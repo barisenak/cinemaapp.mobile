@@ -15,6 +15,7 @@ export default connect(
     userData: userDataSelector,
   }),
   {
+    // REVIEW: We can reduce code a little, since the names and values are the same
     setSelectedTab: setSelectedTab,
     getFilmCard: getFilmCard,
     getCinemaCard: getCinemaCard,

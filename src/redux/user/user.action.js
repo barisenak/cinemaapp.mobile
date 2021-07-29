@@ -12,6 +12,8 @@ export const removeUserInfo = createAction(REMOVE_USER_INFO);
 
 function* removeUserData() {
   try {
+    // REVIEW: Please use `call` effect to handle async calls.
+    // Since we have multiple calls please add `all` effect.
     AsyncStorage.removeItem('accessToken');
     AsyncStorage.removeItem('refreshToken');
     yield put(clearUser());

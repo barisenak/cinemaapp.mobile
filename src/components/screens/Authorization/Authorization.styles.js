@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+// REVIEW: Please remove unneeded imports
 import {white} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 

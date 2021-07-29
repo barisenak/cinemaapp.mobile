@@ -1,3 +1,4 @@
+// REVIEW: Unneeded import
 import {StyleSheet} from 'react-native';
 
 export const getStyle = theme => {

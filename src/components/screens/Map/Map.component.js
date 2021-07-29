@@ -131,6 +131,7 @@ class Map extends Component {
       <ScrollView style={this.props.styles.container}>
         <ClusteredMapView
           showsUserLocation={true}
+          // REVIEW: Please move into styles
           style={{
             position: 'relative',
           }}
@@ -144,6 +145,9 @@ class Map extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
+          // REVIEW: This ref is not used in the component,
+          // can we get rid of that?
+          // The name is also might be improved
           ref={this.myRef}
           radius={70}
           renderMarker={this.renderMarker}

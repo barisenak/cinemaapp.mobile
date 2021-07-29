@@ -10,6 +10,8 @@ export function withTheme(getStyle) {
           {({th, theme}) => (
             <Component
               {...props}
+              // REVIEW: What's `th` for?
+              // Can we remove this?
               th={(key, options) => th(`${theme}`, options)}
               styles={getStyle(theme)}
             />

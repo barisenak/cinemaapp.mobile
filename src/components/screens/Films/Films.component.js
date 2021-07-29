@@ -6,6 +6,7 @@ import {
   Image,
   ActivityIndicator,
   TouchableHighlight,
+  SectionList,
 } from 'react-native';
 import {STATE_INITIAL, STATE_LOADING} from 'app/enum/state.enum';
 
@@ -22,6 +23,32 @@ import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {getStyles} from '../Films/Films.styles';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
+// REVIEW: Let's split this component into small pieces.
+// So we can decrease JSX size and improve clarity.
+// Also we can create a list of sections to reduce duplication:
+//
+// const sections = [
+//   {
+//     id: CATEGORY_RECENTLY_RELEASED,
+//     title: ts('Recently released'),
+//   },
+//   ...
+// ];
+//
+// ...
+//
+// sections.map(({id, title}) => (
+//   <View key={id} style={styles.sectionContainer}>
+//     <Text style={styles.category}>{title}</Text>
+//     <FlatList
+//       horizontal
+//       data={films[CATEGORY_RECENTLY_RELEASED]}
+//       renderItem={renderItem}
+//       ...
+//     />
+//   </View>
+// ));
+//
 function Films({
   state,
   loadFilms,
@@ -37,6 +64,11 @@ function Films({
   styles,
 }) {
   useEffect(() => {
+    // REVIEW: Let's move this logic into `mergeProps`, provided by `connect`.
+    // So from component level it looks like:
+    //
+    // loadAllFilms();
+    //
     loadFilms({
       page: page[CATEGORY_RECENTLY_RELEASED],
       category: CATEGORY_RECENTLY_RELEASED,
@@ -60,6 +92,7 @@ function Films({
       activeOpacity={user ? 0.5 : 1}
       underlayColor={styles.screenBackground.backgroundColor}
       onPress={() => {
+        // REVIEW: Please refine this using `if` statement to improve clarity
         user &&
           (getFilmCard(item.id),
           navigation.navigate(FILM_CARD, {
@@ -73,7 +106,7 @@ function Films({
     </TouchableHighlight>
   );
 
-  if (state === STATE_LOADING || state === STATE_INITIAL)
+  if (state === STATE_LOADING || state === STATE_INITIAL) {
     return (
       <ScrollView
         contentContainerStyle={styles.indicatorContainer}
@@ -81,6 +114,7 @@ function Films({
         <ActivityIndicator size="small" color="black" />
       </ScrollView>
     );
+  }
 
   return (
     <ScrollView
@@ -93,6 +127,7 @@ function Films({
           renderItem={renderItem}
           keyExtractor={item => item.id}
           horizontal
+          // REVIEW: Why do we have this everywhere?
           refreshing="true"
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={
@@ -101,6 +136,7 @@ function Films({
             )
           }
           onEndReached={() => {
+            // REVIEW: Please refine this using `if` statement to improve clarity
             page[CATEGORY_RECENTLY_RELEASED] <
               totalPages[CATEGORY_RECENTLY_RELEASED] &&
               loadNewFilms({
@@ -127,6 +163,7 @@ function Films({
             )
           }
           onEndReached={() => {
+            // REVIEW: Please refine this using `if` statement to improve clarity
             page[CATEGORY_COMEDY] < totalPages[CATEGORY_COMEDY] &&
               loadNewFilms({
                 page: page[CATEGORY_COMEDY],

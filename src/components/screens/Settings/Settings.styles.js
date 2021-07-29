@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import {gutter} from 'app/styles/structure.style';
 import {white} from 'app/styles/colors.style';
 
+// REVIEW: Please confirm all styles are used in the component
 export const getStyle = theme =>
   StyleSheet.create({
     container: {

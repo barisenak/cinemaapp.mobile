@@ -70,6 +70,7 @@ function Search({
           data={films.length ? films : cinemas}
           renderItem={renderItem}
           keyExtractor={item => item.id}
+          // REVIEW: Remove
           refreshing="true"
         />
       </View>
