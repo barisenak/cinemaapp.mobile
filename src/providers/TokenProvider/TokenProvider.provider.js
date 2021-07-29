@@ -13,6 +13,15 @@ export function TokenProvider({children, getUser}) {
         setAccessToken(accessToken);
       })
       .then(() => {
+        // REVIEW: Let's create a new util to work with external storage
+        // storage.util
+        //
+        // function setItem() { ... }
+        //
+        // function getItem(key) {
+        //   return AsyncStorage.getItem(key);
+        // }
+        //
         AsyncStorage.getItem('refreshToken').then(refreshToken => {
           getUser(refreshToken);
         });

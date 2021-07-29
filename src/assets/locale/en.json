@@ -3,6 +3,11 @@
     "login": "LOG IN",
     "Email": "Email",
     "Password": "Password",
+    // REVIEW: The key of translation should not include space.
+    // Ideally it should be short camel-case values, just to indicate the value.
+    // for example:
+    //     "notRegistered": "Not registered yet? You can do it"
+    //     "availableCinemas": "You can watch in cinemas"
     "Not registered yet? You can do it": "Not registered yet? You can do it",
     "here": "here"
   },

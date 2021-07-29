@@ -10,6 +10,7 @@ function AddFavFilm({options, addFavoriteFilm, user, styles}) {
   return (
     <TouchableOpacity
       hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
+      // REVIEW: Unneeded comment
       // pressRetentionOffset={{top: r}}
       onPress={() => {
         addFavoriteFilm({

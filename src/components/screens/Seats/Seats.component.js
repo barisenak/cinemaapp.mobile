@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 
+// REVIEW: Please remove unneeded imports
 import {FlatList, ScrollView, TouchableHighlight, View} from 'react-native';
 import {styles, seatTypeStyles, getStyle} from '../Seats/Seats.styles';
 import {Text} from 'app/components/partial/Text';
@@ -10,6 +11,8 @@ import isEmpty from 'lodash/isEmpty';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
+// REVIEW: Let's think how we can reduce duplication in this component.
+// We definitely need to create a few util functions and new embedded components.
 function Seats({
   navigation,
   user,
@@ -85,7 +88,7 @@ function Seats({
       <View style={styles.row} key={index}>
         {item.map((seat, seatIndex) => {
           if (seat === '0') {
-            return <View style={styles.emptySeat} key={seatIndex}></View>;
+            return <View style={styles.emptySeat} key={seatIndex} />;
           }
           return (
             <TouchableHighlight
@@ -167,7 +170,9 @@ function Seats({
 
   const timePieces = [0, 2, 4, 6, 8, 10, 12, 14];
 
-  if (isEmpty(cinema)) return null;
+  if (isEmpty(cinema)) {
+    return null;
+  }
 
   return (
     <ScrollView

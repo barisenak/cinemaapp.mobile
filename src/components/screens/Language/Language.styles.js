@@ -1,6 +1,8 @@
 import {StyleSheet} from 'react-native';
 import {gutter} from 'app/styles/structure.style';
 
+// REVIEW: Why do we have so many styles here?
+// Most of them are not used in the component.
 export const getStyle = theme =>
   StyleSheet.create({
     container: {

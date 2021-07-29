@@ -123,6 +123,7 @@ function FilmCard({
             renderItem={renderBtnItem}
             keyExtractor={item => item.id}
             horizontal
+            // REVIEW: Let's remove it everywhere
             refreshing="true"
           />
         ) : null}

@@ -98,6 +98,7 @@ function CinemaCard({
           renderItem={renderItem}
           keyExtractor={item => item.id}
           horizontal
+          // REVIEW: I think it's superfluous and should not be here
           refreshing="true"
         />
       </View>

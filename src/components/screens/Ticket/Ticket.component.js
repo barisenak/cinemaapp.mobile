@@ -9,8 +9,13 @@ import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 function Ticket({route, cinema, film, ts, styles}) {
-  if (isEmpty(film)) return null;
-  if (isEmpty(cinema)) return null;
+  // REVIEW: Let's combine these `if` statements
+  if (isEmpty(film)) {
+    return null;
+  }
+  if (isEmpty(cinema)) {
+    return null;
+  }
 
   return (
     <ScrollView
@@ -51,7 +56,8 @@ function Ticket({route, cinema, film, ts, styles}) {
             lat: cinema.location.lat,
             lng: cinema.location.lng,
           }),
-        }}></Image>
+        }}
+      />
     </ScrollView>
   );
 }

@@ -74,6 +74,8 @@ function Favorites({
       style={styles.screenBackground}>
       <View style={styles.navTabWrapper}>
         <Button
+          // REVIEW: No need to return Boolean value since you've already converted it.
+          // disabled={!userData}
           disabled={!userData ? true : false}
           type="textLink"
           style={{
@@ -88,6 +90,8 @@ function Favorites({
           {ts('Films')}
         </Button>
         <Button
+          // REVIEW: No need to return Boolean value since you've already converted it.
+          // disabled={!userData}
           disabled={!userData ? true : false}
           type="textLink"
           style={{
@@ -121,12 +125,16 @@ function Favorites({
               data={userData.favouriteFilms}
               contentContainerStyle={styles.cardsContainer}
               renderItem={renderItem}
+              // REVIEW: I think the default implementation of `keyExtractor`
+              // does the same thing, so we can remove it.
               keyExtractor={item => item.id}
               numColumns={3}
               horizontal={false}
+              // REVIEW: Unneeded props
               refreshing="true"
             />
           )}
+          {/* REVIEW: Please make more robust check using lodash */}
           {!userData.favouriteFilms.length && (
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyText}>
@@ -142,9 +150,12 @@ function Favorites({
               data={userData.favouriteCinemas}
               contentContainerStyle={styles.cardsContainer}
               renderItem={renderItem}
+              // REVIEW: I think the default implementation of `keyExtractor`
+              // does the same thing, so we can remove it.
               keyExtractor={item => item.id}
               numColumns={3}
               horizontal={false}
+              // REVIEW: Unneeded props
               refreshing="true"
             />
           )}

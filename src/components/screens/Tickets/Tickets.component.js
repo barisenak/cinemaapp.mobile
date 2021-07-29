@@ -59,9 +59,13 @@ function Tickets({
     uri: 'https://i.ytimg.com/vi/8yny_PR2IOo/maxresdefault.jpg',
   };
 
+  // REVIEW: Let's create a new component for Ticket item,
+  // so we can reduce base component size
   const renderItem = ({item}) => {
     return (
       <TouchableHighlight
+        // REVIEW: The `key` attribute is unneeded here
+        // since FlatList provides `keyExtractor`.
         key={item.id}
         activeOpacity={0.5}
         underlayColor={styles.screenBackground.backgroundColor}
@@ -91,7 +95,7 @@ function Tickets({
     );
   };
 
-  if (!userData)
+  if (!userData) {
     return (
       <ScrollView
         contentContainerStyle={styles.container}
@@ -109,8 +113,9 @@ function Tickets({
         </View>
       </ScrollView>
     );
+  }
 
-  if (isEmpty(allBookings))
+  if (isEmpty(allBookings)) {
     return (
       <ScrollView
         contentContainerStyle={styles.indicatorContainer}
@@ -118,6 +123,7 @@ function Tickets({
         <ActivityIndicator size="small" color="black" />
       </ScrollView>
     );
+  }
 
   return (
     <ScrollView

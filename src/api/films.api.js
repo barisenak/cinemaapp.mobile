@@ -1,6 +1,7 @@
 import {fetchJSON} from 'app/utils/fetch.util';
 
 export const fetchFilms = ({
+  // REVIEW: Let's move these values into `enum`
   pageNumber = 1,
   pageSize = 5,
   category = '',

@@ -29,6 +29,7 @@ function* setData(action) {
       password: action.payload.password,
     });
     if (data.accessToken) {
+      // REVIEW: Please create a separate util to work with storage
       yield call(AsyncStorage.setItem, 'accessToken', data.accessToken);
       yield call(AsyncStorage.setItem, 'refreshToken', data.refreshToken);
 
@@ -59,6 +60,8 @@ function* loadUser(action) {
         refreshToken: action.payload,
       });
 
+      // REVIEW: Please use `all` effect, to handle multiple
+      // async effect simultaneously.
       yield call(AsyncStorage.setItem, 'accessToken', accessToken);
       yield call(AsyncStorage.setItem, 'refreshToken', refreshToken);
 
