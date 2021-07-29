@@ -37,17 +37,14 @@ function Search({
   );
 
   useEffect(() => {
-    return () => {
-      clearSearchedData();
-      setTypedFilm('');
-      setTypedCinema('');
-    };
+    clearSearchedData();
+    setTypedFilm('');
+    setTypedCinema('');
   }, []);
 
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
-      // keyboardDismissMode
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <TextInput
@@ -74,9 +71,6 @@ function Search({
           renderItem={renderItem}
           keyExtractor={item => item.id}
           refreshing="true"
-          ListEmptyComponent={
-            <Text style={styles.text}>{ts('no results')}</Text>
-          }
         />
       </View>
     </ScrollView>

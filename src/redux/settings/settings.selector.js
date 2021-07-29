@@ -7,5 +7,3 @@ export const languageSelector = createSelector(
   settingsSelector,
   get('language'),
 );
-
-export const themeSelector = createSelector(settingsSelector, get('theme'));

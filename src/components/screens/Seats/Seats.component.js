@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 
 import {FlatList, ScrollView, TouchableHighlight, View} from 'react-native';
 import {styles, seatTypeStyles, getStyle} from '../Seats/Seats.styles';
@@ -36,6 +36,7 @@ function Seats({
   clearBookedSeats,
   ts,
   styles,
+  onPayPress,
 }) {
   const seatChoosing = (rowIndex, seatIndex, price) => {
     if (
@@ -215,29 +216,13 @@ function Seats({
           onDateChange={dateToRedux => setDate(dateToRedux)}
           minimumDate={today}
           mode="date"
-          style={styles.datePicker}
         />
       </View>
 
       <Button
         type="primary"
         disabled={totalPrice ? false : true}
-        onPress={() => {
-          navigation.navigate(TICKET, {
-            ticketDate: new Date(date).setHours(choosenTime, 0, 0, 0),
-            placeNumber: selectedSeats,
-            prevScreen: SEATS_CARD,
-          });
-          setBooking({
-            userId: user.id,
-            cinemaId: cinema.id,
-            filmId: film.id,
-            bookingDate: Date.now(),
-            filmDate: new Date(date).setHours(choosenTime + 3, 0, 0, 0),
-            ticketDate: new Date(date).setHours(choosenTime, 0, 0, 0),
-            placeNumber: selectedSeats,
-          });
-        }}>
+        onPress={onPayPress}>
         {ts('Pay')}
       </Button>
     </ScrollView>

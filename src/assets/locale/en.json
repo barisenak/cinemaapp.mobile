@@ -73,7 +73,8 @@
     "Search": "Search",
     "Booking in": "Booking in",
     "Authorization": "Authorization",
-    "Registration": "Registration"
+    "Registration": "Registration",
+    "Language": "Language"
   },
 
   "films": {
@@ -94,5 +95,13 @@
     "Pay": "Pay",
     "price": "price",
     "Total price:": "Total price:"
+  },
+
+  "settings": {
+    "Language": "Language",
+    "Push notifications": "Push notifications",
+    "Send feedback": "Send feedback",
+    "About": "About",
+    "Log out": "Log out"
   }
 }

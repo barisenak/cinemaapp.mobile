@@ -21,16 +21,17 @@ import {
 import Films from './Films.component';
 import {getFilmCard} from 'app/redux/film/film.action';
 import {getAccessToken} from 'app/redux/auth/auth.action';
+import {createStructuredSelector} from 'reselect';
 
 export default connect(
-  st => ({
-    state: stateSelector(st),
-    films: filmListSelector(st),
-    film: filmCardSelector(st),
-    page: pageSelector(st),
-    totalPages: totalPagesSelector(st),
-    nextBatchState: nextBatchStateSelector(st),
-    user: userDataSelector(st),
+  createStructuredSelector({
+    state: stateSelector,
+    films: filmListSelector,
+    film: filmCardSelector,
+    page: pageSelector,
+    totalPages: totalPagesSelector,
+    nextBatchState: nextBatchStateSelector,
+    user: userDataSelector,
   }),
   {
     loadFilms: getFilms,

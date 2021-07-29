@@ -1,79 +1,64 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Linking} from 'react-native';
+import {Linking, TouchableHighlight} from 'react-native';
 
 import {View} from 'react-native';
 
 import {ScrollView} from 'react-native-gesture-handler';
 import {getStyle} from '../Settings/Settings.styles';
 import {Button} from 'app/components/partial/Button';
-import {ENGLISH, RUSSIAN} from 'app/enum/settings.enum';
 import {Text} from 'app/components/partial/Text';
 
 import {getBuildNumber, getVersion} from 'react-native-device-info';
-import {DARK, LIGHT} from 'app/enum/theme.enum';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+import {LANGUAGE} from 'app/enum/navigation.enum';
+import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
-function Settings({
-  onPressLogOut,
-  onChangeLanguage,
-  language,
-  theme,
-  onChangeTheme,
-  styles,
-}) {
-  console.tron(styles);
+function Settings({onPressLogOut, language, styles, navigation, ts}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <View style={styles.settingsContainer}>
-        <View style={styles.switcherContainer}>
-          <Text style={styles.text}>Language</Text>
-          <View style={styles.buttonContainer}>
-            <Button
-              type={language === ENGLISH ? 'primary' : ''}
-              onPress={() => onChangeLanguage(ENGLISH)}>
-              {ENGLISH}
-            </Button>
-            <Button
-              type={language === ENGLISH ? '' : 'primary'}
-              onPress={() => onChangeLanguage(RUSSIAN)}>
-              {RUSSIAN}
-            </Button>
+        <TouchableHighlight onPress={() => navigation.navigate(LANGUAGE)}>
+          <View style={styles.settingContainer}>
+            <Text style={styles.text}>{ts('Language')}</Text>
+            <View style={styles.rightPropContainer}>
+              <Text style={styles.text}>{language}</Text>
+              <Button type="simple">❯</Button>
+            </View>
           </View>
+        </TouchableHighlight>
+
+        <View style={styles.settingContainer}>
+          <Text style={styles.text}>{ts('Push notifications')}</Text>
+          <Button type="simple">❯</Button>
         </View>
 
-        <View style={styles.switcherContainer}>
-          <Text style={styles.text}>Theme</Text>
-          <View style={styles.buttonContainer}>
-            <Button
-              type={theme === DARK ? 'primary' : ''}
-              onPress={() => onChangeTheme(DARK)}>
-              Dark
-            </Button>
-            <Button
-              type={theme === DARK ? '' : 'primary'}
-              onPress={() => onChangeTheme(LIGHT)}>
-              Light
-            </Button>
+        <TouchableHighlight
+          onPress={() => Linking.openURL('mailto:test@test.com')}>
+          <View style={styles.settingContainer}>
+            <Text style={styles.text}>{ts('Send feedback')}</Text>
+            <Button type="simple">❯</Button>
           </View>
+        </TouchableHighlight>
+
+        <View style={styles.settingContainer}>
+          <Text style={styles.text}>{ts('About')}</Text>
+          <Text
+            style={
+              styles.text
+            }>{`version ${getVersion()}, build ${getBuildNumber()}`}</Text>
         </View>
 
-        <Button type="primary" onPress={onPressLogOut}>
-          {language === ENGLISH ? 'LOG OUT' : 'Выйти'}
-        </Button>
-        <Text
-          style={
-            styles.text
-          }>{`version ${getVersion()} build ${getBuildNumber()}`}</Text>
-        <Button
-          onPress={() => Linking.openURL('mailto:test@test.com')}
-          title="www.google.co.in"
-        />
+        <TouchableHighlight onPress={onPressLogOut}>
+          <View style={styles.settingContainer}>
+            <Text style={styles.text}>{ts('Log out')}</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     </ScrollView>
   );
 }
 
-export default withTheme(getStyle)(Settings);
+export default withTranslation('settings')(withTheme(getStyle)(Settings));

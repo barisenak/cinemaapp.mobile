@@ -18,14 +18,15 @@ import {getFilmCard} from 'app/redux/film/film.action';
 import {CINEMA_CARD, FILMS, FILM_CARD, SEARCH} from 'app/enum/navigation.enum';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {languageSelector} from 'app/redux/settings/settings.selector';
+import {createStructuredSelector} from 'reselect';
 
 export default connect(
-  st => ({
-    typedCinema: typedCinemaSelector(st),
-    typedFilm: typedFilmSelector(st),
-    films: filmsSelector(st),
-    cinemas: cinemasSelector(st),
-    language: languageSelector(st),
+  createStructuredSelector({
+    typedCinema: typedCinemaSelector,
+    typedFilm: typedFilmSelector,
+    films: filmsSelector,
+    cinemas: cinemasSelector,
+    language: languageSelector,
   }),
   {
     setTypedFilm: setTypedFilm,

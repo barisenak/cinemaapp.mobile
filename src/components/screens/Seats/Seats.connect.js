@@ -32,20 +32,23 @@ import {
   bookingOfUserSelector,
   dateTimeSelector,
 } from 'app/redux/booking/booking.selector';
+import {createStructuredSelector} from 'reselect';
+import {useCallback} from 'react';
+import {SEATS_CARD, TICKET} from 'app/enum/navigation.enum';
 
 export default connect(
-  st => ({
-    film: filmCardSelector(st),
-    cinema: cinemaCardSelector(st),
-    user: userDataSelector(st),
-    selectedSeats: selectedSeatsSelector(st),
-    totalPrice: totalPriceSelector(st),
-    date: dateSelector(st),
-    booking: bookingOfUserSelector(st),
-    time: timeSelector(st),
-    choosenTime: choosenTimeSelector(st),
-    bookedSeats: bookedSeatsSelector(st),
-    dateTime: dateTimeSelector(st),
+  createStructuredSelector({
+    film: filmCardSelector,
+    cinema: cinemaCardSelector,
+    user: userDataSelector,
+    selectedSeats: selectedSeatsSelector,
+    totalPrice: totalPriceSelector,
+    date: dateSelector,
+    booking: bookingOfUserSelector,
+    time: timeSelector,
+    choosenTime: choosenTimeSelector,
+    bookedSeats: bookedSeatsSelector,
+    dateTime: dateTimeSelector,
   }),
   {
     setSelectedSeat: setSelectedSeat,
@@ -59,5 +62,44 @@ export default connect(
     setDateTime: setDateTime,
     clearSelectedSeats: clearSelectedSeats,
     clearBookedSeats: clearBookedSeats,
+  },
+  (stateProps, dispatchProps, ownProps) => {
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      ...ownProps,
+
+      onPayPress: () => {
+        ownProps.navigation.navigate(TICKET, {
+          ticketDate: new Date(stateProps.date).setHours(
+            stateProps.choosenTime,
+            0,
+            0,
+            0,
+          ),
+          placeNumber: stateProps.selectedSeats,
+          prevScreen: SEATS_CARD,
+        });
+        dispatchProps.setBooking({
+          userId: stateProps.user.id,
+          cinemaId: stateProps.cinema.id,
+          filmId: stateProps.film.id,
+          bookingDate: Date.now(),
+          filmDate: new Date(stateProps.date).setHours(
+            stateProps.choosenTime + 3,
+            0,
+            0,
+            0,
+          ),
+          ticketDate: new Date(stateProps.date).setHours(
+            stateProps.choosenTime,
+            0,
+            0,
+            0,
+          ),
+          placeNumber: stateProps.selectedSeats,
+        });
+      },
+    };
   },
 )(Seats);

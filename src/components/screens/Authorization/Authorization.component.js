@@ -8,8 +8,7 @@ import {Button} from 'app/components/partial/Button';
 import {TextInput} from 'app/components/partial/TextInput';
 
 import {getStyle} from './Authorization.styles';
-import {FAVORITES, REGISTRATION, TICKETS} from 'app/enum/navigation.enum';
-import {ENGLISH} from 'app/enum/settings.enum';
+import {FAVORITES, TICKETS} from 'app/enum/navigation.enum';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
@@ -24,7 +23,6 @@ function Authorization({
   errorText,
   onPressRegister,
   onPressSignIn,
-  language,
   ts,
   styles,
 }) {

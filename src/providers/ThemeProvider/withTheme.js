@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ThemeProvider from './ThemeProvider.connect';
+import {ThemeProvider} from './ThemeProvider.provider';
 
 export function withTheme(getStyle) {
   return Component => {

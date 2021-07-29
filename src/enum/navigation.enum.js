@@ -12,3 +12,4 @@ export const SETTINGS = 'Settings';
 export const FAV_FILMS = 'FavFilms';
 export const SEATS_CARD = 'SeatsCard';
 export const SEARCH = 'Search';
+export const LANGUAGE = 'Language';

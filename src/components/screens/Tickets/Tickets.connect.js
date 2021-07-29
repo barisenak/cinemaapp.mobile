@@ -25,20 +25,23 @@ import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {selectedTabSelector} from 'app/redux/tickets/tickets.selector';
 import {setSelectedTab} from 'app/redux/tickets/tickets.action';
 import {stateSelector} from 'app/redux/booking/booking.selector';
+import {createStructuredSelector} from 'reselect';
+
+createStructuredSelector;
 
 export default connect(
-  st => ({
-    film: filmCardSelector(st),
-    cinema: cinemaCardSelector(st),
-    user: userDataSelector(st),
-    totalPrice: totalPriceSelector(st),
-    selectedSeats: selectedSeatsSelector(st),
-    date: dateTimeSelector(st),
-    booking: bookingOfUserSelector(st),
-    allBookings: allBookingsOfUserSelector(st),
-    userData: userDataSelector(st),
-    selectedTab: selectedTabSelector(st),
-    state: stateSelector(st),
+  createStructuredSelector({
+    film: filmCardSelector,
+    cinema: cinemaCardSelector,
+    user: userDataSelector,
+    totalPrice: totalPriceSelector,
+    selectedSeats: selectedSeatsSelector,
+    date: dateTimeSelector,
+    booking: bookingOfUserSelector,
+    allBookings: allBookingsOfUserSelector,
+    userData: userDataSelector,
+    selectedTab: selectedTabSelector,
+    state: stateSelector,
   }),
   {
     getActualUserBookings: getActualUserBookings,

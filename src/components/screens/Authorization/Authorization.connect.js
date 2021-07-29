@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
 
-import {userDataSelector} from 'app/redux/user/user.selector';
 import {errorTextSelector} from 'app/redux/auth/auth.selector';
 
 import {
@@ -16,14 +15,12 @@ import {
 } from 'app/redux/auth/auth.selector';
 import {REGISTRATION} from 'app/enum/navigation.enum';
 import {createStructuredSelector} from 'reselect';
-import {languageSelector} from 'app/redux/settings/settings.selector';
 
 export default connect(
   createStructuredSelector({
     typedEmail: typedEmailSelector,
     typedPassword: typedPasswordSelector,
     errorText: errorTextSelector,
-    language: languageSelector,
   }),
   {
     setUserData: setUserData,

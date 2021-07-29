@@ -8,11 +8,10 @@ import {userDataSelector} from 'app/redux/user/user.selector';
 import {createStructuredSelector} from 'reselect';
 
 export default connect(
-  st =>
-    createStructuredSelector({
-      cinema: cinemaCardSelector,
-      user: userDataSelector,
-    }),
+  createStructuredSelector({
+    cinema: cinemaCardSelector,
+    user: userDataSelector,
+  }),
   {
     getFilmCard: getFilmCard,
   },

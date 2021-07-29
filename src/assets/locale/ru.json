@@ -73,7 +73,8 @@
     "Search": "Поиск",
     "Booking in": "Бронирование в",
     "Authorization": "Авторизация",
-    "Registration": "Регистрация"
+    "Registration": "Регистрация",
+    "Language": "Язык"
   },
 
   "films": {
@@ -94,5 +95,13 @@
     "Pay": "Оплатить",
     "price": "цена",
     "Total price:": "Общая стоимость:"
+  },
+
+  "settings": {
+    "Language": "Язык",
+    "Push notifications": "Push-уведомления",
+    "Send feedback": "Отправить отзыв",
+    "About": "О приложении",
+    "Log out": "Выйти"
   }
 }

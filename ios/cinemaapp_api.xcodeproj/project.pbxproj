@@ -427,6 +427,8 @@
 			baseConfigurationReference = FA5BABE8EE9D6072336C1961 /* Pods-cinemaapp_api-cinemaapp_apiTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				DEVELOPMENT_TEAM = NZJ752WDZ9;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -454,7 +456,9 @@
 			baseConfigurationReference = 3F564BEDF6D8836CDF830CBB /* Pods-cinemaapp_api-cinemaapp_apiTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = NZJ752WDZ9;
 				INFOPLIST_FILE = cinemaapp_apiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -480,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NZJ752WDZ9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = cinemaapp_api/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -506,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NZJ752WDZ9;
 				INFOPLIST_FILE = cinemaapp_api/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

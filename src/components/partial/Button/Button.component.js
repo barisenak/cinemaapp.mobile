@@ -15,6 +15,9 @@ export const Button = ({type, style, children, disabled, onPress}) => {
   } else if (type === 'textLink') {
     containerStyle.push(styles.linkContainer);
     textStyle.push(styles.linkText);
+  } else if (type === 'simple') {
+    containerStyle.push(styles.simpleContainer);
+    textStyle.push(styles.simpleText);
   }
 
   if (disabled) {

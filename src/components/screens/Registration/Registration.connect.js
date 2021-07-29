@@ -15,13 +15,14 @@ import {
   typedEmailSelector,
   typedPasswordSelector,
 } from 'app/redux/register/register.selector';
+import {createStructuredSelector} from 'reselect';
 
 export default connect(
-  st => ({
-    userData: userDataSelector(st),
-    typedEmail: typedEmailSelector(st),
-    typedPassword: typedPasswordSelector(st),
-    errorText: errorTextSelector(st),
+  createStructuredSelector({
+    userData: userDataSelector,
+    typedEmail: typedEmailSelector,
+    typedPassword: typedPasswordSelector,
+    errorText: errorTextSelector,
   }),
 
   {

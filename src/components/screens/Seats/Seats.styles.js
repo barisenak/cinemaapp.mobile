@@ -129,6 +129,11 @@ export const getStyle = theme =>
       alignItems: 'center',
     },
 
+    datePicker: {
+      color: theme.black,
+      backgroundColor: theme.white,
+    },
+
     timeContainer: {
       display: 'flex',
       width: '100%',

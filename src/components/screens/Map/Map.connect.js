@@ -11,14 +11,15 @@ import Map from './Map.component';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {CINEMA_CARD, MAP} from 'app/enum/navigation.enum';
 import {userDataSelector} from 'app/redux/user/user.selector';
+import {createStructuredSelector} from 'reselect';
 
 export default connect(
-  st => ({
-    location: locationSelector(st),
-    cinemas: cinemasSelector(st),
-    user: userDataSelector(st),
-    markers: markersSelector(st),
-    city: citySelector(st),
+  createStructuredSelector({
+    location: locationSelector,
+    cinemas: cinemasSelector,
+    user: userDataSelector,
+    markers: markersSelector,
+    city: citySelector,
   }),
   {
     getLocation: getLocation,

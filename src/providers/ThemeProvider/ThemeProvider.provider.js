@@ -10,20 +10,15 @@ const THEME_MAP = {
   [LIGHT]: light,
 };
 
-export const ThemeProvider = ({children, appTheme, onChangeTheme}) => {
+export const ThemeProvider = ({children}) => {
   const [theme, setTheme] = useState(null);
 
   useEffect(() => {
     setTheme(Appearance.getColorScheme());
     Appearance.addChangeListener(({colorScheme}) => {
-      onChangeTheme(colorScheme);
       setTheme(colorScheme);
     });
   }, []);
-
-  useEffect(() => {
-    setTheme(appTheme);
-  }, [appTheme]);
 
   if (!theme) return null;
 

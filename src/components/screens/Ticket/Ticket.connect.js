@@ -10,14 +10,15 @@ import {
 } from 'app/redux/cinema/cinema.selector';
 
 import {bookingOfUserSelector} from 'app/redux/booking/booking.selector';
+import {createStructuredSelector} from 'reselect';
 
 export default connect(
-  st => ({
-    film: filmCardSelector(st),
-    cinema: cinemaCardSelector(st),
-    user: userDataSelector(st),
-    totalPrice: totalPriceSelector(st),
-    booking: bookingOfUserSelector(st),
+  createStructuredSelector({
+    film: filmCardSelector,
+    cinema: cinemaCardSelector,
+    user: userDataSelector,
+    totalPrice: totalPriceSelector,
+    booking: bookingOfUserSelector,
   }),
   {},
 )(Ticket);

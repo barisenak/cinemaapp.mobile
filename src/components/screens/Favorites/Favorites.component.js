@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 
 import {
   View,
@@ -8,22 +8,23 @@ import {
   TouchableHighlight,
   FlatList,
 } from 'react-native';
+import {Button} from 'app/components/partial/Button';
+import {Text} from 'app/components/partial/Text';
 
 import {
   SELECTED_TAB_CINEMAS,
   SELECTED_TAB_FILMS,
 } from 'app/enum/favorites.enum';
-
-import {Button} from 'app/components/partial/Button';
-import {Text} from 'app/components/partial/Text';
 import {
   AUTHORIZATION,
   FILM_CARD,
   CINEMA_CARD,
   FAVORITES,
 } from 'app/enum/navigation.enum';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
 import {getStyles} from '../Favorites/Favorites.styles';
 
 function Favorites({
@@ -95,9 +96,9 @@ function Favorites({
                 ? [{fontWeight: 'bold'}, styles.text]
                 : styles.text,
           }}
-          onPress={() => {
+          onPress={useCallback(() => {
             setSelectedTab(SELECTED_TAB_CINEMAS);
-          }}>
+          }, [])}>
           {ts('Cinemas')}
         </Button>
       </View>
