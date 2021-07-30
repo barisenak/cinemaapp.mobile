@@ -50,9 +50,7 @@ function Search({
       <TextInput
         style={styles.input}
         placeholder={
-          route.params.prevScreen === FILMS
-            ? ts('type film you want to search')
-            : ts('type cinema you want to search')
+          route.params.prevScreen === FILMS ? ts('typeFilm') : ts('typeCinema')
         }
         keyboardType="default"
         value={route.params.prevScreen === FILMS ? typedFilm : typedCinema}
@@ -63,14 +61,13 @@ function Search({
         }}
       />
       <Button type="primary" onPress={onSearch}>
-        {ts('Search')}
+        {ts('search')}
       </Button>
       <View style={styles.listContainer}>
         <FlatList
           data={films.length ? films : cinemas}
           renderItem={renderItem}
           keyExtractor={item => item.id}
-          refreshing="true"
         />
       </View>
     </ScrollView>

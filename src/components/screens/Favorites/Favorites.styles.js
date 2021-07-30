@@ -1,4 +1,3 @@
-import {white} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 import {StyleSheet} from 'react-native';
 

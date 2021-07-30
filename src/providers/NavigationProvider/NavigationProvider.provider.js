@@ -69,7 +69,7 @@ function NavigationProvider({styles, ts}) {
           name={SEATS_CARD}
           component={Seats}
           options={({route}) => ({
-            headerTitle: `${ts('Booking in')} ${route.params.name}`,
+            headerTitle: `${ts('bookingIn')} ${route.params.name}`,
           })}
         />
         <Stack.Screen

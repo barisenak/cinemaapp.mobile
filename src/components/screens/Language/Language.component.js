@@ -18,7 +18,7 @@ function Language({onChangeLanguage, language, styles, ts}) {
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <View style={styles.settingContainer}>
-        <Text style={styles.text}>{ts('Language')}</Text>
+        <Text style={styles.text}>{ts('language')}</Text>
 
         <View style={styles.buttonContainer}>
           <Button

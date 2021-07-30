@@ -85,7 +85,7 @@ function Favorites({
           onPress={useCallback(() => {
             setSelectedTab(SELECTED_TAB_FILMS);
           }, [])}>
-          {ts('Films')}
+          {ts('films')}
         </Button>
         <Button
           disabled={!userData ? true : false}
@@ -99,13 +99,13 @@ function Favorites({
           onPress={useCallback(() => {
             setSelectedTab(SELECTED_TAB_CINEMAS);
           }, [])}>
-          {ts('Cinemas')}
+          {ts('cinemas')}
         </Button>
       </View>
 
       {!userData ? (
         <View style={styles.signInContainer}>
-          <Text style={styles.text}> {ts('Please sign in')}</Text>
+          <Text style={styles.text}> {ts('pleaseSignIn')}</Text>
           <Button
             type="primary"
             onPress={() =>
@@ -124,14 +124,11 @@ function Favorites({
               keyExtractor={item => item.id}
               numColumns={3}
               horizontal={false}
-              refreshing="true"
             />
           )}
           {!userData.favouriteFilms.length && (
             <View style={styles.emptyContainer}>
-              <Text style={styles.emptyText}>
-                {ts("you don't have any favorite films")}
-              </Text>
+              <Text style={styles.emptyText}>{ts('youNotHaveFavFilms')}</Text>
             </View>
           )}
         </View>
@@ -145,14 +142,11 @@ function Favorites({
               keyExtractor={item => item.id}
               numColumns={3}
               horizontal={false}
-              refreshing="true"
             />
           )}
           {!userData.favouriteCinemas.length && (
             <View style={styles.emptyContainer}>
-              <Text style={styles.emptyText}>
-                {ts("you don't have any favorite cinemas")}
-              </Text>
+              <Text style={styles.emptyText}>{ts('youNotHaveFavCinemas')}</Text>
             </View>
           )}
         </View>

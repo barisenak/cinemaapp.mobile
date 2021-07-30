@@ -9,7 +9,6 @@ import FilmsScreenNavigator from './screens/Films/Films.navigation';
 import TicketsScreenNavigator from './screens/Tickets/Tickets.navigation';
 import MapScreenNavigator from './screens/Map/Map.navigation';
 
-import {active, inactive} from 'app/styles/colors.style';
 import {
   FILMS,
   FAVORITES,
@@ -26,7 +25,7 @@ import {getStyle} from './FloorMenu.styles';
 
 const Tab = createBottomTabNavigator();
 
-function FloorMenu({route, ts, styles}) {
+function FloorMenu({ts, styles}) {
   return (
     <Tab.Navigator
       // see documentation:
@@ -48,7 +47,7 @@ function FloorMenu({route, ts, styles}) {
           makeLogOnEvent(FLOOR, FILMS);
         }}
         options={{
-          tabBarLabel: ts('Films'),
+          tabBarLabel: ts(FILMS),
           tabBarIcon: ({focused, color}) => {
             return (
               <MaterialCommunityIcons
@@ -67,7 +66,7 @@ function FloorMenu({route, ts, styles}) {
           makeLogOnEvent(FLOOR, FAVORITES);
         }}
         options={{
-          tabBarLabel: ts('Favorites'),
+          tabBarLabel: ts(FAVORITES),
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons name="star" color={color} size={20} />
           ),
@@ -80,7 +79,7 @@ function FloorMenu({route, ts, styles}) {
           makeLogOnEvent(FLOOR, TICKETS);
         }}
         options={{
-          tabBarLabel: ts('Tickets'),
+          tabBarLabel: ts(TICKETS),
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons name="ticket" color={color} size={20} />
           ),
@@ -93,7 +92,7 @@ function FloorMenu({route, ts, styles}) {
           makeLogOnEvent(FLOOR, MAP);
         }}
         options={{
-          tabBarLabel: ts('Map'),
+          tabBarLabel: ts(MAP),
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons name="map" color={color} size={20} />
           ),
@@ -106,7 +105,7 @@ function FloorMenu({route, ts, styles}) {
           makeLogOnEvent(FLOOR, SETTINGS);
         }}
         options={{
-          tabBarLabel: ts('Settings'),
+          tabBarLabel: ts(SETTINGS),
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons name="tools" color={color} size={20} />
           ),

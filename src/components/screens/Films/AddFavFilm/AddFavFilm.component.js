@@ -1,10 +1,10 @@
-import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 import React from 'react';
 
 import {TouchableOpacity} from 'react-native';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getStyles} from '../Films.styles';
+import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 function AddFavFilm({options, addFavoriteFilm, user, styles}) {
   return (

@@ -11,12 +11,12 @@ const Stack = createStackNavigator();
 
 function FavoritesNavigator({navigation, ts, styles}) {
   return (
-    <Stack.Navigator initialRouteName="Favorites">
+    <Stack.Navigator initialRouteName={FAVORITES}>
       <Stack.Screen
         name={FAVORITES}
         component={Favorites}
         options={{
-          headerTitle: ts('Favorites'),
+          headerTitle: ts(FAVORITES),
           headerTitleStyle: {
             color: styles.text.color,
           },

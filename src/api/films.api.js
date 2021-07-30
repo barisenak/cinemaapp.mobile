@@ -1,8 +1,9 @@
+import {PAGE_NUMBER, PAGE_SIZE} from 'app/enum/pagination.enum';
 import {fetchJSON} from 'app/utils/fetch.util';
 
 export const fetchFilms = ({
-  pageNumber = 1,
-  pageSize = 5,
+  pageNumber = PAGE_NUMBER,
+  pageSize = PAGE_SIZE,
   category = '',
 } = {}) =>
   fetchJSON('films/all', {

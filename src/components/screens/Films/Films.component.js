@@ -87,13 +87,12 @@ function Films({
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <View style={styles.sectionContainer}>
-        <Text style={styles.category}>{ts('Recently released')}</Text>
+        <Text style={styles.category}>{ts('recentlyReleased')}</Text>
         <FlatList
           data={films[CATEGORY_RECENTLY_RELEASED]}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           horizontal
-          refreshing="true"
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={
             nextBatchState === STATE_LOADING && (
@@ -114,7 +113,7 @@ function Films({
       </View>
 
       <View style={styles.sectionContainer}>
-        <Text style={styles.category}>{ts('Comedy')}</Text>
+        <Text style={styles.category}>{ts('comedy')}</Text>
         <FlatList
           data={films[CATEGORY_COMEDY]}
           renderItem={renderItem}
@@ -139,7 +138,7 @@ function Films({
       </View>
 
       <View style={styles.sectionContainer}>
-        <Text style={styles.category}>{ts('Drama')}</Text>
+        <Text style={styles.category}>{ts('drama')}</Text>
         <FlatList
           data={films[CATEGORY_DRAMA]}
           renderItem={renderItem}
@@ -164,7 +163,7 @@ function Films({
       </View>
 
       <View style={styles.sectionContainer}>
-        <Text style={styles.category}>{ts('Biography')}</Text>
+        <Text style={styles.category}>{ts('biography')}</Text>
         <FlatList
           data={films[CATEGORY_BIOGRAPHY]}
           renderItem={renderItem}

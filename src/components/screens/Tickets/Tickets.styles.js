@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {white, black} from 'app/styles/colors.style';
+import {black} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 
 export const getStyle = theme =>

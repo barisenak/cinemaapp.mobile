@@ -22,7 +22,7 @@ function Settings({onPressLogOut, language, styles, navigation, ts}) {
       <View style={styles.settingsContainer}>
         <TouchableHighlight onPress={() => navigation.navigate(LANGUAGE)}>
           <View style={styles.settingContainer}>
-            <Text style={styles.text}>{ts('Language')}</Text>
+            <Text style={styles.text}>{ts('language')}</Text>
             <View style={styles.rightPropContainer}>
               <Text style={styles.text}>{language}</Text>
               <Button type="simple">❯</Button>
@@ -30,21 +30,21 @@ function Settings({onPressLogOut, language, styles, navigation, ts}) {
           </View>
         </TouchableHighlight>
 
-        <View style={styles.settingContainer}>
-          <Text style={styles.text}>{ts('Push notifications')}</Text>
+        {/* <View style={styles.settingContainer}>
+          <Text style={styles.text}>{ts('pushNotifications')}</Text>
           <Button type="simple">❯</Button>
-        </View>
+        </View> */}
 
         <TouchableHighlight
           onPress={() => Linking.openURL('mailto:test@test.com')}>
           <View style={styles.settingContainer}>
-            <Text style={styles.text}>{ts('Send feedback')}</Text>
+            <Text style={styles.text}>{ts('sendFeedback')}</Text>
             <Button type="simple">❯</Button>
           </View>
         </TouchableHighlight>
 
         <View style={styles.settingContainer}>
-          <Text style={styles.text}>{ts('About')}</Text>
+          <Text style={styles.text}>{ts('about')}</Text>
           <Text
             style={
               styles.text
@@ -53,7 +53,7 @@ function Settings({onPressLogOut, language, styles, navigation, ts}) {
 
         <TouchableHighlight onPress={onPressLogOut}>
           <View style={styles.settingContainer}>
-            <Text style={styles.text}>{ts('Log out')}</Text>
+            <Text style={styles.text}>{ts('logOut')}</Text>
           </View>
         </TouchableHighlight>
       </View>

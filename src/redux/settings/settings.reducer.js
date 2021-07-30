@@ -15,8 +15,12 @@ export const settingsReducer = createReducer(initialState, {
     language,
   }),
 
-  [REHYDRATE]: (st, {settings}) => ({
-    ...st,
-    ...settings,
-  }),
+  [REHYDRATE]: (st, {settings}) => {
+    return settings
+      ? {
+          ...st,
+          ...settings,
+        }
+      : st;
+  },
 });

@@ -8,8 +8,6 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import debounce from 'lodash/debounce';
-
 import {Marker} from 'react-native-maps';
 import ClusteredMapView from 'react-native-maps-super-cluster';
 import {Text} from 'app/components/partial/Text';

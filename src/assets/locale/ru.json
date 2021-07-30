@@ -1,107 +1,106 @@
 {
   "authorization": {
     "login": "Войти",
-    "Email": "Email",
-    "Password": "Пароль",
-    "Not registered yet? You can do it": "Еще не зарегистрированы? Вы можете сделать это",
+    "email": "Email",
+    "password": "Пароль",
+    "notRegistered": "Еще не зарегистрированы? Вы можете сделать это",
     "here": "здесь"
   },
 
   "registration": {
-    "sign up": "Зарегистрироваться",
-    "Email": "Email",
-    "Password": "Пароль"
+    "signUp": "Зарегистрироваться",
+    "email": "Email",
+    "password": "Пароль"
   },
 
   "favorites": {
-    "you don't have any favorite cinemas": "у вас нет избранных кинотеатров",
-    "you don't have any favorite films": "у вас нет избранных фильмов",
+    "youNotHaveFavCinemas": "у вас нет избранных кинотеатров",
+    "youNotHaveFavFilms": "у вас нет избранных фильмов",
     "login": "Войти",
-    "Please sign in": "Пожалуйста, войдите",
-    "Cinemas": "Кинотеатры",
-    "Films": "Фильмы"
+    "pleaseSignIn": "Пожалуйста, войдите",
+    "cinemas": "Кинотеатры",
+    "films": "Фильмы"
   },
 
   "tickets": {
-    "you don't have any tickets here": "у вас нет билетов",
+    "youNotHaveTickets": "у вас нет билетов",
     "login": "Войти",
-    "Please sign in": "Пожалуйста, войдите",
-    "Cinema": "Кинотеатр",
-    "Film": "Фильм",
-    "Date": "Дата",
-    "Archive": "Архив",
-    "Actual": "Актуальные"
+    "pleaseSignIn": "Пожалуйста, войдите",
+    "cinema": "Кинотеатр",
+    "film": "Фильм",
+    "date": "Дата",
+    "archive": "Архив",
+    "actual": "Актуальные"
   },
 
   "ticket": {
-    "Location": "Местоположение",
-    "Place": "Место",
-    "ROW": "Ряд",
-    "SEAT": "Сиденье",
-    "Cinema": "Кинотеатр",
-    "Time": "Время",
-    "Film": "Фильм",
-    "Duration": "Длительность",
+    "location": "Местоположение",
+    "place": "Место",
+    "row": "Ряд",
+    "seat": "Сиденье",
+    "cinema": "Кинотеатр",
+    "time": "Время",
+    "film": "Фильм",
+    "duration": "Длительность",
     "minutes": "минут(ы)",
-    "Date": "Дата"
+    "date": "Дата"
   },
 
   "cinemaCard": {
-    "Name": "Название",
-    "Address": "Адрес",
-    "You can watch in cinema": "Вы можете посмотреть в кинотеатре"
+    "name": "Название",
+    "address": "Адрес",
+    "youCanWatch": "Вы можете посмотреть в кинотеатре"
   },
 
   "filmCard": {
-    "Category": "Категория",
-    "Duration": "Длительность",
-    "Release date": "Дата релиза",
-    "You can watch": "Вы можете посмотреть",
+    "category": "Категория",
+    "duration": "Длительность",
+    "releaseDate": "Дата релиза",
+    "youCanWatch": "Вы можете посмотреть",
     "in": "в",
-    "Tikets booking": "Бронирование билетов"
+    "ticketsBooking": "Бронирование билетов"
   },
 
   "floorMenu": {
-    "Films": "Фильмы",
-    "Favorites": "Избранное",
-    "Tickets": "Билеты",
-    "Ticket": "Билет",
-    "Map": "Карта",
-    "Settings": "Настройки",
-    "FilmCard": "Фильм",
-    "CinemaCard": "Кинотеатр",
-    "Search": "Поиск",
-    "Booking in": "Бронирование в",
-    "Authorization": "Авторизация",
-    "Registration": "Регистрация",
-    "Language": "Язык"
+    "films": "Фильмы",
+    "favorites": "Избранное",
+    "tickets": "Билеты",
+    "ticket": "Билет",
+    "map": "Карта",
+    "settings": "Настройки",
+    "filmCard": "Фильм",
+    "finemaCard": "Кинотеатр",
+    "search": "Поиск",
+    "bookingIn": "Бронирование в",
+    "authorization": "Авторизация",
+    "registration": "Регистрация",
+    "language": "Язык"
   },
 
   "films": {
-    "Recently released": "Недавние релизы",
-    "Biography": "Биография",
-    "Drama": "Драма",
-    "Comedy": "Комедия"
+    "recentlyReleased": "Недавние релизы",
+    "biography": "Биография",
+    "drama": "Драма",
+    "comedy": "Комедия"
   },
 
   "search": {
-    "Search": "Поиск",
+    "search": "Поиск",
     "type film you want to search": "Введите фильм, который хотите найти",
-    "type cinema you want to search": "Введите кинотеатр, который хотите найти",
-    "no results": "нет результатов"
+    "type cinema you want to search": "Введите кинотеатр, который хотите найти"
   },
 
   "seats": {
-    "Pay": "Оплатить",
+    "pay": "Оплатить",
     "price": "цена",
-    "Total price:": "Общая стоимость:"
+    "totalPrice:": "Общая стоимость:"
   },
 
   "settings": {
-    "Language": "Язык",
-    "Push notifications": "Push-уведомления",
-    "Send feedback": "Отправить отзыв",
-    "About": "О приложении",
-    "Log out": "Выйти"
+    "language": "Язык",
+    "pushNotifications": "Push-уведомления",
+    "sendFeedback": "Отправить отзыв",
+    "about": "О приложении",
+    "logOut": "Выйти"
   }
 }

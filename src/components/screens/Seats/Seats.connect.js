@@ -33,7 +33,6 @@ import {
   dateTimeSelector,
 } from 'app/redux/booking/booking.selector';
 import {createStructuredSelector} from 'reselect';
-import {useCallback} from 'react';
 import {SEATS_CARD, TICKET} from 'app/enum/navigation.enum';
 
 export default connect(

@@ -1,107 +1,106 @@
 {
   "authorization": {
     "login": "LOG IN",
-    "Email": "Email",
-    "Password": "Password",
-    "Not registered yet? You can do it": "Not registered yet? You can do it",
+    "email": "Email",
+    "password": "Password",
+    "notRegistered": "Not registered yet? You can do it",
     "here": "here"
   },
 
   "registration": {
-    "sign up": "SIGN UP",
-    "Email": "Email",
-    "Password": "Password"
+    "signUp": "SIGN UP",
+    "email": "Email",
+    "password": "Password"
   },
 
   "favorites": {
-    "you don't have any favorite cinemas": "you don't have any favorite cinemas",
-    "you don't have any favorite films": "you don't have any favorite films",
+    "youNotHaveFavCinemas": "you don't have any favorite cinemas",
+    "youNotHaveFavFilms": "you don't have any favorite films",
     "login": "LOG IN",
-    "Please sign in": "Please sign in",
-    "Cinemas": "Cinemas",
-    "Films": "Films"
+    "pleaseSignIn": "Please sign in",
+    "cinemas": "Cinemas",
+    "films": "Films"
   },
 
   "tickets": {
-    "you don't have any tickets here": "you don't have any tickets here",
+    "youNotHaveTickets": "you don't have any tickets here",
     "login": "LOG IN",
-    "Please sign in": "Please sign in",
-    "Cinema": "Cinema",
-    "Film": "Film",
-    "Date": "Date",
-    "Archive": "Archive",
-    "Actual": "Actual"
+    "pleaseSignIn": "Please sign in",
+    "cinema": "Cinema",
+    "film": "Film",
+    "date": "Date",
+    "archive": "Archive",
+    "actual": "Actual"
   },
 
   "ticket": {
-    "Location": "Location",
-    "Place": "Place",
-    "ROW": "ROW",
-    "SEAT": "SEAT",
-    "Cinema": "Cinema",
-    "Time": "Time",
-    "Film": "Film",
-    "Duration": "Duration",
+    "location": "Location",
+    "place": "Place",
+    "row": "ROW",
+    "seat": "SEAT",
+    "cinema": "Cinema",
+    "time": "Time",
+    "film": "Film",
+    "duration": "Duration",
     "minutes": "minutes",
-    "Date": "Date"
+    "date": "Date"
   },
 
   "cinemaCard": {
-    "Name": "Name",
-    "Address": "Address",
-    "You can watch in cinema": "You can watch in cinema"
+    "name": "Name",
+    "address": "Address",
+    "youCanWatch": "You can watch in cinema"
   },
 
   "filmCard": {
-    "Category": "Category",
-    "Duration": "Duration",
-    "Release date": "Release date",
-    "You can watch": "You can watch",
+    "category": "Category",
+    "duration": "Duration",
+    "releaseDate": "Release date",
+    "youCanWatch": "You can watch",
     "in": "in",
-    "Tikets booking": "Tikets booking"
+    "ticketsBooking": "Tickets booking"
   },
 
   "floorMenu": {
-    "Films": "Films",
-    "Favorites": "Favorites",
-    "Tickets": "Tickets",
-    "Ticket": "Ticket",
-    "Map": "Map",
-    "Settings": "Settings",
-    "FilmCard": "Film",
-    "CinemaCard": "Cinema",
-    "Search": "Search",
-    "Booking in": "Booking in",
-    "Authorization": "Authorization",
-    "Registration": "Registration",
-    "Language": "Language"
+    "films": "Films",
+    "favorites": "Favorites",
+    "tickets": "Tickets",
+    "ticket": "Ticket",
+    "map": "Map",
+    "settings": "Settings",
+    "filmCard": "Film",
+    "cinemaCard": "Cinema",
+    "search": "Search",
+    "bookingIn": "Booking in",
+    "authorization": "Authorization",
+    "registration": "Registration",
+    "language": "Language"
   },
 
   "films": {
-    "Recently released": "Recently released",
-    "Biography": "Biography",
-    "Drama": "Drama",
-    "Comedy": "Comedy"
+    "recentlyReleased": "Recently released",
+    "biography": "Biography",
+    "drama": "Drama",
+    "comedy": "Comedy"
   },
 
   "search": {
-    "Search": "Search",
-    "type film you want to search": "type film you want to search",
-    "type cinema you want to search": "type cinema you want to search",
-    "no results": "no results"
+    "search": "Search",
+    "typeFilm": "type film you want to search",
+    "typeCinema": "type cinema you want to search"
   },
 
   "seats": {
-    "Pay": "Pay",
+    "pay": "Pay",
     "price": "price",
-    "Total price:": "Total price:"
+    "totalPrice:": "Total price:"
   },
 
   "settings": {
-    "Language": "Language",
-    "Push notifications": "Push notifications",
-    "Send feedback": "Send feedback",
-    "About": "About",
-    "Log out": "Log out"
+    "language": "Language",
+    "pushNotifications": "Push notifications",
+    "sendFeedback": "Send feedback",
+    "about": "About",
+    "logOut": "Log out"
   }
 }

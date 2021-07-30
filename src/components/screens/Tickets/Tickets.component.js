@@ -77,13 +77,13 @@ function Tickets({
         <ImageBackground style={styles.ticketsContainer} source={image}>
           <View style={styles.textContainer}>
             <Text style={styles.ticketText}>
-              {ts('Cinema')}: {item.cinemaId.name}
+              {ts('cinema')}: {item.cinemaId.name}
             </Text>
             <Text style={styles.ticketText}>
-              {ts('Film')}: {item.filmId.name}
+              {ts('film')}: {item.filmId.name}
             </Text>
             <Text style={styles.ticketText}>
-              {ts('Date')}: {moment(item.ticketDate).format('LLL')}
+              {ts('date')}: {moment(item.ticketDate).format('LLL')}
             </Text>
           </View>
         </ImageBackground>
@@ -97,7 +97,7 @@ function Tickets({
         contentContainerStyle={styles.container}
         style={styles.screenBackground}>
         <View style={styles.signInContainer}>
-          <Text style={styles.text}>{ts('Please sign in')}</Text>
+          <Text style={styles.text}>{ts('pleaseSignIn')}</Text>
           <Button
             type="primary"
             style={styles.button}
@@ -135,7 +135,7 @@ function Tickets({
           onPress={() => {
             setSelectedTab(SELECTED_TAB_OUTDATED);
           }}>
-          {ts('Archive')}
+          {ts('archive')}
         </Button>
         <Button
           type="textLink"
@@ -148,7 +148,7 @@ function Tickets({
           onPress={() => {
             setSelectedTab(SELECTED_TAB_ACTUAL);
           }}>
-          {ts('Actual')}
+          {ts('actual')}
         </Button>
       </View>
       {selectedTab === SELECTED_TAB_OUTDATED ? (
@@ -158,7 +158,6 @@ function Tickets({
               data={allBookings.old}
               renderItem={renderItem}
               keyExtractor={item => item.id}
-              refreshing="true"
             />
           ) : (
             <ScrollView
@@ -168,9 +167,7 @@ function Tickets({
             </ScrollView>
           )}
           {isEmpty(allBookings.old) ? (
-            <Text style={styles.emptyText}>
-              {ts("you don't have any tickets here")}
-            </Text>
+            <Text style={styles.emptyText}>{ts('youNotHaveTickets')}</Text>
           ) : null}
         </View>
       ) : (
@@ -180,7 +177,6 @@ function Tickets({
               data={allBookings.actual}
               renderItem={renderItem}
               keyExtractor={item => item.id}
-              refreshing="true"
             />
           ) : (
             <ScrollView
@@ -190,9 +186,7 @@ function Tickets({
             </ScrollView>
           )}
           {isEmpty(allBookings.actual) ? (
-            <Text style={styles.emptyText}>
-              {ts("you don't have any tickets here")}
-            </Text>
+            <Text style={styles.emptyText}>{ts('youNotHaveTickets')}</Text>
           ) : null}
         </View>
       )}

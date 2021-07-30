@@ -35,13 +35,13 @@ function CinemaCard({
     {
       id: 'name',
       iconName: 'theater',
-      name: ts('Name'),
+      name: ts('name'),
       getValue: get('name'),
     },
     {
       id: 'address',
       iconName: 'map-marker',
-      name: ts('Address'),
+      name: ts('address'),
       getValue: get('address'),
     },
   ];
@@ -90,7 +90,7 @@ function CinemaCard({
       })}
 
       <Text style={styles.textBlock}>
-        {ts('You can watch in cinema')} {cinema.name}:
+        {ts('youCanWatch')} {cinema.name}:
       </Text>
       <View style={styles.sectionContainer}>
         <FlatList
@@ -98,7 +98,6 @@ function CinemaCard({
           renderItem={renderItem}
           keyExtractor={item => item.id}
           horizontal
-          refreshing="true"
         />
       </View>
     </ScrollView>

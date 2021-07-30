@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {white} from 'app/styles/colors.style';
 
 export const getStyles = theme =>
   StyleSheet.create({

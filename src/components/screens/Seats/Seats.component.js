@@ -1,18 +1,15 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 import {FlatList, ScrollView, TouchableHighlight, View} from 'react-native';
-import {styles, seatTypeStyles, getStyle} from '../Seats/Seats.styles';
+import {seatTypeStyles, getStyle} from '../Seats/Seats.styles';
 import {Text} from 'app/components/partial/Text';
 import {Button} from 'app/components/partial/Button';
-import {SEATS_CARD, TICKET} from 'app/enum/navigation.enum';
 import DatePicker from 'react-native-date-picker';
 import isEmpty from 'lodash/isEmpty';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 function Seats({
-  navigation,
-  user,
   cinema,
   film,
   setSelectedSeat,
@@ -21,7 +18,6 @@ function Seats({
   totalPrice,
   setDate,
   date,
-  setBooking,
   bookedSeats,
   booking,
   setTime,
@@ -31,9 +27,7 @@ function Seats({
   getBookings,
   clearState,
   setDateTime,
-  dateTime,
   clearSelectedSeats,
-  clearBookedSeats,
   ts,
   styles,
   onPayPress,
@@ -192,11 +186,10 @@ function Seats({
         data={cinema.seatsSchema}
         renderItem={renderSchemaItem}
         keyExtractor={(item, index) => index.toString()}
-        refreshing="true"
       />
 
       <Text style={styles.totalPriceText}>
-        {ts('Total price:')} {totalPrice} {cinema.rooms.currency}
+        {ts('totalPrice:')} {totalPrice} {cinema.rooms.currency}
       </Text>
 
       <View>
@@ -206,7 +199,6 @@ function Seats({
           horizontal
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
-          refreshing="true"
         />
       </View>
 
@@ -223,7 +215,7 @@ function Seats({
         type="primary"
         disabled={totalPrice ? false : true}
         onPress={onPayPress}>
-        {ts('Pay')}
+        {ts('pay')}
       </Button>
     </ScrollView>
   );

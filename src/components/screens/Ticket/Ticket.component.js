@@ -17,32 +17,32 @@ function Ticket({route, cinema, film, ts, styles}) {
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <Text style={styles.text}>
-        {ts('Film')}: {film.name}
+        {ts('film')}: {film.name}
       </Text>
       <Text style={styles.text}>
-        {ts('Cinema')}: {cinema.name}
+        {ts('cinema')}: {cinema.name}
       </Text>
       <Text style={styles.text}>
-        {ts('Duration')}: {film.duration * 60} {ts('minutes')}
+        {ts('duration')}: {film.duration * 60} {ts('minutes')}
       </Text>
       {route.params.placeNumber
         ? route.params.placeNumber.map((el, id) => {
             return (
               <Text key={id} style={styles.text}>
-                {ts('Place')} {id + 1}: {ts('ROW')}: {el.rowIndex + 1}{' '}
-                {ts('SEAT')}: {el.seatIndex + 1}
+                {ts('place')} {id + 1}: {ts('row')}: {el.rowIndex + 1}{' '}
+                {ts('seat')}: {el.seatIndex + 1}
               </Text>
             );
           })
         : null}
       <Text style={styles.text}>
-        {ts('Date')}: {moment(route.params.ticketDate).format('LL')}
+        {ts('date')}: {moment(route.params.ticketDate).format('LL')}
       </Text>
       <Text style={styles.text}>
-        {ts('Time')}: {moment(route.params.ticketDate).format('LT')}
+        {ts('time')}: {moment(route.params.ticketDate).format('LT')}
       </Text>
       <Text style={[styles.text, styles.marginLocation]}>
-        {ts('Location')}:
+        {ts('location')}:
       </Text>
       <Image
         style={styles.map}

@@ -32,7 +32,7 @@ function FilmCard({
     {
       id: 'category',
       iconName: 'format-list-bulleted',
-      name: ts('Category'),
+      name: ts('category'),
       // (obj) => obj.category
       getValue: get('category'),
 
@@ -42,13 +42,13 @@ function FilmCard({
     {
       id: 'duration',
       iconName: 'clock-time-three-outline',
-      name: ts('Duration'),
+      name: ts('duration'),
       getValue: flow([get('duration'), val => `${val * 60} minutes`]),
     },
     {
       id: 'release_date',
       iconName: 'calendar-blank',
-      name: ts('Release date'),
+      name: ts('releaseDate'),
       getValue: flow([get('releaseDate'), date => moment(date).format('LL')]),
     },
   ];
@@ -76,6 +76,7 @@ function FilmCard({
   const renderBtnItem = ({item}) => {
     return (
       <Button
+        style={styles.btn}
         key={item.id}
         onPress={() => {
           getCinemaCard(item.id);
@@ -113,7 +114,7 @@ function FilmCard({
 
       {cinemas.length ? (
         <Text style={[styles.infoTitle, styles.textBlock]}>
-          {ts('Tikets booking')}:
+          {ts('ticketsBooking')}:
         </Text>
       ) : null}
       <View style={styles.sectionContainer}>
@@ -123,14 +124,13 @@ function FilmCard({
             renderItem={renderBtnItem}
             keyExtractor={item => item.id}
             horizontal
-            refreshing="true"
           />
         ) : null}
       </View>
 
       {cinemas.length ? (
         <Text style={[styles.infoTitle, styles.textBlock]}>
-          {ts('You can watch')} {film.name} {ts('in')}:
+          {ts('youCanWatch')} {film.name} {ts('in')}:
         </Text>
       ) : null}
       <View style={styles.sectionContainer}>
@@ -140,7 +140,6 @@ function FilmCard({
             renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal
-            refreshing="true"
           />
         ) : null}
       </View>

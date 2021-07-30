@@ -15,7 +15,6 @@ import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 function Registration({
   navigation,
   route,
-  setRegisterData,
   setTypedPassword,
   setTypedEmail,
   typedEmail,
@@ -36,24 +35,24 @@ function Registration({
 
   return (
     <View style={styles.signInContainer}>
-      <Text style={styles.text}>{ts('Email')}</Text>
+      <Text style={styles.text}>{ts('email')}</Text>
       <TextInput
         style={styles.input}
-        placeholder={ts('Email')}
+        placeholder={ts('email')}
         keyboardType="default"
         value={typedEmail}
         onChangeText={setTypedEmail}
       />
-      <Text style={styles.text}>{ts('Password')}</Text>
+      <Text style={styles.text}>{ts('password')}</Text>
       <TextInput
         style={styles.input}
-        placeholder={ts('Password')}
+        placeholder={ts('password')}
         keyboardType="default"
         value={typedPassword}
         onChangeText={setTypedPassword}
       />
       <Button type="primary" onPress={onPressSignUp}>
-        {ts('sign up')}
+        {ts('signUp')}
       </Button>
       <Text style={styles.error}>{errorText}</Text>
     </View>

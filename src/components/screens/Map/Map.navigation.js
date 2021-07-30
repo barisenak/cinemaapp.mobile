@@ -14,12 +14,12 @@ const Stack = createStackNavigator();
 
 function MapNavigator({navigation, ts, styles}) {
   return (
-    <Stack.Navigator initialRouteName="Map">
+    <Stack.Navigator initialRouteName={MAP}>
       <Stack.Screen
-        name="Map"
+        name={MAP}
         component={Map}
         options={{
-          headerTitle: ts('Map'),
+          headerTitle: ts(MAP),
           headerTitleStyle: {
             color: styles.text.color,
           },

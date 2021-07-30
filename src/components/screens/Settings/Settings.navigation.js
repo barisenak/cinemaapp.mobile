@@ -10,7 +10,7 @@ import Language from '../Language/Language.connect';
 
 const Stack = createStackNavigator();
 
-function SettingsNavigator({navigation, ts, styles}) {
+function SettingsNavigator({ts, styles}) {
   return (
     <Stack.Navigator initialRouteName={SETTINGS}>
       <Stack.Screen

@@ -5,17 +5,18 @@ import Tickets from './Tickets.connect';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {getStyle} from '../Tickets/Tickets.styles';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+import {TICKETS} from 'app/enum/navigation.enum';
 
 const Stack = createStackNavigator();
 
 function TicketsNavigator({ts, styles}) {
   return (
-    <Stack.Navigator initialRouteName="Tickets">
+    <Stack.Navigator initialRouteName={TICKETS}>
       <Stack.Screen
-        name="Tickets"
+        name={TICKETS}
         component={Tickets}
         options={{
-          headerTitle: ts('Tickets'),
+          headerTitle: ts(TICKETS),
           headerTitleStyle: {
             color: styles.text.color,
           },

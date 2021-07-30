@@ -15,12 +15,12 @@ const Stack = createStackNavigator();
 
 function FilmsNavigator({navigation, ts, styles}) {
   return (
-    <Stack.Navigator initialRouteName="Films">
+    <Stack.Navigator initialRouteName={FILMS}>
       <Stack.Screen
         name={FILMS}
         component={Films}
         options={{
-          headerTitle: ts('Films'),
+          headerTitle: ts(FILMS),
           headerTitleStyle: {
             color: styles.text.color,
           },
