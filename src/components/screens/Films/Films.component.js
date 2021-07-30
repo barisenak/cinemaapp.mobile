@@ -69,7 +69,7 @@ function Films({
             prevScreen: FILMS,
           }));
       }}>
-      <Image source={{uri: item.img}} style={styles.card} />
+      <Image source={{uri: item?.img}} style={styles.card} />
     </TouchableHighlight>
   );
 
@@ -91,7 +91,7 @@ function Films({
         <FlatList
           data={films[CATEGORY_RECENTLY_RELEASED]}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item?.id}
           horizontal
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={
@@ -117,7 +117,7 @@ function Films({
         <FlatList
           data={films[CATEGORY_COMEDY]}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item?.id}
           horizontal
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={
@@ -142,7 +142,7 @@ function Films({
         <FlatList
           data={films[CATEGORY_DRAMA]}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item?.id}
           horizontal
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={
@@ -167,7 +167,7 @@ function Films({
         <FlatList
           data={films[CATEGORY_BIOGRAPHY]}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item?.id}
           horizontal
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={

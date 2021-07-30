@@ -20,7 +20,7 @@ export const getStyles = theme =>
 
     image: {
       width: '100%',
-      height: 560,
+      height: 610,
       marginBottom: gutter,
     },
 

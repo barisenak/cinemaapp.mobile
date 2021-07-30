@@ -104,7 +104,7 @@ class Map extends Component {
           <Image
             style={this.props.styles.imgInAnimation}
             source={{
-              uri: item.img,
+              uri: item?.img,
             }}
           />
         </View>

@@ -10,11 +10,11 @@ export function TokenProvider({children, getUser}) {
   useEffect(() => {
     AsyncStorage.getItem('accessToken')
       .then(accessToken => {
-        setAccessToken(accessToken);
+        accessToken ? setAccessToken(accessToken) : null;
       })
       .then(() => {
         AsyncStorage.getItem('refreshToken').then(refreshToken => {
-          getUser(refreshToken);
+          refreshToken ? getUser(refreshToken) : null;
         });
       })
       .then(() => setAppState(true));

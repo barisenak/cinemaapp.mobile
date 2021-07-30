@@ -61,7 +61,7 @@ function CinemaCard({
             userId: user?.id,
           });
         }}>
-        <Image source={{uri: item.img}} style={styles.card} />
+        <Image source={{uri: item?.img}} style={styles.card} />
       </TouchableHighlight>
     );
   };

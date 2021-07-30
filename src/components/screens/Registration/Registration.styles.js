@@ -32,5 +32,6 @@ export const getStyle = theme =>
       borderWidth: 1,
       borderColor: theme.black,
       color: theme.black,
+      height: 40,
     },
   });

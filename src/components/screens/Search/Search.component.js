@@ -31,7 +31,7 @@ function Search({
       onPress={() => onPressSearchItem(item)}>
       <View style={styles.cardWrapper}>
         <Text>{item.name}</Text>
-        <Image source={{uri: item.img}} style={styles.card} />
+        <Image source={{uri: item?.img}} style={styles.card} />
       </View>
     </TouchableHighlight>
   );

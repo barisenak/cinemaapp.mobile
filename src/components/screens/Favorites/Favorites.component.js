@@ -63,7 +63,7 @@ function Favorites({
             });
           }
         }}>
-        <Image source={{uri: item.img}} style={styles.card} />
+        <Image source={{uri: item?.img}} style={styles.card} />
       </TouchableHighlight>
     );
   };

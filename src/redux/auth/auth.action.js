@@ -58,17 +58,18 @@ function* loadUser(action) {
       const {accessToken, refreshToken} = yield call(fetchRefreshToken, {
         refreshToken: action.payload,
       });
+      if (accessToken) {
+        yield call(AsyncStorage.setItem, 'accessToken', accessToken);
+        setAccessToken(accessToken);
+        const profile = yield call(fetchUser, {
+          params: {userId: 'me'},
+        });
 
-      yield call(AsyncStorage.setItem, 'accessToken', accessToken);
-      yield call(AsyncStorage.setItem, 'refreshToken', refreshToken);
-
-      setAccessToken(accessToken);
-
-      const profile = yield call(fetchUser, {
-        params: {userId: 'me'},
-      });
-
-      yield put(setUser(profile));
+        yield put(setUser(profile));
+      }
+      if (refreshToken) {
+        yield call(AsyncStorage.setItem, 'refreshToken', refreshToken);
+      }
     } else {
       yield put(setUser(profileData));
     }
