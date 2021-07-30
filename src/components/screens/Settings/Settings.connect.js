@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import Settings from './Settings.component';
 
 import {userDataSelector} from 'app/redux/user/user.selector';
 import {removeUserInfo} from 'app/redux/user/user.action';
 import {languageSelector} from 'app/redux/settings/settings.selector';
-import {createStructuredSelector} from 'reselect';
 
 export default connect(
   createStructuredSelector({
@@ -13,7 +13,7 @@ export default connect(
     language: languageSelector,
   }),
   {
-    removeUserInfo: removeUserInfo,
+    removeUserInfo,
   },
   (stateProps, dispatchProps, ownProps) => {
     return {

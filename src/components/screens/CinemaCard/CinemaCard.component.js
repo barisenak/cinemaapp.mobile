@@ -6,7 +6,6 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Text} from 'app/components/partial/Text';
@@ -15,8 +14,9 @@ import {FILM_CARD} from 'app/enum/navigation.enum';
 
 import get from 'lodash/fp/get';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
-import {getStyles} from '../CinemaCard/CinemaCard.styles';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
+import {getStyles} from '../CinemaCard/CinemaCard.styles';
 
 function CinemaCard({
   cinema,
@@ -93,12 +93,7 @@ function CinemaCard({
         {ts('youCanWatch')} {cinema.name}:
       </Text>
       <View style={styles.sectionContainer}>
-        <FlatList
-          data={cinema.films}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          horizontal
-        />
+        <FlatList data={cinema.films} renderItem={renderItem} horizontal />
       </View>
     </ScrollView>
   );

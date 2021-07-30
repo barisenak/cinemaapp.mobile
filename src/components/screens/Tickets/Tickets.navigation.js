@@ -2,9 +2,12 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Tickets from './Tickets.connect';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
-import {getStyle} from '../Tickets/Tickets.styles';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
+import {getStyle} from '../Tickets/Tickets.styles';
+
 import {TICKETS} from 'app/enum/navigation.enum';
 
 const Stack = createStackNavigator();

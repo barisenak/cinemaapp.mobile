@@ -7,20 +7,22 @@ import {
   ActivityIndicator,
   TouchableHighlight,
 } from 'react-native';
+
 import {STATE_INITIAL, STATE_LOADING} from 'app/enum/state.enum';
-
-import {Text} from 'app/components/partial/Text';
-
+import {FILMS, FILM_CARD} from 'app/enum/navigation.enum';
 import {
   CATEGORY_COMEDY,
   CATEGORY_BIOGRAPHY,
   CATEGORY_DRAMA,
   CATEGORY_RECENTLY_RELEASED,
 } from 'app/enum/category.enum';
-import {FILMS, FILM_CARD} from 'app/enum/navigation.enum';
+
+import {Text} from 'app/components/partial/Text';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
-import {getStyles} from '../Films/Films.styles';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
+import {getStyles} from '../Films/Films.styles';
 
 function Films({
   state,
@@ -91,7 +93,6 @@ function Films({
         <FlatList
           data={films[CATEGORY_RECENTLY_RELEASED]}
           renderItem={renderItem}
-          keyExtractor={item => item?.id}
           horizontal
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={
@@ -117,7 +118,6 @@ function Films({
         <FlatList
           data={films[CATEGORY_COMEDY]}
           renderItem={renderItem}
-          keyExtractor={item => item?.id}
           horizontal
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={
@@ -142,7 +142,6 @@ function Films({
         <FlatList
           data={films[CATEGORY_DRAMA]}
           renderItem={renderItem}
-          keyExtractor={item => item?.id}
           horizontal
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={
@@ -167,7 +166,6 @@ function Films({
         <FlatList
           data={films[CATEGORY_BIOGRAPHY]}
           renderItem={renderItem}
-          keyExtractor={item => item?.id}
           horizontal
           ListEmptyComponent={<Text style={styles.emptySection}>Empty</Text>}
           ListFooterComponent={

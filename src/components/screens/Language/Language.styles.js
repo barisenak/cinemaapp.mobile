@@ -15,10 +15,6 @@ export const getStyle = theme =>
       backgroundColor: theme.white,
     },
 
-    settingsContainer: {
-      width: '100%',
-    },
-
     settingContainer: {
       display: 'flex',
       flexDirection: 'row',
@@ -28,20 +24,6 @@ export const getStyle = theme =>
       height: 58,
       borderColor: theme.black,
       borderBottomWidth: 0.25,
-    },
-
-    rightPropContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-
-    languageContainer: {
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
     },
 
     buttonContainer: {

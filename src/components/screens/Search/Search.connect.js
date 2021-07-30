@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import Search from './Search.component';
 
@@ -8,6 +9,8 @@ import {
   filmsSelector,
   cinemasSelector,
 } from 'app/redux/search/search.selector';
+import {languageSelector} from 'app/redux/settings/settings.selector';
+
 import {
   setTypedCinema,
   setTypedFilm,
@@ -15,10 +18,9 @@ import {
   clearSearchedData,
 } from 'app/redux/search/search.action';
 import {getFilmCard} from 'app/redux/film/film.action';
-import {CINEMA_CARD, FILMS, FILM_CARD, SEARCH} from 'app/enum/navigation.enum';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
-import {languageSelector} from 'app/redux/settings/settings.selector';
-import {createStructuredSelector} from 'reselect';
+
+import {CINEMA_CARD, FILMS, FILM_CARD, SEARCH} from 'app/enum/navigation.enum';
 
 export default connect(
   createStructuredSelector({
@@ -29,12 +31,12 @@ export default connect(
     language: languageSelector,
   }),
   {
-    setTypedFilm: setTypedFilm,
-    setTypedCinema: setTypedCinema,
-    makeSearch: makeSearch,
-    getFilmCard: getFilmCard,
-    clearSearchedData: clearSearchedData,
-    getCinemaCard: getCinemaCard,
+    setTypedFilm,
+    setTypedCinema,
+    makeSearch,
+    getFilmCard,
+    clearSearchedData,
+    getCinemaCard,
   },
   (stateProps, dispatchProps, ownProps) => {
     return {

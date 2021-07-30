@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import {
   locationSelector,
@@ -6,12 +7,14 @@ import {
   markersSelector,
   citySelector,
 } from 'app/redux/map/map.selector';
-import {getAllCinemas, getLocation, putMarkers} from 'app/redux/map/map.action';
-import Map from './Map.component';
-import {getCinemaCard} from 'app/redux/cinema/cinema.action';
-import {CINEMA_CARD, MAP} from 'app/enum/navigation.enum';
 import {userDataSelector} from 'app/redux/user/user.selector';
-import {createStructuredSelector} from 'reselect';
+
+import {getAllCinemas, getLocation, putMarkers} from 'app/redux/map/map.action';
+import {getCinemaCard} from 'app/redux/cinema/cinema.action';
+
+import Map from './Map.component';
+
+import {CINEMA_CARD, MAP} from 'app/enum/navigation.enum';
 
 export default connect(
   createStructuredSelector({
@@ -22,10 +25,10 @@ export default connect(
     city: citySelector,
   }),
   {
-    getLocation: getLocation,
-    getAllCinemas: getAllCinemas,
-    getCinemaCard: getCinemaCard,
-    putMarkers: putMarkers,
+    getLocation,
+    getAllCinemas,
+    getCinemaCard,
+    putMarkers,
   },
   (stateProps, dispatchProps, ownProps) => {
     return {

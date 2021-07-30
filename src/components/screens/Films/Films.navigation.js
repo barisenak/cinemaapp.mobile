@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {createStackNavigator} from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -9,6 +8,7 @@ import {FILMS, SEARCH} from 'app/enum/navigation.enum';
 
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
 import {getStyles} from '../Films/Films.styles';
 
 const Stack = createStackNavigator();

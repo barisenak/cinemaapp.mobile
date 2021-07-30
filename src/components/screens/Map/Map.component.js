@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {Component} from 'react';
 import {
   Image,
   ScrollView,
@@ -7,23 +7,28 @@ import {
   Animated,
   TouchableHighlight,
 } from 'react-native';
-
 import {Marker} from 'react-native-maps';
 import ClusteredMapView from 'react-native-maps-super-cluster';
+
 import {Text} from 'app/components/partial/Text';
-import {Component} from 'react';
+
 import isEmpty from 'lodash/isEmpty';
+
 import {checkLocationPermission} from 'app/utils/permissions';
+
 import {INIT_REGION} from 'app/enum/location.enum';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
 import {getStyles} from './Map.styles';
+import {styles} from 'app/components/partial/Text/Text.style';
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.myRef = React.createRef();
+  // }
 
   state = {
     fadeAnim: new Animated.Value(800),
@@ -129,9 +134,7 @@ class Map extends Component {
       <ScrollView style={this.props.styles.container}>
         <ClusteredMapView
           showsUserLocation={true}
-          style={{
-            position: 'relative',
-          }}
+          style={styles.mapView}
           data={this.props.cinemas?.map(el => ({
             ...el,
             location: {latitude: el.location.lat, longitude: el.location.lng},
@@ -142,7 +145,7 @@ class Map extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-          ref={this.myRef}
+          // ref={this.myRef}
           radius={70}
           renderMarker={this.renderMarker}
           renderCluster={this.renderCluster}
@@ -159,7 +162,6 @@ class Map extends Component {
           ]}
           data={this.props.markers}
           renderItem={this.renderItem}
-          keyExtractor={item => item.id}
           horizontal
           initialNumToRender={1}
         />

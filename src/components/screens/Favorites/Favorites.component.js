@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useCallback} from 'react';
-
 import {
   View,
   ScrollView,
@@ -8,6 +7,7 @@ import {
   TouchableHighlight,
   FlatList,
 } from 'react-native';
+
 import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
 
@@ -26,6 +26,7 @@ import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 import {getStyles} from '../Favorites/Favorites.styles';
+import isEmpty from 'lodash/isEmpty';
 
 function Favorites({
   navigation,
@@ -74,7 +75,7 @@ function Favorites({
       style={styles.screenBackground}>
       <View style={styles.navTabWrapper}>
         <Button
-          disabled={!userData ? true : false}
+          disabled={!userData}
           type="textLink"
           style={{
             text:
@@ -88,7 +89,7 @@ function Favorites({
           {ts('films')}
         </Button>
         <Button
-          disabled={!userData ? true : false}
+          disabled={!userData}
           type="textLink"
           style={{
             text:
@@ -121,12 +122,11 @@ function Favorites({
               data={userData.favouriteFilms}
               contentContainerStyle={styles.cardsContainer}
               renderItem={renderItem}
-              keyExtractor={item => item.id}
               numColumns={3}
               horizontal={false}
             />
           )}
-          {!userData.favouriteFilms.length && (
+          {isEmpty(userData.favouriteFilms) && (
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyText}>{ts('youNotHaveFavFilms')}</Text>
             </View>
@@ -139,12 +139,11 @@ function Favorites({
               data={userData.favouriteCinemas}
               contentContainerStyle={styles.cardsContainer}
               renderItem={renderItem}
-              keyExtractor={item => item.id}
               numColumns={3}
               horizontal={false}
             />
           )}
-          {!userData.favouriteCinemas.length && (
+          {isEmpty(userData.favouriteCinemas) && (
             <View style={styles.emptyContainer}>
               <Text style={styles.emptyText}>{ts('youNotHaveFavCinemas')}</Text>
             </View>

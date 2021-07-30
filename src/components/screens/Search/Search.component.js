@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react';
 import {FlatList, Image, Text, TouchableHighlight, View} from 'react-native';
-import {Button} from 'app/components/partial/Button';
-
 import {ScrollView} from 'react-native-gesture-handler';
-import {FILMS} from 'app/enum/navigation.enum';
 
 import {TextInput} from 'app/components/partial/TextInput';
+import {Button} from 'app/components/partial/Button';
+
+import {FILMS} from 'app/enum/navigation.enum';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
 import {getStyle} from './Search.styles';
 
 function Search({
@@ -67,7 +69,6 @@ function Search({
         <FlatList
           data={films.length ? films : cinemas}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
         />
       </View>
     </ScrollView>

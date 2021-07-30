@@ -26,6 +26,7 @@ export const getStyle = theme =>
       borderWidth: 1,
       borderColor: theme.black,
       color: theme.black,
+      height: 40,
     },
 
     cardWrapper: {
@@ -44,9 +45,5 @@ export const getStyle = theme =>
       marginRight: 5,
       marginTop: 5,
       marginBottom: 5,
-    },
-
-    text: {
-      color: theme.black,
     },
   });

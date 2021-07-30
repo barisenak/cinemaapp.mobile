@@ -1,5 +1,5 @@
 import {createAction} from 'app/utils/redux.util';
-import {put, takeEvery} from '@redux-saga/core/effects';
+import {put, takeEvery, call, all} from '@redux-saga/core/effects';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export const SET_USER = 'AUTH/SET_USER';
@@ -12,8 +12,11 @@ export const removeUserInfo = createAction(REMOVE_USER_INFO);
 
 function* removeUserData() {
   try {
-    AsyncStorage.removeItem('accessToken');
-    AsyncStorage.removeItem('refreshToken');
+    yield all([
+      call(AsyncStorage.removeItem, 'accessToken'),
+      call(AsyncStorage.removeItem, 'refreshToken'),
+    ]);
+
     yield put(clearUser());
   } catch (ex) {
     console.warn(ex);

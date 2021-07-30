@@ -24,19 +24,6 @@ export const getStyles = theme =>
       color: theme.black,
     },
 
-    marginLocation: {
-      marginTop: 30,
-    },
-
-    map: {
-      width: 400,
-      height: 400,
-    },
-
-    icon: {
-      marginRight: 10,
-    },
-
     img: {
       width: 60,
       height: 60,
@@ -71,10 +58,6 @@ export const getStyles = theme =>
       height: 90,
     },
 
-    fadingText: {
-      fontSize: 28,
-    },
-
     markerWrapper: {
       display: 'flex',
       justifyContent: 'space-between',
@@ -88,5 +71,9 @@ export const getStyles = theme =>
       paddingLeft: 10,
       paddingRight: 10,
       marginHorizontal: 7,
+    },
+
+    mapView: {
+      position: 'relative',
     },
   });

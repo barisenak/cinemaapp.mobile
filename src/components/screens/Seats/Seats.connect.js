@@ -1,8 +1,7 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import {filmCardSelector} from 'app/redux/film/film.selector';
-
-import Seats from './Seats.component';
 import {userDataSelector} from 'app/redux/user/user.selector';
 import {
   cinemaCardSelector,
@@ -12,6 +11,12 @@ import {
   selectedSeatsSelector,
   timeSelector,
 } from 'app/redux/cinema/cinema.selector';
+import {
+  bookedSeatsSelector,
+  bookingOfUserSelector,
+  dateTimeSelector,
+} from 'app/redux/booking/booking.selector';
+
 import {
   removeSelectedSeat,
   setDate,
@@ -27,13 +32,10 @@ import {
   setBooking,
   setDateTime,
 } from 'app/redux/booking/booking.action';
-import {
-  bookedSeatsSelector,
-  bookingOfUserSelector,
-  dateTimeSelector,
-} from 'app/redux/booking/booking.selector';
-import {createStructuredSelector} from 'reselect';
+
 import {SEATS_CARD, TICKET} from 'app/enum/navigation.enum';
+
+import Seats from './Seats.component';
 
 export default connect(
   createStructuredSelector({
@@ -50,17 +52,17 @@ export default connect(
     dateTime: dateTimeSelector,
   }),
   {
-    setSelectedSeat: setSelectedSeat,
-    removeSelectedSeat: removeSelectedSeat,
-    setDate: setDate,
-    setBooking: setBooking,
-    setTime: setTime,
-    setChoosenTime: setChoosenTime,
-    getBookings: getBookings,
-    clearState: clearState,
-    setDateTime: setDateTime,
-    clearSelectedSeats: clearSelectedSeats,
-    clearBookedSeats: clearBookedSeats,
+    setSelectedSeat,
+    removeSelectedSeat,
+    setDate,
+    setBooking,
+    setTime,
+    setChoosenTime,
+    getBookings,
+    clearState,
+    setDateTime,
+    clearSelectedSeats,
+    clearBookedSeats,
   },
   (stateProps, dispatchProps, ownProps) => {
     return {

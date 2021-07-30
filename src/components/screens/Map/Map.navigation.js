@@ -1,12 +1,13 @@
 import React from 'react';
-
-import Map from './Map.connect';
 import {createStackNavigator} from '@react-navigation/stack';
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import Map from './Map.connect';
+
 import {getStyles} from '../Map/Map.styles';
+
 import {MAP, SEARCH} from 'app/enum/navigation.enum';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 

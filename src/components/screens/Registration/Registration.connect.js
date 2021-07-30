@@ -1,7 +1,5 @@
 import {connect} from 'react-redux';
-
-import {userDataSelector} from 'app/redux/user/user.selector';
-import {errorTextSelector} from 'app/redux/register/register.selector';
+import {createStructuredSelector} from 'reselect';
 
 import {
   setRegisterTypedEmail,
@@ -9,13 +7,14 @@ import {
   setRegisterData,
 } from 'app/redux/register/register.action';
 
-import Registration from './Registration.component';
-
 import {
   typedEmailSelector,
   typedPasswordSelector,
+  errorTextSelector,
 } from 'app/redux/register/register.selector';
-import {createStructuredSelector} from 'reselect';
+import {userDataSelector} from 'app/redux/user/user.selector';
+
+import Registration from './Registration.component';
 
 export default connect(
   createStructuredSelector({
@@ -26,7 +25,7 @@ export default connect(
   }),
 
   {
-    setRegisterData: setRegisterData,
+    setRegisterData,
     setTypedEmail: setRegisterTypedEmail,
     setTypedPassword: setRegisterTypedPassword,
   },

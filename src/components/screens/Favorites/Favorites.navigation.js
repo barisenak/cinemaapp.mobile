@@ -1,11 +1,14 @@
-import Favorites from './Favorites.connect';
-import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import {FAVORITES} from 'app/enum/navigation.enum';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
 import {getStyles} from './Favorites.styles';
+
+import Favorites from './Favorites.connect';
 
 const Stack = createStackNavigator();
 

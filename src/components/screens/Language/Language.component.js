@@ -1,13 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useCallback} from 'react';
-
 import {View} from 'react-native';
-
 import {ScrollView} from 'react-native-gesture-handler';
-import {getStyle} from '../Settings/Settings.styles';
-import {Button} from 'app/components/partial/Button';
+
+import {getStyle} from '../Language/Language.styles';
+
 import {ENGLISH, RUSSIAN} from 'app/enum/settings.enum';
+
 import {Text} from 'app/components/partial/Text';
+import {Button} from 'app/components/partial/Button';
 
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';

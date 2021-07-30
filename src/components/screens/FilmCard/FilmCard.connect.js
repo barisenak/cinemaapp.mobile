@@ -1,15 +1,16 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import {
   cinemasWithFilmSelector,
   filmCardSelector,
 } from 'app/redux/film/film.selector';
-
-import FilmCard from './FilmCard.component';
-import {getCinemaCard} from 'app/redux/cinema/cinema.action';
 import {userDataSelector} from 'app/redux/user/user.selector';
 import {languageSelector} from 'app/redux/settings/settings.selector';
-import {createStructuredSelector} from 'reselect';
+
+import {getCinemaCard} from 'app/redux/cinema/cinema.action';
+
+import FilmCard from './FilmCard.component';
 
 export default connect(
   createStructuredSelector({
@@ -19,6 +20,6 @@ export default connect(
     language: languageSelector,
   }),
   {
-    getCinemaCard: getCinemaCard,
+    getCinemaCard,
   },
 )(FilmCard);

@@ -2,13 +2,13 @@ import React, {useEffect} from 'react';
 import {View} from 'react-native';
 
 import {Text} from 'app/components/partial/Text';
-
 import {Button} from 'app/components/partial/Button';
-
 import {TextInput} from 'app/components/partial/TextInput';
 
 import {getStyle} from './Registration.styles';
+
 import {FAVORITES, TICKETS} from 'app/enum/navigation.enum';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import get from 'lodash/get';
 
 import {ENGLISH, RUSSIAN} from 'app/enum/settings.enum';

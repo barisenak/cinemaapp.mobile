@@ -1,20 +1,23 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import Tickets from './Tickets.component';
 
 import {filmCardSelector} from 'app/redux/film/film.selector';
+import {selectedTabSelector} from 'app/redux/tickets/tickets.selector';
 import {userDataSelector} from 'app/redux/user/user.selector';
 import {
   cinemaCardSelector,
   selectedSeatsSelector,
   totalPriceSelector,
 } from 'app/redux/cinema/cinema.selector';
-
 import {
   bookingOfUserSelector,
   dateTimeSelector,
   allBookingsOfUserSelector,
+  stateSelector,
 } from 'app/redux/booking/booking.selector';
+
 import {
   getActualUserBookings,
   getOldUserBookings,
@@ -22,12 +25,7 @@ import {
 } from 'app/redux/booking/booking.action';
 import {getFilmCard} from 'app/redux/film/film.action';
 import {getCinemaCard} from 'app/redux/cinema/cinema.action';
-import {selectedTabSelector} from 'app/redux/tickets/tickets.selector';
 import {setSelectedTab} from 'app/redux/tickets/tickets.action';
-import {stateSelector} from 'app/redux/booking/booking.selector';
-import {createStructuredSelector} from 'reselect';
-
-createStructuredSelector;
 
 export default connect(
   createStructuredSelector({
@@ -44,11 +42,11 @@ export default connect(
     state: stateSelector,
   }),
   {
-    getActualUserBookings: getActualUserBookings,
-    getOldUserBookings: getOldUserBookings,
-    getFilmCard: getFilmCard,
-    getCinemaCard: getCinemaCard,
-    setSelectedTab: setSelectedTab,
-    setState: setState,
+    getActualUserBookings,
+    getOldUserBookings,
+    getFilmCard,
+    getCinemaCard,
+    setSelectedTab,
+    setState,
   },
 )(Tickets);

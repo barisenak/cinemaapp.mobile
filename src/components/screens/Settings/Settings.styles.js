@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+
 import {gutter} from 'app/styles/structure.style';
 
 export const getStyle = theme =>
@@ -34,19 +35,6 @@ export const getStyle = theme =>
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-    },
-
-    languageContainer: {
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
-
-    buttonContainer: {
-      display: 'flex',
-      flexDirection: 'row',
     },
 
     text: {

@@ -1,6 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
-
-import {call, put, takeEvery} from 'redux-saga/effects';
+import {call, put, takeEvery, all} from 'redux-saga/effects';
 
 import {createAction} from 'app/utils/redux.util';
 import {fetchToken, fetchRefreshToken} from 'app/api/token.api';
@@ -9,6 +7,7 @@ import {fetchUser} from 'app/api/user.api';
 import {setUser} from '../user/user.action';
 
 import {setAccessToken} from 'app/utils/fetch.util';
+import {setItem} from 'app/utils/storage.util';
 
 export const SET_USER_DATA = 'AUTH/SET_USER_DATA';
 export const SET_AUTH_TYPED_EMAIL = 'AUTH/SET_AUTH_TYPED_EMAIL';
@@ -29,8 +28,10 @@ function* setData(action) {
       password: action.payload.password,
     });
     if (data.accessToken) {
-      yield call(AsyncStorage.setItem, 'accessToken', data.accessToken);
-      yield call(AsyncStorage.setItem, 'refreshToken', data.refreshToken);
+      yield all([
+        call(setItem, 'accessToken', data.accessToken),
+        call(setItem, 'refreshToken', data.refreshToken),
+      ]);
 
       setAccessToken(data.accessToken);
 
@@ -59,7 +60,7 @@ function* loadUser(action) {
         refreshToken: action.payload,
       });
       if (accessToken) {
-        yield call(AsyncStorage.setItem, 'accessToken', accessToken);
+        yield call(setItem, 'accessToken', accessToken);
         setAccessToken(accessToken);
         const profile = yield call(fetchUser, {
           params: {userId: 'me'},
@@ -68,7 +69,7 @@ function* loadUser(action) {
         yield put(setUser(profile));
       }
       if (refreshToken) {
-        yield call(AsyncStorage.setItem, 'refreshToken', refreshToken);
+        yield call(setItem, 'refreshToken', refreshToken);
       }
     } else {
       yield put(setUser(profileData));

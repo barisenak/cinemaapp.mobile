@@ -7,13 +7,9 @@ export function withTheme(getStyle) {
     return props => {
       return (
         <ThemeProvider>
-          {({th, theme}) => (
-            <Component
-              {...props}
-              th={(key, options) => th(`${theme}`, options)}
-              styles={getStyle(theme)}
-            />
-          )}
+          {({theme}) => {
+            return <Component {...props} styles={getStyle(theme)} />;
+          }}
         </ThemeProvider>
       );
     };

@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {gutter} from 'app/styles/structure.style';
 
 export const getStyle = theme =>
   StyleSheet.create({
@@ -10,17 +9,8 @@ export const getStyle = theme =>
       backgroundColor: theme.white,
     },
 
-    registerContainer: {
-      marginTop: gutter * 2,
-      backgroundColor: theme.white,
-    },
-
     text: {
       color: theme.black,
-    },
-
-    button: {
-      width: 100,
     },
 
     error: {

@@ -1,5 +1,6 @@
-import {gutter} from 'app/styles/structure.style';
 import {StyleSheet} from 'react-native';
+
+import {gutter} from 'app/styles/structure.style';
 
 export const getStyles = theme =>
   StyleSheet.create({

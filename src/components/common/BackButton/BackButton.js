@@ -1,8 +1,8 @@
 import React from 'react';
+import {HeaderBackButton} from '@react-navigation/stack';
 
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
-import {HeaderBackButton} from '@react-navigation/stack';
 import {FILMS, SEATS_CARD} from 'app/enum/navigation.enum';
 
 function BackButton({route, navigation, ts}) {

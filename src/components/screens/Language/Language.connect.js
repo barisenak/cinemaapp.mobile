@@ -1,9 +1,10 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import Language from './Language.component';
 
 import {languageSelector} from 'app/redux/settings/settings.selector';
-import {createStructuredSelector} from 'reselect';
+
 import {setLanguage} from 'app/redux/settings/settings.action';
 
 export default connect(
@@ -11,7 +12,7 @@ export default connect(
     language: languageSelector,
   }),
   {
-    setLanguage: setLanguage,
+    setLanguage,
   },
   (stateProps, dispatchProps, ownProps) => {
     return {

@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react';
-
 import {FlatList, ScrollView, TouchableHighlight, View} from 'react-native';
+import DatePicker from 'react-native-date-picker';
+
 import {seatTypeStyles, getStyle} from '../Seats/Seats.styles';
+
 import {Text} from 'app/components/partial/Text';
 import {Button} from 'app/components/partial/Button';
-import DatePicker from 'react-native-date-picker';
+
 import isEmpty from 'lodash/isEmpty';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
@@ -182,11 +185,7 @@ function Seats({
         <Text style={styles.screenText}>{film.name}</Text>
       </View>
 
-      <FlatList
-        data={cinema.seatsSchema}
-        renderItem={renderSchemaItem}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      <FlatList data={cinema.seatsSchema} renderItem={renderSchemaItem} />
 
       <Text style={styles.totalPriceText}>
         {ts('totalPrice:')} {totalPrice} {cinema.rooms.currency}
@@ -198,7 +197,6 @@ function Seats({
           contentContainerStyle={styles.timeContainer}
           horizontal
           renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()}
         />
       </View>
 

@@ -6,17 +6,20 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-import get from 'lodash/fp/get';
-import flow from 'lodash/fp/flow';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {Text} from 'app/components/partial/Text';
-
-import moment from 'moment';
 import {CINEMA_CARD, FILM_CARD, SEATS_CARD} from 'app/enum/navigation.enum';
+
+import get from 'lodash/fp/get';
+import flow from 'lodash/fp/flow';
+import moment from 'moment';
+
+import {Text} from 'app/components/partial/Text';
 import {Button} from 'app/components/partial/Button';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
 import {getStyles} from '../FilmCard/FilmCard.styles';
 
 function FilmCard({
@@ -76,7 +79,6 @@ function FilmCard({
   const renderBtnItem = ({item}) => {
     return (
       <Button
-        style={styles.btn}
         key={item.id}
         onPress={() => {
           getCinemaCard(item.id);
@@ -119,12 +121,7 @@ function FilmCard({
       ) : null}
       <View style={styles.sectionContainer}>
         {cinemas.length ? (
-          <FlatList
-            data={cinemas}
-            renderItem={renderBtnItem}
-            keyExtractor={item => item.id}
-            horizontal
-          />
+          <FlatList data={cinemas} renderItem={renderBtnItem} horizontal />
         ) : null}
       </View>
 
@@ -135,12 +132,7 @@ function FilmCard({
       ) : null}
       <View style={styles.sectionContainer}>
         {cinemas.length ? (
-          <FlatList
-            data={cinemas}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            horizontal
-          />
+          <FlatList data={cinemas} renderItem={renderItem} horizontal />
         ) : null}
       </View>
     </ScrollView>

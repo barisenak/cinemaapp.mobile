@@ -11,6 +11,6 @@ export default connect(
     user: userDataSelector(st),
   }),
   {
-    addFavoriteCinema: addFavoriteCinema,
+    addFavoriteCinema,
   },
 )(AddFavCinema);

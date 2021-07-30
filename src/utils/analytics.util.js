@@ -1,8 +1,6 @@
-import React from 'react';
-
 import analytics from '@react-native-firebase/analytics';
 
-export const makeLogOnEvent = (event, screen) => {
+export const logAnalyticsEvent = (event, screen) => {
   analytics().logEvent(event, {
     screenName: screen,
   });

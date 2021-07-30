@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+
 import {black} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 
@@ -64,11 +65,6 @@ export const getStyle = theme =>
       textAlign: 'center',
       marginTop: 270,
       color: 'grey',
-    },
-
-    emptyContainer: {
-      justifyContent: 'center',
-      alignItems: 'center',
     },
 
     text: {

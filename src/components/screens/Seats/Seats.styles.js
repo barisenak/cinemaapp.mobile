@@ -1,7 +1,9 @@
 import {StyleSheet} from 'react-native';
+
 import {black} from 'app/styles/colors.style';
 import {gutter} from 'app/styles/structure.style';
 import {fontSize} from 'app/styles/font.style';
+
 import {
   SEAT_TYPE_CHAIR,
   SEAT_TYPE_FRIENDS_SEATS,
@@ -127,11 +129,6 @@ export const getStyle = theme =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-    },
-
-    datePicker: {
-      color: theme.black,
-      backgroundColor: theme.white,
     },
 
     timeContainer: {

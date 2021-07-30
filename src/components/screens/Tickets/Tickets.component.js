@@ -1,5 +1,4 @@
 /* eslint-disable react-native/no-inline-styles */
-import moment from 'moment';
 import React, {useEffect} from 'react';
 import {
   View,
@@ -9,19 +8,24 @@ import {
   ImageBackground,
   FlatList,
 } from 'react-native';
-import {AUTHORIZATION, TICKET, TICKETS} from 'app/enum/navigation.enum';
 
-import isEmpty from 'lodash/isEmpty';
+import {AUTHORIZATION, TICKET, TICKETS} from 'app/enum/navigation.enum';
+import {STATE_SUCCESS} from 'app/enum/state.enum';
 import {
   SELECTED_TAB_ACTUAL,
   SELECTED_TAB_OUTDATED,
 } from 'app/enum/tickets.enum';
+
 import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';
-import {STATE_SUCCESS} from 'app/enum/state.enum';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
 import {getStyle} from './Tickets.styles';
+
+import isEmpty from 'lodash/isEmpty';
+import moment from 'moment';
 
 function Tickets({
   navigation,
@@ -47,7 +51,6 @@ function Tickets({
         userId: user.id,
         presentDateTime: new Date(Date.now()).setHours(presentTime + 3),
       });
-
       getOldUserBookings({
         userId: user.id,
         presentDateTime: new Date(Date.now()).setHours(presentTime + 3),
@@ -154,11 +157,7 @@ function Tickets({
       {selectedTab === SELECTED_TAB_OUTDATED ? (
         <View>
           {state === STATE_SUCCESS && allBookings.old ? (
-            <FlatList
-              data={allBookings.old}
-              renderItem={renderItem}
-              keyExtractor={item => item.id}
-            />
+            <FlatList data={allBookings.old} renderItem={renderItem} />
           ) : (
             <ScrollView
               contentContainerStyle={styles.indicatorContainer}
@@ -173,11 +172,7 @@ function Tickets({
       ) : (
         <View>
           {state === STATE_SUCCESS && allBookings.actual ? (
-            <FlatList
-              data={allBookings.actual}
-              renderItem={renderItem}
-              keyExtractor={item => item.id}
-            />
+            <FlatList data={allBookings.actual} renderItem={renderItem} />
           ) : (
             <ScrollView
               contentContainerStyle={styles.indicatorContainer}

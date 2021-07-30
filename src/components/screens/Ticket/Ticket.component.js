@@ -1,10 +1,15 @@
 import React from 'react';
 import {ScrollView, Image} from 'react-native';
+
 import {getStyle} from '../Ticket/Ticket.styles';
+
 import {Text} from 'app/components/partial/Text';
+
 import moment from 'moment';
 import isEmpty from 'lodash/isEmpty';
+
 import {getCinemaLocation} from 'app/utils/cinemaLocation.util';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 

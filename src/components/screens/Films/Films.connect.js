@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import {
   stateSelector,
@@ -7,7 +8,6 @@ import {
   totalPagesSelector,
   nextBatchStateSelector,
 } from 'app/redux/films/films.selector';
-
 import {filmCardSelector} from 'app/redux/film/film.selector';
 import {userDataSelector} from 'app/redux/user/user.selector';
 
@@ -17,11 +17,10 @@ import {
   getNewFilms,
   getComedyFilms,
 } from 'app/redux/films/films.action';
-
-import Films from './Films.component';
 import {getFilmCard} from 'app/redux/film/film.action';
 import {getAccessToken} from 'app/redux/auth/auth.action';
-import {createStructuredSelector} from 'reselect';
+
+import Films from './Films.component';
 
 export default connect(
   createStructuredSelector({
@@ -37,8 +36,8 @@ export default connect(
     loadFilms: getFilms,
     loadComedyFilms: getComedyFilms,
     loadNewFilms: getNewFilms,
-    setPage: setPage,
-    getFilmCard: getFilmCard,
-    getAccessToken: getAccessToken,
+    setPage,
+    getFilmCard,
+    getAccessToken,
   },
 )(Films);

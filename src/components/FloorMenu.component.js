@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -18,9 +17,11 @@ import {
   FLOOR,
 } from 'app/enum/navigation.enum';
 
+import {logAnalyticsEvent} from 'app/utils/analytics.util';
+
 import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
-import {makeLogOnEvent} from 'app/utils/analytics.util';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
+
 import {getStyle} from './FloorMenu.styles';
 
 const Tab = createBottomTabNavigator();
@@ -44,7 +45,7 @@ function FloorMenu({ts, styles}) {
         name={FILMS}
         component={FilmsScreenNavigator}
         onPress={() => {
-          makeLogOnEvent(FLOOR, FILMS);
+          logAnalyticsEvent(FLOOR, FILMS);
         }}
         options={{
           tabBarLabel: ts(FILMS),
@@ -63,7 +64,7 @@ function FloorMenu({ts, styles}) {
         name={FAVORITES}
         component={FavoritesScreenNavigator}
         onPress={() => {
-          makeLogOnEvent(FLOOR, FAVORITES);
+          logAnalyticsEvent(FLOOR, FAVORITES);
         }}
         options={{
           tabBarLabel: ts(FAVORITES),
@@ -76,7 +77,7 @@ function FloorMenu({ts, styles}) {
         name={TICKETS}
         component={TicketsScreenNavigator}
         onPress={() => {
-          makeLogOnEvent(FLOOR, TICKETS);
+          logAnalyticsEvent(FLOOR, TICKETS);
         }}
         options={{
           tabBarLabel: ts(TICKETS),
@@ -89,7 +90,7 @@ function FloorMenu({ts, styles}) {
         name={MAP}
         component={MapScreenNavigator}
         onPress={() => {
-          makeLogOnEvent(FLOOR, MAP);
+          logAnalyticsEvent(FLOOR, MAP);
         }}
         options={{
           tabBarLabel: ts(MAP),
@@ -102,7 +103,7 @@ function FloorMenu({ts, styles}) {
         name={SETTINGS}
         component={SettingsScreenNavigator}
         onPress={() => {
-          makeLogOnEvent(FLOOR, SETTINGS);
+          logAnalyticsEvent(FLOOR, SETTINGS);
         }}
         options={{
           tabBarLabel: ts(SETTINGS),
