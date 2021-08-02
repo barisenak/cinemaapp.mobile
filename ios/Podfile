@@ -25,7 +25,6 @@ target 'cinemaapp_api' do
   # https://firebase.google.com/docs/ios/setup#available-pods
 
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'cinemaapp_apiTests' do
     inherit! :complete

@@ -2,10 +2,10 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import {store, persistor} from './redux/store';
+import {store, persistor} from './src/redux/store';
 
-import {TokenProvider} from './providers';
-import NavigationProvider from './providers/NavigationProvider/NavigationProvider.provider.js';
+import {TokenProvider} from './src/providers';
+import NavigationProvider from './src/providers/NavigationProvider/NavigationProvider.provider.js';
 
 function App() {
   return (

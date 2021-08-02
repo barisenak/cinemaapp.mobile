@@ -25,8 +25,8 @@ export const getStyles = theme =>
     },
 
     card: {
-      width: 145,
-      height: 195,
+      width: 123,
+      height: 170,
       marginTop: gutter / 2,
       marginRight: 2,
       marginLeft: 1,
