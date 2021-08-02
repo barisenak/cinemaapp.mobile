@@ -25,7 +25,8 @@ import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 import {getStyle} from './Tickets.styles';
 
 import isEmpty from 'lodash/isEmpty';
-import moment from 'moment';
+
+import LittleTicketConnect from './LittleTicket/LittleTicket.connect';
 
 function Tickets({
   navigation,
@@ -34,8 +35,6 @@ function Tickets({
   user,
   allBookings,
   booking,
-  getFilmCard,
-  getCinemaCard,
   selectedTab,
   setSelectedTab,
   userData,
@@ -58,43 +57,11 @@ function Tickets({
     }
   }, [user, booking]);
 
-  const image = {
-    uri: 'https://i.ytimg.com/vi/8yny_PR2IOo/maxresdefault.jpg',
-  };
-
   const renderItem = ({item}) => {
-    return (
-      <TouchableHighlight
-        key={item.id}
-        activeOpacity={0.5}
-        underlayColor={styles.screenBackground.backgroundColor}
-        onPress={() => {
-          getFilmCard(item.filmId.id);
-          getCinemaCard(item.cinemaId.id);
-          navigation.navigate(TICKET, {
-            ticketDate: item.ticketDate,
-            placeNumber: item.placeNumber,
-            prevScreen: TICKETS,
-          });
-        }}>
-        <ImageBackground style={styles.ticketsContainer} source={image}>
-          <View style={styles.textContainer}>
-            <Text style={styles.ticketText}>
-              {ts('cinema')}: {item.cinemaId.name}
-            </Text>
-            <Text style={styles.ticketText}>
-              {ts('film')}: {item.filmId.name}
-            </Text>
-            <Text style={styles.ticketText}>
-              {ts('date')}: {moment(item.ticketDate).format('LLL')}
-            </Text>
-          </View>
-        </ImageBackground>
-      </TouchableHighlight>
-    );
+    return <LittleTicketConnect item={item} navigation={navigation} />;
   };
 
-  if (!userData)
+  if (!userData) {
     return (
       <ScrollView
         contentContainerStyle={styles.container}
@@ -112,8 +79,9 @@ function Tickets({
         </View>
       </ScrollView>
     );
+  }
 
-  if (isEmpty(allBookings))
+  if (isEmpty(allBookings)) {
     return (
       <ScrollView
         contentContainerStyle={styles.indicatorContainer}
@@ -121,6 +89,7 @@ function Tickets({
         <ActivityIndicator size="small" color="black" />
       </ScrollView>
     );
+  }
 
   return (
     <ScrollView
@@ -180,6 +149,7 @@ function Tickets({
               <ActivityIndicator size="small" color="black" />
             </ScrollView>
           )}
+
           {isEmpty(allBookings.actual) ? (
             <Text style={styles.emptyText}>{ts('youNotHaveTickets')}</Text>
           ) : null}

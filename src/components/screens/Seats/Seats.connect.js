@@ -8,19 +8,15 @@ import {
   totalPriceSelector,
   dateSelector,
   choosenTimeSelector,
-  selectedSeatsSelector,
   timeSelector,
 } from 'app/redux/cinema/cinema.selector';
 import {
-  bookedSeatsSelector,
   bookingOfUserSelector,
   dateTimeSelector,
 } from 'app/redux/booking/booking.selector';
 
 import {
-  removeSelectedSeat,
   setDate,
-  setSelectedSeat,
   setTime,
   setChoosenTime,
   clearState,
@@ -42,18 +38,14 @@ export default connect(
     film: filmCardSelector,
     cinema: cinemaCardSelector,
     user: userDataSelector,
-    selectedSeats: selectedSeatsSelector,
     totalPrice: totalPriceSelector,
     date: dateSelector,
     booking: bookingOfUserSelector,
     time: timeSelector,
     choosenTime: choosenTimeSelector,
-    bookedSeats: bookedSeatsSelector,
     dateTime: dateTimeSelector,
   }),
   {
-    setSelectedSeat,
-    removeSelectedSeat,
     setDate,
     setBooking,
     setTime,
@@ -69,6 +61,47 @@ export default connect(
       ...stateProps,
       ...dispatchProps,
       ...ownProps,
+
+      setInitTimeParams: () => {
+        const lastTimeToday = new Date(Date.now()).setHours(24 + 3, 0, 59, 0);
+
+        if (stateProps.date.getTime() - lastTimeToday > 0) {
+          dispatchProps.setTime(stateProps.cinema.workingTime.start - 2);
+
+          dispatchProps.setChoosenTime(stateProps.cinema.workingTime.start);
+        } else {
+          dispatchProps.setTime(new Date().getHours());
+
+          const presentTime = new Date().getHours();
+
+          presentTime % 2 === 0
+            ? dispatchProps.setChoosenTime(presentTime + 2)
+            : dispatchProps.setChoosenTime(presentTime + 1);
+        }
+      },
+
+      onChangeTimeOrDate: () => {
+        dispatchProps.clearSelectedSeats();
+        dispatchProps.setDateTime(
+          new Date(stateProps.date).setHours(
+            stateProps.choosenTime + 3,
+            0,
+            0,
+            0,
+          ),
+        );
+        'id' in stateProps.cinema &&
+          dispatchProps.getBookings({
+            filmId: stateProps.film.id,
+            cinemaId: stateProps.cinema.id,
+            dateTime: new Date(stateProps.date).setHours(
+              stateProps.choosenTime + 3,
+              0,
+              0,
+              0,
+            ),
+          });
+      },
 
       onPayPress: () => {
         ownProps.navigation.navigate(TICKET, {
