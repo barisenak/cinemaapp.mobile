@@ -25,8 +25,8 @@ export const getStyles = theme =>
     },
 
     card: {
-      width: 124,
-      height: 173,
+      width: 145,
+      height: 195,
       marginTop: gutter / 2,
       marginRight: 2,
       marginLeft: 1,
@@ -59,6 +59,7 @@ export const getStyles = theme =>
     cardsContainer: {
       display: 'flex',
       width: '100%',
+
       justifyContent: 'flex-start',
     },
 
