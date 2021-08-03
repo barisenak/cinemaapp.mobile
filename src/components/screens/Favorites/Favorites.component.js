@@ -1,12 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useCallback} from 'react';
-import {
-  View,
-  ScrollView,
-  Image,
-  TouchableHighlight,
-  FlatList,
-} from 'react-native';
+import {View, Image, TouchableHighlight, FlatList} from 'react-native';
 
 import {Button} from 'app/components/partial/Button';
 import {Text} from 'app/components/partial/Text';

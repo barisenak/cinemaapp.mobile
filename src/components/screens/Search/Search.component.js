@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {FlatList, Image, Text, TouchableHighlight, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 
 import {TextInput} from 'app/components/partial/TextInput';
 import {Button} from 'app/components/partial/Button';

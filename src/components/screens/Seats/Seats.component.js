@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {FlatList, ScrollView, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
 import {seatTypeStyles, getStyle} from '../Seats/Seats.styles';

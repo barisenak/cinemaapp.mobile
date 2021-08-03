@@ -1,15 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
-import {
-  View,
-  ScrollView,
-  TouchableHighlight,
-  ActivityIndicator,
-  ImageBackground,
-  FlatList,
-} from 'react-native';
+import {View, ScrollView, ActivityIndicator, FlatList} from 'react-native';
 
-import {AUTHORIZATION, TICKET, TICKETS} from 'app/enum/navigation.enum';
+import {AUTHORIZATION, TICKETS} from 'app/enum/navigation.enum';
 import {STATE_SUCCESS} from 'app/enum/state.enum';
 import {
   SELECTED_TAB_ACTUAL,
