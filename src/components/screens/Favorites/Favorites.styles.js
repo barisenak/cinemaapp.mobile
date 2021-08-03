@@ -4,17 +4,13 @@ import {gutter} from 'app/styles/structure.style';
 
 export const getStyles = theme =>
   StyleSheet.create({
-    container: {
+    screenBackground: {
+      backgroundColor: theme.white,
       alignItems: 'center',
       paddingTop: 10,
       flexGrow: 1,
-      backgroundColor: theme.white,
       paddingHorizontal: gutter,
       paddingBottom: gutter * 2,
-    },
-
-    screenBackground: {
-      backgroundColor: theme.white,
     },
 
     signInContainer: {
@@ -39,7 +35,6 @@ export const getStyles = theme =>
     },
 
     emptyText: {
-      marginTop: 270,
       color: 'grey',
     },
 
@@ -54,6 +49,7 @@ export const getStyles = theme =>
       flexWrap: 'wrap',
       flexDirection: 'row',
       width: '100%',
+      height: '100%',
     },
 
     cardsContainer: {
@@ -65,5 +61,9 @@ export const getStyles = theme =>
 
     text: {
       color: theme.black,
+    },
+
+    flatList: {
+      height: '100%',
     },
   });

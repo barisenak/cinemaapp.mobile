@@ -29,7 +29,7 @@ function Search({
   const renderItem = ({item}) => (
     <TouchableHighlight
       activeOpacity={0.5}
-      underlayColor={styles.container.screenBackground}
+      underlayColor={styles.screenBackground.backgroundColor}
       onPress={() => onPressSearchItem(item)}>
       <View style={styles.cardWrapper}>
         <Text>{item.name}</Text>
@@ -45,33 +45,35 @@ function Search({
   }, []);
 
   return (
-    <ScrollView
-      keyboardShouldPersistTaps="handled"
-      contentContainerStyle={styles.container}
-      style={styles.screenBackground}>
-      <TextInput
-        style={styles.input}
-        placeholder={
-          route.params.prevScreen === FILMS ? ts('typeFilm') : ts('typeCinema')
-        }
-        keyboardType="default"
-        value={route.params.prevScreen === FILMS ? typedFilm : typedCinema}
-        onChangeText={text => {
-          route.params.prevScreen === FILMS
-            ? setTypedFilm(text)
-            : setTypedCinema(text);
-        }}
-      />
-      <Button type="primary" onPress={onSearch}>
-        {ts('search')}
-      </Button>
+    <View keyboardShouldPersistTaps="handled" style={styles.screenBackground}>
+      <View style={styles.wrapper}>
+        <TextInput
+          style={styles.input}
+          placeholder={
+            route.params.prevScreen === FILMS
+              ? ts('typeFilm')
+              : ts('typeCinema')
+          }
+          keyboardType="default"
+          value={route.params.prevScreen === FILMS ? typedFilm : typedCinema}
+          onChangeText={text => {
+            route.params.prevScreen === FILMS
+              ? setTypedFilm(text)
+              : setTypedCinema(text);
+          }}
+        />
+        <Button type="forSearch" onPress={onSearch}>
+          {ts('search')}
+        </Button>
+      </View>
       <View style={styles.listContainer}>
         <FlatList
           data={films.length ? films : cinemas}
           renderItem={renderItem}
+          style={styles.flatList}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 

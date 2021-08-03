@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-export function setItem(key, token) {
-  AsyncStorage.setItem(key, token);
+export function setItem(key, item) {
+  return AsyncStorage.setItem(key, item);
 }
 
 export function getItem(key) {

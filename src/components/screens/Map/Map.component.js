@@ -25,11 +25,6 @@ import {getStyles} from './Map.styles';
 import {styles} from 'app/components/partial/Text/Text.style';
 
 class Map extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.myRef = React.createRef();
-  // }
-
   state = {
     fadeAnim: new Animated.Value(800),
   };

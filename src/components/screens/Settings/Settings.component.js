@@ -15,13 +15,15 @@ import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 
 import {LANGUAGE} from 'app/enum/navigation.enum';
 
-function Settings({onPressLogOut, language, styles, navigation, ts}) {
+function Settings({onPressLogOut, language, styles, navigation, ts, user}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <View style={styles.settingsContainer}>
-        <TouchableHighlight onPress={() => navigation.navigate(LANGUAGE)}>
+        <TouchableHighlight
+          onPress={() => navigation.navigate(LANGUAGE)}
+          underlayColor="#a3a3a3">
           <View style={styles.settingContainer}>
             <Text style={styles.text}>{ts('language')}</Text>
             <View style={styles.rightPropContainer}>
@@ -35,6 +37,7 @@ function Settings({onPressLogOut, language, styles, navigation, ts}) {
           <Button type="simple">❯</Button>
         </View> */}
         <TouchableHighlight
+          underlayColor="#a3a3a3"
           onPress={() => Linking.openURL('mailto:test@test.com')}>
           <View style={styles.settingContainer}>
             <Text style={styles.text}>{ts('sendFeedback')}</Text>
@@ -48,11 +51,13 @@ function Settings({onPressLogOut, language, styles, navigation, ts}) {
               styles.text
             }>{`version ${getVersion()}, build ${getBuildNumber()}`}</Text>
         </View>
-        <TouchableHighlight onPress={onPressLogOut}>
-          <View style={styles.settingContainer}>
-            <Text style={styles.text}>{ts('logOut')}</Text>
-          </View>
-        </TouchableHighlight>
+        {user ? (
+          <TouchableHighlight onPress={onPressLogOut} underlayColor="#a3a3a3">
+            <View style={styles.settingContainer}>
+              <Text style={styles.text}>{ts('logOut')}</Text>
+            </View>
+          </TouchableHighlight>
+        ) : null}
       </View>
     </ScrollView>
   );

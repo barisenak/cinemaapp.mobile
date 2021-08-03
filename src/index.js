@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './redux/store';
 
-import {TokenProvider} from './providers';
+import TokenProvider from './providers/TokenProvider/TokenProvider.connect';
 import NavigationProvider from './providers/NavigationProvider/NavigationProvider.provider.js';
 
 function App() {

@@ -69,9 +69,7 @@ function Seats({
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      style={styles.screenBackground}>
+    <View style={styles.screenBackground}>
       <View>
         {cinema.rooms.types.map(elem => (
           <View style={styles.exampleContainer} key={elem.id}>
@@ -87,7 +85,11 @@ function Seats({
         <Text style={styles.screenText}>{film.name}</Text>
       </View>
 
-      <FlatList data={cinema.seatsSchema} renderItem={renderSchemaItem} />
+      <FlatList
+        data={cinema.seatsSchema}
+        renderItem={renderSchemaItem}
+        keyExtractor={(item, index) => index.toString()}
+      />
 
       <Text style={styles.totalPriceText}>
         {ts('totalPrice:')} {totalPrice} {cinema.rooms.currency}
@@ -99,16 +101,20 @@ function Seats({
           contentContainerStyle={styles.timeContainer}
           horizontal
           renderItem={renderTimeItem}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
-
-      <View style={styles.datePickerContainer}>
-        <DatePicker
-          date={date}
-          onDateChange={dateToRedux => setDate(dateToRedux)}
-          minimumDate={today}
-          mode="date"
-        />
+      <View style={styles.wrapper}>
+        <View style={styles.datePickerContainer}>
+          <DatePicker
+            fadeToColor="none"
+            date={date}
+            themeVariant="dark"
+            onDateChange={dateToRedux => setDate(dateToRedux)}
+            minimumDate={today}
+            mode="date"
+          />
+        </View>
       </View>
 
       <Button
@@ -117,7 +123,7 @@ function Seats({
         onPress={onPayPress}>
         {ts('pay')}
       </Button>
-    </ScrollView>
+    </View>
   );
 }
 

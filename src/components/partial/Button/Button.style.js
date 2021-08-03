@@ -25,6 +25,10 @@ export const styles = StyleSheet.create({
     backgroundColor: active,
   },
 
+  heightContainer: {
+    height: 40,
+  },
+
   simpleContainer: {
     minWidth: 20,
     backgroundColor: 'transparent',

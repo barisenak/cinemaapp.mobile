@@ -24,7 +24,9 @@ function TicketsNavigator({ts, styles}) {
             color: styles.text.color,
           },
 
-          headerStyle: {backgroundColor: styles.container.backgroundColor},
+          headerStyle: {
+            backgroundColor: styles.screenBackground.backgroundColor,
+          },
         }}
       />
     </Stack.Navigator>

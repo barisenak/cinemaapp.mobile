@@ -9,6 +9,7 @@ import {
   dateSelector,
   choosenTimeSelector,
   timeSelector,
+  selectedSeatsSelector,
 } from 'app/redux/cinema/cinema.selector';
 import {
   bookingOfUserSelector,
@@ -44,6 +45,7 @@ export default connect(
     time: timeSelector,
     choosenTime: choosenTimeSelector,
     dateTime: dateTimeSelector,
+    selectedSeats: selectedSeatsSelector,
   }),
   {
     setDate,

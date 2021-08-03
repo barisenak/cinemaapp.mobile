@@ -46,16 +46,12 @@ export const seatTypeStyles = {
 
 export const getStyle = theme =>
   StyleSheet.create({
-    container: {
+    screenBackground: {
       flexGrow: 1,
       backgroundColor: theme.white,
       paddingHorizontal: gutter,
       paddingBottom: gutter * 2,
       paddingTop: 10,
-    },
-
-    screenBackground: {
-      backgroundColor: theme.white,
     },
 
     row: {
@@ -125,10 +121,20 @@ export const getStyle = theme =>
       color: theme.black,
     },
 
-    datePickerContainer: {
+    wrapper: {
       display: 'flex',
+      width: '100%',
       justifyContent: 'center',
       alignItems: 'center',
+    },
+
+    datePickerContainer: {
+      display: 'flex',
+      width: '80%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f5f5f5',
+      marginTop: 4,
     },
 
     timeContainer: {

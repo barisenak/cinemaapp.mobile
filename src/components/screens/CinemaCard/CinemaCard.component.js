@@ -18,15 +18,7 @@ import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 import {getStyles} from '../CinemaCard/CinemaCard.styles';
 
-function CinemaCard({
-  cinema,
-  navigation,
-  route,
-  user,
-  getFilmCard,
-  ts,
-  styles,
-}) {
+function CinemaCard({cinema, navigation, user, getFilmCard, ts, styles}) {
   if (!cinema) {
     return null;
   }

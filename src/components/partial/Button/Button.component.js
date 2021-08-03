@@ -18,6 +18,10 @@ export const Button = ({type, style, children, disabled, onPress}) => {
   } else if (type === 'simple') {
     containerStyle.push(styles.simpleContainer);
     textStyle.push(styles.simpleText);
+  } else if (type === 'forSearch') {
+    containerStyle.push(styles.primaryContainer);
+    containerStyle.push(styles.heightContainer);
+    textStyle.push(styles.primaryText);
   }
 
   if (disabled) {

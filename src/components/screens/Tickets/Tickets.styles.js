@@ -5,16 +5,12 @@ import {gutter} from 'app/styles/structure.style';
 
 export const getStyle = theme =>
   StyleSheet.create({
-    container: {
+    screenBackground: {
       flexGrow: 1,
       backgroundColor: theme.white,
       paddingHorizontal: gutter,
       paddingBottom: gutter * 2,
       paddingTop: 10,
-    },
-
-    screenBackground: {
-      backgroundColor: theme.white,
     },
 
     ticketsContainer: {
@@ -51,23 +47,40 @@ export const getStyle = theme =>
       justifyContent: 'center',
       flexDirection: 'row',
       textAlign: 'center',
-      marginBottom: 7,
     },
 
     signInContainer: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: -32,
+    },
+
+    emptyContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
     },
 
     emptyText: {
-      textAlign: 'center',
-      marginTop: 270,
       color: 'grey',
     },
 
     text: {
       color: theme.black,
+    },
+
+    sectionContainer: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+      width: '100%',
+      height: '100%',
+      justifyContent: 'space-between',
+      textAlign: 'center',
+    },
+
+    flatList: {
+      flexGrow: 1,
+      height: '95%',
     },
   });

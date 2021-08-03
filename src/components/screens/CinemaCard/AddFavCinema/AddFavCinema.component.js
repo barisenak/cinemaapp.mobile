@@ -8,7 +8,7 @@ import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 import isEmpty from 'lodash/isEmpty';
 
-function AddFavCinema({navigation, options, addFavoriteCinema, user, styles}) {
+function AddFavCinema({options, addFavoriteCinema, user, styles}) {
   return (
     <TouchableOpacity
       onPress={() => {

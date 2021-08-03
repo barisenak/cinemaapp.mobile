@@ -35,10 +35,8 @@ function Authorization({
   }, [userData]);
 
   useEffect(() => {
-    return () => {
-      setTypedPassword('');
-    };
-  }, []);
+    setTypedPassword('');
+  }, [errorText]);
 
   return (
     <View style={styles.signInContainer}>
@@ -53,6 +51,7 @@ function Authorization({
       <Text style={styles.text}>{ts('password')}</Text>
       <TextInput
         style={styles.input}
+        secureTextEntry
         placeholder={ts('password')}
         keyboardType="default"
         value={typedPassword}

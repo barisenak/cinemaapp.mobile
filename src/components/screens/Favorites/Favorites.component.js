@@ -70,9 +70,7 @@ function Favorites({
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      style={styles.screenBackground}>
+    <View style={styles.screenBackground}>
       <View style={styles.navTabWrapper}>
         <Button
           disabled={!userData}
@@ -120,6 +118,7 @@ function Favorites({
           {userData.favouriteFilms && (
             <FlatList
               data={userData.favouriteFilms}
+              style={styles.flatList}
               contentContainerStyle={styles.cardsContainer}
               renderItem={renderItem}
               numColumns={3}
@@ -137,6 +136,7 @@ function Favorites({
           {userData.favouriteCinemas && (
             <FlatList
               data={userData.favouriteCinemas}
+              style={styles.flatList}
               contentContainerStyle={styles.cardsContainer}
               renderItem={renderItem}
               numColumns={3}
@@ -150,7 +150,7 @@ function Favorites({
           )}
         </View>
       )}
-    </ScrollView>
+    </View>
   );
 }
 

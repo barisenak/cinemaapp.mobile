@@ -63,9 +63,7 @@ function Tickets({
 
   if (!userData) {
     return (
-      <ScrollView
-        contentContainerStyle={styles.container}
-        style={styles.screenBackground}>
+      <View style={styles.screenBackground}>
         <View style={styles.signInContainer}>
           <Text style={styles.text}>{ts('pleaseSignIn')}</Text>
           <Button
@@ -77,7 +75,7 @@ function Tickets({
             {ts('login')}
           </Button>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 
@@ -92,7 +90,7 @@ function Tickets({
   }
 
   return (
-    <ScrollView
+    <View
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <View style={styles.navTabWrapper}>
@@ -124,9 +122,13 @@ function Tickets({
         </Button>
       </View>
       {selectedTab === SELECTED_TAB_OUTDATED ? (
-        <View>
+        <View style={styles.sectionContainer}>
           {state === STATE_SUCCESS && allBookings.old ? (
-            <FlatList data={allBookings.old} renderItem={renderItem} />
+            <FlatList
+              data={allBookings.old}
+              renderItem={renderItem}
+              style={styles.flatList}
+            />
           ) : (
             <ScrollView
               contentContainerStyle={styles.indicatorContainer}
@@ -135,13 +137,19 @@ function Tickets({
             </ScrollView>
           )}
           {isEmpty(allBookings.old) ? (
-            <Text style={styles.emptyText}>{ts('youNotHaveTickets')}</Text>
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>{ts('youNotHaveTickets')}</Text>
+            </View>
           ) : null}
         </View>
       ) : (
-        <View>
+        <View style={styles.sectionContainer}>
           {state === STATE_SUCCESS && allBookings.actual ? (
-            <FlatList data={allBookings.actual} renderItem={renderItem} />
+            <FlatList
+              data={allBookings.actual}
+              renderItem={renderItem}
+              style={styles.flatList}
+            />
           ) : (
             <ScrollView
               contentContainerStyle={styles.indicatorContainer}
@@ -151,11 +159,13 @@ function Tickets({
           )}
 
           {isEmpty(allBookings.actual) ? (
-            <Text style={styles.emptyText}>{ts('youNotHaveTickets')}</Text>
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>{ts('youNotHaveTickets')}</Text>
+            </View>
           ) : null}
         </View>
       )}
-    </ScrollView>
+    </View>
   );
 }
 

@@ -33,6 +33,10 @@ function Registration({
     }
   }, [userData]);
 
+  useEffect(() => {
+    setTypedPassword('');
+  }, [errorText]);
+
   return (
     <View style={styles.signInContainer}>
       <Text style={styles.text}>{ts('email')}</Text>
@@ -46,6 +50,7 @@ function Registration({
       <Text style={styles.text}>{ts('password')}</Text>
       <TextInput
         style={styles.input}
+        secureTextEntry
         placeholder={ts('password')}
         keyboardType="default"
         value={typedPassword}

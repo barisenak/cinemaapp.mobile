@@ -23,7 +23,9 @@ function FavoritesNavigator({navigation, ts, styles}) {
           headerTitleStyle: {
             color: styles.text.color,
           },
-          headerStyle: {backgroundColor: styles.container.backgroundColor},
+          headerStyle: {
+            backgroundColor: styles.screenBackground.backgroundColor,
+          },
         }}
       />
     </Stack.Navigator>
