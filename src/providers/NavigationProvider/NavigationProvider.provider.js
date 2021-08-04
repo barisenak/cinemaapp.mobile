@@ -1,6 +1,11 @@
 import React from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
+import {useColorScheme} from 'react-native';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {
@@ -34,8 +39,10 @@ import {getStyle} from 'app/components/FloorMenu.styles';
 const Stack = createStackNavigator();
 
 function NavigationProvider({styles, ts}) {
+  const scheme = useColorScheme();
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
         initialRouteName={FILMS}
         screenOptions={{

@@ -87,7 +87,8 @@
   "search": {
     "search": "Search",
     "typeFilm": "type film you want to search",
-    "typeCinema": "type cinema you want to search"
+    "typeCinema": "type cinema you want to search",
+    "youNotLogged": "You are not logged in"
   },
 
   "seats": {

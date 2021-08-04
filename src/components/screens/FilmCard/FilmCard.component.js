@@ -95,6 +95,7 @@ function FilmCard({
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <Image source={{uri: film.img}} style={styles.image} />

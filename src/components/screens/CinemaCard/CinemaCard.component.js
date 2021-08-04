@@ -60,6 +60,7 @@ function CinemaCard({cinema, navigation, user, getFilmCard, ts, styles}) {
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}
       style={styles.screenBackground}>
       <Image source={{uri: cinema.img}} style={styles.image} />

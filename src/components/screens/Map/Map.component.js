@@ -124,6 +124,20 @@ class Map extends Component {
     }
   }
 
+  async componentDidUpdate(prevProps) {
+    if (this.props.user !== prevProps.user) {
+      const coords = await checkLocationPermission();
+      if (coords) {
+        this.props.getLocation(coords);
+      } else {
+        this.props.getLocation({
+          lat: INIT_REGION.latitude,
+          lng: INIT_REGION.longitude,
+        });
+      }
+    }
+  }
+
   render() {
     return isEmpty(this.props.location) ? null : (
       <ScrollView style={this.props.styles.container}>

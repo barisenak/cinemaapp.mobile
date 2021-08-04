@@ -10,6 +10,7 @@ import {
   cinemasSelector,
 } from 'app/redux/search/search.selector';
 import {languageSelector} from 'app/redux/settings/settings.selector';
+import {userDataSelector} from 'app/redux/user/user.selector';
 
 import {
   setTypedCinema,
@@ -29,6 +30,7 @@ export default connect(
     films: filmsSelector,
     cinemas: cinemasSelector,
     language: languageSelector,
+    user: userDataSelector,
   }),
   {
     setTypedFilm,

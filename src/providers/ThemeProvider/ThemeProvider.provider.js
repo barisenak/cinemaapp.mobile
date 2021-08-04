@@ -18,6 +18,9 @@ export const ThemeProvider = ({children}) => {
     Appearance.addChangeListener(({colorScheme}) => {
       setTheme(colorScheme);
     });
+    return function () {
+      Appearance.removeChangeListener();
+    };
   }, []);
 
   if (!theme) return null;

@@ -19,6 +19,7 @@ function Registration({
   setTypedEmail,
   typedEmail,
   typedPassword,
+  setRegisterErrorText,
   userData,
   errorText,
   onPressSignUp,
@@ -36,6 +37,10 @@ function Registration({
   useEffect(() => {
     setTypedPassword('');
   }, [errorText]);
+
+  useEffect(() => {
+    setRegisterErrorText('');
+  }, []);
 
   return (
     <View style={styles.signInContainer}>

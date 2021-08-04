@@ -54,4 +54,9 @@ export const getStyle = theme =>
       flexGrow: 1,
       height: '95%',
     },
+
+    text: {
+      marginTop: 200,
+      color: theme.black,
+    },
   });

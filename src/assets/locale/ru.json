@@ -87,7 +87,8 @@
   "search": {
     "search": "Поиск",
     "typeFilm": "введите фильм",
-    "typeCinema": "введите кинотеатр"
+    "typeCinema": "введите кинотеатр",
+    "youNotLogged": "Вы не авторизованы"
   },
 
   "seats": {

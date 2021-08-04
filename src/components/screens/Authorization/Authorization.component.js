@@ -20,6 +20,7 @@ function Authorization({
   setTypedEmail,
   typedPassword,
   setTypedPassword,
+  setAuthErrorText,
   errorText,
   onPressRegister,
   onPressSignIn,
@@ -37,6 +38,10 @@ function Authorization({
   useEffect(() => {
     setTypedPassword('');
   }, [errorText]);
+
+  useEffect(() => {
+    setAuthErrorText('');
+  }, []);
 
   return (
     <View style={styles.signInContainer}>

@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
 import {
+  setAuthErrorText,
   setAuthTypedEmail,
   setAuthTypedPassword,
   setUserData,
@@ -27,6 +28,7 @@ export default connect(
     setUserData,
     setTypedEmail: setAuthTypedEmail,
     setTypedPassword: setAuthTypedPassword,
+    setAuthErrorText,
   },
   (stateProps, dispatchProps, ownProps) => {
     return {

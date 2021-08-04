@@ -5,6 +5,7 @@ import {
   setRegisterTypedEmail,
   setRegisterTypedPassword,
   setRegisterData,
+  setRegisterErrorText,
 } from 'app/redux/register/register.action';
 
 import {
@@ -28,6 +29,7 @@ export default connect(
     setRegisterData,
     setTypedEmail: setRegisterTypedEmail,
     setTypedPassword: setRegisterTypedPassword,
+    setRegisterErrorText,
   },
 
   (stateProps, dispatchProps, ownProps) => {

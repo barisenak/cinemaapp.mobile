@@ -38,7 +38,11 @@ function Settings({onPressLogOut, language, styles, navigation, ts, user}) {
         </View> */}
         <TouchableHighlight
           underlayColor="#a3a3a3"
-          onPress={() => Linking.openURL('mailto:test@test.com')}>
+          onPress={() =>
+            Linking.openURL('mailto:test@test.com').catch(err =>
+              console.log(err),
+            )
+          }>
           <View style={styles.settingContainer}>
             <Text style={styles.text}>{ts('sendFeedback')}</Text>
             <Button type="simple">❯</Button>

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {FlatList, Image, Text, TouchableHighlight, View} from 'react-native';
+import {FlatList, Image, TouchableHighlight, View} from 'react-native';
 
 import {TextInput} from 'app/components/partial/TextInput';
 import {Button} from 'app/components/partial/Button';
@@ -10,6 +10,7 @@ import {withTranslation} from 'app/providers/LocaleProvider/withTranslation';
 import {withTheme} from 'app/providers/ThemeProvider/withTheme';
 
 import {getStyle} from './Search.styles';
+import {Text} from 'app/components/partial/Text';
 
 function Search({
   typedCinema,
@@ -24,6 +25,7 @@ function Search({
   onPressSearchItem,
   ts,
   styles,
+  user,
 }) {
   const renderItem = ({item}) => (
     <TouchableHighlight
@@ -42,6 +44,14 @@ function Search({
     setTypedFilm('');
     setTypedCinema('');
   }, []);
+
+  if (!user) {
+    return (
+      <View style={styles.screenBackground}>
+        <Text style={styles.text}>{ts('youNotLogged')}</Text>
+      </View>
+    );
+  }
 
   return (
     <View keyboardShouldPersistTaps="handled" style={styles.screenBackground}>
